@@ -1,0 +1,120 @@
+
+
+
+/* signinForm */
+.signInbox{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.headerSignin{
+  display: flex;
+  
+}
+.headerSignin p{
+
+  font-weight: 800 !important;
+  font-size: 30px;
+
+}
+form{
+  margin-bottom: 20px;
+  width: 345px;
+}
+/* .form-group >label{
+  padding-left: 20px;
+  font-size: 15px;
+  
+  color: rgb(104,105,109);
+} */
+
+.form-control{
+  background-color: rgb(245,245,245);
+}
+
+
+.buttonSignIn{
+  margin-top: 21px;
+  font-size: small !important;
+  border-radius: 35px !important;
+  background-color: rgb(61,105,225);
+  color: white;
+  padding: 8px 0;
+  font-weight: bolder;
+}
+.buttonCreateAccount{
+  margin-top: 40px;
+  border: 3px solid black;
+  border-radius: 35px !important;
+  font-size: small !important;
+  width: 330px;
+}
+.buttonCreateAccount:hover{
+  background-color: black;
+  color: white;
+}
+.formRound{
+  border-radius: 35px !important;
+  border: 0.1px;
+}
+
+
+.forgot a{
+  font-size: small;
+    color: rgb(104,105,109);
+    text-decoration: underline;
+}
+.forgot span{
+  color: rgb(104,105,109);
+  padding: 0 5px;
+}
+
+.or-text{
+  display: flex;
+  margin-top: 30px;
+  align-items: center;
+}
+.or-text span{
+  font-size: 15px;
+  font-weight: bold !important;
+  padding: 0 10px;
+  color: rgb(104,105,109) !important;
+}
+.line{
+ color:  rgb(199, 199, 199);
+ width: 135px;
+}
+
+.fa {
+  margin-right: 10px;
+}
+
+
+#form-password{
+  position: relative;
+  width: 100%;
+  height: auto;
+
+}
+.eye{
+  display: none;
+  position: absolute;
+  font-size: 18px;
+} 
+#hide{
+  position: absolute;
+  top: -28px;
+  left: 290px;
+  display: none;
+  cursor: pointer;
+}
+
+#show{
+  position: absolute;
+  top: -28px;
+  left: 290px;
+  cursor: pointer;
+  
+}
+
+/* End signinForm */

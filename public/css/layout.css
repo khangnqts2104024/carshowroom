@@ -1,0 +1,407 @@
+@font-face {
+    font-family: Gothams;
+    src: url(/Font/FontGotham/SVN-GothamBook.otf);
+  }
+  html,body{
+      background-color: none;
+      width: 100%;
+      height: 100%;
+      margin: 0px;
+      padding: 0px;
+      overflow-x: hidden; 
+      box-sizing: border-box;
+      font-family: Gothams;
+      font-weight: 550 !important;
+  }
+
+.container-fluid{
+    padding: 0px !important;
+}
+
+
+  a{
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+    text-decoration: none !important;
+  }
+  
+  .logoVinFast{
+    padding:10px 0 0 47px !important;
+  }
+  
+  .my-nav{
+    list-style-type: none;
+    margin: 0 0 0 0;
+   
+    /* line-height: 72px; */
+  }
+  .my-nav .nav-item{
+    margin: 0 20px !important;
+  } 
+  .my-nav .nav-item a{
+    text-decoration: none !important;
+    color: black;
+    display:block;
+    padding: 10px;
+  }
+  
+  /* Account Button */
+  
+  .AccountButton{
+    background-color: rgb(61,105,225);
+    padding: 0px 40px 0px 40px;
+    width: 200px;
+    text-align: center;
+    background: linear-gradient(to left, rgb(20,100,244) 50%, white 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    transition: all .4s ease-out;
+  }
+  
+  .AccountButton:hover {
+    background-position: left bottom;
+    color: rgb(61,105,225) !important;
+  }
+  .AccountButton a{
+    color: white !important;
+  }
+  
+  .AccountButton:hover a{
+    color: rgb(61,105,225) !important;
+  }
+  /* show caret button */
+  .my-nav li .dropdown-toggle:after { content: none }
+
+  /* Mega Menu 1 */
+  .menu-area{
+      position: static;
+  }
+  .mega-area {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    top:96% !important;
+    border-radius: 0 !important;
+}
+
+ /* Mega Menu 2 */
+  .menu-area2{
+    position: static;
+}
+  .mega-area2{
+    position: absolute;
+    width: 24%;
+    left: auto;
+    right: 0;
+    padding: 15px;
+    top:96% !important;
+    border-radius: 0 !important;
+  }
+  
+
+.menu-show-car img{
+    width: 100%;
+}
+.menu-show-car .item-name{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    color: black;
+    margin: 20px 0 0;
+}
+.menu-show-car .item-price{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    color: black;
+    margin-bottom: 10px;
+}
+.menu-show-car .col .view-detail-a{
+    color: #007bb6;
+    font-size: 16px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    outline: none;
+    border: none !important;
+}
+
+.mega-area .desc{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 140.4%;
+    text-align: center;
+    color: #707070;
+    margin-top: 20px;
+}
+.mega-area .view_all{
+    text-align: center;
+    margin-top:20px;
+}
+
+.mega-area .view_all a{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 16px;
+    color: #FFFFFF;
+    background: #2C72C6;
+    border-radius: 5px;
+    height: 40px;
+    width: 364px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+
+.dropdown:hover  .dropdown-menu {
+    display: block;
+  }
+
+
+
+
+
+  /* footer */
+
+  /*
+  =========================================================================================
+                                    Social Icons
+  =========================================================================================
+  */
+  
+	
+.round-btn {display: inline;height: 40px; width: 40px; background:#fff;border-radius: 50%;float: left;margin: 15px 8px;box-shadow: 2px 2px 5px 0px rgb(82, 0, 67);border: 1px solid;/*border: 1px solid #622657;*/}
+.round-btn a {display: block !important;padding: 7px 12px;font-size: 18px;border-radius: 50%;}
+.round-btn .icon {padding: 3px;}
+.round-btn .icon img{height: 24px; width: 32px;margin-top: 6px;}
+.btn-facebook a {color: #3b5998;padding: 8px 13px;}
+.btn-linkedin a {color: #007bb6;}
+.btn-twitter a{color: #1c9deb;}
+.btn-instagram a{color: #dd3f5c;}
+.btn-whatsapp a{color: #155E54;}
+.btn-envelop a{color: #D6403A;font-size: 15px; padding: 9px 12px;}
+.standard_header .standard_social_links {margin-left: 1rem;}
+
+  /*
+  =========================================================================================
+                                    footer
+  =========================================================================================
+  */
+  footer{
+     margin-top:130px;
+      display: block;
+      position: relative;
+  }
+  .footer-wrap {
+    padding-top: 43px;
+    background-size: cover;
+}
+
+.footer-logo img{
+    margin-top: 30px;
+    width: 20vh !important;
+}
+.footer-wrap h3 {
+    color: #fff;
+    font-size: 17px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+}
+
+.footer-wrap p {
+    font-size: 13px;
+    line-height: 24px;
+    color: #b3b3b3;
+    margin-top: 15px;
+}
+
+.footer-wrap p a {
+    color: #fff;
+    text-decoration: underline;
+    font-style: italic;
+}
+
+.footer-wrap p a:hover {
+    text-decoration: none;
+    color: #ff7800;
+}
+
+.footer-links li a {
+    font-size: 13px;
+    line-height: 30px;
+    color: #ccc;
+    text-decoration: none;
+}
+
+
+.footer-links li:before {
+    content: "\f105";
+    font-family: 'FontAwesome';
+    padding-right: 10px;
+    color: #ccc;
+}
+
+.footer-category li a {
+    font-size: 13px;
+    line-height: 30px;
+    color: #ccc;
+    text-decoration: none;
+}
+
+.footer-category li:before {
+    content: "\f105";
+    font-family: 'FontAwesome';
+    padding-right: 10px;
+    color: #b3b3b3;
+}
+
+.address {
+    
+    color: #b3b3b3;
+    font-size: 14px;
+    position: relative;
+    padding-left: 30px;
+    line-height: 30px;
+}
+
+.address:before {
+    content: "\f277";
+    font-family: 'FontAwesome';
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.info a {
+ 
+    color: #b3b3b3;
+    font-size: 14px;
+    line-height: 30px;
+    font-weight: normal;
+}
+
+.fa-phone:before {
+    content: "\f095";
+}
+
+.info a {
+
+    color: #b3b3b3;
+    font-size: 14px;
+    line-height: 30px;
+    font-weight: normal;
+}
+
+.fa-fax:before {
+    content: "\f1ac";
+}
+
+.copyright {
+    border-top: 1px solid #111;
+    font-size: 14px;
+    color: #ccc;
+    padding-top: 15px;
+    text-align: center;
+    padding-bottom: 15px;
+    background: #222;
+}
+footer .second_class{
+    border-bottom: 1px solid #444;
+    padding-bottom: 25px;
+}
+footer .first_class {
+    padding-bottom: 21px;
+    border-bottom: 1px solid #444;
+}
+footer .first_class p, footer .first_class h3{
+    margin: 0 0;
+    
+}
+footer{
+    background: #333;
+}
+
+
+footer .newsletter input[type="text"] {
+    width: 100%;
+    background: #fff;
+    color: #333;
+    border: 1px solid #222;
+    padding: 14px 20px;
+    border-radius: 50px;
+    margin-top: 12px;
+}
+
+.newsletter .newsletter_submit_btn {
+    background: #fff;
+    position: absolute;
+    right: 49px;
+    border: 0;
+    top: 26px;
+    font-size: 17px;
+    color: #333;
+}
+
+
+footer .second_class_bdr{
+    padding-top: 25px;
+    border-top:1px solid #222;
+}
+
+footer .btn-facebook a {
+    padding: 6px 14px !important;
+}
+
+footer .btn-envelop a {
+    color: #D6403A;
+    font-size: 15px;
+    padding: 12px 12px;
+}
+
+footer .round-btn a {
+    padding: 6px 12px;
+}
+
+footer .round-btn {
+    box-shadow: 2px 2px 5px 0px #222 !important;}
+
+footer .round-btn {
+    margin: 15px 4px;}
+	
+footer dl, ol, ul {
+    padding-left: 5px;
+}
+	footer li{
+		list-style: none;
+	}
+
+
+
+/* @media(max-width:1024px){
+    .nav-pc{
+        display: none;
+    }
+} */
+
+@media(max-width:768px){
+    
+    .footer-wrap h3 {
+    margin-top: 27px;}
+    
+    footer .round-btn {
+    margin: 15px 4px;}
+}
+@media(max-width:425px){
+ 
+}
+@media(max-width:320px){
+.copyright {
+    font-size: 13px;}
+}	
+

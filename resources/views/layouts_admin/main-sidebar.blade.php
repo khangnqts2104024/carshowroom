@@ -74,19 +74,19 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('admin/general') }}" class="nav-link">
+                            <a href="{{ url('admin/general/employee') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Quản Lý Nhân Viên</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('admin/general') }}" class="nav-link">
+                            <a href="{{ url('admin/general/customer') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Quản Lý Khách Hàng</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('admin/general') }}" class="nav-link">
+                            <a href="{{ url('admin/general/customer') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Quản Lý Model</p>
                             </a>

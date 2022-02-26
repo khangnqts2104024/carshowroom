@@ -123,5 +123,14 @@ Route::get('admin/general', function () {
 Route::get('admin/login', function () {
     return view('admin.adminprofile.adminlogin');
 });
+Route::get('admin/general/employee', function () {
+    return view('admin.general.empmanage');
+});
+Route::get('admin/general/empcreate', function () {
+    return view('admin.general.empcreate');
+});
+Route::get('admin/general/customer', function () {
+    return view('admin.general.custmanage');
+});
 // Route::view('/profile','dashboard.user.profile')->name('profile');
 // KHANGEND

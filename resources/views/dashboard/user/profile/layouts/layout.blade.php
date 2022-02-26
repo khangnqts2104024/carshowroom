@@ -13,6 +13,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+
+    <style>
+
+
+
+    </style>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -83,11 +89,48 @@
             <div class="sidebar">
 
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex ">
-                    <div class="image ml-3">
-                        <img src="/image/testava.png" class="img-circle elevation-2" alt="User Image">
+                    <div class="image ml-3 ">
+                        <!-- Button trigger modal -->
+                        <img src="/image/testava.png" class="img-circle elevation-2 showUploadImgModal" alt="User Image">
                     </div>
                     <div class="info ">    
-                        <a href="#" class="d-block" style="font-size: 22px;" id="fullnameUserLayout"></a>                           
+                        <a href="#" class="d-block " id="fullnameUserLayout"></a>                           
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="editAvatar" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2 class="modal-title">Edit Avatar</h2>
+                                        <button type="button" class="close XCloseModal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="" method="POST" id="formEditAvatar" enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" class="idToken" value="{{ csrf_token() }}">
+                                        <input type="hidden" name="customer_id" class="customer_id" value="">
+                                      
+                                        <div class="form-group">
+                                            <label>Avatar</label> <br>
+                                             <input type="file" class="" name="image_upload" id="uploadImgBtn"><br>
+    
+                                                <span class="text-danger error-text image_upload_error"></span>
+                                        </div>
+                                      
+
+                                        <button type="submit" id="updateAvatarBtn" class=" btn btn-primary submitButton formRound">UPDATE</button>
+                                    </form>
+
+                                    
+                                </div>
+                                
+                                  
+                              
+                            </div>
+                        </div>
                     </div>
                 </div>
 

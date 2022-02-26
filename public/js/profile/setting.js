@@ -202,8 +202,6 @@ $(function() {
        });
 
       // AJAX EDIT AVATAR
-
-
       $('#formEditAvatar').on('submit',function(e){
          e.preventDefault();
          var form = this;
@@ -230,59 +228,20 @@ $(function() {
                            $.each(data.error,function(prefix,val){
                                  $(form).find('span.'+prefix+'_error').text(val[0]);
                            });
-                           console.log(data);
+                           
                         }else{
                            $(form)[0].reset();
                            alert(data.msg);
+                           $('#editAvatar').modal("hide");
+                            $('#editAvatar').find('input').val("");
+                              fetchInfo();
                         }
-
-
-                     //  $('#editAvatar').modal("hide");
-                      
-                     //  $('#editAvatar').find('input').val("");
-                     //  fetchInfo();
                    }
-                })
+                });
 
+      });
 
-       
-      })
-
-      // $('#updateAvatarBtn').on('click', function(e){
-     
-      //    e.preventDefault();
-      //    var customer_id = $('.customer_id').val(); //in settings view
-       
-      //     var data = {
-      //        _token: $(".idToken").val(),
-      //        'customer_id': customer_id,
-      //        'image_upload': $('#uploadImgBtn').val(),
-      //        'fullname': $('#fullnameEdit').val(),
-             
-      //     };
-         
-      //     $.ajaxSetup({
-      //        headers: {
-      //            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-      //        }
-      //    })
-        
-      //     $.ajax({
-      //        type: "post",
-      //        url: $('#url').val() + "/user/profile/editAvatar" ,
-      //        data: data,
-      //        dataType: "json",
-      //        success: function (response) {
-               
-      //           $('#editAvatar').modal("hide");
-      //           //reset field
-      //           $('#editAvatar').find('input').val("");
-      //           fetchInfo();
-      //        }
-      //     })
-          
-      //  });
-
+    
    // AJAX FETCH DATA 
 
    function fetchInfo(){
@@ -297,12 +256,16 @@ $(function() {
              
                // response.users = null;
                $('.customer_id').val(item.customer_id); //fill customer_id
+               $('#fullnameIDforAva').val(item.fullname);
                $('#showFullName').text(item.fullname);
                $('#showAddress').text(item.address);
                $('#showPhone').text(item.phone_number);
                $('#showEmail').text(item.email);
                $('#showCitizenID').text(item.citizen_id);
                $('#fullnameUserLayout').text(item.fullname);
+               var pathAvatar = item.avatar;
+               $('#showAvatarUser').attr("src", '/storage/files/Avatar_User/'+pathAvatar+'');
+              
                
               if(!jQuery.isEmptyObject(response.users)){
                   $('.showcontent').show();  

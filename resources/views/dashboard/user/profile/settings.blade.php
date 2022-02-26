@@ -346,7 +346,7 @@
         </div>
 
 
-        @push('scriptsProfileSettings')
+        {{-- @push('scriptsProfileSettings')
             <script src="/js/profile/setting.js"></script>
-        @endpush
+        @endpush --}}
     @endsection

@@ -2,11 +2,12 @@ $(function() {
    fetchInfo();
 
    //SHOW MODAL
-
+   $('.showUploadImgModal').on('click',function(){
+      $('#editAvatar').appendTo("body").modal('show');
+   })
    $('.showFullNameModalButton').on('click',function(){
       $('#editFullName').modal("show");
    })
-
    $('.showAddressModalButton').on('click',function(){
       $('#editAddress').modal("show");
    })
@@ -23,41 +24,9 @@ $(function() {
       $('.modal').modal("hide");
    })
 
-   // AJAX EDIT FULLNAME
-
-   $('#updateAddressBtn').on('click', function(e){
-     
-     e.preventDefault();
-     var customer_id = $('.customer_id').val(); //in settings view
    
-      var data = {
-         _token: $(".idToken").val(),
-         'customer_id': customer_id,
-         'address': $('#addressEdit').val(),
-      };
-     
-      $.ajaxSetup({
-         headers: {
-             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-         }
-     })
-    
-      $.ajax({
-         type: "post",
-         url: $('#url').val() + "/user/profile/editaddress" ,
-         data: data,
-         dataType: "json",
-         success: function (response) {
-            $('#editAddress').modal("hide");
-            //reset field
-            $('#editAddress').find('input').val("");
-            fetchInfo();
-         }
-      })
-      
-   });
 
-      // AJAX EDIT ADDRESS
+   // AJAX EDIT FullNAME
 
       $('#updateFullnameBtn').on('click', function(e){
      
@@ -92,7 +61,41 @@ $(function() {
           
        });
 
-         // AJAX EDIT PhoneNumber
+   // AJAX EDIT ADDRESS
+
+      $('#updateAddressBtn').on('click', function(e){
+      
+      e.preventDefault();
+      var customer_id = $('.customer_id').val(); //in settings view
+      
+         var data = {
+            _token: $(".idToken").val(),
+            'customer_id': customer_id,
+            'address': $('#addressEdit').val(),
+         };
+      
+         $.ajaxSetup({
+            headers: {
+               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            }
+      })
+      
+         $.ajax({
+            type: "post",
+            url: $('#url').val() + "/user/profile/editaddress" ,
+            data: data,
+            dataType: "json",
+            success: function (response) {
+               $('#editAddress').modal("hide");
+               //reset field
+               $('#editAddress').find('input').val("");
+               fetchInfo();
+            }
+         })
+         
+      });
+
+      // AJAX EDIT PhoneNumber
 
       $('#updatePhoneBtn').on('click', function(e){
      
@@ -126,7 +129,7 @@ $(function() {
           
        });
 
-        // AJAX EDIT Email
+      // AJAX EDIT Email
 
       $('#updateEmailBtn').on('click', function(e){
      
@@ -162,7 +165,7 @@ $(function() {
           
        });
 
-        // AJAX EDIT Citizen ID
+      // AJAX EDIT Citizen ID
 
       $('#updateCitizenIDBtn').on('click', function(e){
      
@@ -198,6 +201,88 @@ $(function() {
           
        });
 
+      // AJAX EDIT AVATAR
+
+
+      $('#formEditAvatar').on('submit',function(e){
+         e.preventDefault();
+         var form = this;
+
+         $.ajaxSetup({
+                   headers: {
+                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                   }
+               })
+              
+                $.ajax({
+                   type: "post",
+                   url: $('#url').val() + "/user/profile/editAvatar" ,
+                   data: new FormData(form),
+                   processData:false,
+                   dataType: "json",
+                   contentType:false,
+                   beforeSend:function(){
+                     $(form).find('span.text-error').text('');
+                     
+                   },
+                   success: function (data) {
+                        if(data.code == 0){
+                           $.each(data.error,function(prefix,val){
+                                 $(form).find('span.'+prefix+'_error').text(val[0]);
+                           });
+                           console.log(data);
+                        }else{
+                           $(form)[0].reset();
+                           alert(data.msg);
+                        }
+
+
+                     //  $('#editAvatar').modal("hide");
+                      
+                     //  $('#editAvatar').find('input').val("");
+                     //  fetchInfo();
+                   }
+                })
+
+
+       
+      })
+
+      // $('#updateAvatarBtn').on('click', function(e){
+     
+      //    e.preventDefault();
+      //    var customer_id = $('.customer_id').val(); //in settings view
+       
+      //     var data = {
+      //        _token: $(".idToken").val(),
+      //        'customer_id': customer_id,
+      //        'image_upload': $('#uploadImgBtn').val(),
+      //        'fullname': $('#fullnameEdit').val(),
+             
+      //     };
+         
+      //     $.ajaxSetup({
+      //        headers: {
+      //            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+      //        }
+      //    })
+        
+      //     $.ajax({
+      //        type: "post",
+      //        url: $('#url').val() + "/user/profile/editAvatar" ,
+      //        data: data,
+      //        dataType: "json",
+      //        success: function (response) {
+               
+      //           $('#editAvatar').modal("hide");
+      //           //reset field
+      //           $('#editAvatar').find('input').val("");
+      //           fetchInfo();
+      //        }
+      //     })
+          
+      //  });
+
    // AJAX FETCH DATA 
 
    function fetchInfo(){
@@ -211,7 +296,7 @@ $(function() {
             $.each(response.users,function(key,item){
              
                // response.users = null;
-               $('.customer_id').val(item.customer_id);
+               $('.customer_id').val(item.customer_id); //fill customer_id
                $('#showFullName').text(item.fullname);
                $('#showAddress').text(item.address);
                $('#showPhone').text(item.phone_number);
@@ -227,6 +312,8 @@ $(function() {
          }
       });
    }
-   
+
+   //test input file
+  
    
  });

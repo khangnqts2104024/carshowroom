@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class DashboardController extends Controller
 {
@@ -17,7 +18,7 @@ class DashboardController extends Controller
     {
         return view('dashboard.user.profile/settings');
     }
-
+// Edit Fullname
     public function editfullname(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -27,7 +28,7 @@ class DashboardController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'status' => 400,
-                'errors' => 'Loi roi ong oi ',
+                'errors' => 'Error',
             ]);
         } else {
             $user = Customer_Info::find($request->customer_id);
@@ -47,7 +48,7 @@ class DashboardController extends Controller
             }
         }
     }
-
+// Edit Address
     public function editaddress(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -77,6 +78,7 @@ class DashboardController extends Controller
             }
         }
     }
+    // Edit Phone
 
     public function editphone(Request $request)
     {
@@ -106,7 +108,7 @@ class DashboardController extends Controller
             }
         }
     }
-
+// Edit Email
     public function editEmail(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -148,7 +150,7 @@ class DashboardController extends Controller
             ]);
         }
     }
-
+// Edit Citizen ID
     public function editCitizenID(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -176,6 +178,34 @@ class DashboardController extends Controller
                     'message' => 'User not found',
                 ]);
             }
+        }
+    }
+    // Edit Avatar
+    public function editAvatar(Request $request)
+    {
+        $validator = Validator::make($request->all(),[
+            'image_upload' => 'required|image',
+        ]);
+
+        if($validator->fails()){
+            return response()->json([
+                'code' =>0,
+                'error'=>$validator->errors()->toArray(),
+            ]);
+        }else{
+            $path = 'files/';
+            $file = $request->file('image_upload');
+            $file_name = time().'_'.$file->getClientOriginalName();
+
+            $upload = $file->storeAs($path,$file_name);
+
+            if($upload){
+                return response()->json([
+                    'code'=>1,
+                    'msg'=>'New Image has been saved successfully',
+                ]);
+            }
+
         }
     }
 

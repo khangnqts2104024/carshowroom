@@ -33,7 +33,6 @@ Route::get('/expectedPrice',function(){
     return view('expectedPrice');
 });
 
-// Route::get('/viewinfo',[DashboardController::class,'index']);
 
 
 Auth::routes();
@@ -46,7 +45,6 @@ Route::prefix('user')->name('user.')->group(function(){
         Route::view('/register','dashboard.user.register')->name('register');
         Route::post('/create',[UserController::class,'create'])->name('create');
         Route::post('/authenticate',[UserController::class,'authenticate'])->name('authenticate');
-        // Route::view('/profile','dashboard.user.profile')->name('profile');
     });
 
     Route::middleware(['auth:web','PreventBackHistory'])->group(function(){
@@ -58,6 +56,7 @@ Route::prefix('user')->name('user.')->group(function(){
             Route::post('/editphone',[DashboardController::class,'editphone']); 
             Route::post('/editEmail',[DashboardController::class,'editEmail']); 
             Route::post('/editCitizenID',[DashboardController::class,'editCitizenID']); 
+            Route::post('/editAvatar',[DashboardController::class,'editAvatar']); 
         });
 
         Route::view('/home','dashboard.user.home')->name('home');

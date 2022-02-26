@@ -91,7 +91,7 @@
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex ">
                     <div class="image ml-3 ">
                         <!-- Button trigger modal -->
-                        <img src="/image/testava.png" class="img-circle elevation-2 showUploadImgModal" alt="User Image">
+                        <img src="" id="showAvatarUser" class="img-circle elevation-2 showUploadImgModal" alt="User Image">
                     </div>
                     <div class="info ">    
                         <a href="#" class="d-block " id="fullnameUserLayout"></a>                           
@@ -112,6 +112,7 @@
                                         @csrf
                                         <input type="hidden" class="idToken" value="{{ csrf_token() }}">
                                         <input type="hidden" name="customer_id" class="customer_id" value="">
+                                        <input type="hidden" name="fullname" id="fullnameIDforAva" value="">
                                       
                                         <div class="form-group">
                                             <label>Avatar</label> <br>

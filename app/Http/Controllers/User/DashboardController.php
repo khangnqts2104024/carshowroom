@@ -193,16 +193,24 @@ class DashboardController extends Controller
                 'error'=>$validator->errors()->toArray(),
             ]);
         }else{
-            $path = 'files/';
+            $path = 'files/Avatar_User';
             $file = $request->file('image_upload');
-            $file_name = time().'_'.$file->getClientOriginalName();
-
-            $upload = $file->storeAs($path,$file_name);
+            $fullnameUser = preg_replace('/\s+/', '', $request->fullname);
+            $extension_img = $request->image_upload->guessClientExtension();
+            $file_name = time().'_'.$fullnameUser.'.'.$extension_img;
+            
+            
+            $upload = $file->storeAs($path,$file_name,'public');
+            $user = Customer_Info::find($request->customer_id);
 
             if($upload){
+                $user->avatar = $file_name;
+                $user->update();
+                
                 return response()->json([
                     'code'=>1,
                     'msg'=>'New Image has been saved successfully',
+                    
                 ]);
             }
 

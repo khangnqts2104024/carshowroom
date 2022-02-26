@@ -27,7 +27,7 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <table id="product" class="table table-bordered table-hover">
+                    <table id="myTable" class="table table-bordered table-hover">
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -80,6 +80,9 @@
 @endsection
 @section('script-section')
 <script>
+    $(document).ready( function () {
+    $('#myTable').DataTable();
+} );
     var add = document.getElementsByClassName('stock-add');
     var confirm = document.getElementsByClassName('stock-confirm');
     for (let i = 0; i < add.length; i++) {

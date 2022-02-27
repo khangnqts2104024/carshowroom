@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\User\UserController;
 use App\Models\Dashboard;
+use App\Http\Controllers\EmployeeAccountController;
+use App\Http\Controllers\EmployeeInfoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,15 +40,15 @@ Route::get('/expectedPrice',function(){
 Auth::routes();
 
 
+
 Route::prefix('user')->name('user.')->group(function(){
-    
     Route::middleware(['guest:web','PreventBackHistory'])->group(function(){
         Route::view('/login','dashboard.user.login')->name('login'); 
         Route::view('/register','dashboard.user.register')->name('register');
         Route::post('/create',[UserController::class,'create'])->name('create');
         Route::post('/authenticate',[UserController::class,'authenticate'])->name('authenticate');
     });
-
+ 
     Route::middleware(['auth:web','PreventBackHistory'])->group(function(){
         Route::prefix('profile')->name('profile.')->group(function(){
             Route::get('/settings',[DashboardController::class,'show'])->name('settings');
@@ -65,24 +67,24 @@ Route::prefix('user')->name('user.')->group(function(){
     });
 });
 
-Route::prefix('admin')->name('admin.')->group(function(){
-    Route::middleware(['guest:admin'])->group(function(){
-        Route::view('/login','dashboard.admin.login')->name('login');   
-    });
+// Route::prefix('admin')->name('admin.')->group(function(){
+//     Route::middleware(['guest:admin'])->group(function(){
+//         Route::view('/loginn','dashboard.admin.login')->name('login');   
+//     });
 
-    Route::middleware(['auth:admin'])->group(function(){
-        Route::view('/home','dashboard.admin.home')->name('home'); 
-    });
-});
+//     Route::middleware(['auth:admin'])->group(function(){
+//         Route::view('/home','dashboard.admin.home')->name('home'); 
+//     });
+// });
 
 
 // KHANG
-Route::get('admin', function () {
-    return view('admin_home');
-});
-Route::get('admin/profile', function () {
-    return view('admin.adminprofile.adminprofile');
-});
+// Route::get('admin', function () {
+//     return view('admin_home');
+// });
+// Route::get('admin/profile', function () {
+//     return view('admin.adminprofile.adminprofile');
+// });
 // group lai sau
 Route::get('admin/showroom', function () {
     return view('admin.showroom.order');
@@ -120,9 +122,9 @@ Route::get('admin/warehouse/create', function () {
 Route::get('admin/general', function () {
     return view('admin.general.report');
 });
-Route::get('admin/login', function () {
-    return view('admin.adminprofile.adminlogin');
-});
+// Route::get('admin/login', function () {
+//     return view('admin.adminprofile.adminlogin');
+// });
 Route::get('admin/general/employee', function () {
     return view('admin.general.empmanage');
 });
@@ -132,5 +134,34 @@ Route::get('admin/general/empcreate', function () {
 Route::get('admin/general/customer', function () {
     return view('admin.general.custmanage');
 });
+
+
+Route::prefix('admin')->name('admin.')->group(function(){
+  
+    Route::middleware(['guest:employee','PreventBackHistory'])->group(function(){
+        Route::view('/login','admin.adminprofile.adminlogin')->name('login');
+        Route::post('/authenticate',[EmployeeAccountController::class,'authenticate'])->name('authenticate');
+    });
+
+    Route::middleware(['auth:employee','PreventBackHistory'])->group(function(){
+        Route::view('/home','admin_home')->name('home');
+      
+        // Route::prefix('employee')->name('employee.')->group(function(){
+        //     Route::get('/profile',[DashboardController::class,'show'])->name('profile');
+        //     Route::get('/fetch-data',[DashboardController::class,'fetchData']);
+        //     Route::post('/editfullname',[DashboardController::class,'editfullname']); 
+        //     Route::post('/editaddress',[DashboardController::class,'editaddress']); 
+        //     Route::post('/editphone',[DashboardController::class,'editphone']); 
+        //     Route::post('/editEmail',[DashboardController::class,'editEmail']); 
+        //     Route::post('/editCitizenID',[DashboardController::class,'editCitizenID']); 
+        //     Route::post('/editAvatar',[DashboardController::class,'editAvatar']); 
+        // });
+
+      
+        Route::post('/logout',[EmployeeAccountController::class,'logout'])->name('logout');
+        
+    });
+});
+
 // Route::view('/profile','dashboard.user.profile')->name('profile');
 // KHANGEND

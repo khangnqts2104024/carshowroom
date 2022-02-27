@@ -1,7 +1,7 @@
 <aside class="main-sidebar  elevation-1" style="background:#f0f3f3;">
     <!-- Brand Logo -->
     <a style="margin:10px;" ;href="{{ url('/') }}">
-        <img src="https://vinfastauto.com/themes/porto/img/logo-header.svg" alt="vinfast" class="brand-image img-circle elevation-3" style="opacity: .8;">
+        <img src="https://vinfastauto.com/themes/porto/img/logo-header.svg" alt="vinfast" class="brand-image " style="opacity: .8;">
         <span class="brand-text">VINFAST</span>
     </a>
     <svg width="1920" height="80" viewBox="0 40 1920 80" fill="none" xmlns="http://www.w3.org/2000/svg">

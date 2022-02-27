@@ -41,7 +41,7 @@
 
 
                 <div class="form-group">
-                    <label for="Full Name">Mã Nhân Viên</label>
+                    <label for="Full Name">Email Nhân Viên</label>
                     <input type="text" name="empID" class="form-control formRound" value="{{old('fullname')}}">
                     <span class="text-danger">@error('empID'){{$message}} @enderror</span>
                 </div>
@@ -80,11 +80,24 @@
                     <div class="form-group">
                         <label for="role">Phòng ban</label>
                         <select id="role" class="form-control" name="emp_role">
-                            <option value="warehouse">WareHouse</option>
                             <option value="dealer">Dealer</option>
+                            <option value="warehouse">WareHouse</option>
                         </select>
                     </div>
                 </div>
+                <div class="form-group" id="emp_showroom">
+                    <div class="form-group">
+                        <label for="showroom">Chi Nhánh</label>
+                        <select id="showroom" class="form-control" name="emp_showroom">
+                        <option id="srnone"value="none"></option> 
+                        <!-- id đầu -->
+                            <option value="showroom1">showroom1</option>
+                            <option value="showroom2">Showroom 2</option>
+                           
+                        </select>
+                    </div>
+                </div>
+
 
                 <button type="submit" class="btn btn-block buttonSignIn mt-5">Tạo Tài Khoản</button>
 
@@ -140,6 +153,26 @@
 
             }
         }
+
+        var role = document.getElementById("role");
+        var srnone = document.getElementById("srnone");
+        var showroom = document.getElementById("showroom");
+        showroom.value="showroom1";
+        srnone.style.display="none";
+      
+        role.addEventListener('change', function() {
+            if (role.value === "dealer") {
+                showroom.style.display = "block";
+                showroom.value="showroom1";
+                srnone.style.display="none";
+            } else {
+                showroom.style.display = "none";
+                showroom.value = "none";
+            }
+            alert(role.value);
+            alert(showroom.value);
+        });
+       
     </script>
 
     @endsection

@@ -39,7 +39,7 @@
         <div class="headerSignin">
             <p>Đăng Nhập</p>
         </div>
-        <form action="{{route('user.authenticate') }}" method="post">
+        <form action="{{route('admin.authenticate') }}" method="post">
             @if(Session::get('fail'))
             <div class="alert alert-danger">
                 {{ Session::get('fail')}}

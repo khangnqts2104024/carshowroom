@@ -40,6 +40,12 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        // Khang xoa mất api ko cần xóa/
+        'employee' => [
+            'driver' => 'session',
+            'provider' => 'employees',
+        ],
     ],
 
     /*
@@ -64,7 +70,12 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-
+//khang
+        'employees' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\employeeAccount::class,
+        ],
+//
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
@@ -89,6 +100,13 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],  
+        // khang
+        'employees' => [
+            'provider' => 'employees',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

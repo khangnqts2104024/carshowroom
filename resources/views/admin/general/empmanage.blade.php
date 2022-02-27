@@ -52,12 +52,12 @@
 
                             <!-- test -->
                             <tr>
-
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>trung</td>
-                                <td>dealer</td>
-                                <td>0703333333</td>
+@foreach ($products as $p)
+                                <td><?php $p->employee_id ?></td>
+                                <td><?php $p->email ?></td>
+                                <td>trung<?php $p->phone_number ?></td>
+                                <td>dealer<?php $p->address ?></td>
+                                <td>0703333333<?php $p->emp_branch ?></td>
                                 <td>
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modelId">
                                         <i class="fa-solid fa-key"></i>
@@ -126,7 +126,7 @@
                                     </div>
                                 </td>
                             </tr>
-
+@endforeach
 
                     </table>
                 </div>

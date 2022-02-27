@@ -15,7 +15,7 @@ class employeeInfo extends Model
         'address',
         'fullname',
     ];
-
+    
     public function employee_Account()
     {
         

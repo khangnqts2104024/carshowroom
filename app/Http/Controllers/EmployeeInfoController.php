@@ -13,9 +13,17 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 class EmployeeInfoController extends Controller
 {
+
     public function show() {
-        $products = employeeInfo::all();
-        return view('admin.general.empmanage')->with(['employeeInfos'=>$products]);
+        $emp = employeeInfo::all();
+        foreach($emp->id as $item){
+            $item->email;
+            $item->password;
+            $item->role;
+        }
+   
+       
+        return view('admin.general.empmanage')->with(['emp'=>$emp]);
     }
 
 

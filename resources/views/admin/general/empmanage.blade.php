@@ -41,8 +41,8 @@
                                 <th>STT</th>
                                 <th>Mã Nhân Viên</th>
                                 <th>Tên Nhân Viên</th>
-                                <th>Chức Vụ</th>
                                 <th>Số Điện Thoại</th>
+                                <th>Chi Nhánh</th>
                                 <th>Lấy Lại Mật Khẩu</th>
                                 <th>Thông Tin Chi Tiết</th>
                             </tr>
@@ -51,13 +51,16 @@
 
 
                             <!-- test -->
-                            <tr>
-@foreach ($products as $p)
-                                <td><?php $p->employee_id ?></td>
-                                <td><?php $p->email ?></td>
-                                <td>trung<?php $p->phone_number ?></td>
-                                <td>dealer<?php $p->address ?></td>
-                                <td>0703333333<?php $p->emp_branch ?></td>
+                         
+                            <tr> @php  $x=1 @endphp
+                                @foreach ($emp as $p)
+                                <td>{{ $x++ }}</td>
+                                <td> {{$p->employee_id}}</td>
+                                <td>{{ $p->fullname }}</td>
+                                <td>{{ $p->phone_number}} </td>
+                                <td>{{$p->address }}</td>
+                                <td>{{$p->belongsTo('App\Model\employeeAccount','foreign_key','localkey');}}</td>
+                                <td><td>
                                 <td>
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modelId">
                                         <i class="fa-solid fa-key"></i>
@@ -80,7 +83,7 @@
                                                         <input type="password" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
 
                                                         <label for="">Xác Nhận Mật Khẩu</label>
-                                                        <input type="pasword" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+                                                        <input type="password" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
 
                                                     </div>
                                                 </div>
@@ -126,7 +129,7 @@
                                     </div>
                                 </td>
                             </tr>
-@endforeach
+                            @endforeach
 
                     </table>
                 </div>

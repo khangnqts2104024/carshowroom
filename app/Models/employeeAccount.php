@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\Customer_Info;
+use App\Models\employeeInfo;
 use Illuminate\Database\Eloquent\Model;
 
 class employeeAccount extends Authenticatable
@@ -19,7 +19,11 @@ class employeeAccount extends Authenticatable
      *
      * @var array<int, string>
      */
-  
+  /**
+   * Class constructor.
+   */
+
+
     protected $fillable = [
         'email',
         'password',

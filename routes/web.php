@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\User\UserController;
-use App\Models\Dashboard;
 use App\Http\Controllers\EmployeeAccountController;
 use App\Http\Controllers\EmployeeInfoController;
 
@@ -137,9 +136,9 @@ Route::get('admin/general', function () {
 // Route::get('admin/login', function () {
 //     return view('admin.adminprofile.adminlogin');
 // });
-Route::get('admin/general/employee', function () {
-    return view('admin.general.empmanage');
-});
+Route::get('admin/general/employee',[EmployeeInfoController::class,'show']);
+   
+
 Route::get('admin/general/empcreate', function () {
     return view('admin.general.empcreate');
 });

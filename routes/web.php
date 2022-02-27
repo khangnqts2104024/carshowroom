@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\User\DashboardController;
+use App\Http\Controllers\ChangeLanguageController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\User\UserController;
 use App\Models\Dashboard;
 
@@ -20,13 +22,20 @@ use App\Models\Dashboard;
 
 Route::get('/', function () {
     return view('home');
-});
+})->middleware("Localization");
 
 
-// Route::get('/{lang}', function ($lang ='vi') {
-//     App::setlocale($lang);
-//     return view('home');
+// Route::get('/lang/{locale?}', function ($locale) {
+//     if (isset($locale) && in_array($locale, config('app.available_locales'))) {
+//         app()->setLocale($locale);
+//          Session::put('locale', $locale);
+//     }
+//     return view("home")->with('locale',$locale);
+
 // });
+
+
+Route::get('/lang/{locale?}',[ChangeLanguageController::class,'switch']);
 
 
 Route::get('/expectedPrice',function(){
@@ -40,14 +49,14 @@ Auth::routes();
 
 Route::prefix('user')->name('user.')->group(function(){
     
-    Route::middleware(['guest:web','PreventBackHistory'])->group(function(){
+    Route::middleware(['guest:web','PreventBackHistory','Localization'])->group(function(){
         Route::view('/login','dashboard.user.login')->name('login'); 
         Route::view('/register','dashboard.user.register')->name('register');
         Route::post('/create',[UserController::class,'create'])->name('create');
         Route::post('/authenticate',[UserController::class,'authenticate'])->name('authenticate');
     });
 
-    Route::middleware(['auth:web','PreventBackHistory'])->group(function(){
+    Route::middleware(['auth:web','PreventBackHistory','Localization'])->group(function(){
         Route::prefix('profile')->name('profile.')->group(function(){
             Route::get('/settings',[DashboardController::class,'show'])->name('settings');
             Route::get('/fetch-data',[DashboardController::class,'fetchData']);

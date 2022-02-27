@@ -28,11 +28,12 @@
             <div class="carousel-inner" role="listbox">
               <div class="carousel-item active">
                 <div class="caption d-none d-md-block">
-                  <h2 class="titleCarousel">Công nghệ thông minh cho tương lai</h2>
+                  <h2 class="titleCarousel">{{__("Smart Technology For The Future")}}</h2>
+                  
                   <h5 class="contentCarousel">
-                    Đặt khách hàng làm trọng tâm, các mẫu xe thông minh của VinFast được ứng dụng những công nghệ <br>
-                    ưu việt hàng đầu thế giới, mở ra không gian hưởng thụ tiện nghi, giải trí hoàn hảo cùng trải nghiệm <br>
-                    cá nhân hóa đáng giá nhất.
+                    {{__("With customer-centred philosophy, VinFast smart cars are integrated with world's most advanced")}} <br>
+                    {{__("techonologies, namely AI based machine learning & deep learning, high-level autopilot for a")}} <br>
+                    {{__("comfortable ride, immersive entertainment & personalized experience.")}}
                   </h5>
                 </div>
                 <img src="/HomepageImage/carouselHome/pic1.png" class="d-block w-100" alt="First slide">
@@ -40,44 +41,44 @@
 
               <div class="carousel-item">
                 <div class="caption d-none d-md-block">
-                  <h2 class="titleCarousel">Thiết kế đầy đam mê</h2>
+                  <h2 class="titleCarousel">{{__("Passionate Design")}}</h2>
                   <h5 class="contentCarousel">
-                    Kết hợp với nhà thiết kế xe nổi tiếng thế giới Pininfarina, VinFast mang đến chất lượng thiết kế đẳng cấp <br>
-                    cho từng dòng xe. Theo đuổi triết lý trải nghiệm chạm sinh học, những chiếc xe VinFast sở hữu vẻ ngoài <br>
-                    sang trọng đặc trưng cùng khoang nội thất đậm chất tương lai, được chăm chút trong từng chi tiết.
+                    {{__("In collaboration with Pininfarina, a world-famous car design firm, VinFast offers premium & classy")}} <br>
+                    {{__("design for every line of car. Each model is packed with distinctive & elegant exterior as well as modern")}} <br>
+                    {{__("interior with meticulous attention to details.")}}
                   </h5>
                 </div>
                 <img src="/HomepageImage/carouselHome/pic2.png" class="d-block w-100" alt="Second slide">
               </div>
               <div class="carousel-item">
                 <div class="caption d-none d-md-block">
-                  <h2 class="titleCarousel">Đẳng cấp an toàn quốc tế</h2>
+                  <h2 class="titleCarousel">{{__("World-class Safety Standards")}}</h2>
                   <h5 class="contentCarousel">
-                    Đặt sự an tâm của khách hàng lên trên hết, những chiếc xe của VinFast được trang bị các tính năng an toàn <br>
-                    tối tân nhất để bảo vệ người lái và mọi hành khách trên xe, đáp ứng tiêu chuẩn khắt khe của <br>
-                    các tổ chức đánh giá xe uy tín hàng đầu thế giới như ASEAN NCAP, EURO NCAP, NHTSA...
+                    {{__("With customers assurance as the top priority, VinFast cars are equipped with state-of-art safety")}}<br>
+                    {{__("features to protect drivers and passengers, meeting the rigorous standards of the world's top vehicle")}} <br>
+                    {{__("assessment organizations, such as ASEAN NCAP, EURO NCAP, and NHTSA.")}}
                   </h5>
                 </div>
                 <img src="/HomepageImage/carouselHome/pic3.png" class="d-block w-100" alt="Third slide">
               </div>
               <div class="carousel-item">
                 <div class="caption d-none d-md-block">
-                  <h2 class="titleCarousel">Trải nghiệm xuất sắc</h2>
+                  <h2 class="titleCarousel">{{__("Excellent Experience")}}</h2>
                   <h5 class="contentCarousel">
-                    Sở hữu xe VinFast chính là tận hưởng những giá trị tốt nhất của một hệ sinh thái đẳng cấp, từ mô hình <br>
-                    O2O tích hợp thương mại điện tử và trải nghiệm tại hệ thống Đại lý/Showroom/Trạm sạc rộng khắp, <br>
-                    tới chất lượng dịch vụ hậu mãi vượt trội và sự tận tâm trong từng khoảnh khắc của khách hàng.
+                    {{__("VinFast cars enable their owners to enjoy the best values of our ecosystem, from the Online-To-Offline")}}<br>
+                    {{__("business model that integrates e-commerce and in-person experiences at dealership, showrooms and ")}}<br>
+                    {{__("charging stations nationwide, to outstanding after-sales service quality and dedication to customers.")}}
                   </h5>
                 </div>
                 <img src="/HomepageImage/carouselHome/pic4.png" class="d-block w-100" alt="Fourth slide">
               </div>
               <div class="carousel-item">
                 <div class="caption d-none d-md-block">
-                  <h2 class="titleCarousel">Chính sách thấu hiểu</h2>
+                  <h2 class="titleCarousel">{{__("Understanding Polices")}}</h2>
                   <h5 class="contentCarousel">
-                    VinFast luôn có chính sách bán hàng và hậu mãi có lợi nhất cho khách hàng. VinFast cũng tiên phong <br>
-                    thúc đẩy xu hướng sử dụng xe điện, hướng tới tương lai xanh, bền vững bằng chính sách pin và chế độ <br>
-                    bảo hành 10 năm duy nhất trên thị trường cho ô tô điện.
+                    {{__("VinFast always has the most beneficial sales and after-sales policy for customers. VinFast is also a ")}}<br>
+                    {{__("pioneer in promoting the trend of using electric vehicles, towards a green and sustainable future with a ")}}<br>
+                    {{__("battery policy and the only 10-year warranty on the market for electric cars.")}}
                   </h5>
                 </div>
                 <img src="/HomepageImage/carouselHome/pic5.png" class="d-block w-100" alt="Fifth slide">
@@ -100,11 +101,12 @@
     <div class="CarCarousel">
       <div class="contentTop d-none d-md-block">
         <h2 class="titleCarousel">
-          Xe ô tô
+          {{__("VinFast Car")}}
         </h2>
         <h5 class="contentCarousel">
-          Hơn cả việc tạo nên một chiếc xe mới, VinFast ra đời đại diện cho <br>
-          tinh thần và niềm kiêu hãnh dân tộc.
+          {{__("More than creating a new car, VinFast was born to represent")}}<br>
+          {{__("the spirit and pride of the nation.")}}
+          
         </h5>
       </div>
       <div class="carslide owl-carousel owl-theme row justify-content-around">
@@ -272,7 +274,7 @@
           <div class="col"></div>
           <div class="col-md-11 content-body">
             <div class="content-title">
-              <h2>Hành trìnhh chinhh phục thế giới</h2>
+              <h2>Hành trình chinh phục thế giới</h2>
             </div>
             <div class="htcptg owl-carousel owl-theme child">
               <div class="item">

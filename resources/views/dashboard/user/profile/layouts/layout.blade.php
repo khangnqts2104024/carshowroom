@@ -11,14 +11,9 @@
    
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="/css/profile/layout.css">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-    <style>
-
-
-
-    </style>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -32,14 +27,29 @@
                             class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">Home</a>
+                    <a href="index3.html" class="nav-link">{{__('UserProfilesettings.Home')}}</a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Contact</a>
-                </li>
+                {{-- <li class="nav-item d-none d-sm-inline-block">
+                    <a href="#" class="nav-link">{{__('UserProfilesettings.Contact')}}</a>
+                </li> --}}
             </ul>
             {{-- top navtopright --}}
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <div class="switch mt-1">
+                        <input id="language-toggle" class="check-toggle check-toggle-round-flat" type="checkbox">
+                        <label for="language-toggle"></label>
+                        @if(App::getLocale() == 'vi')
+                            <span class="on" id="activeLang">VN</span>
+                            <span class="off" id="disableLang">EN</span>
+                            
+                        @elseif(App::getLocale() == 'en')
+                            <span class="on" id="activeLang">EN</span>
+                            <span class="off" id="disableLang">VN</span>
+                        @endif
+                    </div>
+                </li>
+                
 
                 <li class="nav-item">
                     <a class="nav-link" data-widget="navbar-search" href="#" role="button">
@@ -102,7 +112,7 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h2 class="modal-title">Edit Avatar</h2>
+                                    <h2 class="modal-title">{{__('UserProfilesettings.Edit Avatar')}}</h2>
                                         <button type="button" class="close XCloseModal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -115,14 +125,14 @@
                                         <input type="hidden" name="fullname" id="fullnameIDforAva" value="">
                                       
                                         <div class="form-group">
-                                            <label>Avatar</label> <br>
+                                            <label>{{__('UserProfilesettings.Avatar')}}</label> <br>
                                              <input type="file" class="" name="image_upload" id="uploadImgBtn"><br>
     
                                                 <span class="text-danger error-text image_upload_error"></span>
                                         </div>
                                       
 
-                                        <button type="submit" id="updateAvatarBtn" class=" btn btn-primary submitButton formRound">UPDATE</button>
+                                        <button type="submit" id="updateAvatarBtn" class=" btn btn-primary submitButton formRound">{{__('UserProfilesettings.UPDATE')}}</button>
                                     </form>
 
                                     
@@ -142,24 +152,24 @@
                         data-accordion="false">
 
                         <li class="nav-item">
-                            <a href="{{route('user.home')}}" class="nav-link"><i class="fas fa-home-alt mr-3"></i>HOME</a>
+                            <a href="{{route('user.home')}}" class="nav-link"><i class="fas fa-home-alt mr-3"></i>{{__('UserProfilesettings.HOME')}}</a>
                         </li> 
 
                         <li class="nav-item">
-                            <a href="{{route('user.profile.settings')}}" class="nav-link"><i class="fas fa-user mr-3"></i>PROFILE SETTING</a>
+                            <a href="{{route('user.profile.settings')}}" class="nav-link"><i class="fas fa-user mr-3"></i>{{__('UserProfilesettings.PROFILE SETTING')}}</a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="" class="nav-link"><i class="fas fa-shopping-cart mr-3"></i>ORDER HISTORY</a>
+                            <a href="" class="nav-link"><i class="fas fa-shopping-cart mr-3"></i>{{__('UserProfilesettings.ORDER HISTORY')}}</a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="" class="nav-link"><i class="fas fa-paper-plane mr-3"></i>BOOK APPOINTMENT</a>
+                            <a href="" class="nav-link"><i class="fas fa-paper-plane mr-3"></i>{{__('UserProfilesettings.BOOK APPOINTMENT')}}</a>
                         </li>
 
                         <li class="nav-item">
                             <a href="{{ route('user.logout') }}" class="nav-link"
-                                onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fas fa-sign-out mr-3"></i>Logout</a>
+                                onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fas fa-sign-out mr-3"></i>{{__('UserProfilesettings.Logout')}}</a>
                             <form action="{{ route('user.logout') }}" id="logout-form" class="d-none"
                                 method="post">
                                 @csrf

@@ -5,7 +5,7 @@
 
 <div class="signInbox mt-5">
             <div class="headerSignin">
-              <p>Sign In</p>
+              <p>{{__('login.Signin')}}</p>
             </div>
             <form action="{{route('user.authenticate') }}" method="post">
               @if(Session::get('fail'))
@@ -15,7 +15,7 @@
               @endif
               @csrf
                 <div class="form-group">
-                  <label for="email-signIn">Email Address</label>
+                  <label for="email-signIn">{{__('login.EmailAddress')}}</label>
                   <input type="email" name="email" class="form-control formRound" value="{{old('email')}}">
                   {{-- show error message --}}
                   <span class="text-danger">@error('email'){{$message}}@enderror</span>
@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="password-signIn">Password</label>
+                  <label for="password-signIn">{{__('login.Password')}}</label>
                   <div  id="form-password">
                     <input type="password" name="password" class="form-control formRound" id="passwordField" onclick="showIcon()" autocomplete="off">
                     
@@ -35,20 +35,20 @@
                   <span class="text-danger">@error('password'){{$message}}@enderror</span>
                 </div>
 
-                <button type="submit" class="btn btn-block buttonSignIn">SIGN IN</button>
+                <button type="submit" class="btn btn-block buttonSignIn">{{__('login.Signin')}}</button>
             </form>
 
             <div class="forgot text-center">
-                <a href="#">Forgot email?</a> <span>|</span> <a href="{{route('password.request')}}">Forgot password?</a>
+                <a href="#">Forgot email?</a> <span>|</span> <a href="{{route('password.request')}}">{{__('login.ForgotPassword?')}}</a>
             </div>
 
             <div class="or-text">
               <hr class="line"></hr>
-              <span> OR</span>
+              <span> {{__('login.OR')}}</span>
               <hr class="line"></hr>
             </div>
             
-            <a href="{{route('user.register')}}"><button class="btn btn-block buttonCreateAccount">CREATE ACCOUNT</button></a>
+            <a href="{{route('user.register')}}"><button class="btn btn-block buttonCreateAccount">{{__('login.CreateAccount')}}</button></a>
         </div>
         
   </div>

@@ -11,7 +11,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Profile Settings</h1>
+                            <h1 class="m-0">{{__('UserProfilesettings.Home')}}</h1>
                         </div>
 
                     </div>
@@ -25,7 +25,7 @@
                     <div class="row d-flex justify-content-around ml-4 mt-5">
 
                         <div class="col-md-4">
-                            <div class="titleInfo">Full Name</div>
+                            <div class="titleInfo">{{__('UserProfilesettings.Fullname')}}</div>
                             <div class="contentInfo mt-1">
                                 <div class="showcontent" style="display: none">
                                     <a href="#" class="d-block mb-2" id="showFullName"></a>
@@ -36,7 +36,7 @@
                                         </div>
                                         <!-- Button trigger edit modal -->
                                         <a href="#" class="showFullNameModalButton TextAddButton ml-3"
-                                            data-target="#editFullName">Edit Fullname</a>
+                                            data-target="#editFullName">{{__('UserProfilesettings.Edit Fullname')}}</a>
                                     </div>
                                 </div>
                             </div>
@@ -46,7 +46,7 @@
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h2 class="modal-title">Edit Fullname</h2>
+                                            <h2 class="modal-title">{{__('UserProfilesettings.Edit Fullname')}}</h2>
                                             <button type="button" class="close" data-dismiss="modal"
                                                 aria-label="Close">
                                                 <span class="XCloseModal" aria-hidden="true">&times;</span>
@@ -58,7 +58,7 @@
                                                 <input type="hidden" class="idToken" value="{{ csrf_token() }}">
                                                 <input type="hidden" name="customer_id" class="customer_id" value="">
                                                 <div class="form-group">
-                                                    <label>Full name</label>
+                                                    <label>{{__('UserProfilesettings.Fullname')}}</label>
                                                     <input type="text" id="fullnameEdit" name="fullname"
                                                         class="form-control formRound" value=""
                                                         placeholder="Enter your fullname here">
@@ -69,7 +69,7 @@
                                                 </div>
 
                                                 <button type="submit" id="updateFullnameBtn"
-                                                    class=" btn btn-primary submitButton formRound">UPDATE</button>
+                                                    class=" btn btn-primary submitButton formRound">{{__('UserProfilesettings.UPDATE')}}</button>
                                             </form>
                                         </div>
 
@@ -82,7 +82,7 @@
                         {{-- END Fullname --}}
 
                         <div class="col-md-4">
-                            <div class="titleInfo">Address</div>
+                            <div class="titleInfo">{{__('UserProfilesettings.Address')}}</div>
                             <div class="contentInfo mt-1">
 
 
@@ -95,7 +95,7 @@
                                         </div>
                                         <!-- Button trigger edit modal -->
                                         <a href="#" class="showAddressModalButton TextAddButton ml-3"
-                                            data-target="#editAddress">Edit Address</a>
+                                            data-target="#editAddress">{{__('UserProfilesettings.Edit Address')}}</a>
                                     </div>
                                 </div>
 
@@ -106,7 +106,7 @@
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Edit Address</h5>
+                                            <h5 class="modal-title">{{__('UserProfilesettings.Edit Address')}}</h5>
                                             <button type="button" class="close" data-dismiss="modal"
                                                 aria-label="Close">
                                                 <span class="XCloseModal" aria-hidden="true">&times;</span>
@@ -118,7 +118,7 @@
                                                 <input type="hidden" class="idToken" value="{{ csrf_token() }}">
                                                 <input type="hidden" name="customer_id" class="customer_id" value="">
                                                 <div class="form-group">
-                                                    <label>Address</label>
+                                                    <label>{{__('UserProfilesettings.Address')}}</label>
                                                     <input type="text" name="address" id="addressEdit" class="form-control formRound"
                                                         value="{{ old('address') }}" placeholder="Enter your address here">
                                                     {{-- show error message --}}
@@ -128,7 +128,7 @@
                                                 </div>
 
                                                 <button type="submit"
-                                                    class="btn btn-primary submitButton formRound" id="updateAddressBtn">UPDATE</button>
+                                                    class="btn btn-primary submitButton formRound" id="updateAddressBtn">{{__('UserProfilesettings.UPDATE')}}</button>
                                             </form>
                                         </div>
 
@@ -139,7 +139,7 @@
                         </div>
 
                         <div class="col-md-4">
-                            <div class="titleInfo">Phone Number</div>
+                            <div class="titleInfo">{{__('UserProfilesettings.PhoneNumber')}}</div>
                             <div class="contentInfo mt-1">
 
 
@@ -152,7 +152,7 @@
                                         </div>
                                         <!-- Button trigger edit modal -->
                                         <a href="#" class="showPhoneModalButton TextAddButton ml-3"
-                                            data-target="#editPhoneNumber">Edit Phone Number</a>
+                                            data-target="#editPhoneNumber">{{__('UserProfilesettings.Edit Phone Number')}}</a>
                                     </div>
                                 </div>         
 
@@ -163,7 +163,7 @@
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Edit Phone Number</h5>
+                                            <h5 class="modal-title">{{__('UserProfilesettings.Edit Phone Number')}}</h5>
                                             <button type="button" class="close" data-dismiss="modal"
                                                 aria-label="Close">
                                                 <span class="XCloseModal" aria-hidden="true">&times;</span>
@@ -175,7 +175,7 @@
                                                 <input type="hidden" class="idToken" value="{{ csrf_token() }}">
                                                 <input type="hidden" name="customer_id" class="customer_id" value="">
                                                 <div class="form-group">
-                                                    <label>Phone Number</label>
+                                                    <label>{{__('UserProfilesettings.PhoneNumber')}}</label>
                                                     <input type="text" name="phonenumber" id="phoneNumberEdit" class="form-control formRound"
                                                         value="{{ old('phonenumber') }}"
                                                         placeholder="Enter your phone here">
@@ -186,7 +186,7 @@
                                                 </div>
 
                                                 <button type="submit"
-                                                    class="btn btn-primary submitButton formRound" id="updatePhoneBtn">UPDATE</button>
+                                                    class="btn btn-primary submitButton formRound" id="updatePhoneBtn">{{__('UserProfilesettings.UPDATE')}}</button>
                                             </form>
                                         </div>
 
@@ -199,7 +199,7 @@
 
                     <div class="row d-flex justify-content-around ml-4 mt-5">
                         <div class="col-md-4">
-                            <div class="titleInfo">Email</div>
+                            <div class="titleInfo">{{__('UserProfilesettings.Email')}}</div>
                             <div class="contentInfo mt-1">
 
                                 <div class="showcontent" style="display: none">
@@ -210,7 +210,7 @@
                                         </div>
                                         <!-- Button trigger edit modal -->
                                         <a href="#" class="showEmailModalButton TextAddButton ml-3"
-                                            data-target="#editEmail ">Edit Email</a>
+                                            data-target="#editEmail ">{{__('UserProfilesettings.Edit Email')}}</a>
                                     </div>
                                 </div>
 
@@ -223,7 +223,7 @@
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Edit Email</h5>
+                                            <h5 class="modal-title">{{__('UserProfilesettings.Edit Email')}}</h5>
                                             <button type="button" class="close" data-dismiss="modal"
                                                 aria-label="Close">
                                                 <span class="XCloseModal" aria-hidden="true">&times;</span>
@@ -235,7 +235,7 @@
                                                 <input type="hidden" class="idToken" value="{{ csrf_token() }}">
                                                 <input type="hidden" name="customer_id" class="customer_id" value="">
                                                 <div class="form-group">
-                                                    <label>Email</label>
+                                                    <label>{{__('UserProfilesettings.Email')}}</label>
                                                     <input type="email" name="email" id="emailEdit" class="form-control formRound"
                                                         value="{{ old('email') }}" placeholder="Enter your email here">
                                                     {{-- show error message --}}
@@ -245,7 +245,7 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label>Current Password</label>
+                                                    <label>{{__('UserProfilesettings.Current Password')}}</label>
                                                     <input type="password" name="password" id="currentPassWord" class="form-control formRound"
                                                         value="{{ old('password') }}"
                                                         placeholder="Enter your password here">
@@ -256,7 +256,7 @@
                                                 </div>
 
                                                 <button type="submit"
-                                                    class="btn btn-primary submitButton formRound" id="updateEmailBtn">UPDATE</button>
+                                                    class="btn btn-primary submitButton formRound" id="updateEmailBtn">{{__('UserProfilesettings.UPDATE')}}</button>
                                             </form>
                                         </div>
 
@@ -267,7 +267,7 @@
                         </div>
 
                         <div class="col-md-4">
-                            <div class="titleInfo">Password</div>
+                            <div class="titleInfo">{{__('UserProfilesettings.Password')}}</div>
                             <div class="contentInfo mt-1">
                                 
                                 <div class="showcontent" style="display: none;">
@@ -276,7 +276,7 @@
                                         <i class=" fa-light fa-plus"></i>
                                     </div>
                                     <!-- Button Reset Password / Redirect to Reset Password Page -->
-                                    <a href="#" class="TextAddButton ml-3">Reset Password</a>
+                                    <a href="#" class="TextAddButton ml-3">{{__('UserProfilesettings.Reset Password')}}</a>
                                 </div>
                             </div>
 
@@ -284,7 +284,7 @@
                         </div>
 
                         <div class="col-md-4">
-                            <div class="titleInfo">Citizen ID</div>
+                            <div class="titleInfo">{{__('UserProfilesettings.CitizenID')}}</div>
                             <div class="contentInfo mt-1">
 
                                 <div class="showcontent" style="display: none">
@@ -296,7 +296,7 @@
                                         </div>
                                         <!-- Button trigger edit modal -->
                                         <a href="#" class="showCitizenModalButton TextAddButton ml-3"
-                                            data-target="#editCitizenID">Edit Citizen ID</a>
+                                            data-target="#editCitizenID">{{__('UserProfilesettings.Edit Citizen ID')}}</a>
                                     </div>
                                 </div>
                             
@@ -307,7 +307,7 @@
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Edit Citizen ID</h5>
+                                            <h5 class="modal-title">{{__('UserProfilesettings.Edit Citizen ID')}}</h5>
                                             <button type="button" class="close" data-dismiss="modal"
                                                 aria-label="Close">
                                                 <span class="XCloseModal" aria-hidden="true">&times;</span>
@@ -319,7 +319,7 @@
                                                 <input type="hidden" class="idToken" value="{{ csrf_token() }}">
                                                 <input type="hidden" name="customer_id" class="customer_id" value="">
                                                 <div class="form-group">
-                                                    <label>Citizen ID</label>
+                                                    <label>{{__('UserProfilesettings.CitizenID')}}</label>
                                                     <input type="text" name="citizen_id" id="citizen_id" class="form-control formRound"
                                                         value="{{ old('citizen_id') }}"
                                                         placeholder="Enter your Citizen ID here">
@@ -330,7 +330,7 @@
                                                 </div>
 
                                                 <button type="submit"
-                                                    class="btn btn-primary submitButton formRound" id="updateCitizenIDBtn">UPDATE</button>
+                                                    class="btn btn-primary submitButton formRound" id="updateCitizenIDBtn">{{__('UserProfilesettings.UPDATE')}}</button>
                                             </form>
                                         </div>
 

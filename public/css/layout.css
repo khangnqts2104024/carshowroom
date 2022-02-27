@@ -264,8 +264,8 @@
     transition: margin 0.2s;
   }
   
-  input.check-toggle-round-flat:checked + label {
-  }
+  /* input.check-toggle-round-flat:checked + label {
+  } */
   
   input.check-toggle-round-flat:checked + label:after {
     margin-left: 44px;

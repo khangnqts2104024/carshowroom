@@ -13,7 +13,7 @@ class EmployeeAccountController extends Controller
 {
     public function authenticate(Request $request){
         $request->validate([
-            'email' => 'required|email|exists:customer_infos,email',
+            'email' => 'required|email|exists:employee_accounts,email',
             'password' => 'required|min:5|max:30',
         ],[
             'email.exists' => 'This email is not exists on users database.'
@@ -26,5 +26,11 @@ class EmployeeAccountController extends Controller
         }else{
             return redirect()->route('admin.login')->with('fail','Incorrect email or password.');
         }
+    }
+     public function logout()
+    {
+        # code...
+        Auth::guard('employee')->logout();
+        return redirect()->route('admin.login');
     }
 }

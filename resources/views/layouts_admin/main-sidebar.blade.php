@@ -162,8 +162,8 @@
         <!-- /.sidebar-menu --><ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- logout admin Trung -->
         <li class="nav-item">
-            <a href="{{ route('user.logout') }}" class="nav-link" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
-            <form action="{{ route('user.logout') }}" id="logout-form" class="d-none" method="post">
+            <a href="{{ route('admin.logout') }}" class="nav-link" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
+            <form action="{{ route('admin.logout') }}" id="logout-form" class="d-none" method="post">
                 @csrf
             </form>
         </li>

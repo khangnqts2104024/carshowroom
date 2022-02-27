@@ -21,11 +21,14 @@ class RedirectIfAuthenticated
     {
         $guards = empty($guards) ? [null] : $guards;
 
-        // foreach ($guards as $guard) {
-            if (Auth::guard('web')->check()) {
+        foreach ($guards as $guard) {
+            if (Auth::guard($guard)->check()) {
+                if($guard =='employee'){
+                    return redirect()->route(('admin.home'));
+                }
                 return redirect()->route('user.profile.settings');
             }
-        // }
+        }
 
         return $next($request);
     }

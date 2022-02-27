@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\User\UserController;
 use App\Models\Dashboard;
 use App\Http\Controllers\EmployeeAccountController;
-use App\Models\employeeAccount;
+use App\Http\Controllers\EmployeeInfoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -157,8 +157,8 @@ Route::prefix('admin')->name('admin.')->group(function(){
         //     Route::post('/editAvatar',[DashboardController::class,'editAvatar']); 
         // });
 
-        // Route::view('/home','dashboard.user.home')->name('home');
-        // Route::post('/logout',[UserController::class,'logout'])->name('logout');
+      
+        Route::post('/logout',[EmployeeAccountController::class,'logout'])->name('logout');
         
     });
 });

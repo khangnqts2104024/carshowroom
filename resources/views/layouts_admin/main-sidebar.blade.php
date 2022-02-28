@@ -1,7 +1,7 @@
 <aside class="main-sidebar  elevation-1" style="background:#f0f3f3;">
     <!-- Brand Logo -->
     <a style="margin:10px;" ;href="{{ url('/') }}">
-        <img src="https://vinfastauto.com/themes/porto/img/logo-header.svg" alt="vinfast" class="brand-image img-circle elevation-3" style="opacity: .8;">
+        <img src="https://vinfastauto.com/themes/porto/img/logo-header.svg" alt="vinfast" class="brand-image " style="opacity: .8;">
         <span class="brand-text">VINFAST</span>
     </a>
     <svg width="1920" height="80" viewBox="0 40 1920 80" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -74,19 +74,19 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('admin/general') }}" class="nav-link">
+                            <a href="{{ url('admin/general/employee') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Quản Lý Nhân Viên</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('admin/general') }}" class="nav-link">
+                            <a href="{{ url('admin/general/customer') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Quản Lý Khách Hàng</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('admin/general') }}" class="nav-link">
+                            <a href="{{ url('admin/general/customer') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Quản Lý Model</p>
                             </a>
@@ -162,8 +162,8 @@
         <!-- /.sidebar-menu --><ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- logout admin Trung -->
         <li class="nav-item">
-            <a href="{{ route('user.logout') }}" class="nav-link" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
-            <form action="{{ route('user.logout') }}" id="logout-form" class="d-none" method="post">
+            <a href="{{ route('admin.logout') }}" class="nav-link" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
+            <form action="{{ route('admin.logout') }}" id="logout-form" class="d-none" method="post">
                 @csrf
             </form>
         </li>

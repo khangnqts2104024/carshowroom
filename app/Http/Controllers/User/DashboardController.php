@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class DashboardController extends Controller
 {
@@ -17,7 +18,7 @@ class DashboardController extends Controller
     {
         return view('dashboard.user.profile/settings');
     }
-
+// Edit Fullname
     public function editfullname(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -27,7 +28,7 @@ class DashboardController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'status' => 400,
-                'errors' => 'Loi roi ong oi ',
+                'errors' => $validator->errors(),
             ]);
         } else {
             $user = Customer_Info::find($request->customer_id);
@@ -42,12 +43,12 @@ class DashboardController extends Controller
             } else {
                 return response()->json([
                     'status' => 404,
-                    'message' => 'User not found',
+                    'messages' => 'User not found',
                 ]);
             }
         }
     }
-
+// Edit Address
     public function editaddress(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -57,7 +58,7 @@ class DashboardController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'status' => 400,
-                'errors' => 'Loi roi ong oi ',
+                'errors' => $validator->errors(),
             ]);
         } else {
             $user = Customer_Info::find($request->customer_id);
@@ -72,11 +73,12 @@ class DashboardController extends Controller
             } else {
                 return response()->json([
                     'status' => 404,
-                    'message' => 'User not found',
+                    'messages' => 'User not found',
                 ]);
             }
         }
     }
+    // Edit Phone
 
     public function editphone(Request $request)
     {
@@ -86,7 +88,7 @@ class DashboardController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'status' => 400,
-                'errors' => 'Error',
+                'errors' => $validator->errors(),
             ]);
         } else {
             $user = Customer_Info::find($request->customer_id);
@@ -101,12 +103,12 @@ class DashboardController extends Controller
             } else {
                 return response()->json([
                     'status' => 404,
-                    'message' => 'User not found',
+                    'messages' => 'User not found',
                 ]);
             }
         }
     }
-
+// Edit Email
     public function editEmail(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -131,7 +133,7 @@ class DashboardController extends Controller
 
             return response()->json([
                 'status' => 400,
-                'errors' => 'Error123',
+                'errors' => $validator->errors(),
             ]);
         } elseif ($user && $matchPass) {
 
@@ -144,11 +146,11 @@ class DashboardController extends Controller
         } else {
             return response()->json([
                 'status' => 404,
-                'message' => 'User not found',
+                'messages' => 'User not found',
             ]);
         }
     }
-
+// Edit Citizen ID
     public function editCitizenID(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -158,7 +160,7 @@ class DashboardController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'status' => 400,
-                'errors' => 'Loi roi ong oi ',
+                'errors' => $validator->errors(),
             ]);
         } else {
             $user = Customer_Info::find($request->customer_id);
@@ -173,11 +175,58 @@ class DashboardController extends Controller
             } else {
                 return response()->json([
                     'status' => 404,
-                    'message' => 'User not found',
+                    'messages' => 'User not found',
                 ]);
             }
         }
     }
+    // Edit Avatar
+    public function editAvatar(Request $request)
+    {
+        $validator = Validator::make($request->all(),[
+            'image_upload' => 'required|image|mimes:jpg,png,jpeg|max:2048',
+        ]);
+
+        if($validator->fails()){
+            return response()->json([
+                'status' =>400,
+                'errors'=>$validator->errors(),
+            ]);
+        }else{
+           if($request->hasFile('image_upload')){
+                $path = 'files/Avatar_User';
+                $file = $request->file('image_upload');
+                $fullnameUser = preg_replace('/\s+/', '', $request->fullname);
+                $extension_img = $request->image_upload->guessClientExtension();
+                $file_name = time().'_'.$fullnameUser.'.'.$extension_img;
+                $upload = $file->storeAs($path,$file_name,'public');
+                $user = Customer_Info::find($request->customer_id);
+
+            if($upload){
+                $user->avatar = $file_name;
+                $user->update();
+                
+                return response()->json([
+                    'status' => 200,
+                    'messages' => 'Avatar Updated Successfully',
+                    
+                ]);
+           
+            }else {
+                return response()->json([
+                    'status' => 404,
+                    'errors' => 'Upload Fail!',
+                ]);
+            }
+
+        }else {
+            return response()->json([
+                'status' => 404,
+                'errors' => 'Upload Fail!',
+            ]);
+        }
+    }
+}
 
     public function fetchData()
     {
@@ -185,7 +234,6 @@ class DashboardController extends Controller
         $users = DB::table('customer_infos')
             ->where('email', '=', $user_Email)
             ->get();
-            //123123123
         return response()->json([
             'users' => $users,
         ]);

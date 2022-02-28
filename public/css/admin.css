@@ -17,6 +17,7 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+       
     }
   
 .manage-option:hover{
@@ -61,4 +62,20 @@ width: 100px;}
 }
 .card-report{
     margin: 2% 2%;
+}
+.formRound{
+    border-radius: 35px !important;
+    border: 0.2px solid !important;
+    background-color:white!important;
+  }
+
+  .empsignin{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+padding: 20px;
+border: 1px double rgb(12, 34, 94);
+border-radius: 10px;
 }

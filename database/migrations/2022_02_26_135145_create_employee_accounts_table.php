@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('employee_accounts', function (Blueprint $table) {
             $table->id();
             $table->string('email')->unique();     
-            $table->foreign('email')->references('email')->on('employee_infos')->onUpdate('cascade');
+            $table->foreign('email')->references('email')->on('employee_infos')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password',70);
             $table->string('role',70);

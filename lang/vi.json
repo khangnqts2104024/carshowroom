@@ -1,4 +1,5 @@
-{
+{   
+    
     "30 Days": "30 Ngày",
     "60 Days": "60 Ngày",
     "90 Days": "90 Ngày",
@@ -492,7 +493,7 @@
     "Save": "Lưu",
     "Saved.": "Đã lưu.",
     "Search": "Tìm Kiếm",
-    "Select": "Chọn",
+    "Select": "Lựa Chọn",
     "Select a different plan": "Chọn gói khác",
     "Select A New Photo": "Chọn một ảnh mới",
     "Select Action": "Chọn Hành Động",
@@ -728,7 +729,31 @@
     "battery policy and the only 10-year warranty on the market for electric cars.":"bảo hành 10 năm duy nhất trên thị trường cho ô tô điện.",
     "VinFast Car":"Xe ô tô",
     "More than creating a new car, VinFast was born to represent":"Hơn cả việc tạo nên một chiếc xe mới, VinFast ra đời đại diện cho ",
-    "the spirit and pride of the nation.":"tinh thần và niềm kiêu hãnh dân tộc."
-    
+    "the spirit and pride of the nation.":"tinh thần và niềm kiêu hãnh dân tộc.",
+    "Break the limits together":"Cùng bạn bứt phá mọi giới hạn",
+    "Make the most of every experience":"Tối ưu mọi trải nghiệm",
+    "Enjoy every moment":"Tận hưởng từng khoảnh khắc",
+    "Conquer all roads":"Chinh phục mọi cung đường",
+    "The mark of a leader":"Dấu ấn người thủ lĩnh",
+    "Listed price":"Giá niêm yết",
+    "from":"từ",
+    "Vehicles":"Dòng xe",
+    "View Detail":"XEM CHI TIẾT",
+    "View Detail.":"Xem Chi Tiết",
+    "Aspiration to conquer the world":"Hành trình chinh phục thế giới",
+    "“It is, in automobile industry, utopian that not one ":"“Trong ngành công nghiệp xe hơi, việc thiết kế và",
+    "but two vehicles are designed and manufactured ":"chế tạo không chỉ một mà hai chiếc xe chỉ trong ",
+    "within 12 months.”":"vòng 12 tháng là tốc độ không tưởng.”",
+    "“The key success right from the production ":"“Chìa khóa để đạt thành công ngay từ khâu sản ",
+    "process of VinFast mainly comes from their ":"xuất của VinFast chính là các đối tác mạnh mẽ ",
+    "prestige partners named ABB, Bosch, Magna ":"như ABB, Bosch, Magna ",
+
+    "“VinFast - Vietnamese automobile brand ":"“VinFast, thương hiệu ô tô Việt thuộc Tập đoàn ",
+    "of Vingroup is a typical model for their prompt ":" Vingroup là điển hình tiêu biểu của việc nhanh ",
+    "rehabilitation and astronautic move after ":"chóng phục hồi và có tiến bước nhanh chóng ",
+    "Vietnam has successfully controlled the Covid-19 pandemic , etc.”":"sau khi Việt Nam thành công chống dịch Covid...”",
+    "Sales policy may be updated subject to VinFast Policy from time to time.":"Chính sách bán hàng có thể được cập nhật theo chích sách của Vinfast tại từng thời điểm.",
+    "View All Cars":"Xem tất cả các xe "
+
     
 }

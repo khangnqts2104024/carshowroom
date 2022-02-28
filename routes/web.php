@@ -103,9 +103,7 @@ Route::prefix('user')->name('user.')->group(function(){
 // Route::get('admin/showroom', function () {
 //     return view('admin.showroom.order');
 // });
-Route::get('admin/showroom/check', function () {
-    return view('admin.showroom.ordercheck');
-});
+
 Route::get('admin/showroom/myorder', function () {
     return view('admin.showroom.myorder');
 });
@@ -141,8 +139,9 @@ Route::get('admin/general', function () {
 // });
 Route::get('admin/general/employee',[EmployeeInfoController::class,'show']);
 Route::get('admin/showroom',[OrderDetailController::class,'show']);
-Route::get('admin/general/customer',[DashboardController::class,'showcustlist']);
+Route::get('admin/showroom/check',[OrderDetailController::class,'orderdstatus']);
 
+Route::get('admin/general/customer',[DashboardController::class,'showcustlist']);
 Route::get('admin/general/customer/edit/{id}',[DashboardController::class,'edit']);
 
 

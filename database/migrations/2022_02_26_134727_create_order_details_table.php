@@ -25,7 +25,7 @@ return new class extends Migration
             $table->foreign('showroom')->references('id')->on('showrooms');
             $table->string('order_status');
             $table->primary(['model_id','order_id']);
-            $table->unsignedBigInteger('price');
+            
             // thêm option
         });
     }

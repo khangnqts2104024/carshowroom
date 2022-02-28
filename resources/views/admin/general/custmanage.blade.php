@@ -29,92 +29,39 @@
                         <thead>
                             <tr>
                                 <th>STT</th>
-                                <th>Mã Đơn Hàng</th>
                                 <th>Tên Khách Hàng</th>
-                                <th>Email</th>
                                 <th>Số Điện Thoại</th>
-                                <th>Model Xe</th>
-                                <th>Tình Trạng Đơn Hàng</th>
+                                <th>Email</th>
+                                <th>Thông Tin Chi Tiết</th>
                             </tr>
                         </thead>
                         <tbody>
 
-                        
+
+
+
                             <!-- test -->
-                            <tr>
 
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td class="flex-container"> <span class="status">checked</span>
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-danger car-add">Hủy Đơn Hàng</a>
+                            <tr> @php $x=1 @endphp
+                                @foreach ($customer as $p)
+                                <td>{{ $x++ }}</td>                               
+                                <td> {{$p->fullname}}</td>
+                                <td>{{ $p->phone_number }}</td>
+                                <td>{{ $p->email}} </td>
+                                
+                                <td class="flex-container">
+                                <a href="{{ url('admin/general/customer/edit/'.$p->customer_id) }}">  <button type="button" class="btn btn-primary" >
+                                        <i class="fa-solid fa-circle-info"></i>
+                                    </button></a>
+                                                
+                       
+                                 
                                 </td>
                             </tr>
-                            <tr>
+                            @endforeach
 
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td> canceled
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td class="flex-container"> <span class="status">deposit</span>
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-success car-add">Xác Nhận Đơn Hàng</a>
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td class="flex-container"> <span class="status">confirm</span>
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-success car-add">Đã Giao Xe</a>
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td class="flex-container"><span class="status">custcanceled</span>
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-danger car-add">Hủy Hợp Đồng</a>
-
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td> sold
-                                </td>
-                            </tr>
-
-                            </tfoot>
                     </table>
+
                 </div>
                 <!-- /.card-body -->
             </div>
@@ -129,8 +76,8 @@
 @endsection
 @section('script-section')
 <script>
-$(document).ready( function () {
-    $('#myTable').DataTable();
-} );
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+    });
 </script>
 @endsection

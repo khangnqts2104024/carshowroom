@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
             $table->string('model_id');
-            $table->foreign('model_id')->references('model_id')->on('model_infos');
+            $table->foreign('model_id')->references('model_id')->on('model_infos')->onUpdate('cascade')->onDelete('cascade');;
             $table->unsignedBigInteger('repo_id');
-            $table->foreign('repo_id')->references('id')->on('warehouses');
+            $table->foreign('repo_id')->references('id')->on('warehouses')->onUpdate('cascade')->onDelete('cascade');;
             $table->unsignedInteger('quantity');
         });
     }

@@ -16,12 +16,13 @@ return new class extends Migration
         Schema::create('car_infos', function (Blueprint $table) {
             $table->id('car_id');
             $table->unsignedBigInteger('car_model');
-            $table->foreign('car_model')->references('model_id')->on('model_infos');
+            $table->foreign('car_model')->references('model_id')->on('model_infos')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('car_id');
             $table->unsignedBigInteger('car_branch');
-            $table->foreign('car_branch')->references('id')->on('showrooms');
+            $table->foreign('car_branch')->references('id')->on('showrooms')->onUpdate('cascade')->onDelete('cascade');
             $table->string('car_status');
             $table->string('order_id');
-            $table->foreign('order_id')->references('order_id')->on('orders');
+            $table->foreign('order_id')->references('order_id')->on('orders')->onUpdate('cascade')->onDelete('cascade');
             $table->date('manufactoring_date');
         });
     }

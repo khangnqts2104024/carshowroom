@@ -28,29 +28,13 @@ Route::get('/', function () {
     return view('home');
 })->middleware("Localization");
 
-
-// Route::get('/lang/{locale?}', function ($locale) {
-//     if (isset($locale) && in_array($locale, config('app.available_locales'))) {
-//         app()->setLocale($locale);
-//          Session::put('locale', $locale);
-//     }
-//     return view("home")->with('locale',$locale);
-
-// });
-
-
 Route::get('/lang/{locale?}',[ChangeLanguageController::class,'switch']);
-
 
 Route::get('/expectedPrice',function(){
     return view('expectedPrice');
-});
-
-
+})->middleware('Localization');
 
 Auth::routes();
-
-
 
 Route::prefix('user')->name('user.')->group(function(){
     
@@ -80,17 +64,6 @@ Route::prefix('user')->name('user.')->group(function(){
     });
 });
     
-
-// Route::prefix('admin')->name('admin.')->group(function(){
-//     Route::middleware(['guest:admin'])->group(function(){
-//         Route::view('/loginn','dashboard.admin.login')->name('login');   
-//     });
-
-//     Route::middleware(['auth:admin'])->group(function(){
-//         Route::view('/home','dashboard.admin.home')->name('home'); 
-//     });
-// });
-
 
 // KHANG
 // Route::get('admin', function () {

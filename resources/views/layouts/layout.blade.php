@@ -28,7 +28,7 @@
     <!-- nav PC -->
 
   <nav class="navbar navbar-custom navbar-expand-lg navbar-light bg-light nav-pc sticky-top">
-    <a href="/"  class="logoVinFast"><img src="https://vinfastauto.com/themes/porto/img/logo-header.svg" alt="Vinfast" /></a>
+    <a href="{{route('user.home')}}"  class="logoVinFast"><img src="https://vinfastauto.com/themes/porto/img/logo-header.svg" alt="Vinfast" /></a>
     <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
         aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -42,37 +42,37 @@
                         <div class="col">
                            <img src="/HomepageImage/slide2/VFe34.png" alt="">
                            <div class="item-name">VFe34</div>
-                           <div class="item-price">Từ 690.000.000 vnđ</div>
-                           <a class="view-detail-a" href="">Xem chi tiết</a>
+                           <div class="item-price">{{__("from")}} 690.000.000 vnđ</div>
+                           <a class="view-detail-a" href="">{{__("View Detail.")}}</a>
                         </div>
                         <div class="col">
                            <img src="/HomepageImage/slide2/Fadil.png" alt="">
                            <div class="item-name">Fadil</div>
-                           <div class="item-price">Từ 382.500.000 vnđ</div>
-                           <a class="view-detail-a" href="">Xem chi tiết</a>
+                           <div class="item-price">{{__("from")}} 382.500.000 vnđ</div>
+                           <a class="view-detail-a" href="">{{__("View Detail.")}}</a>
                         </div>
                         <div class="col">
                            <img src="/HomepageImage/slide2/LuxA.png" alt="">
                            <div class="item-name">LuxA2.0</div>
-                           <div class="item-price">Từ 949.435.000 vnđ</div>
-                           <a class="view-detail-a" href="">Xem chi tiết</a>
+                           <div class="item-price">{{__("from")}} 949.435.000 vnđ</div>
+                           <a class="view-detail-a" href="">{{__("View Detail")}}</a>
                         </div>
                         <div class="col">
                            <img src="/HomepageImage/slide2/LuxSA.png" alt="">
                            <div class="item-name">LUX SA2.0</div>
-                           <div class="item-price">Từ 1.220.965.000 vnđ</div>
-                           <a class="view-detail-a" href="">Xem chi tiết</a>
+                           <div class="item-price">{{__("from")}} 1.220.965.000 vnđ</div>
+                           <a class="view-detail-a" href="">{{__("View Detail.")}}</a>
                         </div>
                         <div class="col">
                            <img src="/HomepageImage/slide2/President.png" alt="">
                            <div class="item-name">President</div>
-                           <div class="item-price">Từ 3.800.000.000 vnđ</div>
-                           <a class="view-detail-a" href="">Xem chi tiết</a>
+                           <div class="item-price">{{__("from")}} 3.800.000.000 vnđ</div>
+                           <a class="view-detail-a" href="">{{__("View Detail.")}}</a>
                         </div>
                     </div>
-                    <div class="desc">Chính sách bán hàng có thể được cập nhật theo chích sách của Vinfast tại từng thời điểm.</div>
+                    <div class="desc">{{__("Sales policy may be updated subject to VinFast Policy from time to time.")}}</div>
                     <div class="view_all">
-                      <a href="#">Xem tất cả các xe </a>
+                      <a href="#">{{__("View All Cars")}}</a>
                     </div>
           </div>
         </li>

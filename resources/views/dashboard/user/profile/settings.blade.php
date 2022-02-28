@@ -21,7 +21,9 @@
             {{-- main-content --}}
             <div class="content">
                 <div class="container-fluid">
-
+                    
+                        <div class="success_messages"></div>
+                    
                     <div class="row d-flex justify-content-around ml-4 mt-5">
 
                         <div class="col-md-4">
@@ -53,6 +55,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
+                                            <ul id="saveForm_errList_fullname"></ul>
                                             <form action="" method="POST" id="form_edit_fullname">
                                                 @csrf
                                                 <input type="hidden" class="idToken" value="{{ csrf_token() }}">
@@ -113,6 +116,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
+                                            <ul id="saveForm_errList_address"></ul>
                                             <form action="" method="post">
                                                 @csrf
                                                 <input type="hidden" class="idToken" value="{{ csrf_token() }}">
@@ -141,8 +145,6 @@
                         <div class="col-md-4">
                             <div class="titleInfo">{{__('UserProfilesettings.PhoneNumber')}}</div>
                             <div class="contentInfo mt-1">
-
-
                                 <div class="showcontent" style="display: none">
                                     <a href="#" class=" d-block mb-2" id="showPhone"></a>
                                     <div class="edit">
@@ -170,6 +172,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
+                                            <ul id="saveForm_errList_phoneNumber"></ul>
                                             <form action="" method="post">
                                                 @csrf
                                                 <input type="hidden" class="idToken" value="{{ csrf_token() }}">
@@ -201,7 +204,6 @@
                         <div class="col-md-4">
                             <div class="titleInfo">{{__('UserProfilesettings.Email')}}</div>
                             <div class="contentInfo mt-1">
-
                                 <div class="showcontent" style="display: none">
                                     <a href="#" class="d-block mb-2" id="showEmail"></a>
                                     <div class="edit">
@@ -230,6 +232,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
+                                            <ul id="saveForm_errList_email"></ul>
                                             <form action="" method="post">
                                                 @csrf
                                                 <input type="hidden" class="idToken" value="{{ csrf_token() }}">
@@ -269,7 +272,6 @@
                         <div class="col-md-4">
                             <div class="titleInfo">{{__('UserProfilesettings.Password')}}</div>
                             <div class="contentInfo mt-1">
-                                
                                 <div class="showcontent" style="display: none;">
                                     <a href="#" class="d-block mb-2 showContent">* * * * * * * * * * * *</a>
                                     <div class="plusIcon ">
@@ -286,7 +288,6 @@
                         <div class="col-md-4">
                             <div class="titleInfo">{{__('UserProfilesettings.CitizenID')}}</div>
                             <div class="contentInfo mt-1">
-
                                 <div class="showcontent" style="display: none">
                                     <a href="#" class="d-block mb-2" id="showCitizenID"></a>
                                     <div class="edit">
@@ -314,6 +315,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
+                                            <ul id="saveForm_errList_citizenID"></ul>
                                             <form action="" method="post">
                                                 @csrf
                                                 <input type="hidden" class="idToken" value="{{ csrf_token() }}">
@@ -344,9 +346,4 @@
             </div>
 
         </div>
-
-
-        {{-- @push('scriptsProfileSettings')
-            <script src="/js/profile/setting.js"></script>
-        @endpush --}}
     @endsection

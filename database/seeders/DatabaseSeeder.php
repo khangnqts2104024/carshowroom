@@ -18,12 +18,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // DB::table('customer_info')->insert([
-        //     'email' => Str::random(10).'@gmail.com',
-        //     'citizen_id' => Str::random(10),
-        //     'fullname' => Str::random(10),
-        //     'fullname'=> Str::random(10),
-            
-        // ]);
+        $this->call([
+            Customer_infos_Table::class
+        ]);
     }
 }

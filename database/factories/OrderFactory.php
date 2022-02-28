@@ -17,11 +17,7 @@ class OrderFactory extends Factory
     public function definition()
     {
         return [
-            $table->string('order_id');
-            $table->primary('order_id');
-            $table->unsignedBigInteger('customer_id');
-            $table->foreign('customer_id')->references('customer_id')->on('customer_infos');
-            $table->timestamp('order_date');
+           
         ];
     }
 }

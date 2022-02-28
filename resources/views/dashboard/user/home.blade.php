@@ -28,11 +28,12 @@
             <div class="carousel-inner" role="listbox">
               <div class="carousel-item active">
                 <div class="caption d-none d-md-block">
-                  <h2 class="titleCarousel">Công nghệ thông minh cho tương lai</h2>
+                  <h2 class="titleCarousel">{{__("Smart Technology For The Future")}}</h2>
+                  
                   <h5 class="contentCarousel">
-                    Đặt khách hàng làm trọng tâm, các mẫu xe thông minh của VinFast được ứng dụng những công nghệ <br>
-                    ưu việt hàng đầu thế giới, mở ra không gian hưởng thụ tiện nghi, giải trí hoàn hảo cùng trải nghiệm <br>
-                    cá nhân hóa đáng giá nhất.
+                    {{__("With customer-centred philosophy, VinFast smart cars are integrated with world's most advanced")}} <br>
+                    {{__("techonologies, namely AI based machine learning & deep learning, high-level autopilot for a")}} <br>
+                    {{__("comfortable ride, immersive entertainment & personalized experience.")}}
                   </h5>
                 </div>
                 <img src="/HomepageImage/carouselHome/pic1.png" class="d-block w-100" alt="First slide">
@@ -40,44 +41,44 @@
 
               <div class="carousel-item">
                 <div class="caption d-none d-md-block">
-                  <h2 class="titleCarousel">Thiết kế đầy đam mê</h2>
+                  <h2 class="titleCarousel">{{__("Passionate Design")}}</h2>
                   <h5 class="contentCarousel">
-                    Kết hợp với nhà thiết kế xe nổi tiếng thế giới Pininfarina, VinFast mang đến chất lượng thiết kế đẳng cấp <br>
-                    cho từng dòng xe. Theo đuổi triết lý trải nghiệm chạm sinh học, những chiếc xe VinFast sở hữu vẻ ngoài <br>
-                    sang trọng đặc trưng cùng khoang nội thất đậm chất tương lai, được chăm chút trong từng chi tiết.
+                    {{__("In collaboration with Pininfarina, a world-famous car design firm, VinFast offers premium & classy")}} <br>
+                    {{__("design for every line of car. Each model is packed with distinctive & elegant exterior as well as modern")}} <br>
+                    {{__("interior with meticulous attention to details.")}}
                   </h5>
                 </div>
                 <img src="/HomepageImage/carouselHome/pic2.png" class="d-block w-100" alt="Second slide">
               </div>
               <div class="carousel-item">
                 <div class="caption d-none d-md-block">
-                  <h2 class="titleCarousel">Đẳng cấp an toàn quốc tế</h2>
+                  <h2 class="titleCarousel">{{__("World-class Safety Standards")}}</h2>
                   <h5 class="contentCarousel">
-                    Đặt sự an tâm của khách hàng lên trên hết, những chiếc xe của VinFast được trang bị các tính năng an toàn <br>
-                    tối tân nhất để bảo vệ người lái và mọi hành khách trên xe, đáp ứng tiêu chuẩn khắt khe của <br>
-                    các tổ chức đánh giá xe uy tín hàng đầu thế giới như ASEAN NCAP, EURO NCAP, NHTSA...
+                    {{__("With customers assurance as the top priority, VinFast cars are equipped with state-of-art safety")}}<br>
+                    {{__("features to protect drivers and passengers, meeting the rigorous standards of the world's top vehicle")}} <br>
+                    {{__("assessment organizations, such as ASEAN NCAP, EURO NCAP, and NHTSA.")}}
                   </h5>
                 </div>
                 <img src="/HomepageImage/carouselHome/pic3.png" class="d-block w-100" alt="Third slide">
               </div>
               <div class="carousel-item">
                 <div class="caption d-none d-md-block">
-                  <h2 class="titleCarousel">Trải nghiệm xuất sắc</h2>
+                  <h2 class="titleCarousel">{{__("Excellent Experience")}}</h2>
                   <h5 class="contentCarousel">
-                    Sở hữu xe VinFast chính là tận hưởng những giá trị tốt nhất của một hệ sinh thái đẳng cấp, từ mô hình <br>
-                    O2O tích hợp thương mại điện tử và trải nghiệm tại hệ thống Đại lý/Showroom/Trạm sạc rộng khắp, <br>
-                    tới chất lượng dịch vụ hậu mãi vượt trội và sự tận tâm trong từng khoảnh khắc của khách hàng.
+                    {{__("VinFast cars enable their owners to enjoy the best values of our ecosystem, from the Online-To-Offline")}}<br>
+                    {{__("business model that integrates e-commerce and in-person experiences at dealership, showrooms and ")}}<br>
+                    {{__("charging stations nationwide, to outstanding after-sales service quality and dedication to customers.")}}
                   </h5>
                 </div>
                 <img src="/HomepageImage/carouselHome/pic4.png" class="d-block w-100" alt="Fourth slide">
               </div>
               <div class="carousel-item">
                 <div class="caption d-none d-md-block">
-                  <h2 class="titleCarousel">Chính sách thấu hiểu</h2>
+                  <h2 class="titleCarousel">{{__("Understanding Polices")}}</h2>
                   <h5 class="contentCarousel">
-                    VinFast luôn có chính sách bán hàng và hậu mãi có lợi nhất cho khách hàng. VinFast cũng tiên phong <br>
-                    thúc đẩy xu hướng sử dụng xe điện, hướng tới tương lai xanh, bền vững bằng chính sách pin và chế độ <br>
-                    bảo hành 10 năm duy nhất trên thị trường cho ô tô điện.
+                    {{__("VinFast always has the most beneficial sales and after-sales policy for customers. VinFast is also a ")}}<br>
+                    {{__("pioneer in promoting the trend of using electric vehicles, towards a green and sustainable future with a ")}}<br>
+                    {{__("battery policy and the only 10-year warranty on the market for electric cars.")}}
                   </h5>
                 </div>
                 <img src="/HomepageImage/carouselHome/pic5.png" class="d-block w-100" alt="Fifth slide">
@@ -100,11 +101,12 @@
     <div class="CarCarousel">
       <div class="contentTop d-none d-md-block">
         <h2 class="titleCarousel">
-          Xe ô tô
+          {{__("VinFast Car")}}
         </h2>
         <h5 class="contentCarousel">
-          Hơn cả việc tạo nên một chiếc xe mới, VinFast ra đời đại diện cho <br>
-          tinh thần và niềm kiêu hãnh dân tộc.
+          {{__("More than creating a new car, VinFast was born to represent")}}<br>
+          {{__("the spirit and pride of the nation.")}}
+          
         </h5>
       </div>
       <div class="carslide owl-carousel owl-theme row justify-content-around">
@@ -114,7 +116,7 @@
           <div class="info">
             <div class="slogan">
               <div>
-              Cùng bạn bứt phá mọi giới hạn
+              {{__('Break the limits together')}}
               </div>
             </div>
             <div class="title">
@@ -124,18 +126,18 @@
             </div>
             <div class="d-flex justify-content-between">
               <div class="type">
-                <div>Dòng xe</div>
+                <div>{{__("Vehicles")}}</div>
                 <div>SUV</div>
 
               </div>
               <div class="price">
-                <div>Giá niêm yết</div>
-                <div>từ 690 triệu</div>
+                <div>{{__("Listed price")}}</div>
+                <div>{{__("from")}} 690 triệu</div>
               </div>
             </div>
           </div>
 
-          <a href="#" class="view-detail">XEM CHI TIẾT</a>
+          <a href="#" class="view-detail">{{__("View Detail")}}</a>
 
         </div>
         <div class="col item">
@@ -144,7 +146,7 @@
           <div class="info">
             <div class="slogan">
               <div>
-                Tối ưu mọi trải nghiệm
+                {{__("Make the most of every experience")}}
               </div>
             </div>
             <div class="title">
@@ -154,18 +156,18 @@
             </div>
             <div class="d-flex justify-content-between">
               <div class="type">
-                <div>Dòng xe</div>
+                <div>{{__("Vehicles")}}</div>
                 <div>HATCHBACK</div>
 
               </div>
               <div class="price">
-                <div>Giá niêm yết</div>
-                <div>từ 382 triệu</div>
+                <div>{{__("Listed price")}}</div>
+                <div>{{__("from")}} 382 triệu</div>
               </div>
             </div>
           </div>
 
-          <a href="#" class="view-detail">XEM CHI TIẾT</a>
+          <a href="#" class="view-detail">{{__("View Detail")}}</a>
 
         </div>
         <div class="col item">
@@ -175,7 +177,7 @@
 
             <div class="slogan">
               <div>
-                Tận hưởng từng khoảnh khắc
+                {{__("Enjoy every moment")}}
               </div>
             </div>
             <div class="title">
@@ -185,18 +187,18 @@
             </div>
             <div class="d-flex justify-content-between">
               <div class="type">
-                <div>Dòng xe</div>
+                <div>{{__("Vehicles")}}</div>
                 <div>SEDAN</div>
 
               </div>
               <div class="price">
-                <div>Giá niêm yết</div>
-                <div>từ 949 triệu</div>
+                <div>{{__("Listed price")}}</div>
+                <div>{{__("from")}} 949 triệu</div>
               </div>
             </div>
           </div>
 
-          <a href="#" class="view-detail">XEM CHI TIẾT</a>
+          <a href="#" class="view-detail">{{__("View Detail")}}</a>
 
         </div>
         <div class="col item">
@@ -206,7 +208,7 @@
 
             <div class="slogan">
               <div>
-                Chinh phục mọi cung đường
+                {{__("Conquer all roads")}}
               </div>
             </div>
             <div class="title">
@@ -216,18 +218,18 @@
             </div>
             <div class="d-flex justify-content-between">
               <div class="type">
-                <div>Dòng xe</div>
+                <div>{{__("Vehicles")}}</div>
                 <div>SUV</div>
 
               </div>
               <div class="price">
-                <div>Giá niêm yết</div>
-                <div>từ 1.2 tỷ</div>
+                <div>{{__("Listed price")}}</div>
+                <div>{{__("from")}} 1.2 tỷ</div>
               </div>
             </div>
           </div>
 
-          <a href="#" class="view-detail">XEM CHI TIẾT</a>
+          <a href="#" class="view-detail">{{__("View Detail")}}</a>
 
         </div>
         <div class="col item">
@@ -236,7 +238,7 @@
           <div class="info">
             <div class="slogan">
               <div>
-                Dấu ấn người thủ lĩnh
+                {{__("The mark of a leader")}}
               </div>
             </div>
             <div class="title">
@@ -246,17 +248,17 @@
             </div>
             <div class="d-flex justify-content-between">
               <div class="type">
-                <div>Dòng xe</div>
+                <div>{{__("Vehicles")}}</div>
                 <div>SUV</div>
 
               </div>
               <div class="price">
-                <div>Giá niêm yết</div>
-                <div>từ 3.8 tỷ</div>
+                <div>{{__("Listed price")}}</div>
+                <div>{{__("from")}} 3.8 tỷ</div>
               </div>
             </div>
           </div>
-          <a href="#" class="view-detail">XEM CHI TIẾT</a>
+          <a href="#" class="view-detail">{{__("View Detail")}}</a>
 
         </div>
       </div>
@@ -272,14 +274,14 @@
           <div class="col"></div>
           <div class="col-md-11 content-body">
             <div class="content-title">
-              <h2>Hành trìnhh chinhh phục thế giới</h2>
+              <h2>{{__("Aspiration to conquer the world")}}</h2>
             </div>
             <div class="htcptg owl-carousel owl-theme child">
               <div class="item">
                 <div class="desc">
-                  “Trong ngành công nghiệp xe hơi, việc thiết kế và <br>
-                  chế tạo không chỉ một mà hai chiếc xe chỉ trong <br>
-                  vòng 12 tháng là tốc độ không tưởng”
+                   {{__("Aspiration to conquer the world")}}<br>
+                  {{__("but two vehicles are designed and manufactured ")}}<br>
+                  {{__("within 12 months.”")}}
                 </div>
                 <div class="author">
                   - Top Gear -
@@ -287,9 +289,10 @@
               </div>
               <div class="item">
                 <div class="desc">
-                  “Chìa khóa để đạt thành công ngay từ khâu sản <br>
-                  xuất của VinFast chính là các đối tác mạnh mẽ <br>
-                  như ABB, Bosch, Magna Steyr và Siemens”
+                  {{__("“The key success right from the production ")}}<br>
+                  {{__("process of VinFast mainly comes from their ")}}<br>
+                  {{__("prestige partners named ABB, Bosch, Magna ")}}<br>
+                  
                 </div>
                 <div class="author">
                   - CNBC -
@@ -298,10 +301,10 @@
               </div>
               <div class="item">
                 <div class="desc">
-                  “VinFast, thương hiệu ô tô Việt thuộc Tập đoàn <br>
-                  Vingroup là điển hình tiêu biểu của việc nhanh <br>
-                  chóng phục hồi và có tiến bước nhanh chóng <br>
-                  sau khi Việt Nam thành công chống dịch Covid...”
+                  {{__("“VinFast - Vietnamese automobile brand ")}}<br>
+                  {{__("of Vingroup is a typical model for their prompt ")}}<br>
+                  {{__("rehabilitation and astronautic move after ")}}<br>
+                  {{__("Vietnam has successfully controlled the Covid-19 pandemic , etc.”")}}
                 </div>
                 <div class="author">
                   - Bloomberg -

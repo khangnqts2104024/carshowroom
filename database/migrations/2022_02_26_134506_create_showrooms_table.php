@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('address');
             $table->string('phone');
             $table->unsignedBigInteger('region');
-            $table->foreign('region')->references('id')->on('warehouses');
+            $table->foreign('region')->references('id')->on('warehouses')->onUpdate('cascade')->onDelete('cascade');;
           
 
         });

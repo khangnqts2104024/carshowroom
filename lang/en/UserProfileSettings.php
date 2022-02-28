@@ -1,20 +1,17 @@
 <?php 
     return [
         "Home" => "Home",
-        "HOME" => "HOME",
-        "PROFILE SETTING" => "PROFILE SETTING",
-        "ORDER HISTORY" => "ORDER HISTORY",
-        "BOOK APPOINTMENT" => "BOOK APPOINTMENT",
-        "Logout" => "Log out",
+        "Profile Setting" => "Profile Setting",
+        "Order History" => "Order History",
+        "Book Appointment" => "Book Appointment",
+        "Cost Estimation" => "Cost Estimation",
+        "Logout" => "Logout",        
         "Fullname" => "Fullname",
         "Address" => "Address",
         "PhoneNumber" => "Phone Number",
         "Email" => "Email",
         "Password" => "Password",
         "CitizenID" => "Citizen ID",
-        
-        
-
         "Edit Fullname" => "Edit Fullname",
         "Edit Address" => "Edit Address",
         "Edit Phone Number" => "Edit Phone Number",

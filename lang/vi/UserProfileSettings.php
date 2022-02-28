@@ -1,11 +1,11 @@
 <?php 
     return [
-        "Home" => "Trang chủ",
-        "HOME" => "TRANG CHỦ",
-        "PROFILE SETTING" => "THÔNG TIN CÁ NHÂN",
-        "ORDER HISTORY" => "LỊCH SỬ ĐẶT HÀNG",
-        "BOOK APPOINTMENT" => "YÊU CẦU TƯ VẤN",
-        "Logout" => "Đăng xuất",
+        "Home" => "Trang Chủ",
+        "Profile Setting" => "Thông Tin Cá Nhân",
+        "Order History" => "Lịch Sử Đặt Hàng",
+        "Book Appointment" => "Yêu cầu tư vấn",
+        "Cost Estimation" => "Chi Phí Lăn Bánh",
+        "Logout" => "Đăng Xuất",
         "Fullname" => "Họ Và Tên",
         "Address" => "Địa Chỉ",
         "PhoneNumber" => "Số Điện Thoại",

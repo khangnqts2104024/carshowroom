@@ -3,6 +3,7 @@
     position: relative;
     display: inline-block;
     margin: 0 5px;
+    top:5px;
   }
   
   .switch > span {
@@ -106,4 +107,8 @@
   
   input.check-toggle-round-flat:checked + label:after {
     margin-left: 44px;
+  }
+
+  .navright li{
+    margin-right: 30px !important;
   }

@@ -51,11 +51,29 @@ $(function() {
              data: data,
              dataType: "json",
              success: function (response) {
+               if(response.status == 400){
+                  $.each(response.errors,function(key,err_values){
+                     $('#saveForm_errList_fullname').html();
+                     $('#saveForm_errList_fullname').addClass('alert alert-danger');
+                     $('#saveForm_errList_fullname').append('<li>'+err_values+'</li>')
+                  });
+               }else{
+                  $('#saveForm_errList_fullname').html("");
+                  $('.success_messages').html("");
+                  $('.success_messages').addClass('alert alert-success'); 
+                  $('.success_messages').text(response.messages); 
+                  
+                  // var message_en = "Fullname Updated Successfully";
+                  // var message_vi = "Họ và tên đã được cập nhật thành công";
+                  $('#editFullName').modal("hide");
+                  //reset field
+                  $('#editFullName').find('input').val("");
+                  $('.success_messages').delay(700).fadeOut(800);
+                  fetchInfo();
+                  
+                  
+               }
                
-                $('#editFullName').modal("hide");
-                //reset field
-                $('#editFullName').find('input').val("");
-                fetchInfo();
              }
           })
           
@@ -86,10 +104,33 @@ $(function() {
             data: data,
             dataType: "json",
             success: function (response) {
-               $('#editAddress').modal("hide");
-               //reset field
-               $('#editAddress').find('input').val("");
-               fetchInfo();
+               if(response.status == 400){
+                  $.each(response.errors,function(key,err_values){
+                     $('#saveForm_errList_address').html();
+                     $('#saveForm_errList_address').addClass('alert alert-danger');
+                     $('#saveForm_errList_address').append('<li>'+err_values+'</li>')
+                  });
+               }else{
+                  $('#saveForm_errList_address').html("");
+                  $('.success_messages').html(""); 
+                  $('.success_messages').addClass('alert alert-success'); 
+                  $('.success_messages').text(response.messages); 
+                  
+                  // var message_en = "Fullname Updated Successfully";
+                  // var message_vi = "Họ và tên đã được cập nhật thành công";
+                  $('#editAddress').modal("hide");
+                  //reset field
+                  $('#editAddress').find('input').val("");
+                  $('.success_messages').fadeIn();
+                  $('.success_messages').delay(700).fadeOut(800);
+                  fetchInfo();
+                  
+               }
+
+
+
+
+             
             }
          })
          
@@ -120,10 +161,28 @@ $(function() {
              data: data,
              dataType: "json",
              success: function (response) {
-                $('#editPhoneNumber').modal("hide");
+               if(response.status == 400){
+                  $.each(response.errors,function(key,err_values){
+                     $('#saveForm_errList_phoneNumber').html();
+                     $('#saveForm_errList_phoneNumber').addClass('alert alert-danger');
+                     $('#saveForm_errList_phoneNumber').append('<li>'+err_values+'</li>')
+                  });
+               }else{
+                  $('#saveForm_errList_phoneNumber').html("");
+                  $('.success_messages').html(""); 
+                  $('.success_messages').addClass('alert alert-success'); 
+                  $('.success_messages').text(response.messages); 
+                  $('#editPhoneNumber').modal("hide");
                 //reset field
                 $('#editPhoneNumber').find('input').val("");
+                $('.success_messages').fadeIn();
+                  $('.success_messages').delay(700).fadeOut(800);
                 fetchInfo();
+               }
+
+
+
+               
              }
           })
           
@@ -155,11 +214,26 @@ $(function() {
              data: data,
              dataType: "json",
              success: function (response) {
-               console.log(response);
-                $('#editEmail').modal("hide");
-                //reset field
-                $('#editEmail').find('input').val("");
-                fetchInfo();
+               if(response.status == 400){
+                  $.each(response.errors,function(key,err_values){
+                     $('#saveForm_errList_email').html();
+                     $('#saveForm_errList_email').addClass('alert alert-danger');
+                     $('#saveForm_errList_email').append('<li>'+err_values+'</li>')
+                  });
+               }else{
+                  $('#saveForm_errList_email').html("");
+                  $('.success_messages').html(""); 
+                  $('.success_messages').addClass('alert alert-success'); 
+                  $('.success_messages').text(response.messages); 
+                  $('#editEmail').modal("hide");
+                  //reset field
+                  $('#editEmail').find('input').val("");
+                  $('.success_messages').fadeIn();
+                  $('.success_messages').delay(700).fadeOut(800);
+                  fetchInfo();
+               }
+
+                
              }
           })
           
@@ -191,16 +265,32 @@ $(function() {
              data: data,
              dataType: "json",
              success: function (response) {
-               console.log(response);
-                $('#editCitizenID').modal("hide");
-                //reset field
-                $('#editCitizenID').find('input').val("");
-                fetchInfo();
+                  if(response.status == 400){
+                  $.each(response.errors,function(key,err_values){
+                     $('#saveForm_errList_citizenID').html();
+                     $('#saveForm_errList_citizenID').addClass('alert alert-danger');
+                     $('#saveForm_errList_citizenID').append('<li>'+err_values+'</li>')
+                  });
+               }else{
+                  $('#saveForm_errList_citizenID').html("");
+                  $('.success_messages').html(""); 
+                  $('.success_messages').addClass('alert alert-success'); 
+                  $('.success_messages').text(response.messages); 
+                  $('#editCitizenID').modal("hide");
+                  //reset field
+                  $('#editCitizenID').find('input').val("");
+                  $('.success_messages').fadeIn();
+                  $('.success_messages').delay(700).fadeOut(800);
+                  fetchInfo();
+               }
+
+              
+               
              }
           })
           
        });
-
+       
       // AJAX EDIT AVATAR
       $('#formEditAvatar').on('submit',function(e){
          e.preventDefault();
@@ -219,23 +309,28 @@ $(function() {
                    processData:false,
                    dataType: "json",
                    contentType:false,
-                   beforeSend:function(){
-                     $(form).find('span.text-error').text('');
-                     
-                   },
-                   success: function (data) {
-                        if(data.code == 0){
-                           $.each(data.error,function(prefix,val){
-                                 $(form).find('span.'+prefix+'_error').text(val[0]);
-                           });
-                           
-                        }else{
-                           $(form)[0].reset();
-                           alert(data.msg);
-                           $('#editAvatar').modal("hide");
-                            $('#editAvatar').find('input').val("");
-                              fetchInfo();
-                        }
+   
+                   success: function (response) {
+                     if(response.status == 400){
+                        
+                        $.each(response.errors,function(key,err_values){
+                           $('#editAvatar').modal("show");
+                           $('#saveForm_errList_avatar').html();
+                           $('#saveForm_errList_avatar').addClass('alert alert-danger');
+                           $('#saveForm_errList_avatar').append('<li>'+err_values+'</li>')
+                        });
+                     }else{
+                        $('#saveForm_errList_avatar').html("");
+                        $('.success_messages').html(""); 
+                        $('.success_messages').addClass('alert alert-success'); 
+                        $('.success_messages').text(response.messages); 
+                        $('#editAvatar').find('input').val("");
+                        $('#saveForm_errList_avatar').hide();
+                        $('#editAvatar').modal("hide");
+                        $('.success_messages').fadeIn();
+                  $('.success_messages').delay(700).fadeOut(800);
+                          fetchInfo();
+                     }  
                    }
                 });
 

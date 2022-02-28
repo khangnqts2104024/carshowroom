@@ -1,4 +1,5 @@
 {
+    "Select":"Select",
     "The :attribute must contain at least one letter.": "The :attribute must contain at least one letter.",
     "The :attribute must contain at least one number.": "The :attribute must contain at least one number.",
     "The :attribute must contain at least one symbol.": "The :attribute must contain at least one symbol.",
@@ -26,7 +27,32 @@
     "battery policy and the only 10-year warranty on the market for electric cars.":"battery policy and the only 10-year warranty on the market for electric cars.",
     "VinFast Car":"VinFast Car",
     "More than creating a new car, VinFast was born to represent":"More than creating a new car, VinFast was born to represent",
-    "the spirit and pride of the nation.":"the spirit and pride of the nation."
+    "the spirit and pride of the nation.":"the spirit and pride of the nation.",
+    "Break the limits together":"Break the limits together",
+    "Make the most of every experience":"Make the most of every experience",
+    "Enjoy every moment":"Enjoy every moment",
+    "Conquer all roads":"Conquer all roads",
+    "The mark of a leader":"The mark of a leader",
+    "Listed price":"Listed price",
+    "from":"from",
+    "Vehicles":"Vehicles",
+    "View Detail":"VIEW DETAIL",
+    "View Detail.":"View Detail",
+    "Aspiration to conquer the world":"Aspiration to conquer the world",
+    "“It is, in automobile industry, utopian that not one ":"“It is, in automobile industry, utopian that not one ",
+    "but two vehicles are designed and manufactured ":"but two vehicles are designed and manufactured ",
+    "within 12 months.”":"within 12 months.”",
+    "“The key success right from the production ":"“The key success right from the production ",
+    "process of VinFast mainly comes from their ":"process of VinFast mainly comes from their ",
+    "prestige partners named ABB, Bosch, Magna ":"prestige partners named ABB, Bosch, Magna ",
+    
+    "“VinFast - Vietnamese automobile brand ":"“VinFast - Vietnamese automobile brand ",
+    "of Vingroup is a typical model for their prompt ":"of Vingroup is a typical model for their prompt ",
+    "rehabilitation and astronautic move after ":"rehabilitation and astronautic move after ",
+    "Vietnam has successfully controlled the Covid-19 pandemic , etc.”":"Vietnam has successfully controlled the Covid-19 pandemic , etc.”",
+    "Sales policy may be updated subject to VinFast Policy from time to time.":"Sales policy may be updated subject to VinFast Policy from time to time.",
+    "View All Cars":"View All Cars"
+
     
   
 }

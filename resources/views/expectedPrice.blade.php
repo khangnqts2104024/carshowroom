@@ -14,7 +14,8 @@
                     <div class="d-flex title-item">
                         <img class="registration-fee" src="/expectedPricePage/feeicon/registFee.png"/> 
                     </div>
-                    <span>Phí trước bạ</span>
+                    <span>{{__('expectedPrice.Registration fee')}}</span>
+                    
                     <p id="carRegistrationFeeSummary" class="font-weight-bold pt-2">0&nbsp;₫</p>
 
                 </div>
@@ -22,28 +23,28 @@
                     <div class="d-flex title-item">
                         <img class="inspection-fee" src="/expectedPricePage/feeicon/inspectFee.png"> 
                     </div>
-                    <span>Phí đăng kiểm</span>
+                    <span>{{__('expectedPrice.Inspection fee')}}</span>
                     <p id="carRegistrationFeeSummary" class="font-weight-bold pt-2">0&nbsp;₫</p>
                 </div>
                 <div class="col-4 item-fee">
                     <div class="d-flex title-item">
                         <img class="license-fee" src="/expectedPricePage/feeicon/licenFee.png"> 
                     </div>
-                    <span>Phí đăng kí biển số</span>
+                    <span>{{__('expectedPrice.License plate fee')}}</span>
                     <p id="carRegistrationFeeSummary" class="font-weight-bold pt-2">0&nbsp;₫</p>
                 </div>
                 <div class="col-4 item-fee">
                     <div class="d-flex title-item">
                         <img class="road-fee" src="/expectedPricePage/feeicon/roadFee.png"> 
                     </div>
-                    <span>Phí bảo trì <br> đường bộ</span>
+                    <span>{{__('expectedPrice.Road usage fee')}}</span>
                     <p id="carRegistrationFeeSummary" class="font-weight-bold pt-2">0&nbsp;₫</p>
                 </div>
                 <div class="col-4 item-fee">
                     <div class="d-flex title-item">
-                        <img class="civil-fee" src="/expectedPricePage/feeicon/civilFee.png"> 
+                        <img class="civil-fee" src="/expectedPricePage/feeicon/civilFee.png" style="height:18px;"> 
                     </div>
-                    <span>Bảo hiểm <br> trách nhiệm dân sự</span>
+                    <span>{{__('expectedPrice.Civil liability insurance')}}</span>
                     <p id="carRegistrationFeeSummary" class="font-weight-bold pt-2">0&nbsp;₫</p>
                 </div>
             </div>
@@ -52,35 +53,32 @@
             <!-- Default form subscription -->
             <form action="" method="">
 
-                <p class="h4 mb-4" style="white-space: nowrap;">DỰ TOÁN CHI PHÍ LĂN BÁNH</p>
+                <p class="h4 mb-4" style="white-space: nowrap;">{{__('expectedPrice.Cost Estimation')}}</p>
 
                 <div class="form-group">
-                    <label for="">Mẫu xe</label>
+                    <label for="">{{__('expectedPrice.Model')}}</label>
                     <select class="form-control formRound" name="" id="">
-                        <option disabled hidden>Lựa chọn</option>
-                        <option>Vfe34</option>
+                        <option >{{__('Select')}}</option>
+                        {{-- <option>Vfe34</option>
                         <option>Fadil</option>
-                        <option>LuxA</option>
+                        <option>LuxA</option> --}}
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="">Phiên bản</label>
                     <select class="form-control formRound" name="" id="">
-                        <option disabled hidden>Lựa chọn</option>
+                        {{-- <option >Lựa chọn</option>
                         <option>Tiêu chuẩn</option>
                         <option>Nâng cao</option>
-                        <option>Cao cấp</option>
+                        <option>Cao cấp</option> --}}
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="">Tỉnh/Thành phố</label>
                     <select class="form-control formRound" name="" id="">
-                        <option disabled hidden>Lựa chọn</option>
-                        <option>Vfe34</option>
-                        <option>Fadil</option>
-                        <option>LuxA</option>
+                        {{--   --}}
                     </select>
                 </div>
 
@@ -101,7 +99,7 @@
                     </div>
 
                     <div class="civilFee">
-                        <span class="text-civilFee">Bảo hiểm trách nhiệm dân sự (1 năm)</span>
+                        <span class="text-civilFee">Bảo hiểm dân sự (1 năm)</span>
                         <span id="carCivilFee">0&nbsp;₫</span>
                     </div>
 

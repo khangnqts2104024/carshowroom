@@ -10,6 +10,8 @@ use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\EmployeeAccountController;
 use App\Http\Controllers\EmployeeInfoController;
 use App\Http\Controllers\ModelInfoController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,9 +73,9 @@ Route::prefix('user')->name('user.')->group(function(){
 //     return view('admin.adminprofile.adminprofile');
 // });
 // group lai sau
-Route::get('admin/showroom', function () {
-    return view('admin.showroom.order');
-});
+// Route::get('admin/showroom', function () {
+//     return view('admin.showroom.order');
+// });
 Route::get('admin/showroom/check', function () {
     return view('admin.showroom.ordercheck');
 });
@@ -111,14 +113,16 @@ Route::get('admin/general', function () {
 //     return view('admin.adminprofile.adminlogin');
 // });
 Route::get('admin/general/employee',[EmployeeInfoController::class,'show']);
-   
+Route::get('admin/showroom',[OrderDetailController::class,'show']);
+Route::get('admin/general/customer',[DashboardController::class,'showcustlist']);
+
+Route::get('admin/general/customer/edit/{id}',[DashboardController::class,'edit']);
+
 
 Route::get('admin/general/empcreate', function () {
     return view('admin.general.empcreate');
 });
-Route::get('admin/general/customer', function () {
-    return view('admin.general.custmanage');
-});
+
 
 
 Route::prefix('admin')->name('admin.')->group(function(){

@@ -54,87 +54,21 @@
                         </thead>
                         <tbody>
 
+                            @php $x=1 @endphp
+                            @foreach ($orders as $p)
+
                             <tr>
 
+                                <td>{{ $x++ }}</td>                               
+                                <td> {{$p->order_id}}</td>
+                                <td>{{$p->orders->customerInfo->fullname}}</td>
+                                <td>{{$p->orders->customerInfo->phone_number}} </td>
+                                <td>{{$p->model_id}} </td>
                                 <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td> ordered
-                                </td>
+                              
                             </tr>
-                            <!-- test -->
-                            <tr>
-
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td> checked
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td> canceled
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td> deposit
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td> confirm
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td>custcanceled
-                                   
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td> sold
-                                </td>
-                            </tr>
-
-                            </tfoot>
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>
                 <!-- /.card-body -->
@@ -148,6 +82,7 @@
     <!-- /.row -->
 </section>
 @endsection
+
 @section('script-section')
 <script>
 $(document).ready( function () {

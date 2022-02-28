@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\EmployeeAccountController;
 use App\Http\Controllers\EmployeeInfoController;
+use App\Http\Controllers\ModelInfoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -176,3 +177,31 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
 // Route::view('/profile','dashboard.user.profile')->name('profile');
 // KHANGEND
+
+
+Route::get('admin/general/add-model', function () {
+    return view('admin.general.add_model',[ModelInfoController::class,'addModel']);
+});
+
+Route::get('admin/general/edit-model/{model_id}', function () {
+    return view('admin.general.edit_model',[ModelInfoController::class,'editModel']);
+});
+Route::get('admin/general/deletemodel/{model_id}', function () {
+    return view('admin.general.all_model',[ModelInfoController::class,'deleteModel']);
+});
+Route::get('admin/general/allmodel', function () {
+    return view('admin.general.all_model');
+    // ,[ModelInfoController::class,'allModel']);
+});
+Route::get('admin/general/save_model', function () {
+    return view('admin.general.add_model',[ModelInfoController::class,'saveModel']);
+});Route::get('admin/general/update_model/{model_id}', function () {
+    return view('admin.general.all_model',[ModelInfoController::class,'updateModel']);
+});
+//model
+// Route::get('', 'App\Http\Controllers\ModelController@addModel');
+// Route::get('/edit-model/{model_id}', 'App\Http\Controllers\ModelController@editModel');
+// Route::get('/delete-model/{model_id}', 'App\Http\Controllers\ModelController@deleteModel');
+// Route::get('/all-model', 'App\Http\Controllers\ModelController@allModel');
+// Route::post('/save-model', 'App\Http\Controllers\ModelController@saveModel');
+// Route::post('/update-model/{model_id}', 'App\Http\Controllers\ModelController@updateModel');

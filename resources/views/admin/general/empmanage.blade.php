@@ -59,8 +59,7 @@
                                 <td>{{ $p->fullname }}</td>
                                 <td>{{ $p->phone_number}} </td>
                                 <td>{{$p->address }}</td>
-                                <td>{{$p->belongsTo('App\Model\employeeAccount','foreign_key','localkey');}}</td>
-                                <td><td>
+                             
                                 <td>
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modelId">
                                         <i class="fa-solid fa-key"></i>

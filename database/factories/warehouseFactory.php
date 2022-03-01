@@ -3,11 +3,11 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Faker\Generator as Faker;
+
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ModelInfo>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\warehouse>
  */
-class ModelInfoFactory extends Factory
+class warehouseFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,7 @@ class ModelInfoFactory extends Factory
     public function definition()
     {
         return [
-            'model_name'=>$this->faker->name(15),
+            //
         ];
     }
 }

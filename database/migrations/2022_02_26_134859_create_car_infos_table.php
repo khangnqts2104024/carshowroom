@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('car_branch');
             $table->foreign('car_branch')->references('id')->on('showrooms')->onUpdate('cascade')->onDelete('cascade');
             $table->string('car_status');
-            $table->string('order_id');
+            $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('order_id')->on('orders')->onUpdate('cascade')->onDelete('cascade');
             $table->date('manufactoring_date');
         });

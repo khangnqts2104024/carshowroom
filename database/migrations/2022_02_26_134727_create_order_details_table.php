@@ -23,7 +23,7 @@ return new class extends Migration
             // $table->foreign('emp_received')->references('employee_id')->on('employee__infos');
             $table->unsignedBigInteger('showroom');
             $table->foreign('showroom')->references('id')->on('showrooms')->onUpdate('cascade')->onDelete('cascade');;
-            $table->string('order_status');
+            $table->string('order_status')->default('ordered');
             $table->primary(['model_id','order_id']);
             
             // thêm option

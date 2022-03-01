@@ -13,7 +13,6 @@ class orderDetail extends Model
       'order_id',
       'order_price',
       'emp_received',
-      'showroom',	
       'order_status',];	
 
       public $timestamps = false;

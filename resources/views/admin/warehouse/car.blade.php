@@ -47,7 +47,6 @@
                         <thead>
                             <tr> 
                                 <th>STT</th>
-                                <th>Car ID</th>
                                 <th>Model</th>
                                 <th>Showroom</th>
                                 <th>Mã Đơn Hàng</th>
@@ -62,13 +61,11 @@
                         @foreach ($cars as $p)
                         <tr>
                             <td>{{ $x++ }}</td>  
-                            <td> {{$p->car_id}}</td>                             
-                            <td> {{$p->car_model}}</td>
-                            <td>{{ $p->car_branch }}</td>
-                            <td>{{ $p->order_id}} </td>
+                            <td> {{$p->models->model_name}}</td>
+                            <td>{{ $p->showrooms->showroom_name}}</td>
+                            <td>{{ $p->orders->order_code}} </td>
                             <td>{{ $p->manufactoring_date}}</td>
                             <td>{{ $p->car_status}} </td>
-                           
                         </tr>
                             <!-- test -->
                       
@@ -77,7 +74,6 @@
                         <tfoot>
                             <tr> 
                                 <th>STT</th>
-                                <th>Car ID</th>
                                 <th>Model</th>
                                 <th>Showroom</th>
                                 <th>Mã Đơn Hàng</th>

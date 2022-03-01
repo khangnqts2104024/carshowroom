@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Factories;
-
+use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Faker\Generator as Faker;
 /**
@@ -21,6 +21,7 @@ class CarInfoFactory extends Factory
             'car_branch'=>rand(1,10),
             'order_id'=>rand(1,50),
             'manufactoring_date'=>now(),
+            'car_status' => Arr::random(['ordering','sold','showroom']),
         ];
     }
 }

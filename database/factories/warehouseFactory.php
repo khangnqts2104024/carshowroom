@@ -17,7 +17,7 @@ class warehouseFactory extends Factory
     public function definition()
     {
         return [
-            //
+       
         ];
     }
 }

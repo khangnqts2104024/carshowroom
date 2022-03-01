@@ -17,17 +17,17 @@ class carInfo extends Model
         'manufactoring_date',
     ];
 
-    public function showroom()
+    public function showrooms()
     {
         return $this->belongsTo(showroom::class,'car_branch');
     }
     public function models()
     {
-        return $this->belongsTo(modelInfo::class,'car_model');
+        return $this->belongsTo(modelInfo::class,'car_model','model_id');
     }
     public function orders()
     {
-        return $this->belongsTo(order::class,'order_id');
+        return $this->belongsTo(order::class,'order_id','order_id');
     }
 
 

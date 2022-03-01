@@ -7,6 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class orderDetail extends Model
 {
+   use HasFactory;
+   protected $fillable=[ 
+      'model_id',
+      'order_id',
+      'order_price',
+      'emp_received',
+      'showroom',	
+      'order_status',];	
+
+      public $timestamps = false;
    public function orders(){
    return $this->belongsTo(order::class,'order_id','order_id');
    }

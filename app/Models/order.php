@@ -8,11 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class order extends Model
 {
-   
+    use HasFactory;
 
+    protected $fillable=[ 
+        'order_id',
+        'showroom',
+        'order_code',
+        'customer_id',
+        'order_date',	
+        ];	
 
-
-
+        public $timestamps = false;
     public function orderDetail(){
         return $this->hasMany(orderDetail::class);
     }

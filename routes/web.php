@@ -12,6 +12,8 @@ use App\Http\Controllers\EmployeeInfoController;
 use App\Http\Controllers\ModelInfoController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailController;
+use App\Http\Controllers\CarInfoController;
+use Database\Seeders\CarInfo;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,9 +82,7 @@ Route::prefix('user')->name('user.')->group(function(){
 // Route::get('admin/showroom', function () {
 //     return view('admin.showroom.order');
 // });
-Route::get('admin/showroom/check', function () {
-    return view('admin.showroom.ordercheck');
-});
+
 Route::get('admin/showroom/myorder', function () {
     return view('admin.showroom.myorder');
 });
@@ -93,19 +93,12 @@ Route::get('admin/showroom/carreceive', function () {
     return view('admin.showroom.carreceive');
 });
 // 
-Route::get('admin/warehouse', function () {
-    return view('admin.warehouse.car');
-});
+
 Route::get('admin/stock', function () {
     return view('admin.warehouse.stock');
 });
 Route::get('admin/warehouse/delete', function () {
     return view('admin.warehouse.cardelete');
-});
-Route::get('admin/warehouse/ordering', function () {
-    return view('admin.warehouse.car_ordering');
-});Route::get('admin/warehouse/released', function () {
-    return view('admin.warehouse.car_released');
 });
 Route::get('admin/warehouse/create', function () {
     return view('admin.warehouse.createcar');
@@ -118,9 +111,17 @@ Route::get('admin/general', function () {
 // });
 Route::get('admin/general/employee',[EmployeeInfoController::class,'show']);
 Route::get('admin/showroom',[OrderDetailController::class,'show']);
-Route::get('admin/general/customer',[DashboardController::class,'showcustlist']);
+Route::get('admin/showroom/check',[OrderDetailController::class,'orderedstatus']);
 
+Route::get('admin/general/customer',[DashboardController::class,'showcustlist']);
 Route::get('admin/general/customer/edit/{id}',[DashboardController::class,'edit']);
+
+Route::get('admin/warehouse',[CarInfoController::class,'show']);
+Route::get('admin/warehouse/ordering',[OrderDetailController::class,'confirmtatus']);
+
+
+Route::get('admin/warehouse/released',[CarInfoController::class,'released']);
+
 
 
 Route::get('admin/general/empcreate', function () {
@@ -129,6 +130,9 @@ Route::get('admin/general/empcreate', function () {
 
 
 
+
+
+// ok
 Route::prefix('admin')->name('admin.')->group(function(){
   
     Route::middleware(['guest:employee','PreventBackHistory'])->group(function(){

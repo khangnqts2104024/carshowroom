@@ -66,7 +66,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="">Phiên bản</label>
+                    <label for="">{{__('expectedPrice.Edition')}}</label>
                     <select class="form-control formRound" name="" id="">
                         {{-- <option >Lựa chọn</option>
                         <option>Tiêu chuẩn</option>
@@ -76,7 +76,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="">Tỉnh/Thành phố</label>
+                    <label for="">{{__('expectedPrice.Province/City')}}</label>
                     <select class="form-control formRound" name="" id="">
                         {{--   --}}
                     </select>

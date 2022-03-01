@@ -60,11 +60,12 @@
                             <tr>
 
                                 <td>{{ $x++ }}</td>                               
-                                <td> {{$p->order_id}}</td>
-                                <td>{{$p->model_id}} </td>
+                                <td> {{$p->orders->order_code}}</td>
+                                <td>{{$p->modelInfos->model_name}} </td>
                                 <td>{{$p->orders->showrooms->showroom_name}} </td>
                                 <td>{{$p->order_status}}</td>
                               
+                                
                             </tr>
                             @endforeach
                             

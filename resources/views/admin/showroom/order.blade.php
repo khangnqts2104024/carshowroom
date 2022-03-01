@@ -60,7 +60,7 @@
                             <tr>
 
                                 <td>{{ $x++ }}</td>                               
-                                <td> {{$p->orders->order_name}}</td>
+                                <td> {{$p->orders->order_code}}</td>
                                 <td>{{$p->orders->customer->fullname}}</td>
                                 <td>{{$p->orders->customer->email}} </td>
                                 <td>{{$p->orders->customer->phone_number}} </td>

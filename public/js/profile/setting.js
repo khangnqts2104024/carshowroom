@@ -357,7 +357,7 @@ $(function() {
                // response.users = null;
                $('.customer_id').val(item.customer_id); //fill customer_id
                $('#fullnameIDforAva').val(item.fullname);
-               $('#showFullName').text(item.fullname);
+               $('#showFullName').text(item.fullname); 
                $('#showAddress').text(item.address);
                $('#showPhone').text(item.phone_number);
                $('#showEmail').text(item.email);

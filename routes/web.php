@@ -28,6 +28,10 @@ Route::get('/', function () {
     return view('home');
 })->middleware("Localization");
 
+Route::get('/bookappointment', function () {
+    return view('bookappointment');
+})->middleware("Localization");
+
 Route::get('/lang/{locale?}',[ChangeLanguageController::class,'switch']);
 
 Route::get('/expectedPrice',function(){

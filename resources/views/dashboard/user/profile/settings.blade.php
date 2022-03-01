@@ -30,7 +30,7 @@
                             <div class="titleInfo">{{__('UserProfilesettings.Fullname')}}</div>
                             <div class="contentInfo mt-1">
                                 <div class="showcontent" style="display: none">
-                                    <a href="#" class="d-block mb-2" id="showFullName"></a>
+                                    <a href="#" class="d-block mb-2" id="showFullName">Ordering</a>
                                     <div class="edit">
                                         <div class="plusIcon">
                                             <i class="showFullNameModalButton fa-light fa-plus" data-target="#editFullName">

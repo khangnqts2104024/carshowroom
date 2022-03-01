@@ -1,44 +1,100 @@
 @extends('layouts.layout')
 @section('content')
+    <link rel="stylesheet" href="/css/order.css">
 
-
-
-<div class="container">
-    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#form">
-     Request Consultation
-    </button>  
-  </div>
-  
-  <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header border-bottom-0">
-          <h5 class="modal-title" id="exampleModalLabel">Create Account</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+    <div class="container">
+        <div class="title">
+            <h2>Product Order Form</h2>
         </div>
-        <form>
-          <div class="modal-body">
-            <div class="form-group">
-              <label for="email1">Full name</label>
-              <input type="email" class="form-control" id="email1" aria-describedby="emailHelp" placeholder="Enter email">
-              <small id="emailHelp" class="form-text text-muted">Your information is safe with us.</small>
-            </div>
-            <div class="form-group">
-              <label for="password1">Phone Number</label>
-              <input type="password" class="form-control" id="password1" placeholder="Password">
-            </div>
-            <div class="form-group">
-              <label for="password1">Province/City</label>
-              <input type="password" class="form-control" id="password2" placeholder="Confirm Password">
-            </div>
-          </div>
-          <div class="modal-footer border-top-0 d-flex justify-content-center">
-            <button type="submit" class="btn btn-success">Submit</button>
-          </div>
-        </form>
-      </div>
+        <div class="d-flex d-flexCustom">
+            <form action="" method="">
+                <div class="d-flex" style="flex-direction: column">
+                  <label class="labelCustom">
+                    <span class="fname">Full Name <span class="required">*</span></span>
+                    <input class="input" type="text" name="fname">
+                </label>
+  
+                <label class="labelCustom">
+                    <span>Country <span class="required">*</span></span>
+                      <select  name="selection">
+                        <option value="select" disabled>Viet Nam</option>
+                      </select>   
+                </label>
+
+                <label class="labelCustom">
+                  <span>Model</span>
+                    <select  name="selection">
+                      <option value="select" >Select your model</option>
+                      <option value="select">Vfe34</option>
+                      <option value="select">President</option>
+                      <option value="select">LuxA2.0</option>
+                      <option value="select">LuxSA2.0</option>
+                      <option value="select">Fadil</option>
+
+                    </select>   
+              </label>
+
+                <label class="labelCustom">
+                    <span>Address <span class="required">*</span></span>
+                    <input class="input" type="text" name="houseadd" placeholder="House number and street name" required>
+                </label>
+                
+                <label class="labelCustom">
+                    <span>Region <span class="required">*</span></span>
+                    <input class="input" type="text" name="city">
+                </label>
+                
+                
+                
+                <label class="labelCustom">
+                    <span>Phone Number<span class="required">*</span></span>
+                    <input class="input" type="tel" name="city">
+                </label>
+                <label class="labelCustom">
+                    <span>Email Address <span class="required">*</span></span>
+                    <input class="input" type="email" name="city">
+                </label>
+
+                <div class="imgCarHolder">
+                  <img src="/HomepageImage/slide2/Fadil.png" alt="">
+                </div>
+                </div>
+            </form>
+            <div class="Yorder">
+                <table class="tableCustom">
+                    <tr>
+                        <th colspan="2">Your order</th>
+                    </tr>
+                    <tr>
+                        <td>VFe34 Car</td>
+                        <td>690.000.000VND</td>
+                    </tr>
+
+                    <tr>
+                      <td style="color: red">Deposit</td>
+                      <td style="color: red">$88.00</td>
+                  </tr>
+
+                    <tr>
+                        <td>Subtotal</td>
+                        <td style="color: red">$88.00</td>
+                    </tr>
+                    <tr>
+                        <td>Shipping</td>
+                        <td>Free shipping</td>
+                    </tr>
+                </table>
+                <div>
+                    <input type="radio" name="dbt" value="dbt" checked> Cash Directly
+                </div>
+                <p class="textPayment">
+                    Make your payment directly into our bank account. Please use your Order ID as the payment reference.
+                    Your order will not be shipped until the funds have cleared in our account.
+                </p>
+              
+                
+                <button class="buttonCustom" type="button">Place Order</button>
+            </div><!-- Yorder -->
+        </div>
     </div>
-  </div>
 @endsection

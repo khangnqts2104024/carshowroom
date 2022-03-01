@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('model_id');
             $table->foreign('model_id')->references('model_id')->on('model_infos')->onUpdate('cascade')->onDelete('cascade');;
             $table->unsignedBigInteger('order_id');
+            $table->string('order_code')->unique();
             $table->foreign('order_id')->references('order_id')->on('orders')->onUpdate('cascade')->onDelete('cascade');;
             $table->unsignedBigInteger('order_price');
             $table->string('emp_received');

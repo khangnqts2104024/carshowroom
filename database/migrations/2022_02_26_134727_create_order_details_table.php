@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('order_details', function (Blueprint $table) {
-            $table->string('model_id');
+            $table->unsignedBigInteger('model_id');
             $table->foreign('model_id')->references('model_id')->on('model_infos')->onUpdate('cascade')->onDelete('cascade');;
-            $table->string('order_id');
+            $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('order_id')->on('orders')->onUpdate('cascade')->onDelete('cascade');;
             $table->unsignedBigInteger('order_price');
             $table->string('emp_received');

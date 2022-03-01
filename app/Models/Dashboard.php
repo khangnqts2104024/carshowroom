@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Dashboard extends Model
 {
-    protected $table = 'customer_info';
+    protected $table = 'customer_infos';
     protected $fillable = [
         'email',
         'phone_number',

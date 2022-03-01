@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id('car_id');
             $table->unsignedBigInteger('car_model');
             $table->foreign('car_model')->references('model_id')->on('model_infos')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('car_id');
             $table->unsignedBigInteger('car_branch');
             $table->foreign('car_branch')->references('id')->on('showrooms')->onUpdate('cascade')->onDelete('cascade');
             $table->string('car_status');

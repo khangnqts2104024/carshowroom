@@ -14,8 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('model_infos', function (Blueprint $table) {
-            $table->string('model_id');
-            $table->primary('model_id');
+            $table->id('model_id');
             $table->string('model_name',50);
             $table->string('car_type',50);
             $table->unsignedBigInteger('price');
@@ -40,7 +39,6 @@ return new class extends Migration
             $table->string("image");
             $table->string("gif");
 
-           
         });
     }
 

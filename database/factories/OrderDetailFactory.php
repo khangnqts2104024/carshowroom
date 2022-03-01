@@ -18,6 +18,7 @@ class OrderDetailFactory extends Factory
     {
         return [
             //
+            
         ];
     }
 }

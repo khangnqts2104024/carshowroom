@@ -45,7 +45,8 @@
                 <div class="card-body">
                     <table id="myTable" class="table table-bordered table-hover">
                         <thead>
-                            <tr>
+                            <tr> 
+                                <th>STT</th>
                                 <th>Car ID</th>
                                 <th>Model</th>
                                 <th>Showroom</th>
@@ -56,58 +57,26 @@
                         </thead>
                         <tbody>
 
-                            <tr>
-
-                                <td>1</td>
-                                <td>Fadil 22</td>
-                                <td>Showroom 1</td>
-                                <td>order 1</td>
-                                <td>26-02-22</td>
-                                <td> <span class="status"> ordering </span>
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-success car-add">Xuất Kho</a>
-                            </td>
-                            </tr>
+                          
+                         @php $x=1 @endphp
+                        @foreach ($cars as $p)
+                        <tr>
+                            <td>{{ $x++ }}</td>  
+                            <td> {{$p->car_id}}</td>                             
+                            <td> {{$p->car_model}}</td>
+                            <td>{{ $p->car_branch }}</td>
+                            <td>{{ $p->order_id}} </td>
+                            <td>{{ $p->manufactoring_date}}</td>
+                            <td>{{ $p->car_status}} </td>
+                           
+                        </tr>
                             <!-- test -->
-                            <tr>
-
-                                <td>2</td>
-                                <td>Fadil 22</td>
-                                <td>Showroom 1</td>
-                                <td>order 2</td>
-                                <td>26-02-22</td>
-                                <td> <span class="status">pending</span> </td>
-                            </tr>
-                            <tr>
-
-                                <td>3</td>
-                                <td>Fadil 22</td>
-                                <td>Showroom 1</td>
-                                <td>order 3</td>
-                                <td>26-02-22</td>
-                                <td><span class="status"> showroom </span></td>
-                            </tr>
-                            <tr>
-
-                                <td>4</td>
-                                <td>Fadil 22</td>
-                                <td>Showroom 1</td>
-                                <td>order 4</td>
-                                <td>26-02-22</td>
-                                <td> sold </td>
-                            </tr>
-                            <!-- end test -->
-                            <td>1</td>
-                                <td>Fadil 22</td>
-                                <td>Showroom 1</td>
-                                <td>order 1</td>
-                                <td>26-02-22</td>
-                                <td> <span class="status">custcanceled</span> 
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-danger car-add">Hoàn Kho</a>
-                            </td>
-
+                      
+                        @endforeach
                         </tbody>
                         <tfoot>
-                            <tr>
+                            <tr> 
+                                <th>STT</th>
                                 <th>Car ID</th>
                                 <th>Model</th>
                                 <th>Showroom</th>

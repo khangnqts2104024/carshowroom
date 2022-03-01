@@ -45,39 +45,39 @@
                     <table id="myTable" class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>Car ID</th>
-                                <th>Model</th>
-                                <th>Showroom</th>
+                                <th>STT</th>
                                 <th>Mã Đơn Hàng</th>
-                                <th>Ngày xuất</th>
-                                <th>Tình Trạng</th>
+                                <th>Model Xe</th>
+                                <th>Showroom</th>
+                                <th>Tình Trạng Đơn Hàng</th>
                             </tr>
                         </thead>
                         <tbody>
 
+                            @php $x=1 @endphp
+                            @foreach ($orders as $p)
+
                             <tr>
 
-                                <td>1</td>
-                                <td>Fadil 22</td>
-                                <td>Showroom 1</td>
-                                <td>order 1</td>
-                                <td>26-02-22</td>
-                                <td> ordering 
-                                    <!-- <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-success car-add">Xuất Kho</a> -->
-                            </td>
+                                <td>{{ $x++ }}</td>                               
+                                <td> {{$p->order_id}}</td>
+                                <td>{{$p->model_id}} </td>
+                                <td>{{$p->orders->showrooms->showroom_name}} </td>
+                                <td>{{$p->order_status}}</td>
+                              
                             </tr>
+                            @endforeach
                             
                             <!-- end test -->
 
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>Car ID</th>
-                                <th>Model</th>
-                                <th>Showroom</th>
+                                <th>STT</th>
                                 <th>Mã Đơn Hàng</th>
-                                <th>Ngày xuất</th>
-                                <th>Tình Trạng</th>
+                                <th>Model Xe</th>
+                                <th>Showroom</th>
+                                <th>Tình Trạng Đơn Hàng</th>
                             </tr>
                         </tfoot>
                     </table>

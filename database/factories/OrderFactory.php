@@ -18,7 +18,7 @@ class OrderFactory extends Factory
     {
         return [
             'showroom'=>rand(1,10),
-            'order_code'=>$this->faker->text(10),
+            'order_code'=>$this->faker->unique()->numerify('##########'),
             'customer_id'=>rand(1,50),
             'order_date'=>now(),	
         ];

@@ -14,6 +14,7 @@ use App\Http\Controllers\ModelInfoController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\CarInfoController;
+use App\Http\Controllers\StockController;
 use Database\Seeders\CarInfo;
 
 
@@ -92,23 +93,14 @@ Route::prefix('user')->name('user.')->group(function(){
 //     return view('admin.showroom.order');
 // });
 
-Route::get('admin/showroom/myorder', function () {
-    return view('admin.showroom.myorder');
-});
-Route::get('admin/showroom/ordercanceled', function () {
-    return view('admin.showroom.ordercancel');
-});
+
 Route::get('admin/showroom/carreceive', function () {
     return view('admin.showroom.carreceive');
 });
 // 
 
-Route::get('admin/stock', function () {
-    return view('admin.warehouse.stock');
-});
-Route::get('admin/warehouse/delete', function () {
-    return view('admin.warehouse.cardelete');
-});
+
+
 Route::get('admin/warehouse/create', function () {
     return view('admin.warehouse.createcar');
 });
@@ -118,15 +110,21 @@ Route::get('admin/general', function () {
 // Route::get('admin/login', function () {
 //     return view('admin.adminprofile.adminlogin');
 // });
-Route::get('admin/general/employee',[EmployeeInfoController::class,'show']);
+
 Route::get('admin/showroom',[OrderDetailController::class,'show']);
 Route::get('admin/showroom/check',[OrderDetailController::class,'orderedstatus']);
+Route::get('admin/showroom/myorder',[OrderDetailController::class,'orderedstatus']);
+Route::get('admin/showroom/ordercanceled',[OrderDetailController::class,'custcanceledtatus']);
+Route::get('admin/showroom/orderdetail/{order_id}/{model_id}',[OrderDetailController::class,'orderdetail']);
 
+Route::get('admin/general/employee',[EmployeeInfoController::class,'show']);
 Route::get('admin/general/customer',[DashboardController::class,'showcustlist']);
 Route::get('admin/general/customer/edit/{id}',[DashboardController::class,'edit']);
 
 Route::get('admin/warehouse',[CarInfoController::class,'show']);
 Route::get('admin/warehouse/ordering',[OrderDetailController::class,'confirmtatus']);
+Route::get('admin/warehouse/delete', [CarInfoController::class,'carcancel']);
+Route::get('admin/warehouse/stock', [StockController::class,'show']);
 
 
 Route::get('admin/warehouse/released',[CarInfoController::class,'released']);

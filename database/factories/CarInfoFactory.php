@@ -21,7 +21,7 @@ class CarInfoFactory extends Factory
             'car_branch'=>rand(1,10),
             'order_id'=>rand(1,50),
             'manufactoring_date'=>now(),
-            'car_status' => Arr::random(['ordering','sold','showroom']),
+            'car_status' => Arr::random(['ordering','sold','showroom','custcanceled']),
         ];
     }
 }

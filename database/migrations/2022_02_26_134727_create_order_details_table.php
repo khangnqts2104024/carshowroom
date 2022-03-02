@@ -19,11 +19,9 @@ return new class extends Migration
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('order_id')->on('orders')->onUpdate('cascade')->onDelete('cascade');;
             $table->unsignedBigInteger('order_price');
-            $table->string('emp_received');
-            // $table->foreign('emp_received')->references('employee_id')->on('employee__infos');
-            $table->unsignedBigInteger('showroom');
-            $table->foreign('showroom')->references('id')->on('showrooms')->onUpdate('cascade')->onDelete('cascade');;
-            $table->string('order_status')->default('ordered');
+            $table->string('emp_received')->default('N/A');
+            // $table->foreign('emp_received')->references('employee_id')->on('employee_infos');
+            $table->string('order_status');
             $table->primary(['model_id','order_id']);
             
             // thêm option

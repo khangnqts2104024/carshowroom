@@ -19,10 +19,11 @@ return new class extends Migration
             $table->foreign('car_model')->references('model_id')->on('model_infos')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('car_branch');
             $table->foreign('car_branch')->references('id')->on('showrooms')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('car_status');
+            $table->string('car_status')->default('ordering');
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('order_id')->on('orders')->onUpdate('cascade')->onDelete('cascade');
-            $table->date('manufactoring_date');
+            $table->timestamp('manufactoring_date');
+        
         });
     }
 

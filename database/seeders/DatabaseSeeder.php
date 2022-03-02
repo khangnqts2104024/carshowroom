@@ -28,6 +28,8 @@ class DatabaseSeeder extends Seeder
       $this->call(OrderDetailSeeder::class);
       $this->call(CarInfoSeeder::class);
       $this->call(EmployeeInfoSeeder::class);
+      $this->call(UserSeeder::class);
+      $this->call(EmployeeAccountSeeder::class);
       
     }
 

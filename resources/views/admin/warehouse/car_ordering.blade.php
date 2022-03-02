@@ -63,9 +63,10 @@
                                 <td> {{$p->orders->order_code}}</td>
                                 <td>{{$p->modelInfos->model_name}} </td>
                                 <td>{{$p->orders->showrooms->showroom_name}} </td>
-                                <td>{{$p->order_status}}</td>
-                              
-                                
+                                <td class="flex-container-column"> 
+                                    <p class="status">{{$p->order_status}}</p>
+                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-success car-add">Xuất Kho</a>
+                                </td>
                             </tr>
                             @endforeach
                             
@@ -97,20 +98,7 @@
 @section('script-section')
 <script>
     $(document).ready( function () {
-    $('#myTable').DataTable();
-} );
-    var add = document.getElementsByClassName('stock-add');
-    var confirm = document.getElementsByClassName('stock-confirm');
-    for (let i = 0; i < add.length; i++) {
-        add[i].addEventListener("click", function() {
-            if (confirm[i].style.display == "none") {
-                confirm[i].style.display = "block";
-
-            } else {
-                confirm[i].style.display = "none";
-            }
-        })
-    }
-    
-</script>
+        $('#myTable').DataTable();
+    } );
+    </script>
 @endsection

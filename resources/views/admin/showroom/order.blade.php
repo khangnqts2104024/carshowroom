@@ -50,6 +50,7 @@
                                 <th>Số Điện Thoại</th>
                                 <th>Model Xe</th>
                                 <th>Tình Trạng Đơn Hàng</th>
+                                <th>Thông Tin Chi Tiết</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -66,6 +67,7 @@
                                 <td>{{$p->orders->customer->phone_number}} </td>
                                 <td>{{$p->modelInfos->model_name}} </td>
                                 <td>{{$p->order_status}}</td>
+                                <td class="flex-container-column"> <a  href="{{ url('admin/showroom/orderdetail/'.$p->order_id.'/'.$p->model_id)}}" class='btn btn-primary'> <i class='fa-solid fa-circle-info'></i></a>  </td>
                               
                             </tr>
                             @endforeach

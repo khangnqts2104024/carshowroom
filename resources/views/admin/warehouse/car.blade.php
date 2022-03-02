@@ -97,19 +97,7 @@
 @section('script-section')
 <script>
     $(document).ready( function () {
-    $('#myTable').DataTable();
-} );
-    var add = document.getElementsByClassName('stock-add');
-    var confirm = document.getElementsByClassName('stock-confirm');
-    for (let i = 0; i < add.length; i++) {
-        add[i].addEventListener("click", function() {
-            if (confirm[i].style.display == "none") {
-                confirm[i].style.display = "block";
-
-            } else {
-                confirm[i].style.display = "none";
-            }
-        })
-    }
-</script>
+        $('#myTable').DataTable();
+    } );
+    </script>
 @endsection

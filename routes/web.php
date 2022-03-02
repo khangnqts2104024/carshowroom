@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\ChangeLanguageController;
+use App\Http\Controllers\UserOrderController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +15,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\CarInfoController;
 use Database\Seeders\CarInfo;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +32,9 @@ Route::get('/', function () {
     return view('home');
 })->middleware("Localization");
 
-Route::get('/bookappointment', function () {
-    return view('bookappointment');
-})->middleware("Localization");
+
+Route::get('/order',[UserOrderController::class,'index']);
+
 
 Route::get('/lang/{locale?}',[ChangeLanguageController::class,'switch']);
 
@@ -62,11 +64,13 @@ Route::prefix('user')->name('user.')->group(function(){
             Route::post('/editEmail',[DashboardController::class,'editEmail']); 
             Route::post('/editCitizenID',[DashboardController::class,'editCitizenID']); 
             Route::post('/editAvatar',[DashboardController::class,'editAvatar']); 
+           
         });
-
+        
         Route::view('/home','dashboard.user.home')->name('home');
         Route::post('/logout',[UserController::class,'logout'])->name('logout');
-        
+        // Route::get('/order','dashboard.user.order');
+        // Route::post('/order',[UserOrderController::class,'submitOrder'])->name('submitOrder');
     });
 });
     

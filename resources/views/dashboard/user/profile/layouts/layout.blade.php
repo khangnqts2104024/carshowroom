@@ -160,8 +160,8 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="" class="nav-link"><i
-                                    class="fas fa-paper-plane mr-3"></i>{{ __('UserProfilesettings.Book Appointment') }}</a>
+                            <a href="{{route('user.order')}}" class="nav-link"><i
+                                    class="fas fa-paper-plane mr-3"></i>{{ __('UserProfilesettings.Order Car') }}</a>
                         </li>
 
                         <li class="nav-item">

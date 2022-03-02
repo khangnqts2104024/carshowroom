@@ -3,7 +3,7 @@
         "Home" => "Trang Chủ",
         "Profile Setting" => "Thông Tin Cá Nhân",
         "Order History" => "Lịch Sử Đặt Hàng",
-        "Book Appointment" => "Yêu cầu tư vấn",
+        "Order Car" => "Đặt Hàng",
         "Cost Estimation" => "Chi Phí Lăn Bánh",
         "Logout" => "Đăng Xuất",
         "Fullname" => "Họ Và Tên",

@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\ChangeLanguageController;
-use App\Http\Controllers\UserOrderController;
+use App\Http\Controllers\User\UserOrderController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -32,8 +32,10 @@ Route::get('/', function () {
     return view('home');
 })->middleware("Localization");
 
+// Route::get('/order', function () {
+//     return view('order');
+// })->middleware("Localization");
 
-Route::get('/order',[UserOrderController::class,'index']);
 
 
 Route::get('/lang/{locale?}',[ChangeLanguageController::class,'switch']);
@@ -64,13 +66,16 @@ Route::prefix('user')->name('user.')->group(function(){
             Route::post('/editEmail',[DashboardController::class,'editEmail']); 
             Route::post('/editCitizenID',[DashboardController::class,'editCitizenID']); 
             Route::post('/editAvatar',[DashboardController::class,'editAvatar']); 
-           
         });
-        
         Route::view('/home','dashboard.user.home')->name('home');
+        Route::get('/order',[UserOrderController::class,'index'])->name('order');
+       
+        Route::post('/getModelInfo',[UserOrderController::class,'getModelInfo'])->name('getModelInfo');
+        Route::post('/getShowRoom',[UserOrderController::class,'getShowRoom'])->name('getShowRoom');
+        Route::post('/getShowRoomAddress',[UserOrderController::class,'getShowRoomAddress'])->name('getShowRoomAddress');
+        Route::post('/submitOrder',[UserOrderController::class,'submitOrder'])->name('submitOrder');
         Route::post('/logout',[UserController::class,'logout'])->name('logout');
-        // Route::get('/order','dashboard.user.order');
-        // Route::post('/order',[UserOrderController::class,'submitOrder'])->name('submitOrder');
+        
     });
 });
     

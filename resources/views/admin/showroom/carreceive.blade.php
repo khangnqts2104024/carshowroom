@@ -27,8 +27,8 @@
                 </div>
                 <div class="option-container">
                     <div class="option"><a href=""> Tất Cả Xe</a></div>
-                    <div class="option"><a href="">Xe Đang Đặt Hàng</a></div>
-                    <div class="option"><a href="">Xe Đã Xuất Kho</a></div>
+                    <div class="option"><a href="">Xe Đang Vận Chuyển</a></div>
+                    <div class="option"><a href="">Xe Đã Tới Showroom</a></div>
                 </div>
 
                 <!-- /.card-header -->

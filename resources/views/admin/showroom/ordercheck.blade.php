@@ -9,7 +9,7 @@
             <div class="col-sm-12">
                 <h1 class="vin-title">VINFAST</h1>
             </div>
-
+HUY
         </div>
     </div><!-- /.container-fluid -->
 </section>
@@ -54,72 +54,23 @@
                         </thead>
                         <tbody>
 
-                            <tr>
-
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td> <span class="status">ordered</span>
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-success car-add">Nhận Đơn Hàng</a>
-                                </td>
-                            </tr>
-                            <!-- test -->
-                            <tr>
-
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td> <span class="status">ordered</span>
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-success car-add">Nhận Đơn Hàng</a>
-                                </td>
-                            </tr>
+                            @php $x=1 @endphp
+                            @foreach ($orders as $p)
 
                             <tr>
 
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td> <span class="status">ordered</span>
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-success car-add">Nhận Đơn Hàng</a>
-                                </td>
+                                <td>{{ $x++ }}</td>                               
+                                <td> {{$p->orders->order_code}}</td>
+                                <td>{{$p->orders->customer->fullname}}</td>
+                                <td>{{$p->orders->customer->email}} </td>
+                                <td>{{$p->orders->customer->phone_number}} </td>
+                                <td>{{$p->modelInfos->model_name}} </td>
+                                <td id="" class="flex-container-column status_container"> 
+                                    <p class="status">{{$p->order_status}}</p>
+                                  </td>
                             </tr>
-
-                            <tr>
-
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td class="flex-container"><span class="status"> ordered</span>
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-success car-add">Nhận Đơn Hàng</a>
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td class="flex-container"> <span class="status">ordered</span>
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-success car-add">Nhận Đơn Hàng</a>
-                                </td>
-                            </tr>
-
-
-                            </tfoot>
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>
                 <!-- /.card-body -->
@@ -131,12 +82,46 @@
     <!-- /.row -->
 
     <!-- /.row -->
+
+  
 </section>
 @endsection
+
 @section('script-section')
+
 <script>
+
 $(document).ready( function () {
     $('#myTable').DataTable();
-} );
+//  status=document.getElementById('status');
+    
+    var status = document.getElementsByClassName('status');
+    var container= document.getElementsByClassName('status_container');
+    var btnordered=" <a href='{{url('admin/warehouse/create/.$car->orderid')}}' class='btn btn-success car-add'>Nhận Đơn</a>";
+                                //thay link vao2 day
+    var btncustcanceled=" <a href='{{url('admin/warehouse/create/.$car->orderid')}}' class='btn btn-danger car-add'>Hủy Đơn Hàng</a>";
+    var btndeposited=" <a href='{{url('admin/warehouse/create/.$car->orderid')}}' class='btn btn-danger car-add'>Xác Nhận Đợn Hàng</a>";
+    var btndetail=" <a href='{{url('admin/warehouse/create/.$car->orderid')}}' class='btn btn-primary car-add'> <i class='fa-solid fa-circle-info'></i></a>";
+   
+    for(let i=0;i<status.length;i++){
+    if (status[i].innerHTML==='ordered'){
+    container[i].innerHTML= container[i].innerHTML+btnordered;
+         }
+         else if(status[i].innerHTML==='custcanceled'){
+        container[i].innerHTML= container[i].innerHTML+btncustcanceled;
+         }
+         else if(status[i].innerHTML==='deposited'){
+        container[i].innerHTML= container[i].innerHTML+btndeposited;
+         }
+         else {
+        container[i].innerHTML= container[i].innerHTML+btndetail;
+         }
+}
+
+});
+
+
+
 </script>
+
 @endsection

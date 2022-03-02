@@ -26,6 +26,7 @@
                     <h3 class="card-title">Quản Lý Xe</h3>
                 </div>
                 <div class="option-container">
+                  
                 <a href="{{url('admin/warehouse')}}">
                         <div class="option"> Tất Cả </div>
                     </a>
@@ -44,8 +45,8 @@
                 <div class="card-body">
                     <table id="myTable" class="table table-bordered table-hover">
                         <thead>
-                            <tr>
-                                <th>Car ID</th>
+                            <tr> 
+                                <th>STT</th>
                                 <th>Model</th>
                                 <th>Showroom</th>
                                 <th>Mã Đơn Hàng</th>
@@ -55,58 +56,27 @@
                         </thead>
                         <tbody>
 
-                            <tr>
-
-                                <td>1</td>
-                                <td>Fadil 22</td>
-                                <td>Showroom 1</td>
-                                <td>order 1</td>
-                                <td>26-02-22</td>
-                                <td> <span class="status">custcanceled </span>
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-danger car-add">Hoàn Kho</a>
+                          
+                         @php $x=1 @endphp
+                        @foreach ($cars as $p)
+                        <tr>
+                            <td>{{ $x++ }}</td>  
+                            <td> {{$p->models->model_name}}</td>
+                            <td>{{ $p->showrooms->showroom_name}}</td>
+                            <td>{{ $p->orders->order_code}} </td>
+                            <td>{{ $p->manufactoring_date}}</td>
+                          
+                            <td class="flex-container-column"> <span class="status">custcanceled </span>
+                                <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-danger car-add">Hoàn Kho</a>
                             </td>
-                            </tr>
+                        </tr>
                             <!-- test -->
-                            
-                            <tr>
-
-                                <td>1</td>
-                                <td>Fadil 22</td>
-                                <td>Showroom 1</td>
-                                <td>order 1</td>
-                                <td>26-02-22</td>
-                                <td> <span class="status">custcanceled</span> 
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-danger car-add">Hoàn Kho</a>
-                            </td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>Fadil 22</td>
-                                <td>Showroom 1</td>
-                                <td>order 1</td>
-                                <td>26-02-22</td>
-                                <td> <span class="status">custcanceled </span>
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-danger car-add">Hoàn Kho</a>
-                            </td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>Fadil 22</td>
-                                <td>Showroom 1</td>
-                                <td>order 1</td>
-                                <td>26-02-22</td>
-                                <td> <span class="status">custcanceled </span>
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-danger car-add">Hoàn Kho</a>
-                            </td>
-                            </tr>
-                            <!-- end test -->
-
+                      
+                        @endforeach
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <th>Car ID</th>
+                            <tr> 
+                                <th>STT</th>
                                 <th>Model</th>
                                 <th>Showroom</th>
                                 <th>Mã Đơn Hàng</th>
@@ -129,8 +99,8 @@
 @endsection
 @section('script-section')
 <script>
-   $(document).ready( function () {
-    $('#myTable').DataTable();
-} );
-</script>
-@endsection
+    $(document).ready( function () {
+        $('#myTable').DataTable();
+    } );
+    </script>
+@endsection 

@@ -150,7 +150,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('admin/stock') }}" class="nav-link">
+                            <a href="{{ url('admin/warehouse/stock') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Quản Lý Tồn Kho</p>
                             </a>

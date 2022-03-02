@@ -9,7 +9,7 @@
             <div class="col-sm-12">
                 <h1 class="vin-title">VINFAST</h1>
             </div>
-
+            HUY
         </div>
     </div><!-- /.container-fluid -->
 </section>
@@ -59,15 +59,16 @@
 
                             <tr>
 
-                                <td>{{ $x++ }}</td>                               
+                                <td>{{ $x++ }}</td>
                                 <td> {{$p->orders->order_code}}</td>
                                 <td>{{$p->orders->customer->fullname}}</td>
                                 <td>{{$p->orders->customer->email}} </td>
                                 <td>{{$p->orders->customer->phone_number}} </td>
                                 <td>{{$p->modelInfos->model_name}} </td>
-                                <td class="flex-container-column"> 
+                                <td id="orderstatus" class="flex-container-column">
                                     <p class="status">{{$p->order_status}}</p>
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-danger car-add">Hủy Đơn Hàng</a>
+                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}"
+                                        class="btn btn-success car-add">Nhận Đơn</a>
                                 </td>
                             </tr>
                             @endforeach
@@ -83,13 +84,20 @@
     <!-- /.row -->
 
     <!-- /.row -->
+
+
 </section>
 @endsection
 
 @section('script-section')
+
 <script>
-$(document).ready( function () {
-    $('#myTable').DataTable();
-} );
+
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
+    document.getElementsByClassName('ss');
+
 </script>
+
 @endsection

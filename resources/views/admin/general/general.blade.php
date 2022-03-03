@@ -21,35 +21,35 @@
 
         <!-- /.card-header -->
         <div class="flex-card">
-            <a href="{{url('admin/profile')}}">
+            <a href="{{url('admin/general/report')}}">
                 <div class="manage-option">
                     <i class="fa-solid fa-user"></i>
-                    <p>Hồ Sơ</p>
+                    <p>Báo Cáo</p>
                 </div>
             </a>
         </div>
 
         <div class="flex-card">
-            <a href="{{url('admin/general')}}">
+            <a href="{{url('admin/general/employee')}}">
                 <div class="manage-option">
                     <i class="fa-solid fa-list-check"></i>
-                    <p>Quản Lý Thông Tin</p>
+                    <p>Quản Lý Nhân Viên</p>
                 </div>
             </a>
         </div>
         <div class="flex-card">
-            <a href="{{('showroom')}}">
+            <a href="{{('general/customer')}}">
                 <div class="manage-option">
                     <i class="fa-solid fa-car"></i>
-                    <p>Showroom</p>
+                    <p>Quản Lý Khách Hàng</p>
                 </div>
             </a>
         </div>
         <div class="flex-card">
-            <a href="{{url('admin/warehouse')}}">
+            <a href="{{url('admin/s')}}">
                 <div class="manage-option">
                     <i class="fa-solid fa-warehouse"></i>
-                    <p>Kho</p>
+                    <p>Quản Lý Model</p>
                 </div>
             </a>
         </div>

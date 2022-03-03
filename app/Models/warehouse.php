@@ -16,21 +16,17 @@ class warehouse extends Model
         'phone',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-   
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-  
+public function cars(){
+    return $this->hasManyThrough(
+        carInfo::class,showroom::class,'region','car_branch','id'
+    );
 
-  
+}
+  public function showrooms(){
+      return $this->hasMany(showroom::class,'region','id' );}
+
+
     public $timestamps = false;
 
 

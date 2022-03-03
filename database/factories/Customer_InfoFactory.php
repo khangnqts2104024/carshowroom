@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Factories;
-
+use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
@@ -22,6 +22,7 @@ class Customer_InfoFactory extends Factory
             'citizen_id'=>$this->faker->unique()->numerify('0203######'),
            'fullname'=>$this->faker->name,
            'address'=>$this->faker->address,
+           'customer_role'=>Arr::random(['guest','member']),
            'phone_number'=>$this->faker->unique()->numerify('09#-#######'),
             'created_at' => now(),
             'updated_at' => now(),

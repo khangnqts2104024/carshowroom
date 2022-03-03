@@ -90,7 +90,7 @@
         <!-- /.col -->
     </div>
     <!-- /.row -->
-    ]
+    
     <!-- /.row -->
 </section>
 @endsection

@@ -13,6 +13,7 @@ use App\Http\Controllers\ModelInfoController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\CarInfoController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\StockController;
 use Database\Seeders\CarInfo;
 
@@ -89,9 +90,7 @@ Route::prefix('user')->name('user.')->group(function(){
 Route::get('/test',[ModelInfoController::class,'compare']);
 
 
-Route::get('admin/showroom/carreceive', function () {
-    return view('admin.showroom.carreceive');
-});
+
 // 
 
 
@@ -99,22 +98,25 @@ Route::get('admin/showroom/carreceive', function () {
 Route::get('admin/warehouse/create', function () {
     return view('admin.warehouse.createcar');
 });
-Route::get('admin/general', function () {
-    return view('admin.general.report');
+
+Route::get('admin/profile', function () {
+    return view('admin.adminprofile.adminprofile');
 });
-// Route::get('admin/login', function () {
-//     return view('admin.adminprofile.adminlogin');
-// });
 
 Route::get('admin/showroom',[OrderDetailController::class,'show']);
 Route::get('admin/showroom/check',[OrderDetailController::class,'orderedstatus']);
 Route::get('admin/showroom/myorder',[OrderDetailController::class,'orderedstatus']);
 Route::get('admin/showroom/ordercanceled',[OrderDetailController::class,'custcanceledtatus']);
 Route::get('admin/showroom/orderdetail/{order_id}/{model_id}',[OrderDetailController::class,'orderdetail']);
+Route::get('admin/showroom/carmanage',[CarInfoController::class,'showroomcar']);
+Route::get('admin/showroom/carmanagepending',[CarInfoController::class,'showroomcarpending']);
+Route::get('admin/showroom/carmanageshowroom',[CarInfoController::class,'showroomcarreceived']);
 
 Route::get('admin/general/employee',[EmployeeInfoController::class,'show']);
 Route::get('admin/general/customer',[DashboardController::class,'showcustlist']);
 Route::get('admin/general/customer/edit/{id}',[DashboardController::class,'edit']);
+Route::get('admin/general/report',[ReportController::class,'report']);
+
 
 Route::get('admin/warehouse',[CarInfoController::class,'show']);
 Route::get('admin/warehouse/ordering',[OrderDetailController::class,'confirmtatus']);
@@ -144,6 +146,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     Route::middleware(['auth:employee','PreventBackHistory'])->group(function(){
         Route::view('/home','admin_home')->name('home');
+        Route::view('/general','admin.general.general');
       
         // Route::prefix('employee')->name('employee.')->group(function(){
         //     Route::get('/profile',[DashboardController::class,'show'])->name('profile');

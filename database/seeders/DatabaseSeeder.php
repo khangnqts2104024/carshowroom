@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
       $this->call(EmployeeInfoSeeder::class);
       $this->call(UserSeeder::class);
       $this->call(EmployeeAccountSeeder::class);
+      $this->call(StockSeeder::class);
       
     }
 

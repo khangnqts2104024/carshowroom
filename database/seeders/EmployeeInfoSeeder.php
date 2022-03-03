@@ -21,18 +21,18 @@ class EmployeeInfoSeeder extends Seeder
       
                 //  tao admin
 
-        //  DB::table('employee_infos')->insert([
-        //     [
-        //     'email'=>'admin@gmail.com',	
-        //     'fullname'=>'Nguyễn Quốc Khang',					
-        //     'address'=>'100 Hoàn Kiếm Hà Nội',
-        //     'phone_number'=>'0902333434',
-        //     'emp_branch'=>'1',
-        //     'created_at' => now(),
-        //     'updated_at' => now(),
-        // ],]);
+         DB::table('employee_infos')->insert([
+            [
+            'email'=>'admin@gmail.com',	
+            'fullname'=>'Nguyễn Quốc Khang',					
+            'address'=>'100 Hoàn Kiếm Hà Nội',
+            'phone_number'=>'0902333434',
+            'emp_branch'=>'1',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ],]);
         //    mo ra chay cau này
 
-        employeeInfo::factory()->times(50)->create();
+        // employeeInfo::factory()->times(50)->create();
     }
 }

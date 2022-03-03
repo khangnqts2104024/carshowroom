@@ -1,11 +1,12 @@
 <?php
 
 namespace Database\Seeders;
-use App\Models\carInfo;
+
+use App\Models\stock;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class CarInfoSeeder extends Seeder
+class StockSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +15,6 @@ class CarInfoSeeder extends Seeder
      */
     public function run()
     {
-        CarInfo::factory()->times(100)->create();
+        stock::factory()->times(15)->create();
     }
 }

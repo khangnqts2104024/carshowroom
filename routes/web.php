@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\ChangeLanguageController;
+use App\Http\Controllers\compareController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -10,6 +11,7 @@ use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\EmployeeAccountController;
 use App\Http\Controllers\EmployeeInfoController;
 use App\Http\Controllers\ModelInfoController;
+use App\Http\Controllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -178,3 +180,12 @@ Route::get('admin/general/save_model', function () {
 // Route::get('/all-model', 'App\Http\Controllers\ModelController@allModel');
 // Route::post('/save-model', 'App\Http\Controllers\ModelController@saveModel');
 // Route::post('/update-model/{model_id}', 'App\Http\Controllers\ModelController@updateModel');
+
+// Route::get('/compare',function(){
+//     return view('compare');
+// });
+Route::get('/compare','App\Http\Controllers\CompareController@index');
+
+Route::get('/user/compare',function(){
+    return view('compare');
+});

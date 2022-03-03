@@ -33,6 +33,8 @@ class DashboardController extends Controller
         } else {
             $user = Customer_Info::find($request->customer_id);
 
+
+            
             if ($user) {
                 $user->fullname = $request->fullname;
                 $user->update();

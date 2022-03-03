@@ -88,8 +88,14 @@
 
 @section('script-section')
 <script>
+ 
 $(document).ready( function () {
     $('#myTable').DataTable();
+
+  
 } );
+
+
+
 </script>
 @endsection

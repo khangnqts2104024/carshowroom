@@ -85,6 +85,10 @@ Route::prefix('user')->name('user.')->group(function(){
 // });
 
 
+
+Route::get('/test',[ModelInfoController::class,'compare']);
+
+
 Route::get('admin/showroom/carreceive', function () {
     return view('admin.showroom.carreceive');
 });

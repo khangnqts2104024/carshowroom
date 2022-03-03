@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\modelInfo;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -76,5 +79,16 @@ class ModelInfoController extends Controller
         session()->put('message', 'Xóa thành công!');
         return Redirect('admin.general.all_model');
     }
+
+
+// Khang test dung xoa nha Phat
+public function compare(){
+   $models= modelInfo::all();
+
+    return view('comparepage')->with(['models'=> $models]);
+
+}
+
+
 }
 

@@ -22,10 +22,11 @@ class CustomerInfoSeeder extends Seeder
             'fullname'=>'Le Anh Trung',					
             'address'=>'100 Trường Trinh TP Hồ CHí MInh',
             'phone_number'=>'0902333434',
+            'customer_role'=>"member",
             'created_at' => now(),
             'updated_at' => now(),
         ],]);
 
-        //   Customer_Info::factory()->times(50)->create();
+        //   Customer_Info::factory()->times(500)->create();
     }
 }

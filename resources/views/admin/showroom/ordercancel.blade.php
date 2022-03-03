@@ -9,7 +9,6 @@
             <div class="col-sm-12">
                 <h1 class="vin-title">VINFAST</h1>
             </div>
-            <DIv>DASDSADSADAS</DIv>
         </div>
     </div><!-- /.container-fluid -->
 </section>

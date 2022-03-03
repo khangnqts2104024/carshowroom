@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('fullname');
             $table->string('phone_number',11);
             $table->string('address');
+            $table->string('customer_role',11);// guest-member
             $table->string('avatar')->nullable();
             $table->timestamps();
         });

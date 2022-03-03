@@ -19,9 +19,9 @@ class CarInfoFactory extends Factory
         return [
             'car_model'=>rand(1,5),
             'car_branch'=>rand(1,10),
-            'order_id'=>rand(1,50),
-            'manufactoring_date'=>now(),
-            'car_status' => Arr::random(['ordering','sold','showroom','custcanceled']),
+            'order_id'=>rand(1,100),
+            'manufactoring_date'=>$this->faker->dateTimeBetween('2021-01-02 00:00:00'),
+            'car_status' => Arr::random(['pending','sold','showroom','custcanceled']),
         ];
     }
 }

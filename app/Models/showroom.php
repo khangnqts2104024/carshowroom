@@ -21,4 +21,13 @@ public $timestamps = false;
     return $this->belongsTo(warehouse::class,'region','id');
 }
 
+
+public function cars()
+{
+    return $this->hasMany(carInfo::class,'carbranch','id');
 }
+
+
+
+}
+

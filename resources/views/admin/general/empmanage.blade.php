@@ -65,7 +65,7 @@
                                 <td>{{ $p->phone_number}} </td>
                                 <td>{{$p->address }}</td>
                               
-{{-- ? --}}
+
                                 <td>
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#passId{{$x}}">
                                         <i class="fa-solid fa-key"></i>
@@ -101,7 +101,7 @@
                                     </div>
 
                                 </td>
-{{--  --}}
+
                                 <!-- Button trigger modal -->
 
 

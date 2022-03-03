@@ -396,20 +396,20 @@
 
     function picker(picker) {
         index = picker.getAttribute("data-picker");
-        alert(index);
+      
     }
 
     function choosecar(carmodel) {
         var carchoosed = carmodel.getAttribute("data-car");
-        alert(carchoosed);
+      
 
         car1 = item[carchoosed];
 
         comparecolumn1 = $('[data-index=' + index + ']');
         column1();
-        alert(car1.model_name);
+      
 
-        console.log(car1)
+      
     }
 
     function column1() {

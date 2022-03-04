@@ -69,7 +69,7 @@ class UserController extends Controller
         $user_info->phone_number = $request->phone_number;
         $user_info->fullname = $request->fullname;
         $user_info->address = $request->address;
-        // $user_info->customer_role = 'member';
+        $user_info->customer_role = 'member';
         $save_info = $user_info->save();
 
         $user = new User();

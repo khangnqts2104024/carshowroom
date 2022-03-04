@@ -27,9 +27,15 @@
                     <h3 class="card-title">Quản Lý Xe</h3>
                 </div>
                 <div class="option-container">
-                    <div class="option"><a href="carmanage"> Tất Cả Xe</a></div>
-                    <div class="option"><a href="carmanagepending">Xe Đang Vận Chuyển</a></div>
-                    <div class="option"><a href="carmanageshowroom">Xe Đã Tới Showroom</a></div>
+                    <a href="carmanage">
+                        <div class="option"> Tất Cả Xe </div>
+                    </a>
+                    <a href="carmanagepending">
+                        <div class="option">Xe Đang Vận Chuyển</div>
+                    </a>
+                    <a href="carmanageshowroom">
+                        <div class="option">Xe Đã Tới Showroom</div>
+                    </a>
                 </div>
 
                 <!-- /.card-header -->
@@ -78,47 +84,55 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body flex-container-left">
-                                                <div class="employeeinfo ">
+                                                    <div class="employeeinfo ">
                                                         <h5>Mã Xe</h5>
-                                                      <p>  {{$p->car_id}}</p>
+                                                        <p> {{$p->car_id}}</p>
                                                     </div>
                                                     <div class="employeeinfo ">
                                                         <h5>Mã Đơn Hàng</h5>
-                                                      <p>  {{ $p->orders->order_code}} </p>
+                                                        <p> {{ $p->orders->order_code}} </p>
                                                     </div>
                                                     <div class="employeeinfo ">
                                                         <h5>Model Xe</h5>
-                                                      <p>  {{$p->models->model_name}}</p>
+                                                        <p> {{$p->models->model_name}}</p>
                                                     </div>
                                                     <div class="employeeinfo ">
                                                         <h5>Showroom</h5>
                                                         <p>{{ $p->showrooms->showroom_name}}</p>
                                                     </div>
                                                     <div class="employeeinfo ">
-                                                      <div>  <h5>Tên Khách Hàng</h5></div>
-                                                       <div> <p>{{ $p->orders->customer->fullname}} </p></div>
-                                                        
+                                                        <div>
+                                                            <h5>Tên Khách Hàng</h5>
+                                                        </div>
+                                                        <div>
+                                                            <p>{{ $p->orders->customer->fullname}} </p>
+                                                        </div>
+
                                                     </div>
                                                     <div class="employeeinfo ">
-                                                      <div>  <h5>Số Điện Thoại Khách Hàng</h5></div>
-                                                       <div> <p>{{ $p->orders->customer->phone_number}}</p> </div>
-                                                        
+                                                        <div>
+                                                            <h5>Số Điện Thoại Khách Hàng</h5>
+                                                        </div>
+                                                        <div>
+                                                            <p>{{ $p->orders->customer->phone_number}}</p>
+                                                        </div>
+
                                                     </div>
                                                     <div class="employeeinfo ">
                                                         <h5>Thời Gian</h5>
                                                         <p>Ngày Đặt Hàng:{{ $p->orders->order_date}}<br>
-                                                        Ngày xuất Kho:{{ $p->manufactoring_date}}
+                                                            Ngày xuất Kho:{{ $p->manufactoring_date}}
                                                         </p>
                                                     </div>
                                                     <div class="employeeinfo ">
                                                         <h5>Tình Trạng</h5>
-                                                       <p> {{ $p->car_status}}</p>
+                                                        <p> {{ $p->car_status}}</p>
                                                     </div>
-                                                    
+
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                 
+
                                                 </div>
                                             </div>
                                         </div>
@@ -149,7 +163,7 @@
         <!-- /.col -->
     </div>
     <!-- /.row -->
-    
+
     <!-- /.row -->
 </section>
 @endsection

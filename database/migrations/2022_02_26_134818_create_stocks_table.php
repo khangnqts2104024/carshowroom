@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('repo_id');
             $table->foreign('repo_id')->references('id')->on('warehouses')->onUpdate('cascade')->onDelete('cascade');;
             $table->unsignedInteger('quantity');
+            $table->unique(['model_id','repo_id']);
         });
     }
 

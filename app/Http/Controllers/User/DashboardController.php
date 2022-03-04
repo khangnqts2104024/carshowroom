@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Customer_Info;
 use App\Models\Customer_Account;
 use App\Models\employeeInfo;
+use App\Models\modelInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,8 @@ use SebastianBergmann\Environment\Console;
 
 class DashboardController extends Controller
 {
+   
+    
     public function show()
     {
         return view('dashboard.user.profile/settings');

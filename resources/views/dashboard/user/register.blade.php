@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('dashboard.layouts.layout')
 @section('content')
 <link rel="stylesheet" href="/css/account.css">
         <div class="signInbox mt-5">
@@ -10,25 +10,13 @@
                     <div class="alert alert-success">
                       {{Session::get('success')}}
                     </div>
-
                 @endif
-
                 @if(Session::get('fail'))
                     <div class="alert alert-danger">
                       {{Session::get('fail')}}
                     </div>
-
                 @endif
               @csrf
-              <div class="form-group ">
-                <label for="Language">Select Language</label>
-                <select class="form-control formRound" required>
-                  <option disabled hidden>Choose here</option>
-                  <option selected >English</option>
-                  <option selected>Việt Nam</option>        
-                </select>
-              </div>
-
                 <div class="form-group">
                   <label for="Full Name">Full Name</label>
                   <input type="text" name="fullname" class="form-control formRound" value="{{old('fullname')}}">

@@ -34,27 +34,36 @@
                                 <th>Model Xe</th>
                                 <th>Kho</th>
                                 <th>Số Lượng Tồn Kho</th>
+                                <th>Nhập Thêm Xe</th>
                             </tr>
                         </thead>
                         <tbody>
-
+     
+                            @php $x=1 @endphp
+                            @foreach ($stocks as $p)
                             <tr>
-
-                                <td>1</td>
-                                <td>Fadil 22</td>
-                                <td>Miền Bắc</td>
-                                <td> <span>44</span>
-                                    <button class="btn btn-info btn-sm stock-add">
+                                <td>{{ $x++ }}</td>  
+                                <td> {{$p->model->model_name}}</td>
+                                <td>{{ $p->warehouse->warehouse_name}}</td>
+                                <td>{{$p->quantity}}</td>
+                                <td class="flex-container-left">
+                                    <p></p>
+                                    <button  class="btn btn-info  stock-add">
                                         Đăt Thêm Xe <i class="fa-solid fa-plus"></i>
                                     </button>
                                     <div class='stock-confirm' style="display:none;">
-                                        <input type="number" name="" id="" min="0" max="20">
-                                        <a class="add" href="" style="margin:30px">
+                                        <p>Nhập số lượng xe cần nhập thêm:</p>
+                                        <input  type="number" name="" size="10" id="" min="0" max="2000">
+                                        <a class="add btn btn-primary " href="" style="margin:30px">
                                             <i class="fa-solid fa-circle-check"></i>
                                         </a>
                                     </div>
                                 </td>
                             </tr>
+                                <!-- test -->
+                          
+                            @endforeach
+                          
 
                         </tbody>
                         <tfoot>
@@ -63,6 +72,7 @@
                                 <th>Model Xe</th>
                                 <th>Kho</th>
                                 <th>Số Lượng Tồn Kho</th>
+                                <th>Nhập Thêm Xe</th>
                             </tr>
                         </tfoot>
                     </table>
@@ -95,5 +105,6 @@
             }
         })
     }
+  
 </script>
 @endsection

@@ -5,20 +5,25 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Customer_Info;
 use App\Models\Customer_Account;
+use App\Models\employeeInfo;
+use App\Models\modelInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use SebastianBergmann\Environment\Console;
 
 class DashboardController extends Controller
 {
+   
+    
     public function show()
     {
         return view('dashboard.user.profile/settings');
     }
-// Edit Fullname
+    // Edit Fullname
     public function editfullname(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -48,7 +53,7 @@ class DashboardController extends Controller
             }
         }
     }
-// Edit Address
+    // Edit Address
     public function editaddress(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -108,7 +113,7 @@ class DashboardController extends Controller
             }
         }
     }
-// Edit Email
+    // Edit Email
     public function editEmail(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -150,7 +155,7 @@ class DashboardController extends Controller
             ]);
         }
     }
-// Edit Citizen ID
+    // Edit Citizen ID
     public function editCitizenID(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -183,50 +188,54 @@ class DashboardController extends Controller
     // Edit Avatar
     public function editAvatar(Request $request)
     {
-        $validator = Validator::make($request->all(),[
+
+        $validator = Validator::make($request->all(), [
             'image_upload' => 'required|image|mimes:jpg,png,jpeg|max:2048',
+
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return response()->json([
-                'status' =>400,
-                'errors'=>$validator->errors(),
+
+                'status' => 400,
+                'errors' => $validator->errors(),
             ]);
-        }else{
-           if($request->hasFile('image_upload')){
+        } else {
+            if ($request->hasFile('image_upload')) {
                 $path = 'files/Avatar_User';
                 $file = $request->file('image_upload');
                 $fullnameUser = preg_replace('/\s+/', '', $request->fullname);
                 $extension_img = $request->image_upload->guessClientExtension();
-                $file_name = time().'_'.$fullnameUser.'.'.$extension_img;
-                $upload = $file->storeAs($path,$file_name,'public');
+                $file_name = time() . '_' . $fullnameUser . '.' . $extension_img;
+                $upload = $file->storeAs($path, $file_name, 'public');
                 $user = Customer_Info::find($request->customer_id);
 
-            if($upload){
-                $user->avatar = $file_name;
-                $user->update();
-                
-                return response()->json([
-                    'status' => 200,
-                    'messages' => 'Avatar Updated Successfully',
-                    
-                ]);
-           
-            }else {
+
+                if ($upload) {
+                    $user->avatar = $file_name;
+                    $user->update();
+
+                    return response()->json([
+
+                        'status' => 200,
+                        'messages' => 'Avatar Updated Successfully',
+
+
+                    ]);
+                } else {
+                    return response()->json([
+                        'status' => 404,
+                        'errors' => 'Upload Fail!',
+                    ]);
+                }
+            } else {
                 return response()->json([
                     'status' => 404,
                     'errors' => 'Upload Fail!',
                 ]);
             }
-
-        }else {
-            return response()->json([
-                'status' => 404,
-                'errors' => 'Upload Fail!',
-            ]);
         }
     }
-}
 
     public function fetchData()
     {
@@ -234,9 +243,31 @@ class DashboardController extends Controller
         $users = DB::table('customer_infos')
             ->where('email', '=', $user_Email)
             ->get();
+
+
         return response()->json([
             'users' => $users,
         ]);
+    }
+
+    // khang
+    public function showcustlist()
+    {
+
+
+        $customer = Customer_Info::all();
+
+
+        return view('admin.general.custmanage')->with(['customer' => $customer]);
+    }
+
+    public function edit($id)
+    {
+
+        $p = Customer_Info::find($id);
+        // $p="haha";
+        return view('admin.general.customerdetail')->with(['p' => $p]);
+        // return view('admin.general.customerdetail')->with(['custDetail'=>$custDetail]);
     }
 }
 //test

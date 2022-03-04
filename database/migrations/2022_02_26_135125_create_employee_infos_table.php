@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('fullname');
             $table->string('phone_number',11);
             $table->string('address');
+            $table->unsignedBigInteger('salary')->nullable();
             $table->unsignedBigInteger('emp_branch');
             $table->foreign('emp_branch')->references('id')->on('showrooms')->onUpdate('cascade')->onDelete('cascade');
             $table->string('avatar')->nullable();

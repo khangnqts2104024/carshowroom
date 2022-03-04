@@ -45,8 +45,8 @@
                 <div class="card-body">
                     <table id="myTable" class="table table-bordered table-hover">
                         <thead>
-                            <tr>
-                                <th>Car ID</th>
+                            <tr> 
+                                <th>STT</th>
                                 <th>Model</th>
                                 <th>Showroom</th>
                                 <th>Mã Đơn Hàng</th>
@@ -56,59 +56,24 @@
                         </thead>
                         <tbody>
 
-                            <tr>
-
-                                <td>1</td>
-                                <td>Fadil 22</td>
-                                <td>Showroom 1</td>
-                                <td>order 1</td>
-                                <td>26-02-22</td>
-                                <td> <span class="status"> ordering </span>
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-success car-add">Xuất Kho</a>
-                            </td>
-                            </tr>
+                          
+                         @php $x=1 @endphp
+                        @foreach ($cars as $p)
+                        <tr>
+                            <td>{{ $x++ }}</td>  
+                            <td> {{$p->models->model_name}}</td>
+                            <td>{{ $p->showrooms->showroom_name}}</td>
+                            <td>{{ $p->orders->order_code}} </td>
+                            <td>{{ $p->manufactoring_date}}</td>
+                            <td>{{ $p->car_status}} </td>
+                        </tr>
                             <!-- test -->
-                            <tr>
-
-                                <td>2</td>
-                                <td>Fadil 22</td>
-                                <td>Showroom 1</td>
-                                <td>order 2</td>
-                                <td>26-02-22</td>
-                                <td> <span class="status">pending</span> </td>
-                            </tr>
-                            <tr>
-
-                                <td>3</td>
-                                <td>Fadil 22</td>
-                                <td>Showroom 1</td>
-                                <td>order 3</td>
-                                <td>26-02-22</td>
-                                <td><span class="status"> showroom </span></td>
-                            </tr>
-                            <tr>
-
-                                <td>4</td>
-                                <td>Fadil 22</td>
-                                <td>Showroom 1</td>
-                                <td>order 4</td>
-                                <td>26-02-22</td>
-                                <td> sold </td>
-                            </tr>
-                            <!-- end test -->
-                            <td>1</td>
-                                <td>Fadil 22</td>
-                                <td>Showroom 1</td>
-                                <td>order 1</td>
-                                <td>26-02-22</td>
-                                <td> <span class="status">custcanceled</span> 
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-danger car-add">Hoàn Kho</a>
-                            </td>
-
+                      
+                        @endforeach
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <th>Car ID</th>
+                            <tr> 
+                                <th>STT</th>
                                 <th>Model</th>
                                 <th>Showroom</th>
                                 <th>Mã Đơn Hàng</th>
@@ -125,26 +90,14 @@
         <!-- /.col -->
     </div>
     <!-- /.row -->
-    ]
+    
     <!-- /.row -->
 </section>
 @endsection
 @section('script-section')
 <script>
     $(document).ready( function () {
-    $('#myTable').DataTable();
-} );
-    var add = document.getElementsByClassName('stock-add');
-    var confirm = document.getElementsByClassName('stock-confirm');
-    for (let i = 0; i < add.length; i++) {
-        add[i].addEventListener("click", function() {
-            if (confirm[i].style.display == "none") {
-                confirm[i].style.display = "block";
-
-            } else {
-                confirm[i].style.display = "none";
-            }
-        })
-    }
-</script>
+        $('#myTable').DataTable();
+    } );
+    </script>
 @endsection

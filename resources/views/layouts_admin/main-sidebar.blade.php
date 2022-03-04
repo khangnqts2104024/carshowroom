@@ -68,7 +68,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('admin/general') }}" class="nav-link">
+                            <a href="{{ url('admin/general/report') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Báo Cáo</p>
                             </a>
@@ -117,7 +117,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('admin/showroom/carreceive') }}" class="nav-link">
+                            <a href="{{ url('admin/showroom/carmanage') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Quan Lý Xe</p>
                             </a>
@@ -150,7 +150,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('admin/stock') }}" class="nav-link">
+                            <a href="{{ url('admin/warehouse/stock') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Quản Lý Tồn Kho</p>
                             </a>

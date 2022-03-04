@@ -14,33 +14,31 @@ return new class extends Migration
     public function up()
     {
         Schema::create('model_infos', function (Blueprint $table) {
-            $table->string('model_id');
-            $table->primary('model_id');
+            $table->id('model_id');
             $table->string('model_name',50);
-            $table->string('car_type',50);
-            $table->unsignedBigInteger('price');
-            $table->string('color');
+            $table->string('car_type',50)->nullable();
+            $table->unsignedBigInteger('price')->nullable();
+            $table->string('color')->nullable();
             // thêm feild vào
-            $table->string("size",50);
-            $table->string("weight",50);
-            $table->string("engine",50);
-            $table->string("wattage",50);
-            $table->string("engine_shutdown_function",50);
-            $table->string("car_gearbox",50);
-            $table->string("fuel_consumption",50);
-            $table->string("lamp",50);
-            $table->string("automatic_lights",50);
-            $table->string("alluminum_alloy_lazang",50);
-            $table->string("exhaust_pipe",50);
-            $table->string("seat",50);
-            $table->string("central_screen",50);
-            $table->string("air_conditioning",50);
-            $table->string("front_wheel_brake",50);
-            $table->string("rear_wheel_brake",50);
-            $table->string("image");
-            $table->string("gif");
-
-           
+            $table->string("size")->nullable();
+            $table->string("weight")->nullable();
+            $table->string("engine")->nullable();
+            $table->string("wattage")->nullable();
+            $table->string("engine_shutdown_function")->nullable(); // co tieng anh
+            $table->string("car_gearbox")->nullable();
+            $table->string("fuel_consumption")->nullable();
+            $table->string("lamp")->nullable();
+            $table->string("automatic_lights")->nullable();
+            $table->string("alluminum_alloy_lazang")->nullable();
+            $table->string("exhaust_pipe")->nullable();
+            $table->string("seat")->nullable();
+            $table->string("central_screen")->nullable();
+            $table->string("air_conditioning")->nullable();
+            $table->string("front_wheel_brake")->nullable();
+            $table->string("rear_wheel_brake")->nullable();
+            $table->string("image")->nullable();
+            $table->string("gif")->nullable();
+            $table->string('active')->default('inactive'); // if value is active => available on website
         });
     }
 

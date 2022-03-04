@@ -38,7 +38,7 @@
             </a>
         </div>
         <div class="flex-card">
-            <a href="{{('admin/showroom')}}">
+            <a href="{{('showroom')}}">
                 <div class="manage-option">
                     <i class="fa-solid fa-car"></i>
                     <p>Showroom</p>

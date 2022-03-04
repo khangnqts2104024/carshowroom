@@ -45,7 +45,7 @@
                     <table id="myTable" class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>Car ID</th>
+                                <th>STT</th>
                                 <th>Model</th>
                                 <th>Showroom</th>
                                 <th>Mã Đơn Hàng</th>
@@ -57,34 +57,24 @@
 
                           
                             <!-- test -->
-                            <tr>
+                            
 
-                                <td>2</td>
-                                <td>Fadil 22</td>
-                                <td>Showroom 1</td>
-                                <td>order 2</td>
-                                <td>26-02-22</td>
-                                <td> pending </td>
-                            </tr>
-                            <tr>
-
-                                <td>3</td>
-                                <td>Fadil 22</td>
-                                <td>Showroom 1</td>
-                                <td>order 3</td>
-                                <td>26-02-22</td>
-                                <td> showroom </td>
-                            </tr>
-                            <tr>
-
-                                <td>4</td>
-                                <td>Fadil 22</td>
-                                <td>Showroom 1</td>
-                                <td>order 4</td>
-                                <td>26-02-22</td>
-                                <td> sold </td>
-                            </tr>
-                            <!-- end test -->
+                                @php $x=1 @endphp
+                                @foreach ($cars as $p)
+                                <tr>
+                                    <td>{{ $x++ }}</td>                                  
+                                    <td> {{$p->models->model_name}}</td>
+                                    <td>{{ $p->showrooms->showroom_name}}</td>
+                                    <td>{{ $p->orders->order_code}} </td>
+                                    <td>{{ $p->manufactoring_date}}</td>
+                                    <td>{{ $p->car_status}} </td>
+                                   
+                                </tr>
+                                    <!-- test -->
+                              
+                                @endforeach
+                            
+                                                       <!-- end test -->
 
                         </tbody>
                         <tfoot>
@@ -106,7 +96,7 @@
         <!-- /.col -->
     </div>
     <!-- /.row -->
-    ]
+    
     <!-- /.row -->
 </section>
 @endsection

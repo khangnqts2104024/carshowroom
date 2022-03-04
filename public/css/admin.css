@@ -17,9 +17,23 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        padding: 5px;
        
     }
-  
+    .flex-container-column{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items:center;
+       
+    }
+    .flex-container-left{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: left;
+       
+    }
 .manage-option:hover{
     box-shadow: 5px 5px 20px rgb(8, 8, 8);
     
@@ -52,8 +66,10 @@ font-family: Georgia, 'Times New Roman', Times, serif;}
       .option:hover{ box-shadow: 2px 0px 5px rgb(9, 62, 112);}
  
   .status{display: flex;
-    justify-content:flex-start;
-width: 100px;}
+    justify-content:center;
+    color: rgb(52, 71, 247);
+}
+
 .report-container{
     display: flex;
     flex-wrap: wrap;
@@ -79,3 +95,27 @@ padding: 20px;
 border: 1px double rgb(12, 34, 94);
 border-radius: 10px;
 }
+.phat{
+    border:.1px solid gray;
+    border-radius: 10px;
+    padding: 10px;
+
+    background-color: white;}
+
+    .employeeinfo{
+        width: 300px;
+        margin: 30px;
+        border: 0.1 solid darkblue;
+        border-radius: 5px;
+        background-color: rgb(233, 231, 231);
+        padding: 15px;
+        
+    }
+
+
+    .modal-header{background-color:rgb(73, 115, 231);
+
+                    color: white;}
+    .stock-confirm{border-radius: 5px;
+                    border: 0.1px red dotted;
+                       padding: 10px;}

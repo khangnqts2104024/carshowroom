@@ -54,81 +54,24 @@
                         </thead>
                         <tbody>
 
-                        
-                            <!-- test -->
+                            @php $x=1 @endphp
+                            @foreach ($orders as $p)
+
                             <tr>
 
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td class="flex-container"> <span class="status">checked</span>
+                                <td>{{ $x++ }}</td>                               
+                                <td> {{$p->orders->order_code}}</td>
+                                <td>{{$p->orders->customer->fullname}}</td>
+                                <td>{{$p->orders->customer->email}} </td>
+                                <td>{{$p->orders->customer->phone_number}} </td>
+                                <td>{{$p->modelInfos->model_name}} </td>
+                                <td class="flex-container-column"> 
+                                    <p class="status">{{$p->order_status}}</p>
                                     <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-danger car-add">Hủy Đơn Hàng</a>
                                 </td>
                             </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td> canceled
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td class="flex-container"> <span class="status">deposit</span>
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-success car-add">Xác Nhận Đơn Hàng</a>
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td class="flex-container"> <span class="status">confirm</span>
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-success car-add">Đã Giao Xe</a>
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td class="flex-container"><span class="status">custcanceled</span>
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-danger car-add">Hủy Hợp Đồng</a>
-
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td> sold
-                                </td>
-                            </tr>
-
-                            </tfoot>
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>
                 <!-- /.card-body -->
@@ -142,6 +85,7 @@
     <!-- /.row -->
 </section>
 @endsection
+
 @section('script-section')
 <script>
 $(document).ready( function () {

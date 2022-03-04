@@ -47,7 +47,7 @@ $(function() {
         
           $.ajax({
              type: "post",
-             url: $('#url').val() + "/user/profile/editfullname" ,
+             url: $('#url').val() + "/user/profile/auth/editfullname" ,
              data: data,
              dataType: "json",
              success: function (response) {
@@ -61,13 +61,18 @@ $(function() {
                   $('#saveForm_errList_fullname').html("");
                   $('.success_messages').html("");
                   $('.success_messages').addClass('alert alert-success'); 
-                  $('.success_messages').text(response.messages); 
+                  $('.success_messages').text(response.messages);
+
+                  $.each(response.errors,function(key,err_values){
+                     $('.model1').text(response.messages);
+                  });
                   
                   // var message_en = "Fullname Updated Successfully";
                   // var message_vi = "Họ và tên đã được cập nhật thành công";
                   $('#editFullName').modal("hide");
                   //reset field
                   $('#editFullName').find('input').val("");
+                  $('.success_messages').fadeIn();
                   $('.success_messages').delay(700).fadeOut(800);
                   fetchInfo();
                   
@@ -100,7 +105,7 @@ $(function() {
       
          $.ajax({
             type: "post",
-            url: $('#url').val() + "/user/profile/editaddress" ,
+            url: $('#url').val() + "/user/profile/auth/editaddress" ,
             data: data,
             dataType: "json",
             success: function (response) {
@@ -157,7 +162,7 @@ $(function() {
         
           $.ajax({
              type: "post",
-             url: $('#url').val() + "/user/profile/editphone" ,
+             url: $('#url').val() + "/user/profile/auth/editphone" ,
              data: data,
              dataType: "json",
              success: function (response) {
@@ -210,7 +215,7 @@ $(function() {
         
           $.ajax({
              type: "post",
-             url: $('#url').val() + "/user/profile/editEmail" ,
+             url: $('#url').val() + "/user/profile/auth/editEmail" ,
              data: data,
              dataType: "json",
              success: function (response) {
@@ -261,7 +266,7 @@ $(function() {
         
           $.ajax({
              type: "post",
-             url: $('#url').val() + "/user/profile/editCitizenID" ,
+             url: $('#url').val() + "/user/profile/auth/editCitizenID" ,
              data: data,
              dataType: "json",
              success: function (response) {
@@ -304,7 +309,7 @@ $(function() {
               
                 $.ajax({
                    type: "post",
-                   url: $('#url').val() + "/user/profile/editAvatar" ,
+                   url: $('#url').val() + "/user/profile/auth/editAvatar" ,
                    data: new FormData(form),
                    processData:false,
                    dataType: "json",
@@ -343,7 +348,7 @@ $(function() {
       
       $.ajax({
          type: "GET",
-         url: $('#url').val() + "/user/profile/fetch-data",
+         url: $('#url').val() + "/user/profile/auth/fetch-data",
          
          dataType: "json",
          success: function (response) {
@@ -352,12 +357,13 @@ $(function() {
                // response.users = null;
                $('.customer_id').val(item.customer_id); //fill customer_id
                $('#fullnameIDforAva').val(item.fullname);
-               $('#showFullName').text(item.fullname);
+               $('#showFullName').text(item.fullname); 
                $('#showAddress').text(item.address);
                $('#showPhone').text(item.phone_number);
                $('#showEmail').text(item.email);
                $('#showCitizenID').text(item.citizen_id);
                $('#fullnameUserLayout').text(item.fullname);
+               $('#fullnameEdit').val(item.fullname);
                var pathAvatar = item.avatar;
                $('#showAvatarUser').attr("src", '/storage/files/Avatar_User/'+pathAvatar+'');
               
@@ -389,3 +395,5 @@ $(function() {
         }
    
  });
+
+ 

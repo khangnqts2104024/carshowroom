@@ -50,91 +50,28 @@
                                 <th>Số Điện Thoại</th>
                                 <th>Model Xe</th>
                                 <th>Tình Trạng Đơn Hàng</th>
+                                <th>Thông Tin Chi Tiết</th>
                             </tr>
                         </thead>
                         <tbody>
 
+                            @php $x=1 @endphp
+                            @foreach ($orders as $p)
+
                             <tr>
 
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td> ordered
-                                </td>
+                                <td>{{ $x++ }}</td>                               
+                                <td> {{$p->orders->order_code}}</td>
+                                <td>{{$p->orders->customer->fullname}}</td>
+                                <td>{{$p->orders->customer->email}} </td>
+                                <td>{{$p->orders->customer->phone_number}} </td>
+                                <td>{{$p->modelInfos->model_name}} </td>
+                                <td>{{$p->order_status}}</td>
+                                <td class="flex-container-column"> <a  href="{{ url('admin/showroom/orderdetail/'.$p->order_id.'/'.$p->model_id)}}" class='btn btn-primary'> <i class='fa-solid fa-circle-info'></i></a>  </td>
+                              
                             </tr>
-                            <!-- test -->
-                            <tr>
-
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td> checked
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td> canceled
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td> deposit
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td> confirm
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td>custcanceled
-                                   
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td> sold
-                                </td>
-                            </tr>
-
-                            </tfoot>
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>
                 <!-- /.card-body -->
@@ -148,10 +85,17 @@
     <!-- /.row -->
 </section>
 @endsection
+
 @section('script-section')
 <script>
+ 
 $(document).ready( function () {
     $('#myTable').DataTable();
+
+  
 } );
+
+
+
 </script>
 @endsection

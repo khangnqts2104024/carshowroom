@@ -1,5 +1,20 @@
 $(function(){
+
+    // var firstSelection = $('#SelectYourModel').text();
+
+
+    // $("div.Model select").val(firstSelection);
+    
+   var carID = $('#carID').val();
+   var CarImagePath = $('#CarImagePath').val();
+
+    $("div.Model select").val(carID);
+
+    $('#showImageCar').attr("src", '/storage/files/Image_Car/'+CarImagePath+'');
+
+
     $('#models').on('change',function(){
+        
         var model_id = $(this).val();       
         var data = {
             _token: $(".idToken").val(),
@@ -66,7 +81,7 @@ $(function(){
             data: data,
             dataType: "json",
             success: function (response) {
-                $('#showrooms').append('<option value="" >Select Show Room</option>');
+                $('#showrooms').append('<option value="">Select Show Room</option>');
                 $.each(response.showrooms,function(key,item){
                     
                     $('#showrooms').append(
@@ -115,7 +130,7 @@ $(function(){
             
     });
 
-    // var selected_model =  $("select#models option").filter(":selected").val();
+   
     // var selected_warehouse =  $("select#warehouses option").filter(":selected").text();
     // var selected_showroom =  $("select#showrooms option").filter(":selected").text();
 

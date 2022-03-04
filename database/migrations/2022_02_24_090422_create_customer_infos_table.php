@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('citizen_id')->unique();
             $table->string('fullname');
             $table->string('phone_number',11);
+            $table->string('customer_role');
             $table->string('address');
             $table->string('customer_role',11);// guest-member
             $table->string('avatar')->nullable();

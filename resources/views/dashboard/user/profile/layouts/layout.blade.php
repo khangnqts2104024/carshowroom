@@ -73,7 +73,7 @@
 
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
-            <a href="{{ route('user.home') }}" class="brand-link d-flex justify-content-around">
+            <a href="{{route('user.home_auth')}}" class="brand-link d-flex justify-content-around">
                 
                 <span class="brand-text font-weight-light">>>>>VINFAST<<<<</span>
             </a>
@@ -140,7 +140,7 @@
                         data-accordion="false">
 
                         <li class="nav-item">
-                            <a href="{{ route('user.home') }}" class="nav-link"><i
+                            <a href="{{ route('user.home_auth') }}" class="nav-link"><i
                                     class="fas fa-home-alt mr-3"></i>{{ __('UserProfilesettings.Home') }}</a>
                         </li>
 
@@ -160,7 +160,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{route('user.order')}}" class="nav-link"><i
+                            <a href="{{route('user.CustomerOrder')}}" class="nav-link"><i
                                     class="fas fa-paper-plane mr-3"></i>{{ __('UserProfilesettings.Order Car') }}</a>
                         </li>
 

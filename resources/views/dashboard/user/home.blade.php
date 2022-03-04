@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('dashboard.layouts.layout')
 @section('content')
 
 <link rel="stylesheet" href="/css/homepage.css">
@@ -110,29 +110,34 @@
         </h5>
       </div>
       <div class="carslide owl-carousel owl-theme row justify-content-around">
+        @foreach($models as $model)
         <div class="col item">
-          <img class="carImg" src="/HomepageImage/slide2/VFe34.png" alt="">
-          <img class="carGif" src="/HomepageImage/slide2/gif/VFe34.gif" alt="">
+          <img class="carImg" src="/storage/files/Image_Car/{{$model->image}}" alt="">
+          <img class="carGif" src="/storage/files/Image_Car/gif/{{$model->gif}}" alt="">
           <div class="info">
             <div class="slogan">
-              <div>
+              {{-- <div>
               {{__('Break the limits together')}}
-              </div>
+              </div> --}}
             </div>
             <div class="title">
               <div>
-              VF e34 
+              {{$model->model_name}}
               </div>
             </div>
             <div class="d-flex justify-content-between">
               <div class="type">
                 <div>{{__("Vehicles")}}</div>
-                <div>SUV</div>
+                <div>{{$model->car_type}}</div>
 
               </div>
               <div class="price">
                 <div>{{__("Listed price")}}</div>
-                <div>{{__("from")}} 690 triệu</div>
+                @php
+								 $carprice_nonFormat = $model->price;   				 
+                 $car_price = number_format($carprice_nonFormat); 
+							 @endphp 
+                <div>{{__("from")}} {{$car_price}}VND</div>
               </div>
             </div>
           </div>
@@ -140,127 +145,8 @@
           <a href="#" class="view-detail">{{__("View Detail")}}</a>
 
         </div>
-        <div class="col item">
-          <img class="carImg" src="/HomepageImage/slide2/Fadil.png" alt="">
-          <img class="carGif" src="/HomepageImage/slide2/gif/Fadil.gif" alt="">
-          <div class="info">
-            <div class="slogan">
-              <div>
-                {{__("Make the most of every experience")}}
-              </div>
-            </div>
-            <div class="title">
-              <div>
-                Fadil
-              </div>
-            </div>
-            <div class="d-flex justify-content-between">
-              <div class="type">
-                <div>{{__("Vehicles")}}</div>
-                <div>HATCHBACK</div>
-
-              </div>
-              <div class="price">
-                <div>{{__("Listed price")}}</div>
-                <div>{{__("from")}} 382 triệu</div>
-              </div>
-            </div>
-          </div>
-
-          <a href="#" class="view-detail">{{__("View Detail")}}</a>
-
-        </div>
-        <div class="col item">
-          <img class="carImg" src="/HomepageImage/slide2/LuxA.png" alt="">
-          <img class="carGif" src="/HomepageImage/slide2/gif/LuxA.gif" alt="">
-          <div class="info">
-
-            <div class="slogan">
-              <div>
-                {{__("Enjoy every moment")}}
-              </div>
-            </div>
-            <div class="title">
-              <div>
-                LUX A2.0
-              </div>
-            </div>
-            <div class="d-flex justify-content-between">
-              <div class="type">
-                <div>{{__("Vehicles")}}</div>
-                <div>SEDAN</div>
-
-              </div>
-              <div class="price">
-                <div>{{__("Listed price")}}</div>
-                <div>{{__("from")}} 949 triệu</div>
-              </div>
-            </div>
-          </div>
-
-          <a href="#" class="view-detail">{{__("View Detail")}}</a>
-
-        </div>
-        <div class="col item">
-          <img class="carImg" src="/HomepageImage/slide2/LuxSA.png" alt="">
-          <img class="carGif" src="/HomepageImage/slide2/gif/LuxSA.gif" alt="">
-          <div class="info">
-
-            <div class="slogan">
-              <div>
-                {{__("Conquer all roads")}}
-              </div>
-            </div>
-            <div class="title">
-              <div>
-                LUX SA2.0
-              </div>
-            </div>
-            <div class="d-flex justify-content-between">
-              <div class="type">
-                <div>{{__("Vehicles")}}</div>
-                <div>SUV</div>
-
-              </div>
-              <div class="price">
-                <div>{{__("Listed price")}}</div>
-                <div>{{__("from")}} 1.2 tỷ</div>
-              </div>
-            </div>
-          </div>
-
-          <a href="#" class="view-detail">{{__("View Detail")}}</a>
-
-        </div>
-        <div class="col item">
-          <img class="carImg" src="/HomepageImage/slide2/President.png" alt="">
-          <img class="carGif" src="/HomepageImage/slide2/gif/President.gif" alt="">
-          <div class="info">
-            <div class="slogan">
-              <div>
-                {{__("The mark of a leader")}}
-              </div>
-            </div>
-            <div class="title">
-              <div>
-                PRESIDENT
-              </div>
-            </div>
-            <div class="d-flex justify-content-between">
-              <div class="type">
-                <div>{{__("Vehicles")}}</div>
-                <div>SUV</div>
-
-              </div>
-              <div class="price">
-                <div>{{__("Listed price")}}</div>
-                <div>{{__("from")}} 3.8 tỷ</div>
-              </div>
-            </div>
-          </div>
-          <a href="#" class="view-detail">{{__("View Detail")}}</a>
-
-        </div>
+     
+        @endforeach
       </div>
 
 

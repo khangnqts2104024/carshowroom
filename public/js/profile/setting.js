@@ -47,7 +47,7 @@ $(function() {
         
           $.ajax({
              type: "post",
-             url: $('#url').val() + "/user/profile/editfullname" ,
+             url: $('#url').val() + "/user/profile/auth/editfullname" ,
              data: data,
              dataType: "json",
              success: function (response) {
@@ -105,7 +105,7 @@ $(function() {
       
          $.ajax({
             type: "post",
-            url: $('#url').val() + "/user/profile/editaddress" ,
+            url: $('#url').val() + "/user/profile/auth/editaddress" ,
             data: data,
             dataType: "json",
             success: function (response) {
@@ -162,7 +162,7 @@ $(function() {
         
           $.ajax({
              type: "post",
-             url: $('#url').val() + "/user/profile/editphone" ,
+             url: $('#url').val() + "/user/profile/auth/editphone" ,
              data: data,
              dataType: "json",
              success: function (response) {
@@ -215,7 +215,7 @@ $(function() {
         
           $.ajax({
              type: "post",
-             url: $('#url').val() + "/user/profile/editEmail" ,
+             url: $('#url').val() + "/user/profile/auth/editEmail" ,
              data: data,
              dataType: "json",
              success: function (response) {
@@ -266,7 +266,7 @@ $(function() {
         
           $.ajax({
              type: "post",
-             url: $('#url').val() + "/user/profile/editCitizenID" ,
+             url: $('#url').val() + "/user/profile/auth/editCitizenID" ,
              data: data,
              dataType: "json",
              success: function (response) {
@@ -309,7 +309,7 @@ $(function() {
               
                 $.ajax({
                    type: "post",
-                   url: $('#url').val() + "/user/profile/editAvatar" ,
+                   url: $('#url').val() + "/user/profile/auth/editAvatar" ,
                    data: new FormData(form),
                    processData:false,
                    dataType: "json",
@@ -348,7 +348,7 @@ $(function() {
       
       $.ajax({
          type: "GET",
-         url: $('#url').val() + "/user/profile/fetch-data",
+         url: $('#url').val() + "/user/profile/auth/fetch-data",
          
          dataType: "json",
          success: function (response) {

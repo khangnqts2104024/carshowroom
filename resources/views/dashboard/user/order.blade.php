@@ -1,81 +1,143 @@
-@extends('layouts.layout')
+@extends('dashboard.layouts.layout')
 @section('content')
     <link rel="stylesheet" href="/css/order.css">
     <input type="hidden" class="idToken" value="{{ csrf_token() }}">
-
+    <input type="hidden" id="carID" value="{{$car_id_fromlayout}}">
+    @foreach($car_images as $car_image)
+    <input type="hidden" id="CarImagePath" value="{{$car_image->image}}">
+    @endforeach
+    
     <div class="container">
-        <div class="title">
+        <div class="title d-flex justify-content-between">
             <h2>Product Order Form</h2>
+            <div class="message">
+                
+                @if(Session::get('success'))
+                    @if(App::getLocale()=='en')
+                         <span class="alert alert-success">{{Session::get('success')}}<a href="">Go To Mange Orders</a></span>
+                    @else
+                        <span class="alert alert-success">{{Session::get('success')}}<a href="">Đến Trang Quản Lý Đơn Hàng</a></span>
+                    @endif
+                @endif
+                @if(Session::has('fail'))
+                        @if(App::getLocale()=='en')
+                            <span class="alert alert-danger">{{Session::get('fail')}}</span>
+                        @else
+                            <span class="alert alert-danger">{{Session::get('fail')}}</span>
+                        @endif
+                @endif
+                
+            </div>
         </div>
         <div class="d-flex d-flexCustom">
-            <form action="{{route('user.submitOrder')}}" method="POST" id="submitOrder">
+            <form action="{{route('user.CustomerSubmitOrder')}}" method="POST" id="submitOrder">
                 @csrf
                 <div class="d-flex" style="flex-direction: column">
                   <label class="labelCustom">
                     <span class="fname">Full Name <span class="required">*</span></span>
-                    @foreach($user as $userinfo)
-                        <input class="input" type="text" name="fullname" value="{{$userinfo->fullname}}">
-                        <input class="input" type="hidden" name="customer_id" value="{{$userinfo->customer_id}}">
-                    @endforeach
+                    @if(isset($user))
+                        @foreach($user as $userinfo)
+                             <input class="input" type="text" name="fullname" required value="{{$userinfo->fullname}}">
+                             <input class="input" type="hidden" name="customer_id" value="{{$userinfo->customer_id}}">
+                         @endforeach
+                         <span class="text-danger">@error('fullname'){{$message}}@enderror</span>
+                    @else
+                         <input class="input" type="text" name="fullname" placeholder="Enter your fullname" required value="">
+                         <span class="text-danger">@error('fullname'){{$message}}@enderror</span>
+                    @endif
                   </label>
 
                   <label class="labelCustom">
+                    <span>Citizen ID<span class="required">*</span></span>
+                    @if(isset($user))
+                        @foreach($user as $userinfo)
+                            <input class="input" type="text" name="citizen_id" required value="{{$userinfo->citizen_id}}">
+                        @endforeach
+                        <span class="text-danger">@error('citizen_id'){{$message}}@enderror</span>
+                    @else
+                         <input class="input" type="text" required name="citizen_id" placeholder="Enter your Citizen ID" value="">
+                         <span class="text-danger">@error('citizen_id'){{$message}}@enderror</span>
+                    @endif
+                </label>
+
+                  <label class="labelCustom">
                     <span>Phone Number<span class="required">*</span></span>
-                    @foreach($user as $userinfo)
-                        <input class="input" type="text" name="phone_number" value="{{$userinfo->phone_number}}">
-                    @endforeach
-                    
+                    @if(isset($user))
+                        @foreach($user as $userinfo)
+                            <input class="input" type="text" name="phone_number" required value="{{$userinfo->phone_number}}">
+                        @endforeach
+                        <span class="text-danger">@error('phone_number'){{$message}}@enderror</span>
+                    @else
+                         <input class="input" type="text" required name="phone_number" placeholder="Enter your phone number" value="">
+                         <span class="text-danger">@error('phone_number'){{$message}}@enderror</span>
+                    @endif
                 </label>
 
                 <label class="labelCustom">
                     <span>Address <span class="required">*</span></span>
-                    @foreach($user as $userinfo)
-                        <input class="input" type="text" name="address" placeholder="House number and street name" value="{{$userinfo->address}}" required>
-                    @endforeach
+                    @if(isset($user))
+                         @foreach($user as $userinfo)
+                             <input class="input" type="text" name="address" required placeholder="House number and street name" value="{{$userinfo->address}}">
+                        @endforeach
+                        <span class="text-danger">@error('address'){{$message}}@enderror</span>
+                    @else
+                    <input class="input" type="text" name="address"  placeholder="House number and street name" value="" required>
+                    <span class="text-danger">@error('address'){{$message}}@enderror</span>
+                    @endif
+                    
                     
                 </label>
 
                 <label class="labelCustom">
                     <span>Email Address <span class="required">*</span></span>
-                    @foreach($user as $userinfo)
-                        <input class="input" type="email" name="email" placeholder="House number and street name" value="{{$userinfo->email}}" required>
-                    @endforeach
+                    @if(isset($user))
+                        @foreach($user as $userinfo)
+                            <input class="input" type="email" name="email" placeholder="" value="{{$userinfo->email}}" required>
+                        @endforeach   
+                        <span class="text-danger">@error('email'){{$message}}@enderror</span>
+                    @else
+                    <input class="input" type="email" name="email" placeholder="Enter your email" value="" required>
+                    <span class="text-danger">@error('email'){{$message}}@enderror</span>
+                    @endif
+                    
                     
                 </label>
 
                 <label class="labelCustom">
-                  <span>Model</span>
-                    <select  name="models" id="models">
-                      <option value="select" >Select your model</option>
-                        @foreach($models as $model)
-                         <option value="{{$model->model_id}}" >{{$model->model_name}}</option>
-                        @endforeach
-                        {{-- <input type="hidden" value="" name="model_id" id="model_selected_option"> --}}
-                    </select>   
-              </label>
-
-               
-                
-                <label class="labelCustom">
                     <span>Region <span class="required">*</span></span>
-                    <select  name="warehouses" id="warehouses">
+                    <select  name="warehouses" id="warehouses" required>
                         <option value="select" >Select your region</option>
                         @foreach($warehouses as $warehouse)
                             <option value="{{$warehouse->id}}" >{{$warehouse->warehouse_name}}</option>
                         @endforeach
-                        {{-- <input type="hidden" value="" name="warehouse_id" id="warehouse_selected_option"> --}}
-                      </select>  
+                    </select>  
+                    <span class="text-danger">@error('warehouses'){{$message}}@enderror</span>
+                </label>
+
+                <label class="labelCustom">
+                    <span>Model</span>
+                      <div class="Model">
+                          <select  name="models" id="models" required>
+                              
+                              <option id="SelectYourModel" value="Select your model" >Select your model</option>
+                                @foreach($models as $model)
+                                 <option value="{{$model->model_id}}" >{{$model->model_name}}</option>
+                                @endforeach
+                                
+                            </select>   
+                            <span class="text-danger">@error('models'){{$message}}@enderror</span>
+                      </div>
                 </label>
 
                 <label class="labelCustom">
                     <span>ShowRooms <span class="required">*</span></span>
-                    <select  name="showrooms" id="showrooms">
+                    <select  name="showrooms" id="showrooms" required>
                     </select>  
-                    {{-- <input type="hidden" value="" name="showroom_id" id="showroom_selected_option"> --}}
+                    <span class="text-danger">@error('showrooms'){{$message}}@enderror</span>
                 </label>
                 
                 <label class="labelCustom">
-                    <span>ShowRoom Address <span class="required">*</span></span>
+                    <span>ShowRoom Address <span class="required" required>*</span></span>
                     <textarea name="showroomAddressText" id="showroomAddressText" cols="48" rows="2" readonly ></textarea>
                 </label>
                 

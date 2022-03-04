@@ -20,6 +20,7 @@
 
 <body>
 	<input type="hidden" value="{{ url('') }}" id="url">
+	<input type="hidden" class="idToken" value="{{ csrf_token() }}">
 
   <div class="container-fluid">
       <!-- Start navbar -->
@@ -39,36 +40,7 @@
           <a class="nav-link dropdown-toggle" href="#" id="mega-one" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{__('home.Car')}}</a>
           <div class="dropdown-menu mega-area text-center" aria-labelledby="mega-one">
                     <div class="row d-flex justify-content-around text-center menu-show-car">
-                        <div class="col">
-                           <img src="/HomepageImage/slide2/VFe34.png" alt="">
-                           <div class="item-name">VFe34</div>
-                           <div class="item-price">{{__("from")}} 690.000.000 vnđ</div>
-                           <a class="view-detail-a" href="">{{__("View Detail.")}}</a>
-                        </div>
-                        <div class="col">
-                           <img src="/HomepageImage/slide2/Fadil.png" alt="">
-                           <div class="item-name">Fadil</div>
-                           <div class="item-price">{{__("from")}} 382.500.000 vnđ</div>
-                           <a class="view-detail-a" href="">{{__("View Detail.")}}</a>
-                        </div>
-                        <div class="col">
-                           <img src="/HomepageImage/slide2/LuxA.png" alt="">
-                           <div class="item-name">LuxA2.0</div>
-                           <div class="item-price">{{__("from")}} 949.435.000 vnđ</div>
-                           <a class="view-detail-a" href="">{{__("View Detail")}}</a>
-                        </div>
-                        <div class="col">
-                           <img src="/HomepageImage/slide2/LuxSA.png" alt="">
-                           <div class="item-name">LUX SA2.0</div>
-                           <div class="item-price">{{__("from")}} 1.220.965.000 vnđ</div>
-                           <a class="view-detail-a" href="">{{__("View Detail.")}}</a>
-                        </div>
-                        <div class="col">
-                           <img src="/HomepageImage/slide2/President.png" alt="">
-                           <div class="item-name">President</div>
-                           <div class="item-price">{{__("from")}} 3.800.000.000 vnđ</div>
-                           <a class="view-detail-a" href="">{{__("View Detail.")}}</a>
-                        </div>
+                       
                     </div>
                     <div class="desc">{{__("Sales policy may be updated subject to VinFast Policy from time to time.")}}</div>
                     <div class="view_all">
@@ -87,7 +59,6 @@
 					@if(App::getLocale() == 'vi')
 						<span class="on" id="activeLang">VN</span>
 						<span class="off" id="disableLang">EN</span>
-						
 					@elseif(App::getLocale() == 'en')
 						<span class="on" id="activeLang">EN</span>
 						<span class="off" id="disableLang">VN</span>
@@ -129,9 +100,10 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
   <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-  <script src="/js/layout.js"></script>
+  
   @stack('scriptsHomePage')
   @stack('scriptUserOrder')
+  <script src="/js/layout.js"></script>
 </body>
 
 <footer>
@@ -185,7 +157,7 @@
 			<div class="row">
 				<div class="col-md-4 col-sm-6">
                
-					<div class="footer-logo text-center"><img src="https://vinfastauto.com/themes/porto/img/logo-header.svg" alt="Vinfast" >
+					<div class="footer-logo text-center"><img src="/image/logoVinfast.png" alt="Vinfast" >
 					</div>
 					
 				</div>

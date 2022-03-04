@@ -2,9 +2,9 @@
 @section('content')
     <link rel="stylesheet" href="/css/order.css">
     <input type="hidden" class="idToken" value="{{ csrf_token() }}">
-    <input type="hidden" id="carID" value="{{$car_id_fromlayout}}">
+    <input type="text" id="carID" value="{{$car_id_fromlayout}}">
     @foreach($car_images as $car_image)
-    <input type="hidden" id="CarImagePath" value="{{$car_image->image}}">
+    <input type="text" id="CarImagePath" value="{{$car_image->image}}">
     @endforeach
     
     <div class="container">
@@ -38,7 +38,7 @@
                     @if(isset($user))
                         @foreach($user as $userinfo)
                              <input class="input" type="text" name="fullname" required value="{{$userinfo->fullname}}">
-                             <input class="input" type="hiddenm " name="customer_id" value="{{$userinfo->customer_id}}">
+                             <input class="input" type="hidden" name="customer_id" value="{{$userinfo->customer_id}}">
                          @endforeach
                          <span class="text-danger">@error('fullname'){{$message}}@enderror</span>
                     @else

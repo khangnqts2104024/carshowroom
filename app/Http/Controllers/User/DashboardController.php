@@ -208,6 +208,10 @@ class DashboardController extends Controller
                 $extension_img = $request->image_upload->guessClientExtension();
                 $file_name = time() . '_' . $fullnameUser . '.' . $extension_img;
                 $upload = $file->storeAs($path, $file_name, 'public');
+
+
+
+                
                 $user = Customer_Info::find($request->customer_id);
 
 

@@ -88,7 +88,6 @@ Route::prefix('user')->name('user.')->group(function(){
             Route::get('auth/home',[UserController::class,'home_auth'])->name('home_auth'); //customer homepage
             //Customer Order Page 
             Route::get('auth/order/{id?}',[UserOrderController::class,'CustomerOrder'])->name('CustomerOrder');
-            Route::get('auth/testQueryString',[UserOrderController::class,'testQueryString'])->name('testQueryString');
             Route::post('/getModelInfo',[UserOrderController::class,'getModelInfo'])->name('getModelInfo');
             Route::post('/getShowRoom',[UserOrderController::class,'getShowRoom'])->name('getShowRoom');
             Route::post('/getShowRoomAddress',[UserOrderController::class,'getShowRoomAddress'])->name('getShowRoomAddress');

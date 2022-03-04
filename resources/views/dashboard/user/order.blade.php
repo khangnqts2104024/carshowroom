@@ -38,7 +38,7 @@
                     @if(isset($user))
                         @foreach($user as $userinfo)
                              <input class="input" type="text" name="fullname" required value="{{$userinfo->fullname}}">
-                             <input class="input" type="hidden" name="customer_id" value="{{$userinfo->customer_id}}">
+                             <input class="input" type="hiddenm " name="customer_id" value="{{$userinfo->customer_id}}">
                          @endforeach
                          <span class="text-danger">@error('fullname'){{$message}}@enderror</span>
                     @else

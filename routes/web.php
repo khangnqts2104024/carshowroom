@@ -157,7 +157,7 @@ Route::get('admin/warehouse',[CarInfoController::class,'show']);
 Route::get('admin/warehouse/ordering',[OrderDetailController::class,'confirmtatus']);
 Route::get('admin/warehouse/delete', [CarInfoController::class,'carcancel']);
 Route::get('admin/warehouse/stock', [StockController::class,'show']);
-
+Route::get('admin/warehouse/stockadd/{id}', [StockController::class,'addstock']);
 
 Route::get('admin/warehouse/released',[CarInfoController::class,'released']);
 

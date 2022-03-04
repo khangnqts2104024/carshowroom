@@ -14,6 +14,8 @@
     </div><!-- /.container-fluid -->
 </section>
 
+
+
 <!-- Main content -->
 <section class="content">
     <div class="row">
@@ -63,10 +65,10 @@
                                 <td> {{$p->email}}</td>
                                 <td>{{ $p->fullname }}</td>
                                 <td>{{ $p->phone_number}} </td>
-                                <td>{{$p->address }}</td>
+                                <td>{{$p->employee_showroom->showroom_name }}</td>
                               
 
-                                <td>
+                                <td class="flex-container">
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#passId{{$x}}">
                                         <i class="fa-solid fa-key"></i>
                                     </button>
@@ -107,7 +109,7 @@
 
                                 <!-- Modal -->
                                 <!-- Button trigger modal -->
-                                <td>
+                                <td >
                                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#empdetail{{$x}}">
                                         <i class="fa-solid fa-circle-info"></i>
                                     </button>
@@ -143,6 +145,14 @@
                                                     <div class="employeeinfo ">
                                                         <h5>Địa Chỉ Nhà</h5>
                                                        <p> {{$p->address}}</p>
+                                                    </div>
+                                                    <div class="employeeinfo ">
+                                                        <h5>Số Điện Thoại</h5>
+                                                       <p> {{$p->phone_number}}</p>
+                                                    </div>
+                                                    <div class="employeeinfo ">
+                                                        <h5>Tiền Lương</h5>
+                                                       <p> {{$p->salary}}</p>
                                                     </div>
                                                     
                                                 </div>

@@ -15,8 +15,12 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\CarInfoController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ShowroomController;
 use App\Http\Controllers\StockController;
+
+use App\Models\showroom;
 use App\Models\modelInfo;
+
 use Database\Seeders\CarInfo;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -138,9 +142,16 @@ Route::get('admin/showroom/carmanagepending',[CarInfoController::class,'showroom
 Route::get('admin/showroom/carmanageshowroom',[CarInfoController::class,'showroomcarreceived']);
 
 Route::get('admin/general/employee',[EmployeeInfoController::class,'show']);
+Route::post('admin/general/employee/create',[EmployeeAccountController::class,'create']);
+// Route::post('admin/general/employee/create', 'EmployeeAccountController@create');
 Route::get('admin/general/customer',[DashboardController::class,'showcustlist']);
 Route::get('admin/general/customer/edit/{id}',[DashboardController::class,'edit']);
 Route::get('admin/general/report',[ReportController::class,'report']);
+Route::get('admin/general/empcreate', [ShowroomController::class,'create']);
+
+
+
+
 
 
 Route::get('admin/warehouse',[CarInfoController::class,'show']);
@@ -152,10 +163,6 @@ Route::get('admin/warehouse/stock', [StockController::class,'show']);
 Route::get('admin/warehouse/released',[CarInfoController::class,'released']);
 
 
-
-Route::get('admin/general/empcreate', function () {
-    return view('admin.general.empcreate');
-});
 
 
 

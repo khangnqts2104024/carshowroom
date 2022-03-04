@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Support\Arr;
+use PhpParser\Node\Stmt\Foreach_;
+
 class EmployeeInfoController extends Controller
 {
 
@@ -22,6 +25,9 @@ class EmployeeInfoController extends Controller
         return view('admin.general.empmanage')->with(['emp'=> $emp]);
 
     }
+
+
+ 
 
 
 

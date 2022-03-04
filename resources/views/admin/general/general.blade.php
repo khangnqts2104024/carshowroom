@@ -23,7 +23,7 @@
         <div class="flex-card">
             <a href="{{url('admin/general/report')}}">
                 <div class="manage-option">
-                    <i class="fa-solid fa-user"></i>
+                <i class="fa-solid fa-chart-area"></i>
                     <p>Báo Cáo</p>
                 </div>
             </a>
@@ -32,7 +32,7 @@
         <div class="flex-card">
             <a href="{{url('admin/general/employee')}}">
                 <div class="manage-option">
-                    <i class="fa-solid fa-list-check"></i>
+                <i class="fa-solid fa-user-pen"></i>
                     <p>Quản Lý Nhân Viên</p>
                 </div>
             </a>
@@ -40,7 +40,7 @@
         <div class="flex-card">
             <a href="{{('general/customer')}}">
                 <div class="manage-option">
-                    <i class="fa-solid fa-car"></i>
+                <i class="fa-solid fa-user-check"></i>
                     <p>Quản Lý Khách Hàng</p>
                 </div>
             </a>
@@ -48,7 +48,7 @@
         <div class="flex-card">
             <a href="{{url('admin/s')}}">
                 <div class="manage-option">
-                    <i class="fa-solid fa-warehouse"></i>
+                <i class="fa-solid fa-car"></i>
                     <p>Quản Lý Model</p>
                 </div>
             </a>

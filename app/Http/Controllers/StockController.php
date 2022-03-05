@@ -15,4 +15,16 @@ class StockController extends Controller
         return view('admin.warehouse.stock')->with(['stocks'=> $stocks]);
 
     }
+    public function addstock(Request $request,$id) {
+        $add = $request->all();
+       
+       
+        // dd($stocks);
+        $s=stock::find($id);
+        $s->quantity+= $add['stock'];
+       $s->save();
+
+        return redirect()->back();
+
+    }
 }

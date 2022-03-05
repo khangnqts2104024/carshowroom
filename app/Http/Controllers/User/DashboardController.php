@@ -27,7 +27,7 @@ class DashboardController extends Controller
     public function editfullname(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'fullname' => 'required',
+            'fullname'=> array('required','regex:/^[A-Za-z\s]+$/'),
         ]);
 
         if ($validator->fails()) {
@@ -57,7 +57,7 @@ class DashboardController extends Controller
     public function editaddress(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'address' => 'required',
+            'address'=> array('required','regex:/^[a-zA-Z0-9,-\s]*$/'),            
         ]);
 
         if ($validator->fails()) {
@@ -88,7 +88,7 @@ class DashboardController extends Controller
     public function editphone(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'phone_number' => 'required',
+            'phone_number'=> array('required','regex:/^[0-9]{10,11}$/'),
         ]);
         if ($validator->fails()) {
             return response()->json([
@@ -117,7 +117,7 @@ class DashboardController extends Controller
     public function editEmail(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'email' => 'required',
+            'email' => array('required','regex:/^[^\s@-]+@[^\s@-]+\.[^\s@]+$/','unique:customer_infos,email'),
             'password' => 'required',
         ]);
 
@@ -159,7 +159,7 @@ class DashboardController extends Controller
     public function editCitizenID(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'citizen_id' => 'required',
+            'citizen_id'=> array('required','regex:/^[0-9]*$/','unique:customer_infos'),
         ]);
 
         if ($validator->fails()) {
@@ -208,6 +208,10 @@ class DashboardController extends Controller
                 $extension_img = $request->image_upload->guessClientExtension();
                 $file_name = time() . '_' . $fullnameUser . '.' . $extension_img;
                 $upload = $file->storeAs($path, $file_name, 'public');
+
+
+
+                
                 $user = Customer_Info::find($request->customer_id);
 
 

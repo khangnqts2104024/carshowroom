@@ -17,6 +17,7 @@ use App\Http\Controllers\CarInfoController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ShowroomController;
 use App\Http\Controllers\StockController;
+use App\Http\Controllers\SocialController;
 
 use App\Models\showroom;
 use App\Models\modelInfo;
@@ -47,6 +48,8 @@ Route::get('/lang/{locale?}',[ChangeLanguageController::class,'switch']);
 // })->middleware('Localization');
 
 Auth::routes();
+Route::get('/redirect/google', [SocialController::class,'redirectGoogle']);
+Route::get('/callback/google', [SocialController::class,'callbackGoogle']);
 
 Route::prefix('user')->name('user.')->group(function(){
     // Guest - User UnAuthenticated
@@ -73,7 +76,7 @@ Route::prefix('user')->name('user.')->group(function(){
     // Customer - User Authenticated
     Route::middleware(['auth:web','PreventBackHistory','Localization'])->group(function(){
         //Customer Profile Page
-        Route::get('/auth/fetchInfo_Layout_auth',[UserController::class,'fetchInfo_Layout_auth'])->name('fetchInfo_Layout_auth');
+        
         Route::prefix('profile')->name('profile.')->group(function(){
             Route::get('auth/settings',[DashboardController::class,'show'])->name('settings');
             Route::get('auth/fetch-data',[DashboardController::class,'fetchData']);
@@ -85,13 +88,13 @@ Route::prefix('user')->name('user.')->group(function(){
             Route::post('auth/editAvatar',[DashboardController::class,'editAvatar']); 
         });
         //Function page for customer
+        Route::get('/auth/fetchInfo_Layout_auth',[UserController::class,'fetchInfo_Layout_auth'])->name('fetchInfo_Layout_auth');
             Route::get('auth/home',[UserController::class,'home_auth'])->name('home_auth'); //customer homepage
             //Customer Order Page 
             Route::get('auth/order/{id?}',[UserOrderController::class,'CustomerOrder'])->name('CustomerOrder');
-            Route::get('auth/testQueryString',[UserOrderController::class,'testQueryString'])->name('testQueryString');
-            Route::post('/getModelInfo',[UserOrderController::class,'getModelInfo'])->name('getModelInfo');
-            Route::post('/getShowRoom',[UserOrderController::class,'getShowRoom'])->name('getShowRoom');
-            Route::post('/getShowRoomAddress',[UserOrderController::class,'getShowRoomAddress'])->name('getShowRoomAddress');
+            Route::post('/auth/getModelInfo',[UserOrderController::class,'getModelInfo'])->name('getModelInfo');
+            Route::post('/auth/getShowRoom',[UserOrderController::class,'getShowRoom'])->name('getShowRoom');
+            Route::post('/auth/getShowRoomAddress',[UserOrderController::class,'getShowRoomAddress'])->name('getShowRoomAddress');
             Route::post('/CustomerSubmitOrder',[UserOrderController::class,'CustomerSubmitOrder'])->name('CustomerSubmitOrder');
             //Customer Cost Estimation
             Route::get('auth/CostEstimate',[UserOrderController::class,'CostEstimate'])->name('CostEstimate');

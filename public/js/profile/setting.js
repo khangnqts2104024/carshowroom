@@ -363,7 +363,14 @@ $(function() {
                $('#showEmail').text(item.email);
                $('#showCitizenID').text(item.citizen_id);
                $('#fullnameUserLayout').text(item.fullname);
+
+               //pass info to user can edit
                $('#fullnameEdit').val(item.fullname);
+               $('#addressEdit').val(item.address);
+               $('#phoneNumberEdit').val(item.phone_number);
+               $('#emailEdit').val(item.email);
+               $('#citizen_id').val(item.citizen_id);
+
                var pathAvatar = item.avatar;
                $('#showAvatarUser').attr("src", '/storage/files/Avatar_User/'+pathAvatar+'');
               

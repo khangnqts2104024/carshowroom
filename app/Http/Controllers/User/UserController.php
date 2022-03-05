@@ -55,13 +55,14 @@ class UserController extends Controller
     public function create(Request $request){
         //validate input
         $request->validate([
-            'email' => 'required|email|unique:customer_infos,email',
-            'fullname'=> 'required',
-            'citizen_id'=> 'required|unique:customer_infos',
-            'phone_number'=> 'required',
-            'address'=> 'required',            
+            'email' => array('required','regex:/^[^\s@-]+@[^\s@-]+\.[^\s@]+$/','unique:customer_infos,email'),
+            'fullname'=> array('required','regex:/^[A-Za-z\s]+$/'),
+            'citizen_id'=> array('required','regex:/^[0-9]*$/','unique:customer_infos'),
+            'phone_number'=> array('required','regex:/^[0-9]{10,11}$/'),
+            'address'=> array('required','regex:/^[a-zA-Z0-9,-\s]*$/'),            
             'password' => 'required|min:5|max:30',
             'ConfirmPassword' => 'required|min:5|max:30|same:password',
+
         ]);
         $user_info = new Customer_Info();
         $user_info->email =  $request->email;
@@ -97,7 +98,7 @@ class UserController extends Controller
             'password' => 'required|min:5|max:30',
         ],
     [
-        'email.exists'=>"Email đã tồn tại!"
+        'email.exists'=>"Email không tồn tại!"
     ]);
        }else{
         $request->validate([
@@ -105,7 +106,7 @@ class UserController extends Controller
             'password' => 'required|min:5|max:30',
         ],
     [
-        'email.exists'=>"Email already in use!"
+        'email.exists'=>"Email does not exist!"
     ]);
        }
 

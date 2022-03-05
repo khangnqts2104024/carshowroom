@@ -9,7 +9,7 @@
             <div class="col-sm-12">
                 <h1 class="vin-title">VINFAST</h1>
             </div>
-HUY
+
         </div>
     </div><!-- /.container-fluid -->
 </section>

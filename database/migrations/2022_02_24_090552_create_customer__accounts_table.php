@@ -16,8 +16,10 @@ return new class extends Migration
     {
         Schema::create('customer_accounts', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('customer_id');
+            $table->foreign('customer_id')->references('customer_id')->on('customer_infos')->onUpdate('cascade')->onDelete('cascade');    
             $table->string('email')->unique();
-            $table->foreign('email')->references('email')->on('customer_infos')->onUpdate('cascade')->onDelete('cascade');    
+            // $table->foreign('email')->references('email')->on('customer_infos')->onUpdate('cascade')->onDelete('cascade');    
             $table->timestamp('email_verified_at');
             $table->string('password',70);
             $table->rememberToken();

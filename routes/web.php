@@ -124,9 +124,7 @@ Route::get('/test',[ModelInfoController::class,'compare']);
 
 
 
-Route::get('admin/warehouse/create', function () {
-    return view('admin.warehouse.createcar');
-});
+
 
 Route::get('admin/profile', function () {
     return view('admin.adminprofile.adminprofile');
@@ -154,11 +152,14 @@ Route::get('admin/general/empcreate', [ShowroomController::class,'create']);
 
 
 
+
 Route::get('admin/warehouse',[CarInfoController::class,'show']);
 Route::get('admin/warehouse/ordering',[OrderDetailController::class,'confirmtatus']);
 Route::get('admin/warehouse/delete', [CarInfoController::class,'carcancel']);
 Route::get('admin/warehouse/stock', [StockController::class,'show']);
 Route::get('admin/warehouse/stockadd/{id}', [StockController::class,'addstock']);
+Route::get('admin/warehouse/car/delete/{id}', [CarInfoController::class,'cardelete']);
+Route::post('admin/warehouse/ordering/create', [CarInfoController::class,'carcreate']);
 
 Route::get('admin/warehouse/released',[CarInfoController::class,'released']);
 

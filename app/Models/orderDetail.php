@@ -15,6 +15,8 @@ class orderDetail extends Model
       'emp_received',
       'order_status',];	
 
+      // public $primaryKey=array('model_id','order_id',);
+
       public $timestamps = false;
    public function orders(){
    return $this->belongsTo(order::class,'order_id','order_id');

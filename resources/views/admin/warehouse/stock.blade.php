@@ -33,6 +33,7 @@
                                 <th>STT</th>
                                 <th>Model Xe</th>
                                 <th>Kho</th>
+                                <th>Màu xe</th>
                                 <th>Số Lượng Tồn Kho</th>
                                 <th>Nhập Thêm Xe</th>
                             </tr>
@@ -45,6 +46,7 @@
                                 <td>{{ $x++ }}</td>
                                 <td> {{$p->model->model_name}}</td>
                                 <td>{{ $p->warehouse->warehouse_name}}</td>
+                                <td> {{$p->model->color}}</td>
                                 <td >{{$p->quantity}}</td>
                                 <td class="flex-container-left">
                                     <p></p>

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('car_status')->default('pending');
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('order_id')->on('orders')->onUpdate('cascade')->onDelete('cascade');
+            
             $table->timestamp('manufactoring_date');
         
         });

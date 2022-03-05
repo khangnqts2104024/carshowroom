@@ -39,7 +39,7 @@
             </form>
 
             <div class="forgot text-center">
-                <a href="#">Forgot email?</a> <span>|</span> <a href="{{route('password.request')}}">{{__('login.ForgotPassword?')}}</a>
+              <a href="{{ url('/redirect/google') }}" class="btn btn-primary" style="color: white;background-color:rgb(61,105,225)"><i class="fa fa-google"></i> Google</a> <span>|</span> <a href="{{route('password.request')}}">{{__('login.ForgotPassword?')}}</a>
             </div>
 
             <div class="or-text">
@@ -50,8 +50,14 @@
             
             <a href="{{route('user.register')}}"><button class="btn btn-block buttonCreateAccount">{{__('login.CreateAccount')}}</button></a>
         </div>
+
+        <hr>
+  
+
+    
         
   </div>
+
   <script>
       //show con mắt - tắt mắt khi out focus
       window.addEventListener('click', function(e) {
@@ -89,8 +95,5 @@
         }
       }
     </script>
-@php
-    
-@endphp
   @endsection
 

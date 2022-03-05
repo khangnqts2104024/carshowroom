@@ -2,14 +2,23 @@
 @section('content')
     <link rel="stylesheet" href="/css/order.css">
     <input type="hidden" class="idToken" value="{{ csrf_token() }}">
-    <input type="text" id="carID" value="{{$car_id_fromlayout}}">
+    <input type="hidden" id="model_id" value="{{$car_id_fromlayout}}">
     @foreach($car_images as $car_image)
-    <input type="text" id="CarImagePath" value="{{$car_image->image}}">
+    <input type="hidden" id="CarImagePath" value="{{$car_image->image}}">
     @endforeach
+    @if(Auth::check())
+        <input type="hidden" class="url_Get_ModelInFo" value="/user/auth/getModelInfo">
+        <input type="hidden" class="url_Get_ShowRoom" value="/user/auth/getShowRoom">
+        <input type="hidden" class="url_Get_ShowRoomAddress" value="/user/auth/getShowRoomAddress">
+    @else
+        <input type="hidden" class="url_Get_ModelInFo" value="/user/getModelInfo">
+        <input type="hidden" class="url_Get_ShowRoom" value="/user/getShowRoom">
+        <input type="hidden" class="url_Get_ShowRoomAddress" value="/user/getShowRoomAddress">
+    @endif
     
     <div class="container">
         <div class="title d-flex justify-content-between">
-            <h2>Product Order Form</h2>
+            <h2>{{__('Product Order Form')}}</h2>
             <div class="message">
                 
                 @if(Session::get('success'))
@@ -34,54 +43,54 @@
                 @csrf
                 <div class="d-flex" style="flex-direction: column">
                   <label class="labelCustom">
-                    <span class="fname">Full Name <span class="required">*</span></span>
+                    <span class="fname">{{__('Full Name')}} <span class="required">*</span></span>
                     @if(isset($user))
                         @foreach($user as $userinfo)
-                             <input class="input" type="text" name="fullname" required value="{{$userinfo->fullname}}">
-                             <input class="input" type="hidden" name="customer_id" value="{{$userinfo->customer_id}}">
+                             <input class="input" type="text" name="fullname" placeholder="{{__('Enter your Fullname')}}" required value="{{$userinfo->fullname}}">
+                             <input class="input" type="hidden" name="customer_id"  value="{{$userinfo->customer_id}}">
                          @endforeach
                          <span class="text-danger">@error('fullname'){{$message}}@enderror</span>
                     @else
-                         <input class="input" type="text" name="fullname" placeholder="Enter your fullname" required value="">
+                         <input class="input" type="text" name="fullname" placeholder="{{__('Enter your Fullname')}}" required value="">
                          <span class="text-danger">@error('fullname'){{$message}}@enderror</span>
                     @endif
                   </label>
 
                   <label class="labelCustom">
-                    <span>Citizen ID<span class="required">*</span></span>
+                    <span>{{__('Citizen ID')}}<span class="required">*</span></span>
                     @if(isset($user))
                         @foreach($user as $userinfo)
-                            <input class="input" type="text" name="citizen_id" required value="{{$userinfo->citizen_id}}">
+                            <input class="input" type="text" name="citizen_id" placeholder="{{__('Enter your CitizenID')}}" required value="{{$userinfo->citizen_id}}">
                         @endforeach
                         <span class="text-danger">@error('citizen_id'){{$message}}@enderror</span>
                     @else
-                         <input class="input" type="text" required name="citizen_id" placeholder="Enter your Citizen ID" value="">
+                         <input class="input" type="text" required name="citizen_id" placeholder="{{__('Enter your CitizenID')}}" value="">
                          <span class="text-danger">@error('citizen_id'){{$message}}@enderror</span>
                     @endif
                 </label>
 
                   <label class="labelCustom">
-                    <span>Phone Number<span class="required">*</span></span>
+                    <span>{{__('Phone Number')}}<span class="required">*</span></span>
                     @if(isset($user))
                         @foreach($user as $userinfo)
-                            <input class="input" type="text" name="phone_number" required value="{{$userinfo->phone_number}}">
+                            <input class="input" type="text" name="phone_number" placeholder="{{__('Enter your Phone Number')}}" required value="{{$userinfo->phone_number}}">
                         @endforeach
                         <span class="text-danger">@error('phone_number'){{$message}}@enderror</span>
                     @else
-                         <input class="input" type="text" required name="phone_number" placeholder="Enter your phone number" value="">
+                         <input class="input" type="text" required name="phone_number" placeholder="{{__('Enter your Phone Number')}}" value="">
                          <span class="text-danger">@error('phone_number'){{$message}}@enderror</span>
                     @endif
                 </label>
 
                 <label class="labelCustom">
-                    <span>Address <span class="required">*</span></span>
+                    <span>{{__('Address')}} <span class="required">*</span></span>
                     @if(isset($user))
                          @foreach($user as $userinfo)
-                             <input class="input" type="text" name="address" required placeholder="House number and street name" value="{{$userinfo->address}}">
+                             <input class="input" type="text" name="address" required placeholder="{{__('House number and street name')}}" value="{{$userinfo->address}}">
                         @endforeach
                         <span class="text-danger">@error('address'){{$message}}@enderror</span>
                     @else
-                    <input class="input" type="text" name="address"  placeholder="House number and street name" value="" required>
+                    <input class="input" type="text" name="address"  placeholder="{{__('House number and street name')}}" value="" required>
                     <span class="text-danger">@error('address'){{$message}}@enderror</span>
                     @endif
                     
@@ -89,14 +98,14 @@
                 </label>
 
                 <label class="labelCustom">
-                    <span>Email Address <span class="required">*</span></span>
+                    <span>{{__('Email Address')}} <span class="required">*</span></span>
                     @if(isset($user))
                         @foreach($user as $userinfo)
-                            <input class="input" type="email" name="email" placeholder="" value="{{$userinfo->email}}" required>
+                            <input class="input" type="email" name="email" placeholder="{{__('Enter your Email')}}" value="{{$userinfo->email}}" required>
                         @endforeach   
                         <span class="text-danger">@error('email'){{$message}}@enderror</span>
                     @else
-                    <input class="input" type="email" name="email" placeholder="Enter your email" value="" required>
+                    <input class="input" type="email" name="email" placeholder="{{__('Enter your Email')}}" value="" required>
                     <span class="text-danger">@error('email'){{$message}}@enderror</span>
                     @endif
                     
@@ -104,9 +113,9 @@
                 </label>
 
                 <label class="labelCustom">
-                    <span>Region <span class="required">*</span></span>
+                    <span>{{__('Region')}}<span class="required">*</span></span>
                     <select  name="warehouses" id="warehouses" required>
-                        <option value="select" >Select your region</option>
+                        <option value="select" >{{__('Select your Region')}}</option>
                         @foreach($warehouses as $warehouse)
                             <option value="{{$warehouse->id}}" >{{$warehouse->warehouse_name}}</option>
                         @endforeach
@@ -115,11 +124,11 @@
                 </label>
 
                 <label class="labelCustom">
-                    <span>Model</span>
+                    <span>{{__('Model')}}<span class="required">*</span></span>
                       <div class="Model">
                           <select  name="models" id="models" required>
                               
-                              <option id="SelectYourModel" value="Select your model" >Select your model</option>
+                              <option id="SelectYourModel" value="{{__('Select your Model')}}">{{__('Select your Model')}}</option>
                                 @foreach($models as $model)
                                  <option value="{{$model->model_id}}" >{{$model->model_name}}</option>
                                 @endforeach
@@ -130,14 +139,14 @@
                 </label>
 
                 <label class="labelCustom">
-                    <span>ShowRooms <span class="required">*</span></span>
+                    <span>{{__('ShowRoom')}}<span class="required">*</span></span>
                     <select  name="showrooms" id="showrooms" required>
                     </select>  
                     <span class="text-danger">@error('showrooms'){{$message}}@enderror</span>
                 </label>
                 
                 <label class="labelCustom">
-                    <span>ShowRoom Address <span class="required" required>*</span></span>
+                    <span>{{__('ShowRoom Address')}} <span class="required" required>*</span></span>
                     <textarea name="showroomAddressText" id="showroomAddressText" cols="48" rows="2" readonly ></textarea>
                 </label>
                 
@@ -152,7 +161,7 @@
             <div class="Yorder">
                 <table class="tableCustom">
                     <tr>
-                        <th colspan="2">Your order</th>
+                        <th colspan="2">{{__('Your Order')}}</th>
                     </tr>
                     <tr>
                         <td class="carname"></td>
@@ -160,22 +169,24 @@
                     </tr>
 
                     <tr>
-                      <td style="color: red">Deposit (20%)</td>
-                      <td class="deposit" style="color: red">0 VND</td>
-                  </tr>
-
-                    <tr>
-                        <td>Subtotal</td>
+                        <td>{{__('Notional Price')}}</td>
                         <td class="subtotal" name='subtotal' style="color: red">0 VND</td>
                         
                     </tr>
+
                     <tr>
-                        <td>Shipping</td>
-                        <td>Free shipping</td>
+                      <td style="color: red">{{__('Deposit')}} (20%)</td>
+                      <td class="deposit" style="color: red">0 VND</td>
+                    </tr>
+
+                   
+                    <tr>
+                        <td>{{__('Shipping')}}</td>
+                        <td>{{__('Free Shipping')}}</td>
                     </tr>
                 </table>
                 <div>
-                    <input type="radio" name="dbt" value="dbt" checked> Cash Directly
+                    <input type="radio" name="dbt" value="dbt" checked> {{__('Cash Directly')}}
                 </div>
                 <p class="textPayment">
                     Make your payment directly into our bank account. Please use your Order ID as the payment reference.
@@ -183,7 +194,7 @@
                 </p>
               
                 
-                <button class="buttonCustom" type="submit" form="submitOrder">Place Order</button>
+                <button class="buttonCustom" type="submit" form="submitOrder">{{__('Place Order')}}</button>
             </div><!-- Yorder -->
         </div>
     </div>

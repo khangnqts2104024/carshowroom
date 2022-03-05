@@ -124,7 +124,7 @@
                                                 <div class="form-group">
                                                     <label>{{__('UserProfilesettings.Address')}}</label>
                                                     <input type="text" name="address" id="addressEdit" class="form-control formRound"
-                                                        value="{{ old('address') }}" placeholder="Enter your address here">
+                                                        value="" placeholder="Enter your address here">
                                                     {{-- show error message --}}
                                                     <span class="text-danger">@error('address')
                                                             {{ $message }}
@@ -180,7 +180,7 @@
                                                 <div class="form-group">
                                                     <label>{{__('UserProfilesettings.PhoneNumber')}}</label>
                                                     <input type="text" name="phonenumber" id="phoneNumberEdit" class="form-control formRound"
-                                                        value="{{ old('phonenumber') }}"
+                                                        value=""
                                                         placeholder="Enter your phone here">
                                                     {{-- show error message --}}
                                                     <span class="text-danger">@error('phonenumber')
@@ -240,7 +240,7 @@
                                                 <div class="form-group">
                                                     <label>{{__('UserProfilesettings.Email')}}</label>
                                                     <input type="email" name="email" id="emailEdit" class="form-control formRound"
-                                                        value="{{ old('email') }}" placeholder="Enter your email here">
+                                                        value="" placeholder="Enter your email here">
                                                     {{-- show error message --}}
                                                     <span class="text-danger">@error('email')
                                                             {{ $message }}
@@ -250,7 +250,7 @@
                                                 <div class="form-group">
                                                     <label>{{__('UserProfilesettings.Current Password')}}</label>
                                                     <input type="password" name="password" id="currentPassWord" class="form-control formRound"
-                                                        value="{{ old('password') }}"
+                                                        value=""
                                                         placeholder="Enter your password here">
                                                     
                                                     <span class="text-danger">@error('password')
@@ -323,7 +323,7 @@
                                                 <div class="form-group">
                                                     <label>{{__('UserProfilesettings.CitizenID')}}</label>
                                                     <input type="text" name="citizen_id" id="citizen_id" class="form-control formRound"
-                                                        value="{{ old('citizen_id') }}"
+                                                        value=""
                                                         placeholder="Enter your Citizen ID here">
                                                     {{-- show error message --}}
                                                     <span class="text-danger">@error('citizen_id')

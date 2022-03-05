@@ -189,3 +189,10 @@ Route::get('/compare','App\Http\Controllers\CompareController@index');
 Route::get('/user/compare',function(){
     return view('compare');
 });
+
+Route::get('/news/new1',function(){
+    return view('news/new1');
+});
+Route::get('/news/topic1',function(){
+    return view('news/topic1');
+});

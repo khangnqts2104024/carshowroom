@@ -4,9 +4,9 @@
 
     <div class="row wrapperLayout mt-5">
         <div class="col-md-6 divLeft">
-            <!-- <div class="showCar"></div> -->
+          
             <div class="showCar">
-                <img width="100%" src="/HomepageImage/slide2/President.png" alt="Vinfast" />
+                <img width="100%" src="/HomepageImage/news/topic1/President.png" alt="Vinfast" />
             </div>
 
             <div class="row fee-area1">

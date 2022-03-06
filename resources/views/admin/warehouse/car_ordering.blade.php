@@ -24,6 +24,12 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Quản Lý Xe</h3>
+                    <br>
+                  
+                    <input id="massage" type="text" hidden value="{{Session::get('a')}}">
+                
+                    
+                   
                 </div>
                 <div class="option-container">
                     <a href="{{url('admin/warehouse')}}">
@@ -158,12 +164,25 @@
     <!-- /.row -->
 
     <!-- /.row -->
+   
+    
+   
+         
 </section>
 @endsection
+
 @section('script-section')
+
+
 <script>
+    var massage=document.getElementById('massage');
+    if(document.getElementById('massage').value!=''){alert(massage.value);}
+
     $(document).ready(function() {
         $('#myTable').DataTable();
+        
     });
+
+    
 </script>
 @endsection

@@ -4,7 +4,12 @@ namespace App\Http\Controllers;
 use App\Models\carInfo;
 use App\Models\orderDetail;
 use App\Models\stock;
+use App\Models\showroom;
 use Illuminate\Http\Request;
+use LaravelTreats\Model\Traits;
+
+
+use Illuminate\Database\Eloquent\Builder;
 
 class CarInfoController extends Controller
 {
@@ -75,16 +80,27 @@ public function carcreate(Request $request){
     $car= new carInfo($info);
 
     $order=orderDetail::where('order_id',$info['order_id'])->where('model_id',$info['car_model'])->first();
-    $order->update(['order_status'=>'released']);
-    dd($order);
+    $order->order_status='released';
+   
+    $region=showroom::select('region')->where('id',$info['car_branch'])->first();
+    
+    $stock=stock::where('model_id',$info['car_model'])->where('repo_id',$region['region'])->first();
   
+    if($stock->quantity>0){
+        $stock->quantity-=1;
+        $order->save();
+        $car->save();
+        $stock->save();
+        $a="Xe Đã Xuất Kho!";
+    }else{
+       $a=  "Model ".$stock->model->model_name." tai kho ".$stock->warehouse->warehouse_name." đã hết, mời đặt thêm!";
+
+    }
 
     
-    $car->save();
-
-
-    // dd($car);
-    return redirect()->action('OrderDetailController@confirmtatus');
+    
+  
+    return redirect()->back()->with(['a'=> $a]);
 
 
 }

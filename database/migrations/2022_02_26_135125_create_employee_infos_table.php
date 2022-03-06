@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id('employee_id');
             $table->string('email')->unique();
             $table->string('fullname');
-            $table->string('phone_number',11);
-            $table->string('address');
+            $table->string('phone_number',11)->nullable();
+            $table->string('address')->nullable();
             $table->unsignedBigInteger('salary')->nullable();
             $table->unsignedBigInteger('emp_branch');
             $table->foreign('emp_branch')->references('id')->on('showrooms')->onUpdate('cascade')->onDelete('cascade');

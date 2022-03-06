@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('order_details', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('model_id');
             $table->foreign('model_id')->references('model_id')->on('model_infos')->onUpdate('cascade')->onDelete('cascade');;
             $table->unsignedBigInteger('order_id');
@@ -22,7 +23,7 @@ return new class extends Migration
             $table->string('emp_received')->default('N/A');
             // $table->foreign('emp_received')->references('employee_id')->on('employee_infos');
             $table->string('order_status')->default('ORDERED');
-            $table->primary(['model_id','order_id']);
+            $table->unique(['model_id','order_id']);
             
             // thêm option
         });

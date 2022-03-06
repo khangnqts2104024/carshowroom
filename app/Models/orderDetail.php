@@ -24,4 +24,8 @@ class orderDetail extends Model
    public function modelInfos(){
       return $this->belongsTo(modelInfo::class,'model_id','model_id');
    }
+ 
+   
+
+
 }

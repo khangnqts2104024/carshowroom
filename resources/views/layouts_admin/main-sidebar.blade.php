@@ -86,7 +86,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('admin/general/customer') }}" class="nav-link">
+                            <a href="{{ url('admin/general/allmodel') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Quản Lý Model</p>
                             </a>

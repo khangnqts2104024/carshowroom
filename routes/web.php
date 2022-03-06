@@ -225,9 +225,11 @@ Route::get('admin/general/save_model', function () {
     return view('admin.general.all_model',[ModelInfoController::class,'updateModel']);
 });
 //model
-// Route::get('', 'App\Http\Controllers\ModelController@addModel');
-// Route::get('/edit-model/{model_id}', 'App\Http\Controllers\ModelController@editModel');
-// Route::get('/delete-model/{model_id}', 'App\Http\Controllers\ModelController@deleteModel');
-// Route::get('/all-model', 'App\Http\Controllers\ModelController@allModel');
-// Route::post('/save-model', 'App\Http\Controllers\ModelController@saveModel');
-// Route::post('/update-model/{model_id}', 'App\Http\Controllers\ModelController@updateModel');
+Route::get('admin/general/addmodel', 'ModelInfoController@addModel');
+Route::get('admin/general/editmodel/{model_id}', 'ModelInfoController@editModel');
+Route::get('admin/general/deletemodel/{model_id}', 'ModelInfoController@deleteModel');
+Route::get('admin/general/allmodel', 'ModelInfoController@allModel');
+
+Route::get('user/modeldetails/{model_id?}', 'ModelInfoController@showModel');
+Route::post('admin/general/savemodel', 'ModelInfoController@saveModel');
+Route::post('admin/general/updatemodel/{model_id}', 'ModelInfoController@updateModel');

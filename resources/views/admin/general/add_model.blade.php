@@ -26,77 +26,115 @@
         }
         ?>
         <div class="position-center">
-            <form role="form" action="{{URL::to('/save-model')}}" method="POST" enctype="multipart/form-data">
+            <form role="form" action="{{URL::to('admin/general/savemodel')}}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Mã dòng xe</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" name="model_id">
+                    <input type="hidden" class="form-control" id="exampleInputEmail1" name="model_id">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Tên dòng xe</label>
                     <input type="text" class="form-control" id="exampleInputPassword1" name="model_name">
                 </div>
                 <div class="form-group">
+                    <label for="exampleInputPassword1">Loại xe</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" name="car_type">
+                </div>
+                <div class="form-group">
                     <label for="exampleInputPassword1">Kích thước</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" name="kich_thuoc">
+                    <input type="text" class="form-control" id="exampleInputPassword1" name="size">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Khối lượng</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" name="khoi_luong">
+                    <input type="text" class="form-control" id="exampleInputPassword1" name="weight">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Loại động cơ</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" name="loai_dong_co">
+                    <input type="text" class="form-control" id="exampleInputPassword1" name="engine">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Công suất tối đa</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" name="wattage">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Hộp số</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" name="car_gearbox">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Tự động tắt động cơ</label>
-                    <select name="tu_dong_tat_dong_co" class="form-control input-sm m-bot15">
+                    <select name="engine_shutdown_function" class="form-control input-sm m-bot15">
                         <option value="0">Có</option>
                         <option value="1">Không</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Dẫn động</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" name="dan_dong">
+                    <label for="exampleInputPassword1">Tiêu thụ nhiên liệu</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" name="fuel_consumption">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Ống xả đôi</label>
-                    <select name="ong_xa_doi" class="form-control input-sm m-bot15">
-                        <option value="0">Có</option>
-                        <option value="1">Không</option>
+                    <select name="exhaust_pipe" class="form-control input-sm m-bot15">
+                        <option value="Có">Có</option>
+                        <option value="Không">Không</option>
                     </select>
                 </div>
                 <div class="form-group">
+                    <label for="exampleInputPassword1">La-zăng hợp kim nhôm</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" name="alluminum_alloy_lazang">
+                </div>
+                <div class="form-group">
                     <label for="exampleInputPassword1">Đèn chiếu</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" name="den_chieu">
+                    <input type="text" class="form-control" id="exampleInputPassword1" name="lamp">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Chế độ đèn tự động</label>
+                    <select name="automatic_lights" class="form-control input-sm m-bot15">
+                        <option value="Có">Có</option>
+                        <option value="Không">Không</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Chỗ ngồi</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" name="cho_ngoi">
+                    <input type="text" class="form-control" id="exampleInputPassword1" name="seat">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Màn hình</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" name="man_hinh">
+                    <label for="exampleInputPassword1">Màn hình trung tâm</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" name="central_screen">
                 </div>
+               
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Điều chỉnh vô lăng</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" name="dieu_chinh_vo_lang">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Hệ thống giải trí</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" name="he_thong_giai_tri">
+                    <label for="exampleInputPassword1">Hệ thống điều hòa</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" name="air_conditioning">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Phanh trước</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" name="phanh_truoc">
+                    <input type="text" class="form-control" id="exampleInputPassword1" name="front_wheel_brake">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Phanh sau</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" name="phanh_sau">
+                    <input type="text" class="form-control" id="exampleInputPassword1" name="rear_wheel_brake">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Giá</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" name="price">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Kích hoạt</label>
+                    <select name="active" class="form-control input-sm m-bot15">
+                        <option value="active">Có</option>
+                        <option value="inactive">Không</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Màu</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" name="color">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputFile">Thêm ảnh</label>
                     <input type="file" id="exampleInputFile" name="image">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputFile">Thêm ảnh động</label>
+                    <input type="file" id="exampleInputFile" name="gif">
                 </div>
                 <div class="checkbox">
                 </div>

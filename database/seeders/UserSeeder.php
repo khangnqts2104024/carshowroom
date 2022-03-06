@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
       DB::table('customer_accounts')->insert([
         [
         'email'=>'customer@gmail.com',	
+        'customer_id'=>1,
         'email_verified_at' => now(),
         'password' => '$2y$10$PK/rCp4hXGOzeYZfUwnu8uuyVqlyp779HowEQr0QxfG3OLUGESrtO', // password 123456
         'remember_token' => Str::random(10),

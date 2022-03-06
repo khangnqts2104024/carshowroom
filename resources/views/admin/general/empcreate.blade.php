@@ -61,7 +61,7 @@
 
                     <label for="password-signIn">Password</label>
                     <div id="form-password">
-                        <input type="password" name="password" class="form-control formRound" id="passwordField" onclick="showIcon()" autocomplete="off" value="">
+                        <input type="password" name="password" class="form-control formRound" id="passwordField" onclick="showIcon()" autocomplete="off" value="{{old('password')}}">
                         <span class="text-danger">@error('password'){{$message}} @enderror</span>
                         <span class="eye" id="eye" onclick="showPass()">
                             <i class="fa fa-eye" aria-hidden="true" id="show"></i>
@@ -86,8 +86,9 @@
                     <div class="form-group">
                         <label for="role">Phòng ban</label>
                         <select id="role" class="form-control" name="role">
-                            <option value="dealer">Dealer</option>
-                            <option value="warehouse">WareHouse</option>
+                        <option value="warehouse">WareHouse</option>   
+                        <option value="dealer">Dealer</option>
+                         
                         </select>
                     </div>
                 </div>
@@ -171,7 +172,7 @@
     //    set default
        if(showroom_id[0].innerHTML==='warehouse'){srdefault=showroom[1].value;}
        else{srdefault=showroom_id[0].value}
-
+        showroom.style.display="none"
         srnone.style.display = "none"; 
         
 
@@ -185,10 +186,9 @@
                 showroom.style.display = "none";
                 showroom.value = srnone.value;
             }
-            // alert(role.value);
-            // alert(showroom.value);
-            // alert(srnone.value);
+         
         });
+      
     </script>
 
     @endsection

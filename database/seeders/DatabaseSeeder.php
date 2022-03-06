@@ -24,12 +24,14 @@ class DatabaseSeeder extends Seeder
       $this->call(warehouseSeeder::class);
       $this->call(showroomSeeder::class);
       $this->call(OrderSeeder::class);
+      $this->call(EmployeeInfoSeeder::class);
+      $this->call(EmployeeAccountSeeder::class);
       $this->call(ModelInfoSeeder::class);
       $this->call(OrderDetailSeeder::class);
       $this->call(CarInfoSeeder::class);
-      $this->call(EmployeeInfoSeeder::class);
+   
       $this->call(UserSeeder::class);
-      $this->call(EmployeeAccountSeeder::class);
+      
       $this->call(StockSeeder::class);
       
     }

@@ -31,8 +31,8 @@ class EmployeeInfoSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ],]);
-        //    mo ra chay cau này
+        // //    mo ra chay cau này
 
-        // employeeInfo::factory()->times(50)->create();
+        employeeInfo::factory()->times(50)->create();
     }
 }

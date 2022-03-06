@@ -135,13 +135,13 @@ Route::get('admin/profile', function () {
 
 Route::get('admin/showroom',[OrderDetailController::class,'show']);
 Route::get('admin/showroom/check',[OrderDetailController::class,'orderedstatus']);
-Route::get('admin/showroom/myorder',[OrderDetailController::class,'orderedstatus']);
+Route::get('admin/showroom/myorder',[OrderDetailController::class,'myorder']);
 Route::get('admin/showroom/ordercanceled',[OrderDetailController::class,'custcanceledtatus']);
+Route::get('admin/showroom/takeorder/{id}',[OrderDetailController::class,'takeorder']);//nhan dơn
 Route::get('admin/showroom/orderdetail/{order_id}/{model_id}',[OrderDetailController::class,'orderdetail']);
 Route::get('admin/showroom/carmanage',[CarInfoController::class,'showroomcar']);
 Route::get('admin/showroom/carmanagepending',[CarInfoController::class,'showroomcarpending']);
 Route::get('admin/showroom/carmanageshowroom',[CarInfoController::class,'showroomcarreceived']);
-
 Route::get('admin/general/employee',[EmployeeInfoController::class,'show']);
 Route::post('admin/general/employee/create',[EmployeeAccountController::class,'create']);
 // Route::post('admin/general/employee/create', 'EmployeeAccountController@create');
@@ -157,7 +157,7 @@ Route::get('admin/general/empcreate', [ShowroomController::class,'create']);
 
 
 Route::get('admin/warehouse',[CarInfoController::class,'show']);
-Route::get('admin/warehouse/ordering',[OrderDetailController::class,'confirmtatus']);
+Route::get('admin/warehouse/ordering',[OrderDetailController::class,'confirmstatus']);
 Route::get('admin/warehouse/delete', [CarInfoController::class,'carcancel']);
 Route::get('admin/warehouse/stock', [StockController::class,'show']);
 Route::get('admin/warehouse/stockadd/{id}', [StockController::class,'addstock']);
@@ -183,6 +183,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::middleware(['auth:employee','PreventBackHistory'])->group(function(){
         Route::view('/home','admin_home')->name('home');
         Route::view('/general','admin.general.general');
+        
       
         // Route::prefix('employee')->name('employee.')->group(function(){
         //     Route::get('/profile',[DashboardController::class,'show'])->name('profile');

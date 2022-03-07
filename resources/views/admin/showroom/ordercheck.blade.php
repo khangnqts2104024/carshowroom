@@ -9,7 +9,7 @@
             <div class="col-sm-12">
                 <h1 class="vin-title">VINFAST</h1>
             </div>
-HUY
+
         </div>
     </div><!-- /.container-fluid -->
 </section>
@@ -59,15 +59,20 @@ HUY
 
                             <tr>
 
-                                <td>{{ $x++ }}</td>                               
+                                <td>{{ $x++ }}</td>
                                 <td> {{$p->orders->order_code}}</td>
                                 <td>{{$p->orders->customer->fullname}}</td>
                                 <td>{{$p->orders->customer->email}} </td>
                                 <td>{{$p->orders->customer->phone_number}} </td>
                                 <td>{{$p->modelInfos->model_name}} </td>
-                                <td id="" class="flex-container-column status_container"> 
+                                <td id="" class="flex-container-column status_container">
                                     <p class="status">{{$p->order_status}}</p>
-                                  </td>
+                                    @if($p->order_status=='ordered')
+                                    <a href="{{url('admin/showroom/takeorder/'.$p->id)}}" class='btn btn-success car-add'>Nhận Đơn</a>
+                                </td>
+                                @endif
+
+
                             </tr>
                             @endforeach
                         </tbody>
@@ -83,7 +88,7 @@ HUY
 
     <!-- /.row -->
 
-  
+    <input id="massage" type="text" hidden value="{{Session::get('message')}}">
 </section>
 @endsection
 
@@ -91,37 +96,15 @@ HUY
 
 <script>
 
-$(document).ready( function () {
-    $('#myTable').DataTable();
-//  status=document.getElementById('status');
-    
-    var status = document.getElementsByClassName('status');
-    var container= document.getElementsByClassName('status_container');
-    var btnordered=" <a href='{{url('admin/warehouse/create/.$car->orderid')}}' class='btn btn-success car-add'>Nhận Đơn</a>";
-                                //thay link vao2 day
-    var btncustcanceled=" <a href='{{url('admin/warehouse/create/.$car->orderid')}}' class='btn btn-danger car-add'>Hủy Đơn Hàng</a>";
-    var btndeposited=" <a href='{{url('admin/warehouse/create/.$car->orderid')}}' class='btn btn-danger car-add'>Xác Nhận Đợn Hàng</a>";
-    var btndetail=" <a href='{{url('admin/warehouse/create/.$car->orderid')}}' class='btn btn-primary car-add'> <i class='fa-solid fa-circle-info'></i></a>";
-   
-    for(let i=0;i<status.length;i++){
-    if (status[i].innerHTML==='ordered'){
-    container[i].innerHTML= container[i].innerHTML+btnordered;
-         }
-         else if(status[i].innerHTML==='custcanceled'){
-        container[i].innerHTML= container[i].innerHTML+btncustcanceled;
-         }
-         else if(status[i].innerHTML==='deposited'){
-        container[i].innerHTML= container[i].innerHTML+btndeposited;
-         }
-         else {
-        container[i].innerHTML= container[i].innerHTML+btndetail;
-         }
-}
-
-});
+  var massage=document.getElementById('massage');
+    if(document.getElementById('massage').value!=''){alert(massage.value);}
 
 
 
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+       
+    });
 </script>
 
 @endsection

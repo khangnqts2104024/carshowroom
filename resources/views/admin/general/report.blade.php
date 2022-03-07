@@ -22,7 +22,7 @@
             <!-- click -->
             <div class="">
                 <i class="fa-solid fa-chart-pie"></i>
-                <p>Doanh Thu Theo Khu Vực</p>
+                <p>Doanh Số Theo Khu Vực</p>
             </div>
         </button>
         <!-- Modal -->
@@ -30,7 +30,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Doanh Thu Theo Khu Vưc</h5>
+                        <h5 class="modal-title">Doanh Số Theo Khu Vưc</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -67,7 +67,7 @@
             <!-- click -->
             <div class="">
                 <i class="fa-solid fa-chart-line"></i>
-                <p>Doanh Thu Theo Quý</p>
+                <p>Lượt Đặt Hàng Theo Quý</p>
             </div>
         </button>
         <!-- Modal -->
@@ -75,7 +75,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Doanh Thu Theo Qúy</h5>
+                        <h5 class="modal-title">Lượt Đặt Hàng Theo Qúy</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

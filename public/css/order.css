@@ -35,7 +35,7 @@ body {
   background: #f6f6f6 !important;
   border-radius: 0 0 5px 5px;
   padding: 25px;
-  height: 1150px;
+  height: 1000px;
   position: relative;
 }
 form {
@@ -60,7 +60,7 @@ h2 {
 .labelCustom,
 .tableCustom {
   display: block;
-  margin: 15px;
+  margin: 5px 0px 5px 10px;
 }
 .labelCustom > span {
   float: left;

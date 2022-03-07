@@ -50,7 +50,7 @@
                                 <td>{{ $p->email}} </td>
                                 
                                 <td class="flex-container">
-                                <a href="{{ url('admin/general/customer/edit/'.$p->customer_id) }}">  <button type="button" class="btn btn-primary" >
+                                <a href="{{ url('admin/general/customer/detail/'.$p->customer_id) }}">  <button type="button" class="btn btn-primary" >
                                         <i class="fa-solid fa-circle-info"></i>
                                     </button></a>
                                                 

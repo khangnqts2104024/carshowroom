@@ -23,8 +23,8 @@ class EmployeeInfoFactory extends Factory
            'fullname'=>$this->faker->name,
            'address'=>$this->faker->address,
            'phone_number'=>$this->faker->unique()->numerify('09#-#######'),
-           'emp_branch'=>rand(1,10),
-           'emp_branch'=>Arr::random([10000000,12000000,9000000,15000000,8000000]),
+           'emp_branch'=>rand(1,12),
+           'salary'=>Arr::random([10000000,12000000,9000000,15000000,8000000]),
             'created_at' => now(),
             'updated_at' => now(),
             		

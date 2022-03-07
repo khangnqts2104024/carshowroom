@@ -67,7 +67,20 @@
                                     <td>{{ $p->showrooms->showroom_name}}</td>
                                     <td>{{ $p->orders->order_code}} </td>
                                     <td>{{ $p->manufactoring_date}}</td>
-                                    <td>{{ $p->car_status}} </td>
+                                    <td class="flex-container-column "> <p class="status">{{$p->car_status}} </p>
+                                <p>
+                                    <button class="btn btn-primary car-add" type="button" data-toggle="collapse" data-target="#contentId{{$x}}" aria-expanded="false"
+                                            aria-controls="contentId">
+                                        Đã Đến Showroom
+                            
+                                    </button>
+                                </p>
+                                <div class="collapse" id="contentId{{$x}}">
+                                <a href="{{url('admin/warehouse/carpending/'.$p->car_id)}}" class="btn btn-success car-add " >Xác Nhận</a>
+                              
+                                </div>
+                               </td>
+                                    </td>
                                    
                                 </tr>
                                     <!-- test -->
@@ -96,12 +109,16 @@
         <!-- /.col -->
     </div>
     <!-- /.row -->
-    
+    <input id="message" type="text"  hidden value="{{Session::get('message')}}">
     <!-- /.row -->
 </section>
 @endsection
 @section('script-section')
 <script>
+ var message=document.getElementById('message');
+    if(document.getElementById('message').value!=''){alert(message.value);}
+
+
     $(document).ready( function () {
     $('#myTable').DataTable();
 } );

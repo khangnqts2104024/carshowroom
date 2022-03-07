@@ -49,11 +49,12 @@
                                 <th>Số Điện Thoại</th>
                                 <th>Model Xe</th>
                                 <th>Tình Trạng Đơn Hàng</th>
+                                <th>Chi Tiết</th>
                             </tr>
                         </thead>
         
                         <tbody>
-                            
+                           
 
                             @php $x=1 @endphp
                             @foreach ($orders as $p)
@@ -68,8 +69,10 @@
                                 <td>{{$p->modelInfos->model_name}} </td>
                                 <td class="flex-container-column"> 
                                     <p class="status">{{$p->order_status}}</p>
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-danger car-add">Hủy Đơn Hàng</a>
+                                  
                                 </td>
+                                <td style="text-align: center;" > <a  href="{{ url('admin/showroom/orderdetail/'.$p->order_id.'/'.$p->model_id)}}" class='btn btn-primary'> <i class='fa-solid fa-circle-info'></i></a>  </td>
+                              
                             </tr>
                             @endforeach
                         </tbody>

@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Factories;
-
+use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Faker\Generator as Faker;
 /**
@@ -17,7 +17,8 @@ class ModelInfoFactory extends Factory
     public function definition()
     {
         return [
-            'model_name'=>$this->faker->name(15),
+            'model_name'=>Arr::random(['PRESIDENT','LUX SA2.0','LUX A2.0','FADIL','VF e34']),
+            'color'=>Arr::random(['red','black','white']),
         ];
     }
 }

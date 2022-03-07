@@ -49,6 +49,7 @@
                                 <th>Email</th>
                                 <th>Số Điện Thoại</th>
                                 <th>Model Xe</th>
+                                <th>THông Tin Chi Tiết</th>
                                 <th>Tình Trạng Đơn Hàng</th>
                             </tr>
                         </thead>
@@ -59,16 +60,54 @@
 
                             <tr>
 
-                                <td>{{ $x++ }}</td>                               
+                                <td>{{ $x++ }}</td>
                                 <td> {{$p->orders->order_code}}</td>
                                 <td>{{$p->orders->customer->fullname}}</td>
                                 <td>{{$p->orders->customer->email}} </td>
                                 <td>{{$p->orders->customer->phone_number}} </td>
                                 <td>{{$p->modelInfos->model_name}} </td>
-                                <td class="flex-container-column"> 
+                                <td style="text-align: center;"> <a href="{{ url('admin/showroom/orderdetail/'.$p->order_id.'/'.$p->model_id)}}" class='btn btn-primary'> <i class='fa-solid fa-circle-info'></i></a> </td>
+
+                                <td class="flex-container-column ">
                                     <p class="status">{{$p->order_status}}</p>
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-danger car-add">Hủy Đơn Hàng</a>
+                                    @if($p->order_status=='deposited')
+
+                                    <button class="btn btn-warning car-add" type="button" data-toggle="collapse" data-target="#contentId{{$x}}" aria-expanded="false" aria-controls="contentId">
+                                        Xác Nhận Đơn
+
+                                    </button>
+                                    @elseif($p->order_status=='released')
+                                    <button class="btn btn-primary car-add" type="button" data-toggle="collapse" data-target="#contentId{{$x}}" aria-expanded="false" aria-controls="contentId">
+                                        Giao Xe Cho Khách
+
+                                    </button>
+                                    @elseif($p->order_status=='custcanceled')
+                                    <button class="btn btn-danger car-add" type="button" data-toggle="collapse" data-target="#contentId{{$x}}" aria-expanded="false" aria-controls="contentId">
+                                        Thủ tục Hủy
+
+                                    </button>
+                                    @endif
+                                    <div class="collapse" id="contentId{{$x}}">
+                                        <br>
+                                        @if($p->order_status=='deposited')
+
+                                        <a href="{{url('admin/showroom/confirmorder/'.$p->id)}}" class='btn btn-success car-add'>Xác Nhận</a>
+                                        @elseif($p->order_status=='released')
+
+                                        <a href="{{url('admin/showroom/sold/'.$p->id)}}" class='btn btn-success car-add'>Xác nhận</a>
+                                        @elseif($p->order_status=='custcanceled')
+
+                                        <a href="{{url('admin/showroom/ordercanceled/'.$p->id)}}" class='btn btn-success car-add'>Xác nhận</a>
+
+
+                                    </div>
+
+
+
+
+
                                 </td>
+                                @endif </td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -82,14 +121,19 @@
     </div>
     <!-- /.row -->
 
+    <input id="massage" type="text" hidden value="{{Session::get('message')}}">
+    <!-- <input id="massage" type="text" hidden value="{{Session::get('error')}}"> -->
     <!-- /.row -->
 </section>
 @endsection
 
 @section('script-section')
 <script>
-$(document).ready( function () {
-    $('#myTable').DataTable();
-} );
+  var massage=document.getElementById('massage');
+    if(document.getElementById('massage').value!=''){alert(massage.value);}
+
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+    });
 </script>
 @endsection

@@ -8,12 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class orderDetail extends Model
 {
    use HasFactory;
+   protected $table = 'order_details';
    protected $fillable=[ 
       'model_id',
       'order_id',
       'order_price',
       'emp_received',
       'order_status',];	
+
+      // public $primaryKey=array('model_id','order_id',);
 
       public $timestamps = false;
    public function orders(){
@@ -22,4 +25,8 @@ class orderDetail extends Model
    public function modelInfos(){
       return $this->belongsTo(modelInfo::class,'model_id','model_id');
    }
+ 
+   
+
+
 }

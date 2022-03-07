@@ -17,7 +17,7 @@ class StockFactory extends Factory
     public function definition()
     {
         return [
-            'model_id'=>rand(1,5),
+            'model_id'=>rand(1,15),
             'repo_id'=>rand(1,3),
             'quantity'=>rand(5,50),
         ];

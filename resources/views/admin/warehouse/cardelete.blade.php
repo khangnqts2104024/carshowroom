@@ -48,6 +48,7 @@
                             <tr> 
                                 <th>STT</th>
                                 <th>Model</th>
+                                <th>Màu Xe</th>
                                 <th>Showroom</th>
                                 <th>Mã Đơn Hàng</th>
                                 <th>Ngày xuất</th>
@@ -62,13 +63,25 @@
                         <tr>
                             <td>{{ $x++ }}</td>  
                             <td> {{$p->models->model_name}}</td>
+                            <td> {{$p->models->color}}</td>
                             <td>{{ $p->showrooms->showroom_name}}</td>
                             <td>{{ $p->orders->order_code}} </td>
                             <td>{{ $p->manufactoring_date}}</td>
+                            
                           
-                            <td class="flex-container-column"> <span class="status">custcanceled </span>
-                                <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-danger car-add">Hoàn Kho</a>
-                            </td>
+                            <td class="flex-container-column "> <p class="status">{{$p->car_status}} </p>
+                                <p>
+                                    <button class="btn btn-danger car-add" type="button" data-toggle="collapse" data-target="#contentId{{$x}}" aria-expanded="false"
+                                            aria-controls="contentId">
+                                        Hoàn Kho
+                            
+                                    </button>
+                                </p>
+                                <div class="collapse" id="contentId{{$x}}">
+                                <a href="{{url('admin/warehouse/car/delete/'.$p->car_id)}}" class="btn btn-success car-add " >Xác Nhận</a>
+                              
+                                </div>
+                               </td>
                         </tr>
                             <!-- test -->
                       
@@ -78,6 +91,7 @@
                             <tr> 
                                 <th>STT</th>
                                 <th>Model</th>
+                                <th>Màu Xe</th>
                                 <th>Showroom</th>
                                 <th>Mã Đơn Hàng</th>
                                 <th>Ngày xuất</th>
@@ -102,5 +116,9 @@
     $(document).ready( function () {
         $('#myTable').DataTable();
     } );
+
+    function alert(){
+        confirm('bạn có chắc hoàn kho xe này không?')
+    }
     </script>
 @endsection 

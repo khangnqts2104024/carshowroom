@@ -49,7 +49,11 @@
           </div>
         </li>
         <li class="nav-item PromotionButton"><a class="nav-link"  href="#">{{__('home.Special Offers')}}</a></li>
-        <li class="nav-item ServiceButton"><a class="nav-link"  href="#">{{__('home.Service')}}</a></li>
+        @if(Auth::check())
+			<li class="nav-item ServiceButton"><a class="nav-link"  href="/user/auth/order">{{__('Order Car')}}</a></li>
+		@else
+			<li class="nav-item ServiceButton"><a class="nav-link"  href="/user/order">{{__('Order Car')}}</a></li>
+		@endif
         <li class="nav-item ToolButton"><a class="nav-link"  href="#">{{__('home.Tools')}}</a></li>
 		<li class="nav-item d-flex" style="align-items: center;flex-direction:column;">
 			
@@ -101,6 +105,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
   <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
   
+  @stack('scriptCostEstimate')
   @stack('scriptsHomePage')
   @stack('scriptUserOrder')
   <script src="/js/layout.js"></script>

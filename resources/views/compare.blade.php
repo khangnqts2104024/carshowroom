@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('dashboard.layouts.layout')
 @section('content')
 
 <!-- Bootstrap CSS -->
@@ -220,7 +220,7 @@
                     <from>
                       <input id="view_model_id" type="hidden" value="{{$car->model_id}}"></input>
                       <input id="view_model_type{{$car->model_id}}" type="hidden" value="{{$car->car_type}}"></input>
-                      <input id="view_seats{{$car->model_id}}" type="hidden" value="{{$car->seats}}"></input>
+                      <input id="view_seats{{$car->model_id}}" type="hidden" value="{{$car->seat}}"></input>
                       <input id="view_size{{$car->model_id}}" type="hidden" value="{{$car->size}}"></input>
                       <input id="view_weight{{$car->model_id}}" type="hidden" value="{{$car->weight}}"></input>
                       <input id="view_engine{{$car->model_id}}" type="hidden" value="{{$car->engine}}"></input>
@@ -230,7 +230,7 @@
                       <input id="view_Fuel_Consumption{{$car->model_id}}" type="hidden" value="{{$car->fuel_consumption}}"></input>
                       <input id="view_lamp{{$car->model_id}}" type="hidden" value="{{$car->lamp}}"></input>
                       <input id="view_automatic_lights{{$car->model_id}}" type="hidden" value="{{$car->automatic_lights}}"></input>
-                      <input id="view_aluminum_alloy_lazang{{$car->model_id}}" type="hidden" value="{{$car->aluminum_alloy_lazang}}"></input>
+                      <input id="view_aluminum_alloy_lazang{{$car->model_id}}" type="hidden" value="{{$car->alluminum_alloy_lazang}}"></input>
                       <input id="view_central_screen{{$car->model_id}}" type="hidden" value="{{$car->central_screen}}"></input>
                       <input id="view_air_conditioning{{$car->model_id}}" type="hidden" value="{{$car->air_conditioning}}"></input>
                       <input id="view_front_wheel_brake{{$car->model_id}}" type="hidden" value="{{$car->front_wheel_brake}}"></input>
@@ -265,7 +265,7 @@
                     <from>
                       <input id="view_model_id" type="hidden" value="{{$car->model_id}}"></input>
                       <input id="view_model_type{{$car->model_id}}" type="hidden" value="{{$car->car_type}}"></input>
-                      <input id="view_seats{{$car->model_id}}" type="hidden" value="{{$car->seats}}"></input>
+                      <input id="view_seats{{$car->model_id}}" type="hidden" value="{{$car->seat}}"></input>
                       <input id="view_size{{$car->model_id}}" type="hidden" value="{{$car->size}}"></input>
                       <input id="view_weight{{$car->model_id}}" type="hidden" value="{{$car->weight}}"></input>
                       <input id="view_engine{{$car->model_id}}" type="hidden" value="{{$car->engine}}"></input>
@@ -275,7 +275,7 @@
                       <input id="view_Fuel_Consumption{{$car->model_id}}" type="hidden" value="{{$car->fuel_consumption}}"></input>
                       <input id="view_lamp{{$car->model_id}}" type="hidden" value="{{$car->lamp}}"></input>
                       <input id="view_automatic_lights{{$car->model_id}}" type="hidden" value="{{$car->automatic_lights}}"></input>
-                      <input id="view_aluminum_alloy_lazang{{$car->model_id}}" type="hidden" value="{{$car->aluminum_alloy_lazang}}"></input>
+                      <input id="view_aluminum_alloy_lazang{{$car->model_id}}" type="hidden" value="{{$car->alluminum_alloy_lazang}}"></input>
                       <input id="view_central_screen{{$car->model_id}}" type="hidden" value="{{$car->central_screen}}"></input>
                       <input id="view_air_conditioning{{$car->model_id}}" type="hidden" value="{{$car->air_conditioning}}"></input>
                       <input id="view_front_wheel_brake{{$car->model_id}}" type="hidden" value="{{$car->front_wheel_brake}}"></input>
@@ -308,9 +308,10 @@
                   <a href="#" class="d-flex" id="{{$car->model_id}}" onclick="add_compare3(this.id);" data-edition="">
                     <p>{{$car -> car_type}}</p>
                     <from>
+                      <input type="text">
                       <input id="view_model_id" type="hidden" value="{{$car->model_id}}"></input>
                       <input id="view_model_type{{$car->model_id}}" type="hidden" value="{{$car->car_type}}"></input>
-                      <input id="view_seats{{$car->model_id}}" type="hidden" value="{{$car->seats}}"></input>
+                      <input id="view_seats{{$car->model_id}}" type="hidden" value="{{$car->seat}}"></input>
                       <input id="view_size{{$car->model_id}}" type="hidden" value="{{$car->size}}"></input>
                       <input id="view_weight{{$car->model_id}}" type="hidden" value="{{$car->weight}}"></input>
                       <input id="view_engine{{$car->model_id}}" type="hidden" value="{{$car->engine}}"></input>
@@ -320,7 +321,7 @@
                       <input id="view_Fuel_Consumption{{$car->model_id}}" type="hidden" value="{{$car->fuel_consumption}}"></input>
                       <input id="view_lamp{{$car->model_id}}" type="hidden" value="{{$car->lamp}}"></input>
                       <input id="view_automatic_lights{{$car->model_id}}" type="hidden" value="{{$car->automatic_lights}}"></input>
-                      <input id="view_aluminum_alloy_lazang{{$car->model_id}}" type="hidden" value="{{$car->aluminum_alloy_lazang}}"></input>
+                      <input id="view_aluminum_alloy_lazang{{$car->model_id}}" type="hidden" value="{{$car->alluminum_alloy_lazang}}"></input>
                       <input id="view_central_screen{{$car->model_id}}" type="hidden" value="{{$car->central_screen}}"></input>
                       <input id="view_air_conditioning{{$car->model_id}}" type="hidden" value="{{$car->air_conditioning}}"></input>
                       <input id="view_front_wheel_brake{{$car->model_id}}" type="hidden" value="{{$car->front_wheel_brake}}"></input>

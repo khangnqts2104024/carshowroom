@@ -109,9 +109,9 @@ Route::prefix('user')->name('user.')->group(function(){
 // Route::get('admin', function () {
 //     return view('admin_home');
 // });
-// Route::get('admin/profile', function () {
-//     return view('admin.adminprofile.adminprofile');
-// });
+Route::get('admin/profile', function () {
+    return view('admin.adminprofile.adminprofile');
+});
 // group lai sau
 // Route::get('admin/showroom', function () {
 //     return view('admin.showroom.order');

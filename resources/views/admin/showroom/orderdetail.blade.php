@@ -66,7 +66,7 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-                <a href="{{url ('admin/showroom') }}"><button type="button" class="btn btn-primary">Quay Lại</button></a>
+                <a href="{{ url()->previous() }} "><button type="button" class="btn btn-primary">Quay Lại</button></a>
             </div>
         </form>
 

@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\carInfo;
 use App\Models\order;
 use App\Models\orderDetail;
 use Illuminate\Http\Request;
@@ -70,9 +72,59 @@ class OrderDetailController extends Controller
         return view('admin.showroom.orderdetail')->with(['p'=> $p]);
     }
 
+       public function confirmorder($id){
+           $orders=orderDetail::find($id);
+           if( $orders->order_status='deposited'){
+           $orders->order_status='confirm';
+           $message='Bạn đã xác nhận đơn thành công!';}
+           else{$message='Có gì đó sai sai!, hỏi lại sếp nha!';}
+           $orders->save();
+        //    dd($orders);
+           return redirect()->back()->with(['message'=>$message]);
 
 
 
+       }
+
+
+public function soldorder($id){
+$orders=orderDetail::find($id);
+$car=carInfo::find($orders->orders->cars->first()->car_id);
+
+    
+if($orders->order_status==="released" && $car->car_status==='showroom'){
+    $orders->order_status="sold";
+    $car->car_status='sold';
+    $orders->save();
+    $car->save();
+    $message='Bạn đã xác nhận giao xe thành công!';
+}else{
+    $message='Bạn xác nhậ không thành công!Kiểm tra lại xe đã tới showroom chưa!';
+}
+  return redirect()->back()->with(['message'=>$message]);
+}
+
+
+// huy don
+public function ordercanceled($id){
+    $orders=orderDetail::find($id);
+   $car=$orders->orders->cars->first();
+   if($car===null){$orders->order_status='canceled';$message='Hủy đơn thành công!';}
+   else if($car->car_status==='showroom'){
+       $orders->order_status='canceled';
+       $car->car_status='cuscanceled';$message='Hủy Đơn Thành Công';}
+    else if($car->car_status==='pending'){
+        $message='Hủy chưa thành công, xe vẫn đang trên đường đến showroom!Hãy đợi xe tới rồi mới hoàn lại!';
+    }
+    else{$message='có gì đó sai sai nha!';}
+       
+       return redirect()->back()->with(['message'=>$message]); 
+   }
   
+
+
+
+
+
 
 }

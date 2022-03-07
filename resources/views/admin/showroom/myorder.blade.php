@@ -121,12 +121,17 @@
     </div>
     <!-- /.row -->
 
+    <input id="massage" type="text" hidden value="{{Session::get('message')}}">
+    <!-- <input id="massage" type="text" hidden value="{{Session::get('error')}}"> -->
     <!-- /.row -->
 </section>
 @endsection
 
 @section('script-section')
 <script>
+  var massage=document.getElementById('massage');
+    if(document.getElementById('massage').value!=''){alert(massage.value);}
+
     $(document).ready(function() {
         $('#myTable').DataTable();
     });

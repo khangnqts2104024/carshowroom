@@ -112,12 +112,13 @@ public function ordercanceled($id){
    if($car===null){$orders->order_status='canceled';$message='Hủy đơn thành công!';}
    else if($car->car_status==='showroom'){
        $orders->order_status='canceled';
-       $car->car_status='cuscanceled';$message='Hủy Đơn Thành Công';}
+       $car->car_status='custcanceled';$message='Hủy Đơn Thành Công';}
     else if($car->car_status==='pending'){
         $message='Hủy chưa thành công, xe vẫn đang trên đường đến showroom!Hãy đợi xe tới rồi mới hoàn lại!';
     }
     else{$message='có gì đó sai sai nha!';}
-       
+       $orders->save();
+       $car->save();
        return redirect()->back()->with(['message'=>$message]); 
    }
   

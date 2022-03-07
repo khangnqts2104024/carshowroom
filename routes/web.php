@@ -150,13 +150,14 @@ Route::get('admin/general/employee',[EmployeeInfoController::class,'show']);
 Route::post('admin/general/employee/create',[EmployeeAccountController::class,'create']);
 // Route::post('admin/general/employee/create', 'EmployeeAccountController@create');
 Route::get('admin/general/customer',[DashboardController::class,'showcustlist']);
-Route::get('admin/general/customer/edit/{id}',[DashboardController::class,'edit']);
+Route::get('admin/general/customer/detail/{id}',[DashboardController::class,'detail']);
 Route::get('admin/general/report',[ReportController::class,'report']);
 Route::get('admin/general/empcreate', [ShowroomController::class,'create']);
-
-
-
-
+Route::post('admin/general/empchangepass/{id}',[EmployeeAccountController::class,'empchangepass']);
+Route::post('admin/general/employee/accountcreate',[EmployeeAccountController::class,'accountcreate']);
+Route::get('admin/general/employee/newaccount',function () {
+    return view('admin.general.accountcreate');
+});
 
 
 

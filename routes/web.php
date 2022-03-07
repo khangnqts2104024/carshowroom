@@ -160,9 +160,9 @@ Route::get('admin/general/report',[ReportController::class,'report']);
 Route::get('admin/general/empcreate', [ShowroomController::class,'create']);
 Route::post('admin/general/empchangepass/{id}',[EmployeeAccountController::class,'empchangepass']);
 Route::post('admin/general/employee/accountcreate',[EmployeeAccountController::class,'accountcreate']);
-Route::get('admin/general/employee/newaccount',function () {
-    return view('admin.general.accountcreate');
-});
+// Route::get('admin/general/employee/newaccount',function () {
+//     return view('admin.general.accountcreate');
+// });
 
 
 

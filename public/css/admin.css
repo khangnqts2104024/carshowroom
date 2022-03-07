@@ -119,3 +119,6 @@ border-radius: 10px;
     .stock-confirm{border-radius: 5px;
                     border: 0.1px  dotted;
                        padding: 10px;}
+    .showerror{
+        margin: 20px;
+    }

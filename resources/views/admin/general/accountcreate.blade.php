@@ -25,23 +25,11 @@
             <div class="headerSignin">
                 <p>Tạo Tài Khoản</p>
             </div>
-            <form action="{{url('admin/general/employee/accountcreate')}}" method="post">
+            <form  name="myForm" action="{{url('admin/general/employee/accountcreate')}}" method="post" onsubmit="return validateForm()">
                 <!-- báo tạo tài khoản -->
-                @if(Session::get('success'))
-                <div class="alert alert-success">
-                    {{Session::get('success')}}
-                </div>
-
-                @endif
-
-                @if(Session::get('fail'))
-                <div class="alert alert-danger">
-                    {{Session::get('fail')}}
-                </div>
-
-                @endif
+          
                 @csrf
-
+               
 
                 <div class="form-group">
                     <label for="email">Email Nhân Viên</label>
@@ -52,14 +40,14 @@
                 <div class="form-group">
                     <label for="password-signIn">Password</label>
                     <div id="form-password">
-                        <input type="password" name="password" class="form-control formRound" id="passwordField" onclick="showIcon()" autocomplete="off" value="{{old('password')}}">
+                        <input type="password" name="password" class="form-control formRound" id="passwordField" onclick="showIcon()" autocomplete="off" >
                       
                         <span class="eye" id="eye" onclick="showPass()">
                             <i class="fa fa-eye" aria-hidden="true" id="show"></i>
                             <i class="fa fa-eye-slash" aria-hidden="true" id="hide"></i>
                         </span>
                         <br>
-                        <span class="text-danger">@error('password'){{$message}} @enderror</span>
+                        <span class="text-danger" id="passerror"></span>
                     </div>
 
 
@@ -69,7 +57,7 @@
                     <label for="password-register">Xác Nhận Mật Khẩu</label>
                     <div id="form-cpassword">
                         <input type="password" name="ConfirmPassword" class="form-control formRound" id="cpasswordField">
-                        <span class="text-danger">@error('ConfirmPassword'){{$message}} @enderror</span>
+                        <span class="text-danger" id="confirmerror"></span>
 
                     </div>
 
@@ -102,6 +90,29 @@
 
 
     <script>
+function validateForm() {
+  let x = document.forms["myForm"]["password"].value;
+  let y = document.forms["myForm"]["ConfirmPassword"].value;
+  let passerror=document.getElementById('passerror');
+  passerror.innerHTML='';
+  let confirmerror=document.getElementById('confirmerror');
+  confirmerror.innerHTML='';
+  let regex= /^\w{5,30}$/;
+
+  if (y != x) {
+    confirmerror.innerHTML="Mật Khẩu xác thực không trùng khớp!"
+    return false;
+  } else if (!regex.test(x)) {
+    passerror.innerHTML="Mật Khẩu không đúng định dạng!Chỉ chứa chữ và số 5-30 ký tự"
+    return false;
+  }
+  else return true;
+}
+
+
+
+
+
         //show con mắt - tắt mắt khi out focus
         window.addEventListener('click', function(e) {
 

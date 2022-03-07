@@ -77,54 +77,41 @@ public function create(Request $request){
 
 
 
-// public function empchangepass(Request $request, $id){
-//     //validate input
-//     $request->validate([
-//         'password' => 'required|min:5|max:30',
-//         'confirmpass' => 'required|min:5|max:30|same:password',
-//     ]);
+public function empchangepass(Request $request, $id){
+    //validate input
+    $request->validate([
+        'password' => 'required|min:5|max:30',
+        'ConfirmPassword' => 'required|min:5|max:30|same:password',
+    ]);
 
  
-//     $emp = employeeInfo::find($id);
-//     if($emp->employee_Account==null){
+    $emp = employeeInfo::find($id);
+    if($emp->employee_Account==null){
      
-//         return view('admin.general.accountcreate')->with(['email'=>$emp->email])-with();
+        return view('admin.general.accountcreate')->with(['email'=>$emp->email]);
 
-//                         }
-//     else{$account=$emp->employee_Account;
-//         $account->password=Hash::make($request->password);}
-//     dd($account);
-//     // $user->email = $request->email;
-//     // $user->role=$request->role;
-//     // $user->password = Hash::make($request->password);
-
-
+                        }
+    else{$account=$emp->employee_Account;
+        $account->password=Hash::make($request->password);
+        $account->save();
+    }
+        return redirect('admin/general/employee/')->with(['message'=>'Cập Nhật Mật Khẩu Thành Công']); 
+    }
     
-
-    
-
-
-
-//         return redirect('admin/general/employee')->with("<script>alert('Tạo Tài Khoản Thành Công')</script>"); 
-//     }
-    
-//     public function accountcreate(Request $request){
-//         $request->validate([
-//             'password' => 'required|min:5|max:30',
-//             'ConfirmPassword' => 'required|min:5|max:30|same:password',
-//         ]);
-       
-
-//             $account=new employeeAccount();
-//             $account->email=$request->email;
-//             $account->role=$request->role;
-//             $account->password=Hash::make($request->password);
-            
-//             dd($account);
-//             $account->save();
+    public function accountcreate(Request $request){
+      
         
-//             return view('admin.general.accountcreate')->with(['message'=>'Tạo Tài Khoản Không Thành Công'])->with(['email'=>$request->email]); 
-//         }
+
+            $account=new employeeAccount();
+            $account->email=$request->email;
+            $account->role=$request->role;
+            $account->password=Hash::make($request->password);
+            
+        
+            $account->save();
+        
+            return redirect('/admin/general/employee')->with(['message'=>'Tạo Tài Khoản Thành Công']);
+        }
     
 
 

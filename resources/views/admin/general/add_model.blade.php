@@ -62,8 +62,8 @@
                 <div class="form-group">
                     <label for="exampleInputPassword1">Tự động tắt động cơ</label>
                     <select name="engine_shutdown_function" class="form-control input-sm m-bot15">
-                        <option value="0">Có</option>
-                        <option value="1">Không</option>
+                        <option value="Có">Có</option>
+                        <option value="Không">Không</option>
                     </select>
                 </div>
                 <div class="form-group">

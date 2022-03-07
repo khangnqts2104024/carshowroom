@@ -39,6 +39,8 @@ class DashboardController extends Controller
             $user_customer_id = Auth::user()->customer_id;
             $user = Customer_Info::find($user_customer_id);
 
+
+            
             if ($user) {
                 $user->fullname = $request->fullname;
                 $user->update();

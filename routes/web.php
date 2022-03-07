@@ -244,3 +244,10 @@ Route::get('admin/general/allmodel', 'ModelInfoController@allModel');
 Route::get('user/modeldetails/{model_id?}', 'ModelInfoController@showModel');
 Route::post('admin/general/savemodel', 'ModelInfoController@saveModel');
 Route::post('admin/general/updatemodel/{model_id}', 'ModelInfoController@updateModel');
+
+
+Route::get('/compare','CompareController@index');
+
+Route::get('/user/compare',function(){
+    return view('compare');
+});

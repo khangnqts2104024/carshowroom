@@ -30,6 +30,6 @@ class carInfo extends Model
         return $this->belongsTo(order::class,'order_id','order_id');
     }
 
-
+    protected $primaryKey = 'car_id';
     public $timestamps = false;
 }

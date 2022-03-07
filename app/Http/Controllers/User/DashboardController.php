@@ -300,7 +300,7 @@ class DashboardController extends Controller
         return view('admin.general.custmanage')->with(['customer' => $customer]);
     }
 
-    public function edit($id)
+    public function detail($id)
     {
 
         $p = Customer_Info::find($id);

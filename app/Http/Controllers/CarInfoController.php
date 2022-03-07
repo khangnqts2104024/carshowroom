@@ -47,11 +47,10 @@ public function carcancel(){
     return view('admin.warehouse.cardelete')->with(['cars'=> $cars]);
 }
 //xe đã xuat kho
+
 public function released(){
-    $cars = carInfo::whereIn('car_status',['pending','showroom','sold'])->get();
+    $cars = carInfo::where('car_status','pending')->get();
     return view('admin.warehouse.car_released')->with(['cars'=> $cars]);
-
-
 }
 
 
@@ -74,7 +73,7 @@ public function cardelete($id){
     
 
 }
-
+//xuất kho
 public function carcreate(Request $request){
     $info=$request->all();
     $car= new carInfo($info);
@@ -96,14 +95,21 @@ public function carcreate(Request $request){
        $a=  "Model ".$stock->model->model_name." tai kho ".$stock->warehouse->warehouse_name." đã hết, mời đặt thêm!";
 
     }
-
-    
-    
-  
     return redirect()->back()->with(['a'=> $a]);
+}
+
+public function carpending($id){
+    $car=carInfo::find($id);
+    if($car->car_status==='pending'){
+        $car->car_status='showroom';
+        $message='Đã Xác nhận xe đến showroom';
+        $car->save();
+    }
+    else{$message='Có gì đó sai sai, check lại hỏi sếp nha!';}
+
+return redirect()->back()->with(['message'=>$message]);
 
 
 }
-
 
 }

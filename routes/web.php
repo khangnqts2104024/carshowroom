@@ -71,6 +71,7 @@ Route::prefix('user')->name('user.')->group(function(){
             Route::get('/CostEstimate',[CostEstimateController::class,'index'])->name('CostEstimate');
             Route::post('/CostEstimate/getModelInfo',[CostEstimateController::class,'getModelInfo'])->name('getModelInfo');
             Route::post('/CostEstimate/getFees',[CostEstimateController::class,'getFees'])->name('getFees');
+            
      });
     
     // Customer - User Authenticated
@@ -106,6 +107,7 @@ Route::prefix('user')->name('user.')->group(function(){
     
 });
 Route::get('/sendmail_ordersuccess/{order_code?}',[MailController::class,'sendmail_ordersuccess']);
+Route::post('/CostEstimate/submit',[CostEstimateController::class,'CostEstimateSubmit'])->name('CostEstimateSubmit');
     
 
 // KHANG

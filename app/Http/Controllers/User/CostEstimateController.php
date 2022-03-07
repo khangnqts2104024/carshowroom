@@ -54,4 +54,11 @@ class CostEstimateController extends Controller
             'fees'=>$fees,
         ]);
     }
+
+    public function CostEstimateSubmit(Request $request){
+        $model_id = $request->models;
+        $province_id =$request->provinces;
+
+        dd($model_id,$province_id);
+    }
 }

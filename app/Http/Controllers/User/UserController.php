@@ -118,7 +118,7 @@ class UserController extends Controller
                     'email.exists' => "Email không tồn tại!"
                 ]
             );
-        } else {
+         } else {
             $request->validate(
                 [
                     'email' => 'required|email|exists:customer_accounts,email',

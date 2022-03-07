@@ -104,10 +104,11 @@ Route::prefix('user')->name('user.')->group(function(){
             //Logout 
             Route::post('auth/logout',[UserController::class,'logout'])->name('logout');
     });
+    Route::post('/CostEstimate/submit',[UserOrderController::class,'GuestOrder'])->name('CostEstimateSubmit');
     
 });
 Route::get('/sendmail_ordersuccess/{order_code?}',[MailController::class,'sendmail_ordersuccess']);
-Route::post('/CostEstimate/submit',[CostEstimateController::class,'CostEstimateSubmit'])->name('CostEstimateSubmit');
+
     
 
 // KHANG

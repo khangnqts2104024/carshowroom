@@ -2,7 +2,12 @@
 @section('content')
     <link rel="stylesheet" href="/css/order.css">
     <input type="hidden" class="idToken" value="{{ csrf_token() }}">
-    <input type="hidden" id="model_id" value="{{$car_id_fromlayout}}">
+    @if(isset($car_id_fromlayout))
+        <input type="hidden" id="model_id" value="{{$car_id_fromlayout}}">
+    @endif
+    @if(isset($province_matp_cost_estimate))
+    <input type="hidden"  id="province_matp_cost_estimate" value="{{$province_matp_cost_estimate}}">
+    @endif
     <input type="hidden" id="order_code" value="{{session()->get('order_code')}}">
 
     @foreach($car_images as $car_image)
@@ -24,7 +29,9 @@
         <div class="title d-flex justify-content-between">
             <h2>{{__('Product Order Form')}}</h2>
             <div class="message">
-                
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
                 @if(Session::get('success'))
                    @if(Auth::check())
                         @if(App::getLocale()=='en')
@@ -99,13 +106,15 @@
 
                   <label class="labelCustom">
                     <span>{{__('CostEstimate.Province/City')}}<span class="required">*</span></span>
-                    <select class="" name="provinces" id="provinces" required>
-                        <option id="SelectYourProVince" value="">{{__('Select Your Province/City')}}</option>
-                        @foreach($provinces as $province)
-                            <option value="{{$province->matp}}" >{{$province->name}}</option>
-                       @endforeach
-                       <span class="text-danger">@error('provinces'){{$message}}@enderror</span>
-                    </select>
+                    <div class="Province">
+                        <select class="" name="provinces" id="provinces" required>
+                            <option id="SelectYourProVince" value="">{{__('Select Your Province/City')}}</option>
+                            @foreach($provinces as $province)
+                                <option value="{{$province->matp}}" >{{$province->name}}</option>
+                           @endforeach
+                           <span class="text-danger">@error('provinces'){{$message}}@enderror</span>
+                        </select>
+                    </div>
                 </label>
 
                   <label class="labelCustom">

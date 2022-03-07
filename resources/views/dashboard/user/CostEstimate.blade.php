@@ -61,16 +61,20 @@
         </div>
         <div class="col-md-4">
             <!-- Default form subscription -->
+            @if(Auth::check())
+            <form action="{{route('user.auth/CostEstimateSubmit')}}" method="POST">
+            @else
+                <form action="{{route('user.CostEstimateSubmit')}}" method="POST">
+            @endif
+           
             
-           
-            <form action="{{}}" method="POST">
-           
+                @csrf
 
                 <p class="h4 mb-4" style="white-space: nowrap;">{{ __('CostEstimate.Cost Estimation') }}</p>
 
                 <div class="form-group">
                     <label for="">{{ __('CostEstimate.Model') }}</label>
-                    <select class="form-control formRound" name="models" id="models">
+                    <select class="form-control formRound" name="models_cost_estimate" id="models">
                         <option id="SelectYourModel" value="{{ __('Select your Model') }}">{{ __('Select your Model') }}
                         </option>
                         @foreach ($models as $model)

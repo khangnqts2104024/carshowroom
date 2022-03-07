@@ -49,86 +49,68 @@
                                 <th>Email</th>
                                 <th>Số Điện Thoại</th>
                                 <th>Model Xe</th>
+                                <th>THông Tin Chi Tiết</th>
                                 <th>Tình Trạng Đơn Hàng</th>
                             </tr>
                         </thead>
                         <tbody>
 
-                        
-                            <!-- test -->
+                            @php $x=1 @endphp
+                            @foreach ($orders as $p)
+
                             <tr>
 
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td class="flex-container"> <span class="status">checked</span>
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-danger car-add">Hủy Đơn Hàng</a>
-                                </td>
-                            </tr>
-                            <tr>
+                                <td>{{ $x++ }}</td>
+                                <td> {{$p->orders->order_code}}</td>
+                                <td>{{$p->orders->customer->fullname}}</td>
+                                <td>{{$p->orders->customer->email}} </td>
+                                <td>{{$p->orders->customer->phone_number}} </td>
+                                <td>{{$p->modelInfos->model_name}} </td>
+                                <td style="text-align: center;"> <a href="{{ url('admin/showroom/orderdetail/'.$p->order_id.'/'.$p->model_id)}}" class='btn btn-primary'> <i class='fa-solid fa-circle-info'></i></a> </td>
 
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td> canceled
-                                </td>
-                            </tr>
-                            <tr>
+                                <td class="flex-container-column ">
+                                    <p class="status">{{$p->order_status}}</p>
+                                    @if($p->order_status=='deposited')
 
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td class="flex-container"> <span class="status">deposit</span>
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-success car-add">Xác Nhận Đơn Hàng</a>
-                                </td>
-                            </tr>
-                            <tr>
+                                    <button class="btn btn-warning car-add" type="button" data-toggle="collapse" data-target="#contentId{{$x}}" aria-expanded="false" aria-controls="contentId">
+                                        Xác Nhận Đơn
 
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td class="flex-container"> <span class="status">confirm</span>
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-success car-add">Đã Giao Xe</a>
-                                </td>
-                            </tr>
-                            <tr>
+                                    </button>
+                                    @elseif($p->order_status=='released')
+                                    <button class="btn btn-primary car-add" type="button" data-toggle="collapse" data-target="#contentId{{$x}}" aria-expanded="false" aria-controls="contentId">
+                                        Giao Xe Cho Khách
 
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td class="flex-container"><span class="status">custcanceled</span>
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-danger car-add">Hủy Hợp Đồng</a>
+                                    </button>
+                                    @elseif($p->order_status=='custcanceled')
+                                    <button class="btn btn-danger car-add" type="button" data-toggle="collapse" data-target="#contentId{{$x}}" aria-expanded="false" aria-controls="contentId">
+                                        Thủ tục Hủy
+
+                                    </button>
+                                    @endif
+                                    <div class="collapse" id="contentId{{$x}}">
+                                        <br>
+                                        @if($p->order_status=='deposited')
+
+                                        <a href="{{url('admin/showroom/confirmorder/'.$p->id)}}" class='btn btn-success car-add'>Xác Nhận</a>
+                                        @elseif($p->order_status=='released')
+
+                                        <a href="{{url('admin/showroom/sold/'.$p->id)}}" class='btn btn-success car-add'>Xác nhận</a>
+                                        @elseif($p->order_status=='custcanceled')
+
+                                        <a href="{{url('admin/showroom/ordercanceled/'.$p->id)}}" class='btn btn-success car-add'>Xác nhận</a>
+
+
+                                    </div>
+
+
+
+
 
                                 </td>
+                                @endif </td>
                             </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td> sold
-                                </td>
-                            </tr>
-
-                            </tfoot>
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>
                 <!-- /.card-body -->
@@ -139,13 +121,19 @@
     </div>
     <!-- /.row -->
 
+    <input id="massage" type="text" hidden value="{{Session::get('message')}}">
+    <!-- <input id="massage" type="text" hidden value="{{Session::get('error')}}"> -->
     <!-- /.row -->
 </section>
 @endsection
+
 @section('script-section')
 <script>
-$(document).ready( function () {
-    $('#myTable').DataTable();
-} );
+  var massage=document.getElementById('massage');
+    if(document.getElementById('massage').value!=''){alert(massage.value);}
+
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+    });
 </script>
 @endsection

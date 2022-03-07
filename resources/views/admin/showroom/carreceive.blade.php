@@ -1,3 +1,4 @@
+<!--  -->
 <!-- Lưu tại resources/views/product/index.blade.php -->
 @extends('layouts_admin.layoutadmin')
 @section('title', 'product index')
@@ -26,9 +27,15 @@
                     <h3 class="card-title">Quản Lý Xe</h3>
                 </div>
                 <div class="option-container">
-                    <div class="option"><a href=""> Tất Cả Xe</a></div>
-                    <div class="option"><a href="">Xe Đang Đặt Hàng</a></div>
-                    <div class="option"><a href="">Xe Đã Xuất Kho</a></div>
+                    <a href="carmanage">
+                        <div class="option"> Tất Cả Xe </div>
+                    </a>
+                    <a href="carmanagepending">
+                        <div class="option">Xe Đang Vận Chuyển</div>
+                    </a>
+                    <a href="carmanageshowroom">
+                        <div class="option">Xe Đã Tới Showroom</div>
+                    </a>
                 </div>
 
                 <!-- /.card-header -->
@@ -36,74 +43,116 @@
                     <table id="myTable" class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>Car ID</th>
+                                <th>STT</th>
                                 <th>Model</th>
                                 <th>Showroom</th>
                                 <th>Mã Đơn Hàng</th>
-                                <th>Ngày xuất</th>
+                                <th>Tên Khách Hàng</th>
+                                <th>Ngày Đặt Hàng</th>
+                                <th>Ngày Xuất Kho</th>
                                 <th>Tình Trạng</th>
+                                <th>Thông Tin Chi Tiết</th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            <tr>
 
-                                <td>1</td>
-                                <td>Fadil 22</td>
-                                <td>Showroom 1</td>
-                                <td>order 1</td>
-                                <td>26-02-22</td>
-                                <td> pending
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-success car-add">Nhận Xe</a>
+                            @php $x=1 @endphp
+                            @foreach ($cars as $p)
+                            <tr>
+                                <td>{{ $x++ }}</td>
+                                <td> {{$p->models->model_name}}</td>
+                                <td>{{ $p->showrooms->showroom_name}}</td>
+                                <td>{{ $p->orders->order_code}} </td>
+                                <td>{{ $p->orders->customer->fullname}} </td>
+                                <td>{{ $p->manufactoring_date}}</td>
+                                <td>{{ $p->orders->order_date}}</td>
+                                <td>{{ $p->car_status}} </td>
+                                <td class="flex-container">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cardetail{{$x}}">
+                                        <i class="fa-solid fa-circle-info"></i>
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="cardetail{{$x}}" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header ">
+                                                    <h5 class="modal-title">Thông Tin Chi Tiết</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body flex-container-left">
+                                                    <div class="employeeinfo ">
+                                                        <h5>Mã Xe</h5>
+                                                        <p> {{$p->car_id}}</p>
+                                                    </div>
+                                                    <div class="employeeinfo ">
+                                                        <h5>Mã Đơn Hàng</h5>
+                                                        <p> {{ $p->orders->order_code}} </p>
+                                                    </div>
+                                                    <div class="employeeinfo ">
+                                                        <h5>Model Xe</h5>
+                                                        <p> {{$p->models->model_name}}</p>
+                                                    </div>
+                                                    <div class="employeeinfo ">
+                                                        <h5>Showroom</h5>
+                                                        <p>{{ $p->showrooms->showroom_name}}</p>
+                                                    </div>
+                                                    <div class="employeeinfo ">
+                                                        <div>
+                                                            <h5>Tên Khách Hàng</h5>
+                                                        </div>
+                                                        <div>
+                                                            <p>{{ $p->orders->customer->fullname}} </p>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="employeeinfo ">
+                                                        <div>
+                                                            <h5>Số Điện Thoại Khách Hàng</h5>
+                                                        </div>
+                                                        <div>
+                                                            <p>{{ $p->orders->customer->phone_number}}</p>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="employeeinfo ">
+                                                        <h5>Thời Gian</h5>
+                                                        <p>Ngày Đặt Hàng:{{ $p->orders->order_date}}<br>
+                                                            Ngày xuất Kho:{{ $p->manufactoring_date}}
+                                                        </p>
+                                                    </div>
+                                                    <div class="employeeinfo ">
+                                                        <h5>Tình Trạng</h5>
+                                                        <p> {{ $p->car_status}}</p>
+                                                    </div>
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                             <!-- test -->
 
-                            <tr>
-
-                                <td>1</td>
-                                <td>Fadil 22</td>
-                                <td>Showroom 1</td>
-                                <td>order 1</td>
-                                <td>26-02-22</td>
-                                <td> pending
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-success car-add">Nhận Xe</a>
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>Fadil 22</td>
-                                <td>Showroom 1</td>
-                                <td>order 1</td>
-                                <td>26-02-22</td>
-                                <td class="flex-container"> pending
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-success car-add">Nhận Xe</a>
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>Fadil 22</td>
-                                <td>Showroom 1</td>
-                                <td>order 1</td>
-                                <td>26-02-22</td>
-                                <td class="flex-container"> pending
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-success car-add">Nhận Xe</a>
-                                </td>
-                            </tr>
-                            <!-- end test -->
-
+                            @endforeach
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <th>Car ID</th>
-                                <th>Model</th>
-                                <th>Showroom</th>
-                                <th>Mã Đơn Hàng</th>
-                                <th>Ngày xuất</th>
-                                <th>Tình Trạng</th>
-                            </tr>
+                            <th>STT</th>
+                            <th>Model</th>
+                            <th>Showroom</th>
+                            <th>Mã Đơn Hàng</th>
+                            <th>Tên Khách Hàng</th>
+                            <th>Ngày Đặt Hàng</th>
+                            <th>Ngày Xuất Kho</th>
+                            <th>Tình Trạng</th>
+                            <th>Thông Tin Chi Tiết</th>
                         </tfoot>
                     </table>
                 </div>
@@ -114,14 +163,14 @@
         <!-- /.col -->
     </div>
     <!-- /.row -->
-    ]
+
     <!-- /.row -->
 </section>
 @endsection
 @section('script-section')
 <script>
-$(document).ready( function () {
-    $('#myTable').DataTable();
-} );
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+    });
 </script>
 @endsection

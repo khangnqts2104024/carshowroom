@@ -2,12 +2,11 @@
  $(function(){
   $('.carslide').owlCarousel({
     loop:true,
-    margin:5,
-    autoplay:false,
+    margin:0,
+    autoplay:true,
     autoplayTimeout:5000,
     autoplayHoverPause:true,
     responsiveClass:true,
-    
     responsive:{
         0:{
             items:1,
@@ -20,7 +19,7 @@
             nav:false
         },
         1000:{
-            items:4,
+            items:3,
             dotsEach:3,
             nav:false,
             loop:true
@@ -53,7 +52,9 @@ $('.htcptg').owlCarousel({
             loop:true
         }
     }
-});
+    });
+
+    
 
 
 });

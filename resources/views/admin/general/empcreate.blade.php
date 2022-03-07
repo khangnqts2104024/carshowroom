@@ -14,6 +14,7 @@
     </div><!-- /.container-fluid -->
 </section>
 
+
 <!-- Main content -->
 <section class="content">
     <link rel="stylesheet" href="/css/account.css">
@@ -22,7 +23,7 @@
             <div class="headerSignin">
                 <p>Tạo Tài Khoản</p>
             </div>
-            <form action="{{route('user.create')}}" method="post">
+            <form action="{{url('admin/general/employee/create')}}" method="post">
                 <!-- báo tạo tài khoản -->
                 @if(Session::get('success'))
                 <div class="alert alert-success">
@@ -41,13 +42,18 @@
 
 
                 <div class="form-group">
-                    <label for="Full Name">Email Nhân Viên</label>
-                    <input type="text" name="empID" class="form-control formRound" value="{{old('fullname')}}">
-                    <span class="text-danger">@error('empID'){{$message}} @enderror</span>
+                    <label for="email">Email Nhân Viên</label>
+                    <input type="text" name="email" class="form-control formRound" value="">
+                    <span class="text-danger">@error('email'){{$message}} @enderror</span>
                 </div>
 
 
 
+                <div class="form-group">
+                  <label for="Full Name">Tên Nhân Viên</label>
+                  <input type="text" name="fullname" class="form-control formRound" value="">
+                  <span class="text-danger">@error('fullname'){{$message}} @enderror</span>
+                </div>   
 
 
 
@@ -56,11 +62,13 @@
                     <label for="password-signIn">Password</label>
                     <div id="form-password">
                         <input type="password" name="password" class="form-control formRound" id="passwordField" onclick="showIcon()" autocomplete="off" value="{{old('password')}}">
-                        <span class="text-danger">@error('password'){{$message}} @enderror</span>
+                        
                         <span class="eye" id="eye" onclick="showPass()">
                             <i class="fa fa-eye" aria-hidden="true" id="show"></i>
                             <i class="fa fa-eye-slash" aria-hidden="true" id="hide"></i>
                         </span>
+                        <br>
+                        <span class="text-danger">@error('password'){{$message}} @enderror</span>
                     </div>
 
 
@@ -79,21 +87,22 @@
                 <div class="form-group">
                     <div class="form-group">
                         <label for="role">Phòng ban</label>
-                        <select id="role" class="form-control" name="emp_role">
-                            <option value="dealer">Dealer</option>
-                            <option value="warehouse">WareHouse</option>
+                        <select id="role" class="form-control" name="role">
+                        <option value="warehouse">WareHouse</option>   
+                        <option value="dealer">Dealer</option>
+                         
                         </select>
                     </div>
                 </div>
                 <div class="form-group" id="emp_showroom">
                     <div class="form-group">
                         <label for="showroom">Chi Nhánh</label>
-                        <select id="showroom" class="form-control" name="emp_showroom">
-                        <option id="srnone"value="none"></option> 
-                        <!-- id đầu -->
-                            <option value="showroom1">showroom1</option>
-                            <option value="showroom2">Showroom 2</option>
-                           
+                        <select id="showroom" class="form-control" name="emp_branch">
+                            @foreach($showrooms as $showroom)
+                            <!-- id đầu -->
+                            <option value="{{$showroom->id}}" class="showroom_id">{{$showroom->showroom_name}}</option>
+                            @endforeach
+
                         </select>
                     </div>
                 </div>
@@ -155,24 +164,33 @@
         }
 
         var role = document.getElementById("role");
-        var srnone = document.getElementById("srnone");
+        var showroom_id = document.getElementsByClassName("showroom_id");
         var showroom = document.getElementById("showroom");
-        showroom.value="showroom1";
-        srnone.style.display="none";
-      
+        var srnone;
+        var srdefault;
+       for(let i=0;i<showroom_id.length;i++){
+           if(showroom_id[i].innerHTML==='warehouse'){srnone=showroom_id[i]}
+       }
+    //    set default
+       if(showroom_id[0].innerHTML==='warehouse'){srdefault=showroom[1].value;}
+       else{srdefault=showroom_id[0].value}
+        showroom.style.display="none"
+        srnone.style.display = "none"; 
+        
+
+
         role.addEventListener('change', function() {
             if (role.value === "dealer") {
                 showroom.style.display = "block";
-                showroom.value="showroom1";
-                srnone.style.display="none";
+                showroom.value = srdefault;
+                srnone.style.display = "none";
             } else {
                 showroom.style.display = "none";
-                showroom.value = "none";
+                showroom.value = srnone.value;
             }
-            alert(role.value);
-            alert(showroom.value);
+         
         });
-       
+      
     </script>
 
     @endsection

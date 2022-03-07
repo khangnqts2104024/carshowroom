@@ -3,7 +3,7 @@
         "Home" => "Home",
         "Profile Setting" => "Profile Setting",
         "Order History" => "Order History",
-        "Book Appointment" => "Book Appointment",
+        "Order Car" => "Order Car",
         "Cost Estimation" => "Cost Estimation",
         "Logout" => "Logout",        
         "Fullname" => "Fullname",
@@ -20,6 +20,9 @@
         "Reset Password" => "Reset Password",
         "Edit Citizen ID" => "Edit Citizen ID",
         "UPDATE" => "UPDATE",
+        "Avatar"=>"Avatar",
+    
+        "Edit Avatar"=>"Edit Avatar",
         
        
     ];

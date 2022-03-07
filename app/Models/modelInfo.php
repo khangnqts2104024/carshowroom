@@ -5,29 +5,38 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-
-class ModelInfo extends Model
-{
-    protected $table = 'model_infos';
-    protected $primaryKey = 'model_id';
-    protected $fillable = [
+class modelInfo extends Model
+{  use HasFactory;
+    protected $fillable=[ 
+        'model_id',
+        'model_name',
+        'car_type',
+        'price',
+        'color',
         'size',
         'weight',
         'engine',
         'wattage',
         'engine_shutdown_function',
         'car_gearbox',
-        'Fuel_Consumption',
+        'fuel_consumption',
         'lamp',
         'automatic_lights',
-        'aluminum_alloy_lazang',
+        'alluminum_alloy_lazang',
         'exhaust_pipe',
-        'seats',
+        'seat',
         'central_screen',
         'air_conditioning',
         'front_wheel_brake',
         'rear_wheel_brake',
-
-    ];
+        'image',
+        'gif',
+        ];	
+        public $timestamps = false;
+         public function model_stock()
+        {
+            return $this->hasMany(stock::class,'id','model_id');
+        }
+									
 
 }

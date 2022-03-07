@@ -12,6 +12,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class Customer_Info extends Model
 {
+    use HasFactory;
     protected $table = 'customer_infos';
     protected $primaryKey = 'customer_id';
     protected $fillable = [
@@ -19,7 +20,8 @@ class Customer_Info extends Model
         'phone_number',
         'address',
         'citizen_id',
-        'fullname'
+        'fullname',
+        'customer_role'
     ];
 
     public function Customer_Account()

@@ -1,0 +1,143 @@
+
+
+body {
+  background: url("https://c.neh.tw/thumb/f/720/5332081404018688.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #262626;
+  /* margin: 5% 0; */
+}
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+.imgCarHolder{
+    justify-content: center;
+    display: flex;
+}
+.imgCarHolder img{
+    width: auto;
+    height: 300px;
+    bottom: 50px;
+    position: absolute;
+}
+.d-flexCustom {
+  display: flex;
+  flex-direction: row;
+  background: #f6f6f6 !important;
+  border-radius: 0 0 5px 5px;
+  padding: 25px;
+  height: 1000px;
+  position: relative;
+}
+form {
+  flex: 4;
+}
+.Yorder {
+  flex: 2;
+}
+.title {
+    background-color: white;
+  border-radius: 5px 5px 0 0;
+  padding: 20px;
+  color: black;
+}
+h2 {
+  margin: 0;
+  padding-left: 15px;
+}
+.required {
+  color: red;
+}
+.labelCustom,
+.tableCustom {
+  display: block;
+  margin: 5px 0px 5px 10px;
+}
+.labelCustom > span {
+  float: left;
+  width: 25%;
+  margin-top: 12px;
+  padding-right: 10px;
+}
+.input,select {
+  width: 70%;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  border: 1px solid #dadada;
+  color: #888;
+}
+.select {
+  width: 72%;
+  height: 45px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+}
+.Yorder {
+  margin-top: 15px;
+  height: 680px;
+  padding: 0 20px 20px 0px;
+  border: 1px solid #dadada;
+  
+}
+table {
+  margin: 0px;
+  padding: 0px;
+}
+th {
+  border-bottom: 1px solid #dadada;
+  padding: 10px 0;
+}
+tr > td:nth-child(1) {
+  text-align: left;
+  color: #2d2d2a;
+}
+tr > td:nth-child(2) {
+  text-align: right;
+  color: #52ad9c;
+}
+td {
+  border-bottom: 1px solid #dadada;
+  padding: 25px 25px 25px 0;
+}
+
+.textPayment {
+  display: block;
+  color: #888;
+  margin: 0;
+  font-size: 15px;
+  padding-left: 30px;
+}
+.Yorder > div {
+ padding-top: 10px;
+ padding-left: 15px;
+ margin-bottom: 10px;
+
+}
+
+
+.buttonCustom {
+  width: 100%;
+  margin-top: 34px;
+  margin-left: 13px;
+  padding: 10px;
+  border: none;
+  border-radius: 30px;
+  background: rgb(61, 105, 225);
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+}
+.buttonCustom:hover {
+  cursor: pointer;
+  background: #8a6542;
+}

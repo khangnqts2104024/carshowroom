@@ -122,10 +122,10 @@
 
 .CarCarousel .owl-theme .owl-item {padding: 20px 0px !important;}
 
-.CarCarousel .owl-theme .owl-stage-outer .owl-stage{
+.CarCarousel .owl-theme .owl-stage-outer .owl-stage .owl-item{
   display: flex;
-  margin-left: 12px !important;
-  margin-right: 10px !important;
+ padding: 0 40px !important;
+ margin-bottom: 30px !important;
 }
 
 
@@ -183,7 +183,7 @@
   font-family: Mulish;
   font-style: normal;
   font-weight: 300;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 28px;
   letter-spacing: -0.02em;
   color: #3C3C3C;
@@ -204,7 +204,7 @@
   font-family: Mulish;
   font-style: normal;
   font-weight: 300;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 28px;
   letter-spacing: -0.02em;
   color: #3C3C3C;
@@ -303,10 +303,9 @@
   /* left: 50px !important; */
   
 }
-/* .TextCarousel .htcptg .owl-theme .owl-stage-outer .owl-stage .owl-item,.TextCarousel .htcptg .owl-theme .owl-stage-outer .owl-stage .owl-item:active{
-  padding: 0px !important;
- 
-} */
+.owl-stage{
+  margin: 0px 15px !important;
+}
 
 .TextCarousel  .owl-theme .owl-dots .owl-dot.active span{
   background-color: white;

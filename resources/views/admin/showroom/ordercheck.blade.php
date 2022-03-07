@@ -54,72 +54,28 @@
                         </thead>
                         <tbody>
 
-                            <tr>
-
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td> <span class="status">ordered</span>
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-success car-add">Nhận Đơn Hàng</a>
-                                </td>
-                            </tr>
-                            <!-- test -->
-                            <tr>
-
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td> <span class="status">ordered</span>
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-success car-add">Nhận Đơn Hàng</a>
-                                </td>
-                            </tr>
+                            @php $x=1 @endphp
+                            @foreach ($orders as $p)
 
                             <tr>
 
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td> <span class="status">ordered</span>
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-success car-add">Nhận Đơn Hàng</a>
+                                <td>{{ $x++ }}</td>
+                                <td> {{$p->orders->order_code}}</td>
+                                <td>{{$p->orders->customer->fullname}}</td>
+                                <td>{{$p->orders->customer->email}} </td>
+                                <td>{{$p->orders->customer->phone_number}} </td>
+                                <td>{{$p->modelInfos->model_name}} </td>
+                                <td id="" class="flex-container-column status_container">
+                                    <p class="status">{{$p->order_status}}</p>
+                                    @if($p->order_status=='ordered')
+                                    <a href="{{url('admin/showroom/takeorder/'.$p->id)}}" class='btn btn-success car-add'>Nhận Đơn</a>
                                 </td>
+                                @endif
+
+
                             </tr>
-
-                            <tr>
-
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td class="flex-container"><span class="status"> ordered</span>
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-success car-add">Nhận Đơn Hàng</a>
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>order 123</td>
-                                <td>Khang</td>
-                                <td>khang@gmail.com</td>
-                                <td>0703333333</td>
-                                <td>Fadil 22</td>
-                                <td class="flex-container"> <span class="status">ordered</span>
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-success car-add">Nhận Đơn Hàng</a>
-                                </td>
-                            </tr>
-
-
-                            </tfoot>
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>
                 <!-- /.card-body -->
@@ -131,12 +87,24 @@
     <!-- /.row -->
 
     <!-- /.row -->
+
+    <input id="massage" type="text" hidden value="{{Session::get('message')}}">
 </section>
 @endsection
+
 @section('script-section')
+
 <script>
-$(document).ready( function () {
-    $('#myTable').DataTable();
-} );
+
+  var massage=document.getElementById('massage');
+    if(document.getElementById('massage').value!=''){alert(massage.value);}
+
+
+
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+       
+    });
 </script>
+
 @endsection

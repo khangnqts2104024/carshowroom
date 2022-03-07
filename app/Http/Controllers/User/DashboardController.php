@@ -5,24 +5,29 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Customer_Info;
 use App\Models\Customer_Account;
+use App\Models\employeeInfo;
+use App\Models\modelInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Validation\ValidatesRequests;
-
+use SebastianBergmann\Environment\Console;
+use Illuminate\Support\Facades\App;
 class DashboardController extends Controller
 {
+   
+    
     public function show()
     {
         return view('dashboard.user.profile/settings');
     }
-// Edit Fullname
+    // Edit Fullname
     public function editfullname(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'fullname' => 'required',
+            'fullname'=> array('required','regex:/^[A-Za-z\s]+$/'),
         ]);
 
         if ($validator->fails()) {
@@ -31,16 +36,22 @@ class DashboardController extends Controller
                 'errors' => $validator->errors(),
             ]);
         } else {
-            $user = Customer_Info::find($request->customer_id);
+            $user_customer_id = Auth::user()->customer_id;
+            $user = Customer_Info::find($user_customer_id);
 
 
             
             if ($user) {
                 $user->fullname = $request->fullname;
                 $user->update();
+                if(App::getLocale()=='en'){
+                    $message = "Fullname Update Successfully";
+                }else{
+                    $message = "Cập Nhật Họ & Tên Thành Công";
+                }
                 return response()->json([
                     'status' => 200,
-                    'messages' => 'Fullname Update Successfully',
+                    'messages' => $message,
                 ]);
             } else {
                 return response()->json([
@@ -50,11 +61,11 @@ class DashboardController extends Controller
             }
         }
     }
-// Edit Address
+    // Edit Address
     public function editaddress(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'address' => 'required',
+            'address'=> array('required','regex:/^[a-zA-Z0-9,\-\s]*$/'),            
         ]);
 
         if ($validator->fails()) {
@@ -63,14 +74,20 @@ class DashboardController extends Controller
                 'errors' => $validator->errors(),
             ]);
         } else {
-            $user = Customer_Info::find($request->customer_id);
+            $user_customer_id = Auth::user()->customer_id;
+            $user = Customer_Info::find($user_customer_id);
 
             if ($user) {
                 $user->address = $request->address;
                 $user->update();
+                if(App::getLocale()=='en'){
+                    $message = "Address Update Successfully";
+                }else{
+                    $message = "Cập Nhật Địa Chỉ  Thành Công";
+                }
                 return response()->json([
                     'status' => 200,
-                    'messages' => 'Address Update Successfully',
+                    'messages' => $message,
                 ]);
             } else {
                 return response()->json([
@@ -85,7 +102,7 @@ class DashboardController extends Controller
     public function editphone(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'phone_number' => 'required',
+            'phone_number'=> array('required','regex:/^[0-9]{10,11}$/'),
         ]);
         if ($validator->fails()) {
             return response()->json([
@@ -93,14 +110,20 @@ class DashboardController extends Controller
                 'errors' => $validator->errors(),
             ]);
         } else {
-            $user = Customer_Info::find($request->customer_id);
+            $user_customer_id = Auth::user()->customer_id;
+            $user = Customer_Info::find($user_customer_id);
 
             if ($user) {
                 $user->phone_number = $request->phone_number;
                 $user->update();
+                if(App::getLocale()=='en'){
+                    $message = "Phone Update Successfully";
+                }else{
+                    $message = "Cập Nhật Số Điện Thoại Thành Công";
+                }
                 return response()->json([
                     'status' => 200,
-                    'messages' => 'Phone Update Successfully',
+                    'messages' => $message,
                 ]);
             } else {
                 return response()->json([
@@ -110,24 +133,24 @@ class DashboardController extends Controller
             }
         }
     }
-// Edit Email
+    // Edit Email
     public function editEmail(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'email' => 'required',
-            'password' => 'required',
+            'email' => array('required','regex:/^[^\s@-]+@[^\s@-]+\.[^\s@]+$/','unique:customer_accounts,email'),
+            'password' => 'required|min:5|max:30',
         ]);
 
-        $user_Email = Auth::user()->email;
+        $user_customer_id = Auth::user()->customer_id;
         $users = DB::table('customer_accounts')
-            ->where('email', '=', $user_Email)
+            ->where('customer_id', '=', $user_customer_id)
             ->get();
-
+       
         foreach ($users as $user) {
             $hashUserPassWord = $user->password;
         }
 
-        $user = Customer_Info::find($request->customer_id);
+        $user = Customer_Info::find($user_customer_id);
         $passwordInField = $request->password;
         $matchPass = Hash::check($passwordInField, $hashUserPassWord);
 
@@ -141,9 +164,14 @@ class DashboardController extends Controller
 
             $user->email = $request->email;
             $user->update();
+            if(App::getLocale()=='en'){
+                $message = "Email Update Successfully";
+            }else{
+                $message = "Cập Nhật Email Thành Công";
+            }
             return response()->json([
                 'status' => 200,
-                'messages' => 'Email Update Successfully',
+                'messages' => $message,
             ]);
         } else {
             return response()->json([
@@ -152,11 +180,11 @@ class DashboardController extends Controller
             ]);
         }
     }
-// Edit Citizen ID
+    // Edit Citizen ID
     public function editCitizenID(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'citizen_id' => 'required',
+            'citizen_id'=> array('required','regex:/^[0-9]*$/'),
         ]);
 
         if ($validator->fails()) {
@@ -165,14 +193,21 @@ class DashboardController extends Controller
                 'errors' => $validator->errors(),
             ]);
         } else {
-            $user = Customer_Info::find($request->customer_id);
+            $user_customer_id = Auth::user()->customer_id;
+            $user = Customer_Info::find($user_customer_id);
 
             if ($user) {
                 $user->citizen_id = $request->citizen_id;
                 $user->update();
+
+                if(App::getLocale()=='en'){
+                    $message = "Citizen ID Update Successfully";
+                }else{
+                    $message = "Cập Nhật Số CMND  Thành Công";
+                }
                 return response()->json([
                     'status' => 200,
-                    'messages' => 'Citizen ID Update Successfully',
+                    'messages' => $message,
                 ]);
             } else {
                 return response()->json([
@@ -185,60 +220,95 @@ class DashboardController extends Controller
     // Edit Avatar
     public function editAvatar(Request $request)
     {
-        $validator = Validator::make($request->all(),[
-            'image_upload' => 'required|image|mimes:jpg,png,jpeg|max:2048',
+
+        $validator = Validator::make($request->all(), [
+            'image_upload' => array('required','image','mimes:jpg,png,jpeg','max:2048'),
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return response()->json([
-                'status' =>400,
-                'errors'=>$validator->errors(),
+
+                'status' => 400,
+                'errors' => $validator->errors(),
             ]);
-        }else{
-           if($request->hasFile('image_upload')){
+        } else {
+            if ($request->hasFile('image_upload')) {
                 $path = 'files/Avatar_User';
                 $file = $request->file('image_upload');
                 $fullnameUser = preg_replace('/\s+/', '', $request->fullname);
                 $extension_img = $request->image_upload->guessClientExtension();
-                $file_name = time().'_'.$fullnameUser.'.'.$extension_img;
-                $upload = $file->storeAs($path,$file_name,'public');
-                $user = Customer_Info::find($request->customer_id);
+                $file_name = time() . '_' . $fullnameUser . '.' . $extension_img;
+                $upload = $file->storeAs($path, $file_name, 'public');
 
-            if($upload){
-                $user->avatar = $file_name;
-                $user->update();
-                
-                return response()->json([
-                    'status' => 200,
-                    'messages' => 'Avatar Updated Successfully',
-                    
-                ]);
-           
-            }else {
+                $user_customer_id = Auth::user()->customer_id;
+                $user = Customer_Info::find($user_customer_id);
+                if ($upload) {
+                    $user->avatar = $file_name;
+                    $user->update();
+                    if(App::getLocale()=='en'){
+                        $message = "Avatar Updated Successfully";
+                    }else{
+                        $message = "Cập Nhật Ảnh Đại Diện Thành Công";
+                    }
+                    return response()->json([
+                        'status' => 200,
+                        'messages' => $message,
+                    ]);
+                }else {
+                    if(App::getLocale()=='en'){
+                        $message = "Upload Fail!";
+                    }else{
+                        $message = "Cập Nhật Không Thành Công!";
+                    }
+                    return response()->json([
+                        'status' => 404,
+                        'errors' => $message,
+                    ]);
+                }
+            } else {
+                if(App::getLocale()=='en'){
+                    $message = "Upload Fail!";
+                }else{
+                    $message = "Cập Nhật Không Thành Công!";
+                }
                 return response()->json([
                     'status' => 404,
-                    'errors' => 'Upload Fail!',
+                    'errors' => $message,
                 ]);
             }
-
-        }else {
-            return response()->json([
-                'status' => 404,
-                'errors' => 'Upload Fail!',
-            ]);
         }
     }
-}
 
     public function fetchData()
     {
-        $user_Email = Auth::user()->email;
+        $customer_id = Auth::user()->customer_id;
         $users = DB::table('customer_infos')
-            ->where('email', '=', $user_Email)
+            ->where('customer_id', '=', $customer_id)
             ->get();
+
         return response()->json([
             'users' => $users,
         ]);
+    }
+
+    // khang
+    public function showcustlist()
+    {
+
+
+        $customer = Customer_Info::all();
+
+
+        return view('admin.general.custmanage')->with(['customer' => $customer]);
+    }
+
+    public function detail($id)
+    {
+
+        $p = Customer_Info::find($id);
+        // $p="haha";
+        return view('admin.general.customerdetail')->with(['p' => $p]);
+        // return view('admin.general.customerdetail')->with(['custDetail'=>$custDetail]);
     }
 }
 //test

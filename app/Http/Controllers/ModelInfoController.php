@@ -10,71 +10,121 @@ class ModelInfoController extends Controller
 
 
     public function addModel (){
-        return view('admin.add_model');
+        return view('admin.general.add_model');
     }
     public function allModel (){
-        $all_model=DB::table('model_infos')->get();
+        // $all_model=DB::table('model_infos')->get();
      
-        return view('admin.general.all_model',with(['all_model',$all_model]));
+        // return view('admin.general.all_model',with(['all_model',$all_model]));
+        $all_model = DB::table('model_infos')->get();
+        $manage_model = view('admin.general.all_model')->with('all_model', $all_model);
+        // dd($manage_model);
+        return view('layouts_admin.layoutadmin')->with('admin.general.all_model', $manage_model);
      
         
     }
     public function saveModel (Request $request){
         $data = array();
-        $data['model_id'] = $request->model_id; //$data['model_id'] la ten cot trong bang, $request->model_id la name cua element
+        // $data['model_id'] = $request->model_id; //$data['model_id'] la ten cot trong bang, $request->model_id la name cua element
         $data['model_name'] = $request->model_name;
-        $data['kich_thuoc'] = $request->kich_thuoc;
-        $data['khoi_luong'] = $request->khoi_luong;
-        $data['loai_dong_co'] = $request->loai_dong_co;
-        $data['tu_dong_tat_dong_co'] = $request->tu_dong_tat_dong_co; //
-        $data['dan_dong'] = $request->dan_dong;
-        $data['ong_xa_doi'] = $request->ong_xa_doi; //
-        $data['den_chieu'] = $request->den_chieu;
-        $data['cho_ngoi'] = $request->cho_ngoi;
-        $data['man_hinh'] = $request->man_hinh;
-        $data['dieu_chinh_vo_lang'] = $request->dieu_chinh_vo_lang;
-        $data['he_thong_giai_tri'] = $request->he_thong_giai_tri;
-        $data['phanh_truoc'] = $request->phanh_truoc;
-        $data['phanh_sau'] = $request->phanh_sau;
+        $data['car_type'] = $request->car_type;
+        $data['price'] = $request->price;
+        $data['color'] = $request->color;
+        $data['size'] = $request->size;
+        $data['engine_shutdown_function'] = $request->engine_shutdown_function; //
+        $data['weight'] = $request->weight;
+        $data['engine'] = $request->engine; //
+        $data['wattage'] = $request->wattage;
+        $data['car_gearbox'] = $request->car_gearbox;
+        $data['fuel_consumption'] = $request->fuel_consumption;
+        $data['lamp'] = $request->lamp;
+        $data['automatic_lights'] = $request->automatic_lights;
+        $data['alluminum_alloy_lazang'] = $request->alluminum_alloy_lazang;
+        $data['exhaust_pipe'] = $request->exhaust_pipe;
+        $data['seat'] = $request->seat;
+        $data['central_screen'] = $request->central_screen;
+        $data['air_conditioning'] = $request->air_conditioning;
+        $data['front_wheel_brake'] = $request->front_wheel_brake;
+        $data['rear_wheel_brake'] = $request->rear_wheel_brake;
+        // $data['image'] = $request->image;
+        // $data['gif'] = $request->gif;
+        $request->validate([
+            'image' => 'mimes:jpg,png,jpeg:5048'
+        ]);
+        $path = 'files/Image_Car';
+        $file = $request->file('image');
+        $modelName = preg_replace('/\s+/', '', $request->model_name);
+        $extension_img = $request->image->guessClientExtension();
+        $newImageName = $modelName . '.' . $extension_img;
+        $upload = $file->storeAs($path,$newImageName,'public');
+        $data['image'] = $newImageName;
+
+
+        // if($request->hasFile('image_upload')){
+        //     $path = 'files/Avatar_User';
+        //     $file = $request->file('image_upload');
+        //     $fullnameUser = preg_replace('/\s+/', '', $request->fullname);
+        //     $extension_img = $request->image_upload->guessClientExtension();
+        //     $file_name = time().'_'.$fullnameUser.'.'.$extension_img;
+        //     $upload = $file->storeAs($path,$file_name,'public');
+        //     $user = Customer_Info::find($request->customer_id);
+
+        
 
         DB::table('model_infos')->insert($data);
         session()->put('message', 'Thêm thành công!');
-        return Redirect('admin.general.add-model');
+        return Redirect('admin/general/addmodel');
     }
 
     public function editModel($model_id){
         $edit_model = DB::table('model_infos')->where('model_id', $model_id)->get();
         $manage_model = view('admin.general.edit_model')->with('edit_model', $edit_model);
-        return view('admin.general.edit_model')->with(['manage_model'=> $manage_model]);
+        return view('layouts_admin.layoutadmin')->with(['manage_model'=> $manage_model]);
     }
 
     public function updateModel (Request $request, $model_id) {
         $data = array();
-        // $data['model_id'] = $request->model_id; 
-        // $data['model_name'] = $request->model_name;
-        // $data['kich_thuoc'] = $request->kich_thuoc;
-        // $data['khoi_luong'] = $request->khoi_luong;
-        // $data['loai_dong_co'] = $request->loai_dong_co;
-        // $data['tu_dong_tat_dong_co'] = $request->tu_dong_tat_dong_co; //
-        // $data['dan_dong'] = $request->dan_dong;
-        // $data['ong_xa_doi'] = $request->ong_xa_doi; //
-        // $data['den_chieu'] = $request->den_chieu;
-        // $data['cho_ngoi'] = $request->cho_ngoi;
-        // $data['man_hinh'] = $request->man_hinh;
-        // $data['dieu_chinh_vo_lang'] = $request->dieu_chinh_vo_lang;
-        // $data['he_thong_giai_tri'] = $request->he_thong_giai_tri;
-        // $data['phanh_truoc'] = $request->phanh_truoc;
-        // $data['phanh_sau'] = $request->phanh_sau;
+        // $data['model_id'] = $request->model_id; //$data['model_id'] la ten cot trong bang, $request->model_id la name cua element
+        $data['model_name'] = $request->model_name;
+        $data['car_type'] = $request->car_type;
+        $data['price'] = $request->price;
+        $data['color'] = $request->color;
+        $data['size'] = $request->size;
+        $data['engine_shutdown_function'] = $request->engine_shutdown_function; //
+        $data['weight'] = $request->weight;
+        $data['engine'] = $request->engine; //
+        $data['wattage'] = $request->wattage;
+        $data['car_gearbox'] = $request->car_gearbox;
+        $data['fuel_consumption'] = $request->fuel_consumption;
+        $data['lamp'] = $request->lamp;
+        $data['automatic_lights'] = $request->automatic_lights;
+        $data['alluminum_alloy_lazang'] = $request->alluminum_alloy_lazang;
+        $data['exhaust_pipe'] = $request->exhaust_pipe;
+        $data['seat'] = $request->seat;
+        $data['central_screen'] = $request->central_screen;
+        $data['air_conditioning'] = $request->air_conditioning;
+        $data['front_wheel_brake'] = $request->front_wheel_brake;
+        $data['rear_wheel_brake'] = $request->rear_wheel_brake;
+        $data['active'] = $request->active;
+        $data['image'] = $request->image;
+        $data['gif'] = $request->gif;
 
         DB::table('model_infos')->where('model_id', $model_id)->update($data);
         session()->put('message', 'Cập nhật thành công!');
-        return Redirect('admin.general.all-model');
+        return Redirect('admin/general/allmodel');
     }
 
     public function deleteModel($model_id){
         DB::table('model_infos')->where('model_id', $model_id)->delete();
         session()->put('message', 'Xóa thành công!');
-        return Redirect('admin.general.all-model');
+        return Redirect('admin/general/allmodel');
+    }
+
+    public function showModel($model_id){
+        $show_model = DB::table('model_infos')->where('model_id', $model_id)->get();
+        $manage_model = view('dashboard.user.model_details')->with('show_model', $show_model);
+        return view('dashboard.layouts.layout')->with('dashboard.user.model_details', $manage_model);
+        // return view('model_details');
     }
 }
 

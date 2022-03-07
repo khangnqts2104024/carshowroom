@@ -26,6 +26,7 @@
                     <h3 class="card-title">Quản Lý Xe</h3>
                 </div>
                 <div class="option-container">
+                  
                 <a href="{{url('admin/warehouse')}}">
                         <div class="option"> Tất Cả </div>
                     </a>
@@ -44,9 +45,10 @@
                 <div class="card-body">
                     <table id="myTable" class="table table-bordered table-hover">
                         <thead>
-                            <tr>
-                                <th>Car ID</th>
+                            <tr> 
+                                <th>STT</th>
                                 <th>Model</th>
+                                <th>Màu Xe</th>
                                 <th>Showroom</th>
                                 <th>Mã Đơn Hàng</th>
                                 <th>Ngày xuất</th>
@@ -55,59 +57,41 @@
                         </thead>
                         <tbody>
 
-                            <tr>
-
-                                <td>1</td>
-                                <td>Fadil 22</td>
-                                <td>Showroom 1</td>
-                                <td>order 1</td>
-                                <td>26-02-22</td>
-                                <td> <span class="status">custcanceled </span>
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-danger car-add">Hoàn Kho</a>
-                            </td>
-                            </tr>
-                            <!-- test -->
+                          
+                         @php $x=1 @endphp
+                        @foreach ($cars as $p)
+                        <tr>
+                            <td>{{ $x++ }}</td>  
+                            <td> {{$p->models->model_name}}</td>
+                            <td> {{$p->models->color}}</td>
+                            <td>{{ $p->showrooms->showroom_name}}</td>
+                            <td>{{ $p->orders->order_code}} </td>
+                            <td>{{ $p->manufactoring_date}}</td>
                             
-                            <tr>
-
-                                <td>1</td>
-                                <td>Fadil 22</td>
-                                <td>Showroom 1</td>
-                                <td>order 1</td>
-                                <td>26-02-22</td>
-                                <td> <span class="status">custcanceled</span> 
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-danger car-add">Hoàn Kho</a>
-                            </td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>Fadil 22</td>
-                                <td>Showroom 1</td>
-                                <td>order 1</td>
-                                <td>26-02-22</td>
-                                <td> <span class="status">custcanceled </span>
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-danger car-add">Hoàn Kho</a>
-                            </td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>Fadil 22</td>
-                                <td>Showroom 1</td>
-                                <td>order 1</td>
-                                <td>26-02-22</td>
-                                <td> <span class="status">custcanceled </span>
-                                    <a href="{{url('admin/warehouse/create/.$car->orderid')}}" class="btn btn-danger car-add">Hoàn Kho</a>
-                            </td>
-                            </tr>
-                            <!-- end test -->
-
+                          
+                            <td class="flex-container-column "> <p class="status">{{$p->car_status}} </p>
+                                <p>
+                                    <button class="btn btn-danger car-add" type="button" data-toggle="collapse" data-target="#contentId{{$x}}" aria-expanded="false"
+                                            aria-controls="contentId">
+                                        Hoàn Kho
+                            
+                                    </button>
+                                </p>
+                                <div class="collapse" id="contentId{{$x}}">
+                                <a href="{{url('admin/warehouse/car/delete/'.$p->car_id)}}" class="btn btn-success car-add " >Xác Nhận</a>
+                              
+                                </div>
+                               </td>
+                        </tr>
+                            <!-- test -->
+                      
+                        @endforeach
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <th>Car ID</th>
+                            <tr> 
+                                <th>STT</th>
                                 <th>Model</th>
+                                <th>Màu Xe</th>
                                 <th>Showroom</th>
                                 <th>Mã Đơn Hàng</th>
                                 <th>Ngày xuất</th>
@@ -123,14 +107,18 @@
         <!-- /.col -->
     </div>
     <!-- /.row -->
-    ]
+    
     <!-- /.row -->
 </section>
 @endsection
 @section('script-section')
 <script>
-   $(document).ready( function () {
-    $('#myTable').DataTable();
-} );
-</script>
-@endsection
+    $(document).ready( function () {
+        $('#myTable').DataTable();
+    } );
+
+    function alert(){
+        confirm('bạn có chắc hoàn kho xe này không?')
+    }
+    </script>
+@endsection 

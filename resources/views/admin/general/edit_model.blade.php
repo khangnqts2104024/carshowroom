@@ -17,10 +17,13 @@
         <link rel="stylesheet" href="/css/account.css">
     </header>
     <div class="panel-body ">
+    <div class="panel-body flex-container ">
 
         @foreach($edit_model as $key => $edit_value)
-        <div class="position-center">
-            <form role="form" action="{{URL::to('admin/general/updatemodel/'.$edit_value->model_id)}}" method="POST">
+
+        <div class="position-center phat">
+            <form class="" role="form" action="{{URL::to('admin/general/updatemodel/'.$edit_value->model_id)}}" method="POST">
+
                 {{ csrf_field() }}
                 <div class="form-group">
                     <label for="exampleInputPassword1">Tên dòng xe</label>

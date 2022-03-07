@@ -12,8 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\App;
-// use Illuminate\Support\Facades\Session;
-use Symfony\Component\HttpFoundation\Session\Session;
+use App\Models\Province;
 
 class UserOrderController extends Controller
 {   
@@ -21,13 +20,14 @@ class UserOrderController extends Controller
     public function CustomerOrder(Request $request){
         $car_id_fromlayout = $request->id;
         $car_images = modelInfo::select('image')->where('model_id',$car_id_fromlayout)->get();
-        $email_user = Auth::user()->email;
+        $users_account_id = Auth::user()->customer_id;
         $user =Customer_Info::select("*")
-        ->where("email",$email_user)
+        ->where("customer_id",$users_account_id)
         ->get();
         $models = modelInfo::select("*")->get();
         $warehouses = warehouse::select("warehouse_name","id")->get(); 
-        return view('dashboard.user/order')->with(['models'=>$models,'warehouses'=>$warehouses,'user'=>$user,'car_id_fromlayout'=>$car_id_fromlayout,'car_images'=>$car_images]);
+        $provinces = Province::select('*')->get();
+        return view('dashboard.user/order')->with(['models'=>$models,'warehouses'=>$warehouses,'user'=>$user,'car_id_fromlayout'=>$car_id_fromlayout,'car_images'=>$car_images,'provinces'=>$provinces]);
     }
     //load Page for Guest
     public function GuestOrder(Request $request){
@@ -35,14 +35,12 @@ class UserOrderController extends Controller
         $car_images = modelInfo::select('image')->where('model_id',$car_id_fromlayout)->get();
         $models = modelInfo::select("*")->get();
         $warehouses = warehouse::select("warehouse_name","id")->get(); 
-        return view('dashboard.user/order')->with(['models'=>$models,'warehouses'=>$warehouses,'car_id_fromlayout'=>$car_id_fromlayout,'car_images'=>$car_images]);
+        $provinces = Province::select('*')->get();
+        return view('dashboard.user/order')->with(['models'=>$models,'warehouses'=>$warehouses,'car_id_fromlayout'=>$car_id_fromlayout,'car_images'=>$car_images,'provinces'=>$provinces]);
     }
     // getModelInfo AJAX
     public function getModelInfo(Request $request){
-        
         $model_id = $request->model_id;
-        // $idfromRequest = $request->id;
-        
         $model = modelInfo::select("*")
         ->where("model_id",$model_id)
         ->get();
@@ -53,8 +51,7 @@ class UserOrderController extends Controller
     }
     //getShowRoom
     public function getShowRoom(Request $request){
-        $region_id = $request->region_id;
-        
+        $region_id = $request->region_id;   
         $showrooms = showroom::select("*")
         ->where("region",$region_id)
         ->orderBy("showroom_name","asc")
@@ -68,7 +65,6 @@ class UserOrderController extends Controller
     //getAddress
     public function getShowRoomAddress(Request $request){
         $showroom_id = $request->showroom_id;
-        
         $showrooms_address = showroom::select("address")
         ->where("id",$showroom_id)
         ->get();
@@ -79,28 +75,26 @@ class UserOrderController extends Controller
     }
     
     public function CustomerSubmitOrder(Request $request){
-        $request->validate([
-            
+        $request->validate([ 
             'email' => array('required','regex:/^[^\s@-]+@[^\s@-]+\.[^\s@]+$/'),
             'fullname'=> array('required','regex:/^[A-Za-z\s]+$/'),
-            'citizen_id'=> array('required','regex:/^[0-9]*$/'),
             'phone_number'=> array('required','regex:/^[0-9]{10,11}$/'),
-            'address'=> array('required','regex:/^[a-zA-Z0-9,-\s]*$/'),   
+            'address'=> array('required','regex:/^[a-zA-Z0-9,\-\s]*$/'),   
             'warehouses'=> 'required',         
             'models'=> 'required',   
             'showrooms' => 'required',         
-            'subtotal_price'=> 'required',            
+            'OrderPrice'=> 'required',
+            'provinces'=> 'required',
+
         ]);
-  
-        $user_info = Customer_Info::find($request->customer_id);  //find user info by ID
+        $user_auth_id = Auth::user()->customer_id;
+        // dd($user_auth);
+        $user_info = Customer_Info::find($user_auth_id);  //find user info by ID
         //check field unique if user change info
        
         $EmailChange = $user_info->email != $request->email;
         $emailExists = Customer_Info::where('email',$request->email)->exists();
 
-        $CitizenIDChange = $user_info->citizen_id != $request->citizen_id;
-        $CitizenIDExists = Customer_Info::where('citizen_id',$request->citizen_id)->exists();
-        // dd($EmailChange);
         if($EmailChange){
             if($emailExists){
                 if(App::getLocale()=='en'){
@@ -110,35 +104,17 @@ class UserOrderController extends Controller
                 }
             }
         }
-        if($CitizenIDChange){
-            if($CitizenIDExists){
-                if(App::getLocale()=='en'){
-                    return redirect()->back()->with('fail','This Citizen ID is already exists! Try another one!');
-                }else{
-                    return redirect()->back()->with('fail','Số CMND này đã tồn tại! Hãy thử lại!');
-                }
-            }
-        }
-
-         //UPDATE CUSTOMER INFO
-         $user_info->email = $request->email;
-         $user_info->citizen_id = $request->citizen_id;
-         $user_info->fullname = $request->fullname;
-         $user_info->phone_number = $request->phone_number;
-         $user_info->address = $request->address;
-         $update_info_user = $user_info->update();
-         
         //VALIDATE AND INSERT ORDER
         $order = new order();
         $order->showroom = $request->showrooms; 
-        //generate ORDER CODE
-        $order->order_code = 'ORDERID'.'-'.rand(0,400).time();
+        
         //check if order_code exists.
         $orderCodeExist = order::where('order_code', $order->order_code )->exists();
-        if ($orderCodeExist) {
+        do{
             $order->order_code = 'ORDERID'.'-'.rand(0,400).time(); // generate new one
-        }
-        $order->customer_id = $request->customer_id;
+        }while($orderCodeExist);
+        $order_code = $order->order_code;
+        $order->customer_id = $user_auth_id;
         $save_order = $order->save();
         //get order ID to insert order details table
         $order_id_order = order::select("order_id")
@@ -148,18 +124,25 @@ class UserOrderController extends Controller
         foreach($order_id_order as $order){
            $order_id = $order->order_id;
         }
+        //insert order after being validated
         $order_details = new orderDetail();
         $order_details->order_id = $order_id;
         $order_details->model_id = $request->models;
-        $order_details->order_price = $request->subtotal_price;
+        $order_details->order_price = $request->OrderPrice;
         $save_order_infos= $order_details->save();
+
+        //UPDATE CUSTOMER INFO
+        $user_info->email = $request->email;
+        $user_info->fullname = $request->fullname;
+        $user_info->phone_number = $request->phone_number;
+        $user_info->address = $request->address;
+        $update_info_user = $user_info->update();
         
-       
         if($update_info_user && $save_order && $save_order_infos){
             if(App::getLocale()== 'en'){
-                return redirect()->back()->with('success','You are now order successfully!');
+                return redirect()->back()->with(['success'=>'You are now order successfully!','order_code'=>$order_code]);
             }else{
-                return redirect()->back()->with('success','Bạn đã đặt hàng thành công!');
+                return redirect()->back()->with(['success'=>'Bạn đã đặt hàng thành công!','order_code'=>$order_code]);
             }
         }else{
             if(App::getLocale()== 'en'){
@@ -170,85 +153,86 @@ class UserOrderController extends Controller
         }
     }
 
-    // public function GuestSubmitOrder(Request $request){
-    //     $request->validate([
-    //         'email' => 'required|email|unique:customer_infos,email',
-    //         'fullname'=> 'required|alpha',
-    //         'citizen_id'=> 'required|numeric|unique:customer_infos',
-    //         'phone_number'=> 'required|numeric',
-    //         'address'=> 'required|alpha_num',            
-    //         'password' => 'required|min:5|max:30',
-    //         'ConfirmPassword' => 'required|min:5|max:30|same:password',
-    //     ]);
-   
-    //     $emailExists = Customer_Info::where('email',$request->email)->exists();
-    //     $CitizenIDExists = Customer_Info::where('citizen_id',$request->citizen_id)->exists();
-    //         if($emailExists){
-    //             if(App::getLocale()=='en'){
-    //                 return back()->with('fail','This Email is already being used! Try another one!');
-    //             }else{
-    //                 return back()->with('fail','Địa chỉ Email đã được sử dụng! Hãy thử lại');
-    //             }
-    //         }
-    //         if($CitizenIDExists){
-    //             if(App::getLocale()=='en'){
-    //                 return redirect()->back()->with('fail','This Citizen ID is already exists! Try another one!');
-    //             }else{
-    //                 return redirect()->back()->with('fail','Số CMND này đã tồn tại! Hãy thử lại!');
-    //             }
-    //         }
+    public function GuestSubmitOrder(Request $request){
+        $request->validate([ 
+            'email' => array('required','regex:/^[^\s@-]+@[^\s@-]+\.[^\s@]+$/'),
+            'fullname'=> array('required','regex:/^[A-Za-z\s]+$/'),
+            'phone_number'=> array('required','regex:/^[0-9]{10,11}$/'),
+            'address'=> array('required','regex:/^[a-zA-Z0-9,\-\s]*$/'),
+            'warehouses'=> 'required',         
+            'models'=> 'required',   
+            'showrooms' => 'required',         
+            'OrderPrice'=> 'required',            
+            'provinces'=> 'required',            
+        ]);
+ 
+         //UPDATE CUSTOMER INFO
+         $user_info = new Customer_Info();
+         $user_info->email = $request->email;
+         $user_info->fullname = $request->fullname;
+         $user_info->phone_number = $request->phone_number;
+         $user_info->address = $request->address;
+         $user_info->customer_role = 'guest';
+         $save_info_user = $user_info->save();
 
-    //         $user_info = new Customer_Info();
-    //         $user_info->email =  $request->email;
-    //         $user_info->citizen_id = $request->citizen_id;
-    //         $user_info->phone_number = $request->phone_number;
-    //         $user_info->fullname = $request->fullname;
-    //         $user_info->address = $request->address;
-    //         $user_info->customer_role = 'guest';
-    //         $save_info = $user_info->save();
-           
-         
-    //     //VALIDATE AND INSERT ORDER
-    //     $order = new order();
-    //     $order->showroom = $request->showrooms; 
-    //     //generate ORDER CODE
-    //     $order->order_code = 'ORDERID'.'-'.rand(0,400).time();
-    //     //check if order_code exists.
-    //     $orderCodeExist = order::where('order_code', $order->order_code )->exists();
-    //     if ($orderCodeExist) {
-    //         $order->order_code = 'ORDERID'.'-'.rand(0,400).time(); // generate new one
-    //     }
-    //     $order->customer_id = $request->customer_id;
-    //     $save_order = $order->save();
-    //     //get order ID to insert order details table
-    //     $order_id_order = order::select("order_id")
-    //     ->where("order_code",$order->order_code)
-    //     ->get();
+         $isUser = Customer_Info::latest()->first();
+        if($isUser){
+            //VALIDATE AND INSERT ORDER
+            $order = new order();
+            $order->showroom = $request->showrooms; 
+            
+            
+            //check if order_code exists.
+            $orderCodeExist = order::where('order_code', $order->order_code )->exists();
+            //generate another ORDER CODE
+            do{
+                $order->order_code = 'ORDERID'.'-'.rand(0,400).time(); // generate new one
+            }while($orderCodeExist);
+            
+            $order_code = $order->order_code;
 
-    //     foreach($order_id_order as $order){
-    //        $order_id = $order->order_id;
-    //     }
-    //     $order_details = new orderDetail();
-    //     $order_details->order_id = $order_id;
-    //     $order_details->model_id = $request->models;
-    //     $order_details->order_price = $request->subtotal_price;
-    //     $save_order_infos= $order_details->save();
-        
-       
-    //     if($save_info && $save_order && $save_order_infos){
-    //         if(App::getLocale()== 'en'){
-    //             return redirect()->back()->with('success','You are now order successfully!');
-    //         }else{
-    //             return redirect()->back()->with('success','Bạn đã đặt hàng thành công!');
-    //         }
-    //     }else{
-    //         if(App::getLocale()== 'en'){
-    //             return redirect()->back()->with('fail','Something went wrong, failed to order! Please Try Again!');
-    //         }else{
-    //             return redirect()->back()->with('fail','Đặt hàng thất bại! Bạn vui lòng kiểm tra lại thông tin!');
-    //         }
-    //     }
-    // }
+            $order->customer_id = $isUser->customer_id;
+            $save_order = $order->save();
+            //get order ID to insert order details table
+            $order_id_order = order::select("order_id")
+            ->where("order_code",$order->order_code)
+            ->get();
 
-    
+            foreach($order_id_order as $order){
+            $order_id = $order->order_id;
+            }
+            //insert order after being validated
+            $order_details = new orderDetail();
+            $order_details->order_id = $order_id;
+            $order_details->model_id = $request->models;
+            $order_details->order_price = $request->OrderPrice;
+            $save_order_infos= $order_details->save();
+            // dd($save_info_user && $save_order && $save_order_infos);
+
+            if($save_info_user && $save_order && $save_order_infos){
+                
+                
+                if(App::getLocale()== 'en'){
+                    return redirect()->back()->with(['success'=>'You are now order successfully!','order_code'=>$order_code]);
+                }else{
+                    return redirect()->back()->with(['success'=>'Bạn đã đặt hàng thành công!','order_code'=>$order_code]);
+                }
+            }else{
+                if(App::getLocale()== 'en'){
+                    return redirect()->back()->with('fail','Something went wrong, failed to order! Please Try Again!');
+                }else{
+                    return redirect()->back()->with('fail','Đặt hàng thất bại! Bạn vui lòng kiểm tra lại thông tin!');
+                }
+            }
+
+        }else{
+            if(App::getLocale()=='en'){
+                return redirect()->back()->with('fail','User Not Found!');
+            }else{
+                return redirect()->back()->with('fail','Người dùng không tồn tại!');
+            }
+        }
+
+    }
+
 }

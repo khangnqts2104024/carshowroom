@@ -43,9 +43,9 @@
             </div>
 
             <div class="or-text">
-              <hr class="line"></hr>
+              <hr class="line">
               <span> {{__('login.OR')}}</span>
-              <hr class="line"></hr>
+              <hr class="line">
             </div>
             
             <a href="{{route('user.register')}}"><button class="btn btn-block buttonCreateAccount">{{__('login.CreateAccount')}}</button></a>

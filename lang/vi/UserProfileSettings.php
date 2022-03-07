@@ -12,8 +12,9 @@
         "Email" => "Email",
         "Password" => "Mật Khẩu",
         "CitizenID" => "CMND",
-        
-
+        "Avatar"=>"Ảnh Đại Diện",
+    
+        "Edit Avatar"=>"Sửa Ảnh Đại Diện",
         "Edit Fullname" => "Sửa Họ Tên",
         "Edit Address" => "Sửa Địa Chỉ",
         "Edit Phone Number" => "Sửa Số Điện Thoại",

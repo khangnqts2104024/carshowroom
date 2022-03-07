@@ -20,6 +20,9 @@
         "Reset Password" => "Reset Password",
         "Edit Citizen ID" => "Edit Citizen ID",
         "UPDATE" => "UPDATE",
+        "Avatar"=>"Avatar",
+    
+        "Edit Avatar"=>"Edit Avatar",
         
        
     ];

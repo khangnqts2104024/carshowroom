@@ -776,7 +776,9 @@
     "Shipping":"Vận Chuyển",
     "Free Shipping":"Miễn Phí",
     "Cash Directly":"Thanh Toán Trực Tiếp",
-    "Place Order":"Đặt Xe"
+    "Place Order":"Đặt Xe",
+    "Order Car": "Đặt Hàng",
+    "Select Your Province/City":"Chọn Tỉnh/Thành Phố"
 
     
 }

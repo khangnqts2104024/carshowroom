@@ -3,6 +3,8 @@
     <link rel="stylesheet" href="/css/order.css">
     <input type="hidden" class="idToken" value="{{ csrf_token() }}">
     <input type="hidden" id="model_id" value="{{$car_id_fromlayout}}">
+    <input type="hidden" id="order_code" value="{{session()->get('order_code')}}">
+
     @foreach($car_images as $car_image)
     <input type="hidden" id="CarImagePath" value="{{$car_image->image}}">
     @endforeach
@@ -10,10 +12,12 @@
         <input type="hidden" class="url_Get_ModelInFo" value="/user/auth/getModelInfo">
         <input type="hidden" class="url_Get_ShowRoom" value="/user/auth/getShowRoom">
         <input type="hidden" class="url_Get_ShowRoomAddress" value="/user/auth/getShowRoomAddress">
+        <input type="hidden" class="url_Get_Fees" value="/user/auth/CostEstimate/getFees">
     @else
         <input type="hidden" class="url_Get_ModelInFo" value="/user/getModelInfo">
         <input type="hidden" class="url_Get_ShowRoom" value="/user/getShowRoom">
         <input type="hidden" class="url_Get_ShowRoomAddress" value="/user/getShowRoomAddress">
+        <input type="hidden" class="url_Get_Fees" value="/user/CostEstimate/getFees">
     @endif
     
     <div class="container">
@@ -22,13 +26,20 @@
             <div class="message">
                 
                 @if(Session::get('success'))
-                    @if(App::getLocale()=='en')
-                         <span class="alert alert-success">{{Session::get('success')}}<a href="">Go To Mange Orders</a></span>
-                    @else
-                        <span class="alert alert-success">{{Session::get('success')}}<a href="">Đến Trang Quản Lý Đơn Hàng</a></span>
-                    @endif
-                @endif
-                @if(Session::has('fail'))
+                   @if(Auth::check())
+                        @if(App::getLocale()=='en')
+                            <span class="success-message alert alert-success">{{Session::get('success')}}<a href="">Go To Mange Orders Page</a></span>
+                        @else
+                            <span class="success-message alert alert-success">{{Session::get('success')}}<a href="">Đến Trang Quản Lý Đơn Hàng</a></span>
+                        @endif
+                   @else
+                        @if(App::getLocale()=='en')
+                            <span class="success-message alert alert-success">{{Session::get('success')}}<a href="">Go To Search Order Status Page</a></span>
+                        @else
+                            <span class="success-message alert alert-success">{{Session::get('success')}}<a href="">Đến Trang Tra Cứu Đơn Hàng</a></span>
+                        @endif
+                   @endif
+                @elseif(Session::has('fail'))
                         @if(App::getLocale()=='en')
                             <span class="alert alert-danger">{{Session::get('fail')}}</span>
                         @else
@@ -36,10 +47,40 @@
                         @endif
                 @endif
                 
+                <!-- Modal -->
+                <div class="modal fade" id="EmailSent" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Order Success</h5>
+                                    <button type="button" class="close XCloseBtn"  aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                            </div>
+                            <div class="modal-body">
+                                An email sent!
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary cancelBtn">Close</button>
+                                <button type="button" class="btn btn-primary">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                        
             </div>
+
+            
+
         </div>
         <div class="d-flex d-flexCustom">
-            <form action="{{route('user.CustomerSubmitOrder')}}" method="POST" id="submitOrder">
+            @if(Auth::check())
+                {{-- Customer Order --}}
+                 <form action="{{route('user.CustomerSubmitOrder')}}" method="POST" id="submitOrder">
+            @else
+            {{-- Guest Order --}}
+                <form action="{{route('user.GuestSubmitOrder')}}" method="POST" id="submitOrder">
+            @endif
                 @csrf
                 <div class="d-flex" style="flex-direction: column">
                   <label class="labelCustom">
@@ -51,22 +92,20 @@
                          @endforeach
                          <span class="text-danger">@error('fullname'){{$message}}@enderror</span>
                     @else
-                         <input class="input" type="text" name="fullname" placeholder="{{__('Enter your Fullname')}}" required value="">
+                         <input class="input" type="text" name="fullname" placeholder="{{__('Enter your Fullname')}}" required value="{{old('fullname')}}">
                          <span class="text-danger">@error('fullname'){{$message}}@enderror</span>
                     @endif
                   </label>
 
                   <label class="labelCustom">
-                    <span>{{__('Citizen ID')}}<span class="required">*</span></span>
-                    @if(isset($user))
-                        @foreach($user as $userinfo)
-                            <input class="input" type="text" name="citizen_id" placeholder="{{__('Enter your CitizenID')}}" required value="{{$userinfo->citizen_id}}">
-                        @endforeach
-                        <span class="text-danger">@error('citizen_id'){{$message}}@enderror</span>
-                    @else
-                         <input class="input" type="text" required name="citizen_id" placeholder="{{__('Enter your CitizenID')}}" value="">
-                         <span class="text-danger">@error('citizen_id'){{$message}}@enderror</span>
-                    @endif
+                    <span>{{__('CostEstimate.Province/City')}}<span class="required">*</span></span>
+                    <select class="" name="provinces" id="provinces" required>
+                        <option id="SelectYourProVince" value="">{{__('Select Your Province/City')}}</option>
+                        @foreach($provinces as $province)
+                            <option value="{{$province->matp}}" >{{$province->name}}</option>
+                       @endforeach
+                       <span class="text-danger">@error('provinces'){{$message}}@enderror</span>
+                    </select>
                 </label>
 
                   <label class="labelCustom">
@@ -127,7 +166,7 @@
                     <span>{{__('Model')}}<span class="required">*</span></span>
                       <div class="Model">
                           <select  name="models" id="models" required>
-                              
+                            
                               <option id="SelectYourModel" value="{{__('Select your Model')}}">{{__('Select your Model')}}</option>
                                 @foreach($models as $model)
                                  <option value="{{$model->model_id}}" >{{$model->model_name}}</option>
@@ -149,9 +188,8 @@
                     <span>{{__('ShowRoom Address')}} <span class="required" required>*</span></span>
                     <textarea name="showroomAddressText" id="showroomAddressText" cols="48" rows="2" readonly ></textarea>
                 </label>
-                
-                
-                <input type="hidden" name="subtotal_price" id="subtotal_price" value="">
+
+                <input type="hidden" name="OrderPrice" id="OrderPrice" value="">
 
                 <div class="imgCarHolder">
                   <img src="/image/logoVinfast.png" id="showImageCar" alt="">
@@ -169,13 +207,18 @@
                     </tr>
 
                     <tr>
-                        <td>{{__('Notional Price')}}</td>
-                        <td class="subtotal" name='subtotal' style="color: red">0 VND</td>
-                        
+                        <td><a href="">Other Fees</a></td>
+                        <td class="ortherFees" name='ortherFees' id="ortherFees" style="color: red">0 VND</td>
                     </tr>
 
                     <tr>
-                      <td style="color: red">{{__('Deposit')}} (20%)</td>
+                        <td style="color: red">Total</td>
+                        <td class="deposit" id="CostEstimatedPrice" style="color: red">0 VND</td>
+                        
+                      </tr>
+
+                    <tr>
+                      <td style="color: red">{{__('Deposit')}} (5%)</td>
                       <td class="deposit" style="color: red">0 VND</td>
                     </tr>
 
@@ -194,7 +237,7 @@
                 </p>
               
                 
-                <button class="buttonCustom" type="submit" form="submitOrder">{{__('Place Order')}}</button>
+                <button class="buttonCustom" id="buttonSubmit" type="submit" form="submitOrder">{{__('Place Order')}}</button>
             </div><!-- Yorder -->
         </div>
     </div>

@@ -55,15 +55,16 @@ class UserController extends Controller
     public function create(Request $request){
         //validate input
         $request->validate([
-            'email' => array('required','regex:/^[^\s@-]+@[^\s@-]+\.[^\s@]+$/','unique:customer_infos,email'),
+            'email' => array('required','regex:/^[^\s@-]+@[^\s@-]+\.[^\s@]+$/','unique:customer_accounts,email'),
             'fullname'=> array('required','regex:/^[A-Za-z\s]+$/'),
-            'citizen_id'=> array('required','regex:/^[0-9]*$/','unique:customer_infos'),
+            'citizen_id'=> array('required','regex:/^[0-9]*$/'),
             'phone_number'=> array('required','regex:/^[0-9]{10,11}$/'),
-            'address'=> array('required','regex:/^[a-zA-Z0-9,-\s]*$/'),            
+            'address'=> array('required','regex:/^[a-zA-Z0-9,\-\s]*$/'),            
             'password' => 'required|min:5|max:30',
             'ConfirmPassword' => 'required|min:5|max:30|same:password',
 
         ]);
+
         $user_info = new Customer_Info();
         $user_info->email =  $request->email;
         $user_info->citizen_id = $request->citizen_id;
@@ -71,10 +72,14 @@ class UserController extends Controller
         $user_info->fullname = $request->fullname;
         $user_info->address = $request->address;
         $user_info->customer_role = 'member';
+        $user_info->avatar = 'AvatarDefault2.png';
         $save_info = $user_info->save();
+
+        $isUser = Customer_Info::where('email',$request->email)->first(); //getID to pass customer_id in customer_account
 
         $user = new User();
         $user->email = $request->email;
+        $user->customer_id = $isUser->customer_id;
         $user->password = Hash::make($request->password);
         $save = $user->save();
 
@@ -94,7 +99,7 @@ class UserController extends Controller
     public function authenticate(Request $request){
        if(App::getLocale() == 'vi'){
         $request->validate([
-            'email' => 'required|email|exists:customer_infos,email',
+            'email' => 'required|email|exists:customer_accounts,email',
             'password' => 'required|min:5|max:30',
         ],
     [
@@ -102,7 +107,7 @@ class UserController extends Controller
     ]);
        }else{
         $request->validate([
-            'email' => 'required|email|exists:customer_infos,email',
+            'email' => 'required|email|exists:customer_accounts,email',
             'password' => 'required|min:5|max:30',
         ],
     [

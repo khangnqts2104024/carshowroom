@@ -39,11 +39,13 @@ public function callbackGoogle()
                     $new_user_info->customer_role = 'member';
                     $save_user_info = $new_user_info->save();
                     
+                    $isUser = Customer_Info::where('email', $user_info_Google->email)->first(); //getID to pass customer_id in customer_account
                     //create_account
                     $new_user_account = new User();
                     $new_user_account->email = $user_info_Google->email;
                     $new_user_account->password = Hash::make("user1234");
                     $new_user_account->google_id = $user_info_Google->id;
+                    $new_user_account->customer_id = $isUser->customer_id;
                     $save_user_account = $new_user_account->save();
                     Auth::login($new_user_account);
                     return redirect('/user/auth/home');

@@ -14,6 +14,8 @@ use App\Http\Controllers\ModelInfoController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\CarInfoController;
+use App\Http\Controllers\User\CostEstimateController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ShowroomController;
 use App\Http\Controllers\StockController;
@@ -41,11 +43,9 @@ Route::get('/', function () {
     return redirect()->route('user.home');
 });
 
-Route::get('/lang/{locale?}',[ChangeLanguageController::class,'switch']);
+ 
 
-// Route::get('/expectedPrice',function(){
-//     return view('expectedPrice');
-// })->middleware('Localization');
+Route::get('/lang/{locale?}',[ChangeLanguageController::class,'switch']);
 
 Auth::routes();
 Route::get('/redirect/google', [SocialController::class,'redirectGoogle']);
@@ -53,8 +53,7 @@ Route::get('/callback/google', [SocialController::class,'callbackGoogle']);
 
 Route::prefix('user')->name('user.')->group(function(){
     // Guest - User UnAuthenticated
-    Route::middleware(['guest:web','PreventBackHistory','Localization'])->group(function(){
-            
+    Route::middleware(['guest:web','PreventBackHistory','Localization'])->group(function(){        
             Route::get('/fetchInfo_Layout',[UserController::class,'fetchInfo_Layout'])->name('fetchInfo_Layout');
             Route::get('/home',[UserController::class,'home'])->name('home'); //guest homepage
             //Authenticate Page
@@ -69,9 +68,10 @@ Route::prefix('user')->name('user.')->group(function(){
             Route::post('/getShowRoomAddress',[UserOrderController::class,'getShowRoomAddress'])->name('getShowRoomAddress');
             Route::post('/SubmitOrder',[UserOrderController::class,'GuestSubmitOrder'])->name('GuestSubmitOrder');
             //Cost Estimation Page
-            Route::get('/CostEstimate',[UserOrderController::class,'CostEstimate'])->name('CostEstimate');
-
-        });
+            Route::get('/CostEstimate',[CostEstimateController::class,'index'])->name('CostEstimate');
+            Route::post('/CostEstimate/getModelInfo',[CostEstimateController::class,'getModelInfo'])->name('getModelInfo');
+            Route::post('/CostEstimate/getFees',[CostEstimateController::class,'getFees'])->name('getFees');
+     });
     
     // Customer - User Authenticated
     Route::middleware(['auth:web','PreventBackHistory','Localization'])->group(function(){
@@ -88,7 +88,7 @@ Route::prefix('user')->name('user.')->group(function(){
             Route::post('auth/editAvatar',[DashboardController::class,'editAvatar']); 
         });
         //Function page for customer
-        Route::get('/auth/fetchInfo_Layout_auth',[UserController::class,'fetchInfo_Layout_auth'])->name('fetchInfo_Layout_auth');
+            Route::get('/auth/fetchInfo_Layout_auth',[UserController::class,'fetchInfo_Layout_auth'])->name('fetchInfo_Layout_auth');
             Route::get('auth/home',[UserController::class,'home_auth'])->name('home_auth'); //customer homepage
             //Customer Order Page 
             Route::get('auth/order/{id?}',[UserOrderController::class,'CustomerOrder'])->name('CustomerOrder');
@@ -97,12 +97,15 @@ Route::prefix('user')->name('user.')->group(function(){
             Route::post('/auth/getShowRoomAddress',[UserOrderController::class,'getShowRoomAddress'])->name('getShowRoomAddress');
             Route::post('/CustomerSubmitOrder',[UserOrderController::class,'CustomerSubmitOrder'])->name('CustomerSubmitOrder');
             //Customer Cost Estimation
-            Route::get('auth/CostEstimate',[UserOrderController::class,'CostEstimate'])->name('CostEstimate');
+            Route::get('auth/CostEstimate',[CostEstimateController::class,'index'])->name('CostEstimate');
+            Route::post('auth/CostEstimate/getModelInfo',[CostEstimateController::class,'getModelInfo'])->name('getModelInfo');
+            Route::post('auth/CostEstimate/getFees',[CostEstimateController::class,'getFees'])->name('getFees');
             //Logout 
             Route::post('auth/logout',[UserController::class,'logout'])->name('logout');
     });
     
 });
+Route::get('/sendmail_ordersuccess/{order_code?}',[MailController::class,'sendmail_ordersuccess']);
     
 
 // KHANG

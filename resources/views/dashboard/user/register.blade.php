@@ -51,7 +51,7 @@
                   
                   <label for="password-signIn">Password</label>
                   <div  id="form-password">
-                    <input type="password" name="password" class="form-control formRound" id="passwordField" onclick="showIcon()" autocomplete="off" value="{{old('password')}}">
+                    <input type="password" name="password" class="form-control formRound" id="passwordField" onclick="showIcon()" autocomplete="off" value="">
                     <span class="text-danger">@error('password'){{$message}} @enderror</span>
                   <span class="eye" id="eye" onclick="showPass()">
                       <i class="fa fa-eye" aria-hidden="true" id="show"></i>

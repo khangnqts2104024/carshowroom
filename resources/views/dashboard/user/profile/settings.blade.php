@@ -206,6 +206,7 @@
                             <div class="contentInfo mt-1">
                                 <div class="showcontent" style="display: none">
                                     <a href="#" class="d-block mb-2" id="showEmail"></a>
+                                   @if(Auth::user()->google_id == null)
                                     <div class="edit">
                                         <div class="plusIcon">
                                             <i class="showEmailModalButton fa-light fa-plus" data-target="#editEmail"> </i>
@@ -213,7 +214,8 @@
                                         <!-- Button trigger edit modal -->
                                         <a href="#" class="showEmailModalButton TextAddButton ml-3"
                                             data-target="#editEmail ">{{__('UserProfilesettings.Edit Email')}}</a>
-                                    </div>
+                                        </div>
+                                   @endif
                                 </div>
 
 

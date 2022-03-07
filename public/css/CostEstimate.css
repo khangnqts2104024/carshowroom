@@ -68,17 +68,17 @@ border-radius: 35px !important;
     color:  rgb(199, 199, 199);
     width: 100%;
    }
-   .expectedPrice{
+   .CostEstimate{
        display:flex;
        justify-content: start;
        flex-direction: column;
    }
-   .text-expectedPrice{
+   .text-CostEstimate{
        font-size: 25px;
        margin-bottom: 15px;
    }
 
-   #carExpectedPrice{
+   #carCostEstimate{
        color: rgb(44,114,198);
        font-size: 25px;
        margin-bottom:20px !important;

@@ -91,7 +91,7 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h2 class="modal-title">{{ __('UserProfilesettings.Edit Avatar') }}</h2>
+                                        <h2 class="modal-title">{{ __('UserProfileSettings.Edit Avatar') }}</h2>
                                         <button type="button" class="close XCloseModal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -105,7 +105,7 @@
                                             <input type="hidden" name="fullname" id="fullnameIDforAva" value="">
 
                                             <div class="form-group">
-                                                <label>{{ __('UserProfilesettings.Avatar') }}</label> <br>
+                                                <label>{{ __('UserProfileSettings.Avatar') }}</label> <br>
                                                 <input type="file" class="" name="image_upload"
                                                     id="uploadImgBtn"><br>
 
@@ -126,15 +126,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="info ">
+                    <div class="info d-flex align-items-center">
                         <a href="#" class="d-block " id="fullnameUserLayout"></a>
                     </div>
-
-
                 </div>
-
-
-
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">

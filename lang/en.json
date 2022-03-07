@@ -38,6 +38,7 @@
     "Vehicles":"Vehicles",
     "View Detail":"VIEW DETAIL",
     "View Detail.":"View Detail",
+    "Select Your Province/City":"Select Your Province/City",
     "Aspiration to conquer the world":"Aspiration to conquer the world",
     "“It is, in automobile industry, utopian that not one ":"“It is, in automobile industry, utopian that not one ",
     "but two vehicles are designed and manufactured ":"but two vehicles are designed and manufactured ",
@@ -76,7 +77,9 @@
     "Shipping":"Shipping",
     "Free Shipping":"Free Shipping",
     "Cash Directly":"Cash Directly",
-    "Place Order":"Place Order"
+    "Place Order":"Place Order",
+    "Order Car": "Order Car"
+
 
    
 

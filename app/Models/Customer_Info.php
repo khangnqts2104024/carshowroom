@@ -20,7 +20,8 @@ class Customer_Info extends Model
         'phone_number',
         'address',
         'citizen_id',
-        'fullname'
+        'fullname',
+        'customer_role'
     ];
 
     public function Customer_Account()

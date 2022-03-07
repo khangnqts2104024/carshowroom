@@ -371,9 +371,14 @@ $(function() {
                $('#emailEdit').val(item.email);
                $('#citizen_id').val(item.citizen_id);
 
-               var pathAvatar = item.avatar;
-               $('#showAvatarUser').attr("src", '/storage/files/Avatar_User/'+pathAvatar+'');
-              
+               if(item.avatar == "AvatarDefault2.png"){
+                  var fileExtension = getFileExtension(item.avatar);
+                  if(fileExtension == "jpg" || fileExtension == "jpeg" || fileExtension == 'png'){
+                     $('#showAvatarUser').attr("src", '/storage/files/Avatar_User/'+item.avatar+'');
+                  }
+               }else{
+                  $('#showAvatarUser').attr("src",item.avatar);
+               }
                
               if(!jQuery.isEmptyObject(response.users)){
                   $('.showcontent').show();  
@@ -400,7 +405,15 @@ $(function() {
                 window.location.href = $('#url').val() + "/lang/"+locale;
             }, 400);
         }
-   
+
+   // program to get the file extension
+
+   function getFileExtension(filename){
+      // get file extension
+      const extension = filename.split('.').pop();
+      return extension;
+   }
+  
  });
 
  

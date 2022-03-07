@@ -13,12 +13,12 @@
     </div><!-- /.container-fluid -->
 </section>
 <section class="content">
-<<<<<<< Updated upstream
+
     <div class="">   
         <div class="panel panel-default">
             <div class="panel-heading">
                 Danh mục xe
-=======
+
     <div class="row">   
         <div class="col-12">
             <div class="card">
@@ -36,12 +36,15 @@
                 <table id="myTable" class="table table-striped b-t b-light mydatatable">
                     <thead>
                         <tr>
+
                             <th style="width:30px;">
                                 STT
+
                             </th>
                             <th>Tên dòng xe</th>
                             <th>Mã dòng xe</th>
                             <th>Ngày thêm</th>
+
                             <th style="width:50px;">Thông Tin chi tiết</th>
                             <th style="width:50px;">Xóa Dòng Xe</th>
                         </tr>
@@ -59,6 +62,7 @@
                                     <i class="fa fa-pencil-square text-success text-active" style="font-size: 30px;"></i>
                                 </a></td>
                                <td style="text-align: center;"> <a onclick="return confirm('Bạn có muốn xóa?')" href="{{URL::to('admin/general/deletemodel/'.$model -> model_id)}}" class="active styling-edit" ui-toggle-class="">
+
                                     <i class="fa fa-times text-danger text" style="font-size: 30px;"></i>
                                 </a>
                             </td>
@@ -68,7 +72,7 @@
                 </table>
             <!-- </div> -->
                 </div>
->>>>>>> Stashed changes
+
             </div>
             <!-- <div class="row w3-res-tb">
             <div class="col-sm-5 m-b-xs">
@@ -99,41 +103,7 @@
                 session(['message' => '']);
             }
             ?>
-            <div class="table-responsive phat">
-                <table class="table table-striped b-t b-light mydatatable">
-                    <thead>
-                        <tr>
-                            <th style="width:20px;">
-                                <label class="i-checks m-b-none">
-                                    <input type="checkbox"><i></i>
-                                </label>
-                            </th>
-                            <th>Tên dòng xe</th>
-                            <th>Mã dòng xe</th>
-                            <th>Ngày thêm</th>
-                            <th style="width:30px;"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    
-                        <tr>
-                            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-                            <td></td>
-                            <td><span class="text-ellipsis"></span></td>
-                            <td><span class="text-ellipsis">#</span></td>
-                            <td>
-                                <a href="" class="active styling-edit" ui-toggle-class="">
-                                    <i class="fa fa-pencil-square-o text-success text-active"></i>
-                                </a>
-                                <a onclick="return confirm('Bạn có muốn xóa?')" href="" class="active styling-edit" ui-toggle-class="">
-                                    <i class="fa fa-times text-danger text"></i>
-                                </a>
-                            </td>
-                        </tr>
-                  
-                    </tbody>
-                </table>
-            </div>
+            
 
         </div>
     </div>
@@ -248,3 +218,4 @@
 
 </script>
 @endsection
+

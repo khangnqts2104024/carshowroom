@@ -205,7 +205,7 @@
                     <i class="fa fa-angle-up"></i>
                 </h2>
             </button>
-            <div id="powertrain-collapse" class="table-responsive horizontal dragscroll collapse" data-parent="#powertrain-container" style="">
+            <div id="powertrain-collapse" class="table-responsive horizontal dragscroll collapse" data-parent="#powertrain-container" >
                 <table class="table table-bordered table-compare table-striped-columns">
                     <tbody class="break-line">
                         <tr>
@@ -267,7 +267,7 @@
                     <i class="fa fa-angle-up"></i>
                 </h2>
             </button>
-            <div id="exterior-collapse" class="table-responsive horizontal dragscroll collapse" data-parent="#exterior-container" style="">
+            <div id="exterior-collapse" class="table-responsive horizontal dragscroll collapse" data-parent="#exterior-container" >
                 <table class="table table-bordered table-compare table-striped-columns">
                     <tbody class="break-line">
                         <tr>
@@ -358,7 +358,7 @@
                     <i class="fa fa-angle-up"></i>
                 </h2>
             </button>
-            <div id="safety-collapse" class="table-responsive horizontal dragscroll collapse" data-parent="#safety-container" style="">
+            <div id="safety-collapse" class="table-responsive horizontal dragscroll collapse" data-parent="#safety-container" >
                 <table class="table table-bordered table-compare table-striped-columns">
                     <tbody class="break-line">
                         <tr>

@@ -24,21 +24,21 @@
           <th scope="col"></th>
           <td scope="col">
             <div class="compare_icon"></div>
-            <a id="vehicle-picker-1" class="vehicle-picker" href data-index="0" data-toggle="modal" data-target="#modal_compare1" data="1">
+            <a id="vehicle-picker-1" class="vehicle-picker " href="#" data-target="#modal_compare1" data="1">
               <i class="bi bi-zoom-in text-center"></i>
               <p class="text-center">Lựa chọn xe</p>
             </a>
           </td>
           <td scope="col">
             <div class="compare_icon"></div>
-            <a id="vehicle-picker-2" class="vehicle-picker" href="" data-index="1" data-toggle="modal" data-target="#modal_compare2" data="2">
+            <a id="vehicle-picker-2" class="vehicle-picker" href="#" data-target="#modal_compare2" data="2">
               <i class="bi bi-zoom-in text-center"></i>
               <p class="text-center">Lựa chọn xe</p>
             </a>
           </td>
           <td scope="col">
             <div class="compare_icon"></div>
-            <a id="vehicle-picker-3" class="vehicle-picker" href="" data-index="2" data-toggle="modal" data-target="#modal_compare3" data="3">
+            <a id="vehicle-picker-3" class="vehicle-picker" href="#" data-target="#modal_compare3" data="3">
               <i class="bi bi-zoom-in text-center"></i>
               <p class="text-center">Lựa chọn xe</p>
             </a>
@@ -49,12 +49,12 @@
       <!--Buton infor-->
 
       <div id="dimension-infor">
-        <button type="button" class="btn btn-block d-flex justify-content-between " data-toggle="collapse" data-target="#dimension" aria-expanded="false" aria-controls="#dimension">
+        <button type="button" class="btn btn-block d-flex justify-content-between  ">
           Kích thước & Khối lượng
         </button>
 
-        <div id="dimension" class="collapse show table-responsive ">
-          <table class="table table-bordered table-striped">
+        <div id="dimension" class="table-responsive ">
+          <table class="table table-bordered table-striped ">
             <tbody class="break-line">
               <tr>
                 <th>Kích Thước (mm)</th>
@@ -76,11 +76,11 @@
       </div>
       <hr>
       <div id="engine-infor">
-        <button class="btn btn-block d-flex justify-content-between " data-toggle="collapse" data-target="#engine" aria-expanded="true">
+        <button class="btn btn-block d-flex justify-content-between ">
           Động Cơ
         </button>
 
-        <div id="engine" class="table-responsive collapse show">
+        <div id="engine" class="table-responsive ">
           <table class="table table-bordered table-striped">
             <tbody class="break-line">
               <tr>
@@ -124,11 +124,11 @@
       </div>
       <hr>
       <div id="ex_interior-infor">
-        <button class="btn btn-block d-flex justify-content-between" data-toggle="collapse" data-target="#ex_interior" aria-expanded="false">
+        <button class="btn btn-block d-flex justify-content-between ">
           Nội Thất & Ngoại Thất
         </button>
 
-        <div id="ex_interior" class="collapse show table-responsive ">
+        <div id="ex_interior" class="table-responsive ">
           <table class="table table-bordered table-striped">
             <tbody class="break-line">
               <tr>
@@ -175,11 +175,11 @@
       </div>
       <hr>
       <div id="safety-infor">
-        <button class="btn btn-block d-flex justify-content-between" data-toggle="collapse" data-target="#safety" aria-expanded="false">
+        <button class="btn btn-block d-flex justify-content-between ">
           Safety
         </button>
 
-        <div id="safety" class="table-responsive collapse show">
+        <div id="safety" class="table-responsive ">
           <table class="table table-bordered table-striped">
             <tbody class="break-line">
               <tr>
@@ -216,8 +216,9 @@
                 @foreach($cars as $car)
                 <li class="list-group-item">
                   <a href="#" class="d-flex" id="{{$car->model_id}}" onclick="add_compare(this.id);" data-edition="">
-                    <p>{{$car -> car_type}}</p>
+                    <p>{{$car -> model_name}}</p>
                     <from>
+                      <img id="view_image{{$car->model_id}}" src="storage/app/public/files/image/image_car/{{$car->image}}">
                       <input id="view_model_id" type="hidden" value="{{$car->model_id}}"></input>
                       <input id="view_model_type{{$car->model_id}}" type="hidden" value="{{$car->car_type}}"></input>
                       <input id="view_seats{{$car->model_id}}" type="hidden" value="{{$car->seat}}"></input>
@@ -261,8 +262,9 @@
                 @foreach($cars as $car)
                 <li class="list-group-item">
                   <a href="#" class="d-flex" id="{{$car->model_id}}" onclick="add_compare2(this.id);" data-edition="">
-                    <p>{{$car -> car_type}}</p>
+                    <p>{{$car -> model_name}}</p>
                     <from>
+                      <img id="view_image{{$car->model_id}}" src="storage/app/public/files/image/image_car/{{$car->image}}">
                       <input id="view_model_id" type="hidden" value="{{$car->model_id}}"></input>
                       <input id="view_model_type{{$car->model_id}}" type="hidden" value="{{$car->car_type}}"></input>
                       <input id="view_seats{{$car->model_id}}" type="hidden" value="{{$car->seat}}"></input>
@@ -306,9 +308,9 @@
                 @foreach($cars as $car)
                 <li class="list-group-item">
                   <a href="#" class="d-flex" id="{{$car->model_id}}" onclick="add_compare3(this.id);" data-edition="">
-                    <p>{{$car -> car_type}}</p>
+                    <p>{{$car -> model_name}}</p>
                     <from>
-                      <input type="text">
+                      <img id="view_image{{$car->model_id}}" src="storage/app/public/files/image/image_car/{{$car->image}}">
                       <input id="view_model_id" type="hidden" value="{{$car->model_id}}"></input>
                       <input id="view_model_type{{$car->model_id}}" type="hidden" value="{{$car->car_type}}"></input>
                       <input id="view_seats{{$car->model_id}}" type="hidden" value="{{$car->seat}}"></input>
@@ -342,21 +344,39 @@
           <tbody class="break-line">
             <tr>
               <td></td>
-              <td id="btn01" style="text-align: center;"><button class="btn btn-success" style="text-align: center; font-weight: bolder;">Order</button></td>
-              <td id="btn02" style="text-align: center;"><button class="btn btn-success" style="text-align: center; font-weight: bolder;">Order</button></td>
-              <td id="btn03" style="text-align: center;"><button class="btn btn-success" style="text-align: center; font-weight: bolder;">Order</button></td>
+              <td class="text-center" id="btn01"></td>
+              <td class="text-center" id="btn02"> </td>
+              <td class="text-center" id="btn03"> </td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
-
+    <!-- Button Scroll to top -->
+    <button onclick="topFunction()" id="btnScrollTop">Top</button>
   </div>
-  <!-- Scrip add_compare -->
+
+
+  <!--Script Show Modal  -->
+  <script>
+    $('#vehicle-picker-1').on('click', function() {
+      $('#modal_compare1').modal("show");
+    });
+    $('#vehicle-picker-2').on('click', function() {
+      $('#modal_compare2').modal("show");
+    });
+    $('#vehicle-picker-3').on('click', function() {
+      $('#modal_compare3').modal("show");
+    })
+  </script>
+
+
+  <!-- Script add_compare -->
   <script>
     function add_compare(product_id) {
       var id1 = product_id;
-      var name1 = document.getElementById('view_model_type' + id1).value;
+      var type1 = document.getElementById('view_model_type' + id1).value;
+      var image1 = document.getElementById('view_image' + id1).src;
       var seats1 = document.getElementById('view_seats' + id1).value;
       var size1 = document.getElementById('view_size' + id1).value;
       var weight1 = document.getElementById('view_weight' + id1).value;
@@ -376,7 +396,8 @@
 
       var newCar1 = {
         'id': id1,
-        'name': name1,
+        'image': image1,
+        'type': type1,
         'seats': seats1,
         'size': size1,
         'weight': weight1,
@@ -399,38 +420,45 @@
       }
       var oldData1 = JSON.parse(localStorage.getItem('compare'));
 
-        oldData1.push(newCar1);
-        $('#dimension').find('.modal_size01').append('<p class="info01">' + newCar1.size + '</p>');
-        $('#dimension').find('.modal_weight01').append('<p class="info01">' + newCar1.weight + '</p>');
-        $('#engine').find('.engine01').append('<p class="info01">' + newCar1.engine + '</p>');
-        $('#engine').find('.wattage01').append('<p class="info01">' + newCar1.wattage + '</p>');
-        $('#engine').find('.engine_shutdown_function01').append('<p class="info01">' + newCar1.engine_shutdown_function + '</p>');
-        $('#engine').find('.car_gearbox01').append('<p class="info01">' + newCar1.car_gearbox + '</p>');
-        $('#engine').find('.Fuel_Consumption01').append('<p class="info01">' + newCar1.Fuel_Consumption + '</p>');
-        $('#ex_interior').find('.seats01').append('<p class="info01">' + newCar1.seats + '</p>');
-        $('#ex_interior').find('.lamp01').append('<p class="info01">' + newCar1.lamp + '</p>');
-        $('#ex_interior').find('.automatic_lights01').append('<p class="info01">' + newCar1.automatic_lights + '</p>');
-        $('#ex_interior').find('.aluminum_alloy_lazang01').append('<p class="info01">' + newCar1.aluminum_alloy_lazang + '</p>');
-        $('#ex_interior').find('.air_conditioning01').append('<p class="info01">' + newCar1.air_conditioning + '</p>');
-        $('#ex_interior').find('.central_screen01').append('<p class="info01">' + newCar1.central_screen + '</p>');
-        $('#safety').find('.front_wheel_brake01').append('<p class="info01">' + newCar1.front_wheel_brake + '</p>');
-        $('#safety').find('.rear_wheel_brake01').append('<p class="info01">' + newCar1.rear_wheel_brake + '</p>');
-        $('#btn-order').find("#btn01").append(
-          '<button class="btn btn-danger info01" onClick="delete_compare(' + id1 + ')"  style="text-align: center; font-weight: bolder;">Close</button>'
-        );
-      
+      oldData1.push(newCar1);
+      $('#vehicle-picker-1').append('<img src="' + newCar1.image + '" class="info01" width: 84%></img>');
+      $('#dimension').find('.modal_size01').append('<p class="info01">' + newCar1.size + '</p>');
+      $('#dimension').find('.modal_weight01').append('<p class="info01">' + newCar1.weight + '</p>');
+      $('#engine').find('.engine01').append('<p class="info01">' + newCar1.engine + '</p>');
+      $('#engine').find('.wattage01').append('<p class="info01">' + newCar1.wattage + '</p>');
+      $('#engine').find('.engine_shutdown_function01').append('<p class="info01">' + newCar1.engine_shutdown_function + '</p>');
+      $('#engine').find('.car_gearbox01').append('<p class="info01">' + newCar1.car_gearbox + '</p>');
+      $('#engine').find('.Fuel_Consumption01').append('<p class="info01">' + newCar1.Fuel_Consumption + '</p>');
+      $('#ex_interior').find('.seats01').append('<p class="info01">' + newCar1.seats + '</p>');
+      $('#ex_interior').find('.lamp01').append('<p class="info01">' + newCar1.lamp + '</p>');
+      $('#ex_interior').find('.automatic_lights01').append('<p class="info01">' + newCar1.automatic_lights + '</p>');
+      $('#ex_interior').find('.aluminum_alloy_lazang01').append('<p class="info01">' + newCar1.aluminum_alloy_lazang + '</p>');
+      $('#ex_interior').find('.air_conditioning01').append('<p class="info01">' + newCar1.air_conditioning + '</p>');
+      $('#ex_interior').find('.central_screen01').append('<p class="info01">' + newCar1.central_screen + '</p>');
+      $('#safety').find('.front_wheel_brake01').append('<p class="info01">' + newCar1.front_wheel_brake + '</p>');
+      $('#safety').find('.rear_wheel_brake01').append('<p class="info01">' + newCar1.rear_wheel_brake + '</p>');
+      $('#btn-order').find("#btn01").append(
+        '<button class="btn btn-success info01" id ="' + id1 + '" style="text-align: center; font-weight: bolder;">Order</button>'
+      );
+      $('#btn-order').find("#btn01").append(
+        '<button class="btn btn-danger info01" onClick="delete_compare(' + id1 + ')"  style="text-align: center; font-weight: bolder;">Close</button>'
+      );
       localStorage.setItem("compare", JSON.stringify(oldData1));
+      $('#modal_compare1').modal("hide");
       // $('#modal_compare1').removeClass('show');
       // document.getElementById('modal_compare1').style.display == 'none';
       // $('.modal-backdrop').removeClass('show');
     };
   </script>
-  <!-- scrip add_compare 2 -->
+
+
+  <!-- script add_compare 2 -->
   <script>
     function add_compare2(product_id2) {
 
       var id2 = product_id2;
-      var name2 = document.getElementById('view_model_type' + id2).value;
+      var type2 = document.getElementById('view_model_type' + id2).value;
+      var image2 = document.getElementById('view_image' + id2).src;
       var seats2 = document.getElementById('view_seats' + id2).value;
       var size2 = document.getElementById('view_size' + id2).value;
       var weight2 = document.getElementById('view_weight' + id2).value;
@@ -449,7 +477,8 @@
 
 
       var newCar2 = {
-        'name': name2,
+        'image': image2,
+        'name': type2,
         'seats': seats2,
         'id': id2,
         'size': size2,
@@ -474,6 +503,7 @@
       var oldData2 = JSON.parse(localStorage.getItem('compare2'));
 
       oldData2.push(newCar2);
+      $('#vehicle-picker-2').append('<img src="' + newCar2.image + '" class="info02" width: 84%></img>');
       $('#dimension').find('.modal_size02').append('<p class="info02">' + newCar2.size + '</p>');
       $('#dimension').find('.modal_weight02').append('<p class="info02">' + newCar2.weight + '</p>');
       $('#engine').find('.engine02').append('<p class="info02">' + newCar2.engine + '</p>');
@@ -490,21 +520,27 @@
       $('#safety').find('.front_wheel_brake02').append('<p class="info02">' + newCar2.front_wheel_brake + '</p>');
       $('#safety').find('.rear_wheel_brake02').append('<p class="info02">' + newCar2.rear_wheel_brake + '</p>');
       $('#btn-order').find("#btn02").append(
+        '<button class="btn btn-success info02" id ="' + id2 + '" style="text-align: center; font-weight: bolder;">Order</button>'
+      );
+      $('#btn-order').find("#btn02").append(
         '<button class="btn btn-danger info02"  onClick="delete_compare2(' + id2 + ')"  style="text-align: center; font-weight: bolder;">Remove</button>'
       );
-
       localStorage.setItem("compare2", JSON.stringify(oldData2));
+      $('#modal_compare2').modal("hide");
       // $('#modal_compare2').removeClass('show');
       // document.getElementById('modal_compare2').style.display == 'none';
       // $('.modal-backdrop').removeClass('show');
     };
   </script>
+
+
   <!-- Script add_compare3 -->
   <script>
     function add_compare3(prouct_id3) {
 
       var id3 = prouct_id3;
-      var name3 = document.getElementById('view_model_type' + id3).value;
+      var type3 = document.getElementById('view_model_type' + id3).value;
+      var image3 = document.getElementById('view_image' + id3).scr;
       var seats3 = document.getElementById('view_seats' + id3).value;
       var size3 = document.getElementById('view_size' + id3).value;
       var weight3 = document.getElementById('view_weight' + id3).value;
@@ -523,7 +559,8 @@
 
 
       var newCar3 = {
-        'name': name3,
+        'image': image3,
+        'name': type3,
         'seats': seats3,
         'id': id3,
         'size': size3,
@@ -546,27 +583,33 @@
         localStorage.setItem('compare3', '[]');
       }
       var oldData3 = JSON.parse(localStorage.getItem('compare3'));
-  
-        oldData3.push(newCar3);
-        $('#dimension').find('.modal_size03').append('<p class="info03">' + newCar3.size + '</p>');
-        $('#dimension').find('.modal_weight03').append('<p class="info03">' + newCar3.weight + '</p>');
-        $('#engine').find('.engine03').append('<p class="info03">' + newCar3.engine + '</p>');
-        $('#engine').find('.wattage03').append('<p class="info03">' + newCar3.wattage + '</p>');
-        $('#engine').find('.engine_shutdown_function03').append('<p class="info03">' + newCar3.engine_shutdown_function + '</p>');
-        $('#engine').find('.car_gearbox03').append('<p class="info03">' + newCar3.car_gearbox + '</p>');
-        $('#engine').find('.Fuel_Consumption03').append('<p class="info03">' + newCar3.Fuel_Consumption + '</p>');
-        $('#ex_interior').find('.seats03').append('<p class="info03">' + newCar3.seats + '</p>');
-        $('#ex_interior').find('.lamp03').append('<p class="info03">' + newCar3.lamp + '</p>');
-        $('#ex_interior').find('.automatic_lights03').append('<p class="info03">' + newCar3.automatic_lights + '</p>');
-        $('#ex_interior').find('.aluminum_alloy_lazang03').append('<p class="info03">' + newCar3.aluminum_alloy_lazang + '</p>');
-        $('#ex_interior').find('.air_conditioning03').append('<p class="info03">' + newCar3.air_conditioning + '</p>');
-        $('#ex_interior').find('.central_screen03').append('<p class="info03">' + newCar3.central_screen + '</p>');
-        $('#safety').find('.front_wheel_brake03').append('<p class="info03">' + newCar3.front_wheel_brake + '</p>');
-        $('#safety').find('.rear_wheel_brake03').append('<p class="info03">' + newCar3.rear_wheel_brake + '</p>');
-        $('#btn-order').find("#btn03").append(
-          '<button class="btn btn-danger info03" onClick="delete_compare3(' + id3 + ')" style="text-align: center; font-weight: bolder;">Close</button>'
-        );      
+
+      oldData3.push(newCar3);
+      $('#vehicle-picker-3').append('<img src="' + newCar3.image + '" class="info03" width: 84%></img>');
+      $('#dimension').find('.modal_size03').append('<p class="info03">' + newCar3.size + '</p>');
+      $('#dimension').find('.modal_weight03').append('<p class="info03">' + newCar3.weight + '</p>');
+      $('#engine').find('.engine03').append('<p class="info03">' + newCar3.engine + '</p>');
+      $('#engine').find('.wattage03').append('<p class="info03">' + newCar3.wattage + '</p>');
+      $('#engine').find('.engine_shutdown_function03').append('<p class="info03">' + newCar3.engine_shutdown_function + '</p>');
+      $('#engine').find('.car_gearbox03').append('<p class="info03">' + newCar3.car_gearbox + '</p>');
+      $('#engine').find('.Fuel_Consumption03').append('<p class="info03">' + newCar3.Fuel_Consumption + '</p>');
+      $('#ex_interior').find('.seats03').append('<p class="info03">' + newCar3.seats + '</p>');
+      $('#ex_interior').find('.lamp03').append('<p class="info03">' + newCar3.lamp + '</p>');
+      $('#ex_interior').find('.automatic_lights03').append('<p class="info03">' + newCar3.automatic_lights + '</p>');
+      $('#ex_interior').find('.aluminum_alloy_lazang03').append('<p class="info03">' + newCar3.aluminum_alloy_lazang + '</p>');
+      $('#ex_interior').find('.air_conditioning03').append('<p class="info03">' + newCar3.air_conditioning + '</p>');
+      $('#ex_interior').find('.central_screen03').append('<p class="info03">' + newCar3.central_screen + '</p>');
+      $('#safety').find('.front_wheel_brake03').append('<p class="info03">' + newCar3.front_wheel_brake + '</p>');
+      $('#safety').find('.rear_wheel_brake03').append('<p class="info03">' + newCar3.rear_wheel_brake + '</p>');
+      $('#btn-order').find("#btn03").append(
+        '<button class="btn btn-success info03" id ="' + id3 + '" style="text-align: center; font-weight: bolder;">Order</button>'
+      );
+      $('#btn-order').find("#btn03").append(
+        '<button class="btn btn-danger info03" onClick="delete_compare3(' + id3 + ')" style="text-align: center; font-weight: bolder;">Close</button>'
+      );
+
       localStorage.setItem("compare3", JSON.stringify(oldData3));
+      $('#modal_compare3').modal("hide");
       // $('#modal_compare3').removeClass('show');
       // document.getElementById('modal_compare3').style.display == 'none';
       // $('.modal-backdrop').removeClass('show');
@@ -581,6 +624,7 @@
         var index1 = data1.findIndex(item => item.id1 === id1);
         data1.splice(index1, 1);
         localStorage.setItem('compare', JSON.stringify(data1));
+        $('#vehicle-picker-1').find('.info01').remove();
         $('#dimension').find('.modal_size01').find('.info01').remove();
         $('#dimension').find('.modal_weight01').find('.info01').remove();
         $('#engine').find('.engine01').find('.info01').remove();
@@ -598,16 +642,17 @@
         $('#safety').find('.rear_wheel_brake01').find('.info01').remove();
         $('#btn-order').find("#btn01").find('.info01').remove();
 
-                  }
-                }
+      }
+    }
   </script>
-    <script type="text/javascript">
+  <script type="text/javascript">
     function delete_compare2(id2) {
       if (localStorage.getItem('compare2') != null) {
         var data2 = JSON.parse(localStorage.getItem('compare2'));
         var index2 = data2.findIndex(item => item.id2 === id2);
         data2.splice(index2, 1);
         localStorage.setItem('compare2', JSON.stringify(data2));
+        $('#vehicle-picker-2').find('.info02').remove();
         $('#dimension').find('.modal_size02').find('.info02').remove();
         $('#dimension').find('.modal_weight02').find('.info02').remove();
         $('#engine').find('.engine02').find('.info02').remove();
@@ -625,16 +670,17 @@
         $('#safety').find('.rear_wheel_brake02').find('.info02').remove();
         $('#btn-order').find("#btn02").find('.info02').remove();
 
-                  }
-                }
+      }
+    }
   </script>
-    <script type="text/javascript">
+  <script type="text/javascript">
     function delete_compare3(id3) {
       if (localStorage.getItem('compare3') != null) {
         var data3 = JSON.parse(localStorage.getItem('compare3'));
         var index3 = data3.findIndex(item => item.id3 === id3);
         data3.splice(index3, 1);
         localStorage.setItem('compare3', JSON.stringify(data3));
+        $('#vehicle-picker-3').find('.info03').remove();
         $('#dimension').find('.modal_size03').find('.info03').remove();
         $('#dimension').find('.modal_weight03').find('.info03').remove();
         $('#engine').find('.engine03').find('.info03').remove();
@@ -652,9 +698,46 @@
         $('#safety').find('.rear_wheel_brake03').find('.info03').remove();
         $('#btn-order').find("#btn03").find('.info03').remove();
 
-                  }
-                }
+      }
+    }
   </script>
+
+  <!-- Script sroll to top -->
+  <script>
+    myBtn = document.getElementById('btnScrollTop');
+    window.onscroll = function() {
+      scrollFunction()
+    };
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        myBtn.style.display = "block";
+      } else {
+        myBtn.style.display = "none";
+      }
+    }
+
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+  <!-- Script open/close button info -->
+  <script>
+    $("#dimension-infor").on('click', function() {
+      $("#dimension").toggle(200);
+    });
+    $("#engine-infor").on('click', function() {
+      $("#engine").toggle(200);
+    });
+    $("#ex_interior-infor").on('click', function() {
+      $("#ex_interior").toggle(200);
+    });
+    $("#safety-infor").on('click', function() {
+      $("#safety").toggle(200);
+    });
+  </script>
+
 </body>
 
 @endsection;

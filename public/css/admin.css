@@ -123,3 +123,7 @@ width: 50%;
     .showerror{
         margin: 20px;
     }
+    .header-confirminfo{
+        color: rgb(73, 73, 238);
+        text-decoration:underline ;
+    }

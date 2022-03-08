@@ -19,6 +19,6 @@ class Province extends Model
 
     public function cost_estimates()
     {
-        return $this->hasOne(Cost_Estimate::class,'foreign_key');   
+        return $this->hasOne(Cost_Estimate::class,'matp','matp');   
     }
 }

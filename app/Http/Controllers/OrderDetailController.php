@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\carInfo;
+use App\Models\Cost_Estimate;
+use App\Models\modelInfo;
 use App\Models\order;
 use App\Models\orderDetail;
+use App\Models\Province;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class OrderDetailController extends Controller
@@ -72,7 +75,22 @@ class OrderDetailController extends Controller
         return view('admin.showroom.orderdetail')->with(['p'=> $p]);
     }
 
-       public function confirmorder($id){
+
+    //confirm order
+    public function confirmorder($id){
+    $orders=orderDetail::find($id);
+    $province=Province::all();
+    $cost=Cost_Estimate::select('matp','Inspectionfee','Licenseplatefee','Roadusagefee','Civilliabilityinsurance')->get();
+    $models=modelInfo::select('model_id','model_name','color','price')->get();
+//    dd($cost);
+   
+return view('admin.showroom.confirmorder')->with(['p'=>$orders])->with(['provines'=>$province])->with(['models'=>$models])->with('cost',$cost);
+
+
+    }
+
+
+       public function confirmorder2($id){
            $orders=orderDetail::find($id);
            if( $orders->order_status='deposited'){
            $orders->order_status='confirm';

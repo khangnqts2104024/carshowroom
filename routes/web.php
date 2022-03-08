@@ -148,6 +148,7 @@ Route::get('admin/showroom/carmanageshowroom',[CarInfoController::class,'showroo
 Route::get('admin/showroom/confirmorder/{id}',[OrderDetailController::class,'confirmorder']);//nhan dơn
 Route::get('admin/showroom/sold/{id}',[OrderDetailController::class,'soldorder']);//nhan dơn
 Route::get('admin/showroom/ordercanceled/{id}',[OrderDetailController::class,'ordercanceled']);//huy don
+Route::post('admin/showroom/checkinfo',[OrderDetailController::class,'checkinfo']);//confirminfo
 
 
 
@@ -160,9 +161,9 @@ Route::get('admin/general/report',[ReportController::class,'report']);
 Route::get('admin/general/empcreate', [ShowroomController::class,'create']);
 Route::post('admin/general/empchangepass/{id}',[EmployeeAccountController::class,'empchangepass']);
 Route::post('admin/general/employee/accountcreate',[EmployeeAccountController::class,'accountcreate']);
-// Route::get('admin/general/employee/newaccount',function () {
-//     return view('admin.general.accountcreate');
-// });
+
+//test
+
 
 
 

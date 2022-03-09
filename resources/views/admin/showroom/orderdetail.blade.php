@@ -50,15 +50,27 @@
                     <label for="txt-price">Dòng Xe</label>
                     <input type="text" class="form-control" id="txt-price" name="price" placeholder="1" value="{{$p->modelInfos->model_name}}" readonly>
                 </div>
+                <div class="form-group">
+                    <label for="txt-price">Trị Giá Đơn Hàng</label>
+                    <input type="text" class="form-control" id="txt-price" name="price"  value="{{$p->order_price}}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="txt-price">Tỉnh Làm Giấy Tờ</label>
+                    <input type="text" class="form-control" id="txt-price" name="price"  value="{{$provine->name}}" readonly>
+                </div>
                 
                 <div class="form-group">
                     <label for="txt-price">Nhân Viên Nhận Đơn</label>
-                    <input type="text" class="form-control" id="txt-price" name="price" placeholder="1" value="{{ $p->emp_received}}" readonly>
+                    <input type="text" class="form-control" id="txt-price" name="price" value="{{ $p->emp_received}}" readonly>
                 </div>
        
                 <div class="form-group">
+                    <label for="txt-price">Ghi Chú</label>
+                    <input type="text" class="form-control" id="txt-price" name="price"  value="{{ $p->orders->note}}" readonly>
+                </div>
+                <div class="form-group">
                     <label for="txt-price">Trạng Thái Đơn Hàng</label>
-                    <input type="text" class="form-control" id="txt-price" name="price" placeholder="1" value="{{$p->order_status}}" readonly>
+                    <input type="text" class="form-control" id="txt-price" name="price"  value="{{$p->order_status}}" readonly>
                 </div>
 
              

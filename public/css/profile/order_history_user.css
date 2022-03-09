@@ -1,0 +1,15 @@
+@font-face {
+    font-family: Gothams;
+    src: url(/Font/FontGotham/SVN-GothamBook.otf);
+  }
+  html,body{
+      background-color: none;
+      width: 100%;
+      height: 100%;
+      margin: 0px;
+      padding: 0px;
+      overflow-x: hidden; 
+      box-sizing: border-box;
+      font-family: Gothams;
+      font-weight: 550 !important;
+  }

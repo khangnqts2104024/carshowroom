@@ -34,7 +34,17 @@
                     </a>
 
                 </div>
+                <div >
+              
 
+               
+
+                <div class="showerror">
+                <p class="text-danger">@error('password'){{$message}} @enderror</p>
+                <p class="text-danger">@error('ConfirmPassword'){{$message}} @enderror</p>
+                </div>
+             
+                </div>
                 <!-- /.card-header -->
                 <div class="card-body">
                     <table id="myTable" class="table table-bordered table-hover">
@@ -82,18 +92,21 @@
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
+
+                                               
                                                 <div class="modal-body">
-                                                    <form action="{{url('admin/general/empchangepass/'.$p->employee_id)}}" method="post">
+                                                    <form action="{{url('admin/general/empchangepass/'.$p->employee_id)}}" name="myForm" method="post" onsubmit="return validateForm()" >
                                                         <div class="form-group">
                                                         @csrf
+                                                       
                                                             <label for="">Email nhân Viên</label>
                                                             <input type="text" class="form-control" value="{{$p->email}}" name="email" id="" aria-describedby="helpId" placeholder="" readonly>
                                                             <label for="">Mật Khẩu Mới</label><i style="color:red">*</i>
                                                             <input type="password" class="form-control" name="password" id="" aria-describedby="helpId" placeholder="">
-
+                                                            <span class="text-danger" class="password"></span>
                                                             <label for="">Xác Nhận Mật Khẩu</label><i style="color:red">*</i>
-                                                            <input type="password" class="form-control" name="confirmpass" id="" aria-describedby="helpId" placeholder="" >
-                                                            <!-- {{Session::get('confirmerror')}} -->
+                                                            <input type="password" class="form-control" name="ConfirmPassword" id="" aria-describedby="helpId" placeholder="" >
+                                                            <span class="text-danger" class="confirmpass"></span>
                                                         </div>
 
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -191,6 +204,7 @@
 <script>
   var massage=document.getElementById('massage');
     if(document.getElementById('massage').value!=''){alert(massage.value);}
+//validate
 
 
 

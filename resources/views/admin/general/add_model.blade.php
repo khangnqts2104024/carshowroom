@@ -14,9 +14,10 @@
 
 <section class="content">
     <header class="panel-heading">
-        Thêm dòng xe
+        <h4> Thêm dòng xe</h4>
         <!-- <link rel="stylesheet" href="/css/account.css"> -->
     </header>
+    <hr>
     <div class="panel-body flex-container">
         <?php
         $message = session('message');
@@ -25,7 +26,7 @@
             session(['message' => '']);
         }
         ?>
-        <div class="position-center">
+        <div class="position-center phat">
             <form role="form" action="{{URL::to('admin/general/savemodel')}}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group">

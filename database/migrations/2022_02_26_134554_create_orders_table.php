@@ -23,6 +23,7 @@ return new class extends Migration
             $table->unsignedBigInteger('customer_id');
             $table->foreign('customer_id')->references('customer_id')->on('customer_infos')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamp('order_date');
+            $table->string("note")->nullable();
         });
     }
 

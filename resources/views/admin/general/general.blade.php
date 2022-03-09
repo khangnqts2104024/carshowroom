@@ -46,7 +46,7 @@
             </a>
         </div>
         <div class="flex-card">
-            <a href="{{url('admin/s')}}">
+            <a href="{{ url('admin/general/allmodel') }}">
                 <div class="manage-option">
                 <i class="fa-solid fa-car"></i>
                     <p>Quản Lý Model</p>

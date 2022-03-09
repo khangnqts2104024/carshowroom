@@ -116,22 +116,22 @@
                     <div class="form-group">
                         <label for="orderprice">Giá đơn Hàng Được Tính Lại:</label>
                         <div>
-                            <span>Giá model:</span>
-                            <p type="text" id="carprice">{{$p->modelInfos->price}}</p>
-                            <span>Giảm giá:</span>
-                            <p id="discount"></p>
-                            <span>Phí Kiểm Ngiệm:</span>
-                            <p id="Inspectionfee"></p>
-                            <span>Phí Trước Bạ:</span>
-                            <p id="Licenseplatefee"></p>
-                            <span>Phí Đường Bộ:</span>
-                            <p id="Roadusagefee"></p>
-                            <span>Bão Hiểm Xe:</span>
-                            <p id="insurance"></p>
+                            <p>Giá model:</p>
+                            <span type="text" id="carprice">{{$p->modelInfos->price}}</span><span> VND</span>
+                            <p>Giảm giá:</p>
+                            <span id="discount"></span><span> VND</span>
+                            <p>Phí Kiểm Ngiệm:</p>
+                            <span id="Inspectionfee"></span><span> VND</span>
+                            <p>Phí Trước Bạ:</p>
+                            <span id="Licenseplatefee"></span><span> VND</span>
+                            <p>Phí Đường Bộ:</p>
+                            <span id="Roadusagefee"></span><span> VND</span>
+                            <p>Bão Hiểm Xe:</p>
+                            <span id="insurance"></span><span> VND</span>
 
                         </div>
-                        <label>Tổng Cộng:</label>
-                        <input class="form-control" type="text" id="totalprice" name="orderprice" value="" readonly required>
+                        <p>Tổng Cộng:</p>
+                        <input class="text-danger" id="totalprice" name="orderprice" value="" readonly><span> VND</span>
                         <span class="text-danger">@error('orderprice'){{$message}} @enderror</span>
                     </div>
                     <div class="form-group">
@@ -253,7 +253,9 @@
         }
         var total = (parseInt(carprice.innerHTML) - parseInt(discount.innerHTML) + parseInt(Inspectionfee.innerHTML) +
             parseInt(Licenseplatefee.innerHTML) + parseInt(Roadusagefee.innerHTML) + parseInt(Civilliabilityinsurance.innerHTML));
+        totalprice.innerHTML = total;
         totalprice.value = total;
+        alert(totalprice.value);
     })
 </script>
 @endsection

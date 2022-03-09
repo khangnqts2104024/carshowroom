@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class order extends Model
 {
     use HasFactory;
-
+protected $primaryKey="order_id";
     protected $fillable=[ 
         'order_id',
         'showroom',

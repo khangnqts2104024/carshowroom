@@ -79,18 +79,35 @@ class OrderDetailController extends Controller
     //confirm order
     public function confirmorder($id){
     $orders=orderDetail::find($id);
+    $old_provine=Province::find($orders->matp);
+   
     $province=Province::all();
     $cost=Cost_Estimate::select('matp','Inspectionfee','Licenseplatefee','Roadusagefee','Civilliabilityinsurance')->get();
     $models=modelInfo::select('model_id','model_name','color','price')->get();
 //    dd($cost);
-   
-return view('admin.showroom.confirmorder')->with(['p'=>$orders])->with(['provines'=>$province])->with(['models'=>$models])->with('cost',$cost);
+//    dd();
+return view('admin.showroom.confirmorder')->with(['p'=>$orders])->with(['provines'=>$province])->with(['models'=>$models])->with('cost',$cost)->with('oldprovine',$old_provine->name);
+  }
+   public function checkinfo(Request $request){
+    $request->validate([
+        'email' => array('required', 'regex:/^[^\s@-]+@[^\s@-]+\.[^\s@]+$/', 'unique:customer_accounts,email'),
+        'fullname' => array('required', 'regex:/^[A-Za-z\s]+$/'),
+        'citizen_id' => array('required', 'regex:/^[0-9]*$/'),
+        'phone_number' => array('required', 'regex:/^[0-9]{10,11}$/'),
+        'address' => array('required', 'regex:/^[a-zA-Z0-9,\-\s\.]*$/'),
+     
+    ]);
 
 
-    }
+
+dd($request);
 
 
-       public function confirmorder2($id){
+
+
+   }
+
+ public function confirmorder2($id){
            $orders=orderDetail::find($id);
            if( $orders->order_status='deposited'){
            $orders->order_status='confirm';

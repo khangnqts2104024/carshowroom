@@ -16,18 +16,18 @@
 
 <!-- Main content -->
 <section class="content">
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
+ 
+        <div class="flex-container">
+            <div class="position-center phat">
+                <div class="card-header ">
                     <h3 class="card-title">Xác Minh Thông Tin Đơn Hàng</h3>
                 </div>
 
                 <div>
 
-                    <form action="admin/showroom/checkinfo" method="post">
+                    <form action="{{url('admin/showroom/checkinfo')}}" method="post">
 
-                    @csrf
+                        @csrf
                         <h5 class="header-confirminfo">Đơn Hàng:</h5>
                         <div class="form-group">
                             <label for="order_code">Mã Đơn Hàng</label>
@@ -59,15 +59,18 @@
                         <h5 class="header-confirminfo">Thông Tin Khách Hàng:</h5>
                         <div class="form-group">
                             <label for="name">Tên Khách Hàng</label>
-                            <input id="name" class="form-control" type="text" name="customer_name" value="{{$p->orders->customer->fullname}}" readonly>
+                            <input id="name" class="form-control" type="text" name="fullname" value="{{$p->orders->customer->fullname}}" readonly>
+                            <span class="text-danger">@error('fullname'){{$message}} @enderror</span>
                         </div>
                         <div class="form-group">
                             <label for="CCCD">CCCD</label>
-                            <input id="CCCD" class="form-control" type="text" name="customer_citizen_id" value="{{$p->orders->customer->citizen_id}}">
+                            <input id="CCCD" class="form-control" type="text" name="citizen_id" value="{{$p->orders->customer->citizen_id}}">
+                            <span class="text-danger">@error('citizen_id'){{$message}} @enderror</span>
                         </div>
                         <div class="form-group">
                             <label for="phone">Số Điện Thoại Khách Hàng</label>
-                            <input id="phone" class="form-control" type="text" name="customer_phone" value="{{$p->orders->customer->phone_number}}">
+                            <input id="phone" class="form-control" type="text" name="phone_number" value="{{$p->orders->customer->phone_number}}">
+                            <span class="text-danger">@error('phone_number'){{$message}} @enderror</span>
                         </div>
                         <div class="form-group">
                             <label for="role">Phân loại khách hàng</label>
@@ -76,20 +79,27 @@
                         <div class="form-group">
                             <label for="email">Email khách hàng</label>
                             <input class="form-control" type="text" id="email" name="email" value="{{$p->orders->customer->email}}" readonly>
+                            <span class="text-danger">@error('email'){{$message}} @enderror</span>
                         </div>
                         <div class="form-group">
                             <label for="address">Địa Chỉ khách hàng</label>
                             <input class="form-control" type="text" id="address" name="address" value="{{$p->orders->customer->address}}">
+                            <span class="text-danger">@error('address'){{$message}} @enderror</span>
                         </div>
                         <hr>
                         <hr>
                         <h5 class="header-confirminfo">Thông Tin Đơn Hàng:</h5>
                         <div class="form-group">
-                            <label for="provines">Tỉnh Thành Làm Giấy Tờ</label>
+                            <label for="old_provine">Tỉnh Thành Đã Đăng Ký</label>
+                            <input class="form-control" type="text" id="old_provine" name="" value="{{$oldprovine}}" readonly>
+                           
+                        </div>
+                        <div class="form-group">
+                            <label for="provines">Tỉnh Thành Làm Giấy Tờ Xác Nhận ****</label>
 
                             <select class="form-control" name="provines" id="provines">
                                 @foreach ($provines as $provine)
-                                <option value="{{$provine->matp}}" class="provine">{{$provine->name}} {{$provine->cost_estimates}}</option>
+                                <option value="{{$provine->matp}}" class="provine">{{$provine->name}} </option>
                                 @endforeach
                             </select>
 
@@ -118,7 +128,7 @@
                                 <p id="insurance"></p>
 
                             </div>
-
+                            <label>Tổng Cộng:</label>
                             <input class="form-control" type="text" id="totalprice" name="orderprice" value="" readonly>
                         </div>
                         <button type="submit" class="btn btn-primary">Xác Nhận Đơn</button>
@@ -126,18 +136,27 @@
                     </form>
 
 
-                    <a name="" id="" class="btn btn-danger" href="#" role="button">Hủy Đơn Hàng</a>
+
 
                 </div>
-           
 
-
+<hr><hr>
+                <div>
+                    <p>
+                        <a class="btn btn-danger" data-toggle="collapse" href="#contentId" aria-expanded="false" aria-controls="contentId">
+                            Hủy Đơn Hàng
+                        </a>
+                    </p>
+                    <div class="collapse" id="contentId">
+                        <a name="" id="" class="btn btn-success" href="#" role="button">Xác Nhận Hủy Đơn</a>
+                    </div>
+                </div>
 
             </div>
             <!-- /.card -->
         </div>
         <!-- /.col -->
-    </div>
+  
     <!-- /.row -->
 
     <!-- /.row -->
@@ -172,18 +191,25 @@
     //set default
     model.value = model_old.getAttribute("data-value");
     model_error.innerHTML = "";
+        if (role.value == 'member') {
+                member_discount = parseInt(carprice.innerHTML) * 0.1;
+                discount.innerHTML = parseInt(member_discount);
+            } else {
+                member_discount = 0;
+                discount.innerHTML = parseInt(member_discount);
+            };
     //báo nv  note model
     model.addEventListener('change', function price() {
         for (let i = 0; i < modellist.length; i++) {
             //lấy price model xe
             if (modellist[i].model_id == model.value) {
-                model_price = modellist[i].price
+                model_price = modellist[i].price;
             }
             carprice.innerHTML = model_price;
-            if (role.value == 'guest') {
-                member_discount = model_price * 0.05;
+            if (role.value == 'member') {
+                member_discount = model_price * 0.1;
             } else {
-                member_discount = 0
+                member_discount = 0;
             }
             discount.innerHTML = parseInt(member_discount);
         }

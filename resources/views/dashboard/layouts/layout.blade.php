@@ -56,7 +56,8 @@
 			<li class="nav-item CostEstimation"><a class="nav-link"  href="/user/CostEstimate">{{__('home.Cost Estimation')}}</a></li>
 			<li class="nav-item ServiceButton"><a class="nav-link"  href="/user/order">{{__('Order Car')}}</a></li>
 		@endif
-        <li class="nav-item ToolButton"><a class="nav-link"  href="#">{{__('home.Tools')}}</a></li>
+        <li class="nav-item ToolButton"><a class="nav-link"  href="/home/compare">{{__('home.Tools')}}</a></li>
+
 		<li class="nav-item d-flex" style="align-items: center;flex-direction:column;">
 			
 			<div class="switch mt-1">

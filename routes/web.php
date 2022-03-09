@@ -239,25 +239,25 @@ Route::prefix('admin')->name('admin.')->group(function(){
 // KHANGEND
 
 
-Route::get('admin/general/add-model', function () {
-    return view('admin.general.add_model',[ModelInfoController::class,'addModel']);
-});
+// Route::get('admin/general/add-model', function () {
+//     return view('admin.general.add_model',[ModelInfoController::class,'addModel']);
+// });
 
-Route::get('admin/general/edit-model/{model_id}', function () {
-    return view('admin.general.edit_model',[ModelInfoController::class,'editModel']);
-});
-Route::get('admin/general/deletemodel/{model_id}', function () {
-    return view('admin.general.all_model',[ModelInfoController::class,'deleteModel']);
-});
-Route::get('admin/general/allmodel', function () {
-    return view('admin.general.all_model');
-    // ,[ModelInfoController::class,'allModel']);
-});
-Route::get('admin/general/save_model', function () {
-    return view('admin.general.add_model',[ModelInfoController::class,'saveModel']);
-});Route::get('admin/general/update_model/{model_id}', function () {
-    return view('admin.general.all_model',[ModelInfoController::class,'updateModel']);
-});
+// Route::get('admin/general/edit-model/{model_id}', function () {
+//     return view('admin.general.edit_model',[ModelInfoController::class,'editModel']);
+// });
+// Route::get('admin/general/deletemodel/{model_id}', function () {
+//     return view('admin.general.all_model',[ModelInfoController::class,'deleteModel']);
+// });
+// Route::get('admin/general/allmodel', function () {
+//     return view('admin.general.all_model');
+//     // ,[ModelInfoController::class,'allModel']);
+// });
+// Route::get('admin/general/save_model', function () {
+//     return view('admin.general.add_model',[ModelInfoController::class,'saveModel']);
+// });Route::get('admin/general/update_model/{model_id}', function () {
+//     return view('admin.general.all_model',[ModelInfoController::class,'updateModel']);
+// });
 //model
 Route::get('admin/general/addmodel', 'ModelInfoController@addModel');
 Route::get('admin/general/editmodel/{model_id}', 'ModelInfoController@editModel');
@@ -270,7 +270,7 @@ Route::post('admin/general/updatemodel/{model_id}', 'ModelInfoController@updateM
 
 
 Route::get('/compare','CompareController@index');
+Route::get('/home/compare','CompareController@index');
+Route::get('/user/compare','CompareController@index');
+Route::get('/user/home/compare','CompareController@index');
 
-Route::get('/user/compare',function(){
-    return view('compare');
-});

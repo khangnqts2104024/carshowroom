@@ -332,7 +332,6 @@
 
                   </a>
                 </li>
-
                 @endforeach
               </ul>
             </div>
@@ -737,7 +736,6 @@
       $("#safety").toggle(200);
     });
   </script>
-
 </body>
 
 @endsection;

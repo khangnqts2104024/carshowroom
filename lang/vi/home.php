@@ -1,9 +1,10 @@
 <?php 
     return [
-        "Car" => "Ô tô",
-        "Special Offers" => "Ưu đãi",
-        "Service" => "Dịch vụ",
-        "Tools" => "Công cụ",
-        "Account" => "Tài khoản"
+        "Car" => "Ô Tô",
+        "Special Offers" => "Ưu Đãi",
+        "Service" => "Dịch Vụ",
+        "Tools" => "Công Cụ",
+        "Account" => "Tài Khoản",
+        "Cost Estimation"=>"Chi Phí Lăn Bánh"
     ];
 ?>

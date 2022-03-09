@@ -127,7 +127,11 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Màu</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" name="color">
+                    <select name="color" class="form-control input-sm m-bot15">
+                        <option value="white">Trắng</option>
+                        <option value="red">Đỏ</option>
+                        <option value="blue">Xanh</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputFile">Thêm ảnh</label>

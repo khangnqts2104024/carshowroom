@@ -4,6 +4,7 @@
         "Special Offers" => "Special Offers",
         "Service" => "Service",
         "Tools" => "Tools",
-        "Account" => "Account"
+        "Account" => "Account",
+        "Cost Estimation"=>"Cost Estimation"
     ];
 ?>

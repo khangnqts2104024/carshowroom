@@ -14,13 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('cost_estimates', function (Blueprint $table) {
-            $table->id();
             $table->string('matp',5);
             $table->foreign('matp')->references('matp')->on('provinces')->onUpdate('cascade')->onDelete('cascade');    
             $table->unsignedBigInteger("Inspectionfee");
             $table->unsignedBigInteger("Licenseplatefee");
             $table->unsignedBigInteger("Roadusagefee");
             $table->unsignedBigInteger("Civilliabilityinsurance");
+            $table->primary('matp');
             $table->timestamps();
         });
     }

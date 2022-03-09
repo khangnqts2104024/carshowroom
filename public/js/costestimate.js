@@ -28,12 +28,15 @@ $(function () {
                     //get number non format
                     carprice_nonFormat = item.price;
                     RegistrationFee_nonFormat = carprice_nonFormat * (5 / 100);
+                    offers_price_nonFormat = carprice_nonFormat * (10 / 100);
                     //Format Number
                     car_price = new Intl.NumberFormat().format(carprice_nonFormat);
+                    offers_price = new Intl.NumberFormat().format(offers_price_nonFormat);
                     RegistrationFee = new Intl.NumberFormat().format(RegistrationFee_nonFormat);
                     //fill to div
                     $('#carPrice').html(car_price + ' ' + '₫');
                     $('.carRegistration-fee').html(RegistrationFee + ' ' + '₫');
+                    $('#offers_span').html('-'+offers_price+ ' ' + '₫');
                     var pathAvatar = item.image;
                     $('#showImageCar').attr("src", '/storage/files/Image_Car/' + pathAvatar + '');
                 });
@@ -66,7 +69,8 @@ $(function () {
                             var carLicensefee_nonFormat = item.Licenseplatefee;
                             var carInspectionfee_nonFormat = item.Inspectionfee;
                             var allFees = RegistrationFee_nonFormat + carRoadfee_nonFormat + carCivilfee_nonFormat + carLicensefee_nonFormat + carInspectionfee_nonFormat;
-                            var EstimatedCost_nonFormat = carprice_nonFormat + allFees;
+                            var EstimatedCost_nonFormat = carprice_nonFormat + allFees - offers_price_nonFormat;
+                            
                             //Format Number
                             var carRoadfee = new Intl.NumberFormat().format(carRoadfee_nonFormat);
                             var carCivilfee = new Intl.NumberFormat().format(carCivilfee_nonFormat);
@@ -120,7 +124,7 @@ $(function () {
                     var carLicensefee_nonFormat = item.Licenseplatefee;
                     var carInspectionfee_nonFormat = item.Inspectionfee;
                     var allFees = RegistrationFee_nonFormat + carRoadfee_nonFormat + carCivilfee_nonFormat + carLicensefee_nonFormat + carInspectionfee_nonFormat;
-                    var EstimatedCost_nonFormat = carprice_nonFormat + allFees;
+                    var EstimatedCost_nonFormat = carprice_nonFormat + allFees -offers_price_nonFormat;
                     //Format Number
                     var carRoadfee = new Intl.NumberFormat().format(carRoadfee_nonFormat);
                     var carCivilfee = new Intl.NumberFormat().format(carCivilfee_nonFormat);
@@ -135,6 +139,7 @@ $(function () {
                     $('#carCostEstimate').html(EstimatedCost + ' ' + '₫');
                     $('#allFees').val(allFees);
                     $('#costEstimated').val(EstimatedCost_nonFormat);
+                   
 
 
                 });

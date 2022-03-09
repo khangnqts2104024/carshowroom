@@ -59,6 +59,15 @@ class ModelInfoController extends Controller
         $upload = $file->storeAs($path,$newImageName,'public');
         $data['image'] = $newImageName;
 
+        // gif
+        $path_gif = 'files/Image_Car/gif';
+        $file_gif = $request->file('gif');
+        $modelName = preg_replace('/\s+/', '', $request->model_name);
+        $extension_gif = $request->gif->guessClientExtension();
+        $newGifName = $modelName . '-' . $request->color . '.' . $extension_gif;
+        $upload = $file_gif->storeAs($path_gif,$newGifName,'public');
+        $data['gif'] = $newGifName;
+
 
         // if($request->hasFile('image_upload')){
         //     $path = 'files/Avatar_User';

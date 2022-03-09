@@ -29,9 +29,15 @@ class UserController extends Controller
         $models_Layout_Page = modelInfo::select("model_name", "model_id", "price", "active", 'image', "gif")
             ->where("active", "active")
             ->get();
+        $user_id = Auth::user()->customer_id;
+        $user_name = Customer_Info::select("fullname")
+        ->where("customer_id",'=',$user_id)
+        ->get();
+
         return response()->json([
             'status' => 200,
-            'models_Layout_Page' => $models_Layout_Page
+            'models_Layout_Page' => $models_Layout_Page,
+            'user_name'=>$user_name
         ]);
     }
 

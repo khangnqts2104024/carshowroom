@@ -14,6 +14,7 @@ use App\Http\Controllers\ModelInfoController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\CarInfoController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\User\CostEstimateController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\ReportController;
@@ -51,6 +52,7 @@ Auth::routes();
 Route::get('/redirect/google', [SocialController::class,'redirectGoogle']);
 Route::get('/callback/google', [SocialController::class,'callbackGoogle']);
 
+
 Route::prefix('user')->name('user.')->group(function(){
     // Guest - User UnAuthenticated
     Route::middleware(['guest:web','PreventBackHistory','Localization'])->group(function(){        
@@ -61,17 +63,18 @@ Route::prefix('user')->name('user.')->group(function(){
             Route::get('/register',[UserController::class,'loadLayoutRegister'])->name('register');
             Route::post('/create',[UserController::class,'create'])->name('create');
             Route::post('/authenticate',[UserController::class,'authenticate'])->name('authenticate');
+            //Cost Estimation Page
+            Route::get('/CostEstimate',[CostEstimateController::class,'index'])->name('CostEstimate');
+            Route::post('/CostEstimate/getModelInfo',[CostEstimateController::class,'getModelInfo'])->name('getModelInfo');
+            Route::post('/CostEstimate/getFees',[CostEstimateController::class,'getFees'])->name('getFees');
+            Route::get('/CostEstimate/OrderCar',[UserOrderController::class,'GuestOrder'])->name('GuestCostEstimateSubmit');
             //Order Page
             Route::get('/order/{id?}',[UserOrderController::class,'GuestOrder'])->name('GuestOrder');
             Route::post('/getModelInfo',[UserOrderController::class,'getModelInfo'])->name('getModelInfo');
             Route::post('/getShowRoom',[UserOrderController::class,'getShowRoom'])->name('getShowRoom');
             Route::post('/getShowRoomAddress',[UserOrderController::class,'getShowRoomAddress'])->name('getShowRoomAddress');
             Route::post('/SubmitOrder',[UserOrderController::class,'GuestSubmitOrder'])->name('GuestSubmitOrder');
-            //Cost Estimation Page
-            Route::get('/CostEstimate',[CostEstimateController::class,'index'])->name('CostEstimate');
-            Route::post('/CostEstimate/getModelInfo',[CostEstimateController::class,'getModelInfo'])->name('getModelInfo');
-            Route::post('/CostEstimate/getFees',[CostEstimateController::class,'getFees'])->name('getFees');
-            
+            //Order Tracking
      });
     
     // Customer - User Authenticated
@@ -80,6 +83,12 @@ Route::prefix('user')->name('user.')->group(function(){
         
         Route::prefix('profile')->name('profile.')->group(function(){
             Route::get('auth/settings',[DashboardController::class,'show'])->name('settings');
+            Route::get('auth/order_history',[DashboardController::class,'show_order_history_page'])->name('order_history');
+           
+           //test momo
+            Route::post('/momo_payment',[CheckoutController::class,'momo_payment'])->name('momo_payment');
+            Route::get('/checkout',[CheckoutController::class,'checkout'])->name('checkout');
+
             Route::get('auth/fetch-data',[DashboardController::class,'fetchData']);
             Route::post('auth/editfullname',[DashboardController::class,'editfullname']); 
             Route::post('auth/editaddress',[DashboardController::class,'editaddress']); 
@@ -96,15 +105,24 @@ Route::prefix('user')->name('user.')->group(function(){
             Route::post('/auth/getModelInfo',[UserOrderController::class,'getModelInfo'])->name('getModelInfo');
             Route::post('/auth/getShowRoom',[UserOrderController::class,'getShowRoom'])->name('getShowRoom');
             Route::post('/auth/getShowRoomAddress',[UserOrderController::class,'getShowRoomAddress'])->name('getShowRoomAddress');
-            Route::post('/CustomerSubmitOrder',[UserOrderController::class,'CustomerSubmitOrder'])->name('CustomerSubmitOrder');
+            Route::post('auth/CustomerSubmitOrder',[UserOrderController::class,'CustomerSubmitOrder'])->name('CustomerSubmitOrder');
             //Customer Cost Estimation
             Route::get('auth/CostEstimate',[CostEstimateController::class,'index'])->name('CostEstimate');
             Route::post('auth/CostEstimate/getModelInfo',[CostEstimateController::class,'getModelInfo'])->name('getModelInfo');
             Route::post('auth/CostEstimate/getFees',[CostEstimateController::class,'getFees'])->name('getFees');
+            Route::get('auth/CostEstimate/OrderCar',[UserOrderController::class,'CustomerOrder'])->name('CustomerCostEstimateSubmit');
+           
             //Logout 
             Route::post('auth/logout',[UserController::class,'logout'])->name('logout');
     });
-    Route::post('/CostEstimate/submit',[UserOrderController::class,'GuestOrder'])->name('CostEstimateSubmit');
+     //Order Tracking
+     Route::post('/getOrderCode',[UserOrderController::class,'getOrderCode'])->middleware('Localization')->name('getOrderCode');
+     Route::get('/order_tracking',[UserOrderController::class,'order_tracking'])->middleware('Localization')->name('ordertracking');
+     
+
+    
+   
+    
     
 });
 Route::get('/sendmail_ordersuccess/{order_code?}',[MailController::class,'sendmail_ordersuccess']);

@@ -48,10 +48,12 @@
                     </div>
           </div>
         </li>
-        <li class="nav-item PromotionButton"><a class="nav-link"  href="#">{{__('home.Special Offers')}}</a></li>
+        
         @if(Auth::check())
 			<li class="nav-item ServiceButton"><a class="nav-link"  href="/user/auth/order">{{__('Order Car')}}</a></li>
+			<li class="nav-item CostEstimation"><a class="nav-link"  href="/user/auth/CostEstimate">{{__('home.Cost Estimation')}}</a></li>
 		@else
+			<li class="nav-item CostEstimation"><a class="nav-link"  href="/user/CostEstimate">{{__('home.Cost Estimation')}}</a></li>
 			<li class="nav-item ServiceButton"><a class="nav-link"  href="/user/order">{{__('Order Car')}}</a></li>
 		@endif
         <li class="nav-item ToolButton"><a class="nav-link"  href="#">{{__('home.Tools')}}</a></li>
@@ -72,14 +74,18 @@
 		 
 			  
 		</li>
-        <li class="nav-item AccountButton"><a class="nav-link"  href="{{ route('user.login') }}">{{__('home.Account')}}</a></li>
+		@if(Auth::check())
+		<li class="nav-item AccountButton"><a class="nav-link" id="username" href="{{ route('user.login') }}"></a></li>
+		@else
+			<li class="nav-item AccountButton"><a class="nav-link"  href="{{ route('user.login') }}">{{__('home.Account')}}</a></li>
+		@endif
+        
         <li class="nav-item dropdown menu-area2">
           <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="fa fa-bars" style="font-size: 18px;" aria-hidden="true"></i></a>
           <div class="dropdown-menu mega-area2 dropdown-menu-right" aria-labelledby="dropdownId">
-            <a class="dropdown-item" href="#">Hệ thống Showroom và Đại lý</a>
-            <a class="dropdown-item" href="#">Tin tức</a>
-            <a class="dropdown-item" href="#">Câu hỏi thường gặp</a>
-            <a class="dropdown-item" href="#">Liên hệ</a>
+            <a class="dropdown-item" href="/user/order_tracking">{{__('Order Tracking')}}</a>
+            <a class="dropdown-item" href="#">{{__('About us')}}</a>
+            <a class="dropdown-item" href="#">{{__('Contact')}}</a>
           </div>
         </li>
 
@@ -108,6 +114,7 @@
   @stack('scriptCostEstimate')
   @stack('scriptsHomePage')
   @stack('scriptUserOrder')
+  @stack('scriptOrderTracking')
   <script src="/js/layout.js"></script>
 </body>
 

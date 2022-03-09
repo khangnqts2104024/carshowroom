@@ -2,6 +2,8 @@
 @section('content')
     <link rel="stylesheet" href="/css/order.css">
     <input type="hidden" class="idToken" value="{{ csrf_token() }}">
+
+    
     @if(isset($car_id_fromlayout))
         <input type="hidden" id="model_id" value="{{$car_id_fromlayout}}">
     @endif
@@ -83,10 +85,10 @@
         <div class="d-flex d-flexCustom">
             @if(Auth::check())
                 {{-- Customer Order --}}
-                 <form action="{{route('user.CustomerSubmitOrder')}}" method="POST" id="submitOrder">
+                 <form action="{{route('user.CustomerSubmitOrder')}}" method="post" id="submitOrder">
             @else
             {{-- Guest Order --}}
-                <form action="{{route('user.GuestSubmitOrder')}}" method="POST" id="submitOrder">
+                <form action="{{route('user.GuestSubmitOrder')}}" method="post" id="submitOrder">
             @endif
                 @csrf
                 <div class="d-flex" style="flex-direction: column">
@@ -94,12 +96,12 @@
                     <span class="fname">{{__('Full Name')}} <span class="required">*</span></span>
                     @if(isset($user))
                         @foreach($user as $userinfo)
-                             <input class="input" type="text" name="fullname" placeholder="{{__('Enter your Fullname')}}" required value="{{$userinfo->fullname}}">
+                             <input  class="input rounded   shadow-sm" type="text" name="fullname" placeholder="{{__('Enter your Fullname')}}" required value="{{$userinfo->fullname}}">
                              <input class="input" type="hidden" name="customer_id"  value="{{$userinfo->customer_id}}">
                          @endforeach
                          <span class="text-danger">@error('fullname'){{$message}}@enderror</span>
                     @else
-                         <input class="input" type="text" name="fullname" placeholder="{{__('Enter your Fullname')}}" required value="{{old('fullname')}}">
+                         <input class="input rounded   shadow-sm" type="text" name="fullname" placeholder="{{__('Enter your Fullname')}}" required value="{{old('fullname')}}">
                          <span class="text-danger">@error('fullname'){{$message}}@enderror</span>
                     @endif
                   </label>
@@ -107,11 +109,12 @@
                   <label class="labelCustom">
                     <span>{{__('CostEstimate.Province/City')}}<span class="required">*</span></span>
                     <div class="Province">
-                        <select class="" name="provinces" id="provinces" required>
+                        <select class="rounded shadow-sm" name="provinces" id="provinces" required>
                             <option id="SelectYourProVince" value="">{{__('Select Your Province/City')}}</option>
                             @foreach($provinces as $province)
-                                <option value="{{$province->matp}}" >{{$province->name}}</option>
+                                <option  value="{{$province->matp}}" >{{$province->name}}</option>
                            @endforeach
+   
                            <span class="text-danger">@error('provinces'){{$message}}@enderror</span>
                         </select>
                     </div>
@@ -121,11 +124,11 @@
                     <span>{{__('Phone Number')}}<span class="required">*</span></span>
                     @if(isset($user))
                         @foreach($user as $userinfo)
-                            <input class="input" type="text" name="phone_number" placeholder="{{__('Enter your Phone Number')}}" required value="{{$userinfo->phone_number}}">
+                            <input class="input rounded   shadow-sm" type="text" name="phone_number" placeholder="{{__('Enter your Phone Number')}}" required value="{{$userinfo->phone_number}}">
                         @endforeach
                         <span class="text-danger">@error('phone_number'){{$message}}@enderror</span>
                     @else
-                         <input class="input" type="text" required name="phone_number" placeholder="{{__('Enter your Phone Number')}}" value="">
+                         <input class="input rounded   shadow-sm" type="text" required name="phone_number" placeholder="{{__('Enter your Phone Number')}}" value="">
                          <span class="text-danger">@error('phone_number'){{$message}}@enderror</span>
                     @endif
                 </label>
@@ -134,11 +137,11 @@
                     <span>{{__('Address')}} <span class="required">*</span></span>
                     @if(isset($user))
                          @foreach($user as $userinfo)
-                             <input class="input" type="text" name="address" required placeholder="{{__('House number and street name')}}" value="{{$userinfo->address}}">
+                             <input class="input rounded   shadow-sm" type="text" name="address" required placeholder="{{__('House number and street name')}}" value="{{$userinfo->address}}">
                         @endforeach
                         <span class="text-danger">@error('address'){{$message}}@enderror</span>
                     @else
-                    <input class="input" type="text" name="address"  placeholder="{{__('House number and street name')}}" value="" required>
+                    <input class="input rounded   shadow-sm" type="text" name="address"  placeholder="{{__('House number and street name')}}" value="" required>
                     <span class="text-danger">@error('address'){{$message}}@enderror</span>
                     @endif
                     
@@ -149,11 +152,11 @@
                     <span>{{__('Email Address')}} <span class="required">*</span></span>
                     @if(isset($user))
                         @foreach($user as $userinfo)
-                            <input class="input" type="email" name="email" placeholder="{{__('Enter your Email')}}" value="{{$userinfo->email}}" required>
+                            <input class="input rounded   shadow-sm" type="email" name="email" placeholder="{{__('Enter your Email')}}" value="{{$userinfo->email}}" required>
                         @endforeach   
                         <span class="text-danger">@error('email'){{$message}}@enderror</span>
                     @else
-                    <input class="input" type="email" name="email" placeholder="{{__('Enter your Email')}}" value="" required>
+                    <input class="input rounded   shadow-sm" type="email" name="email" placeholder="{{__('Enter your Email')}}" value="" required>
                     <span class="text-danger">@error('email'){{$message}}@enderror</span>
                     @endif
                     
@@ -162,7 +165,7 @@
 
                 <label class="labelCustom">
                     <span>{{__('Region')}}<span class="required">*</span></span>
-                    <select  name="warehouses" id="warehouses" required>
+                    <select class="rounded   shadow-sm"  name="warehouses" id="warehouses" required>
                         <option value="select" >{{__('Select your Region')}}</option>
                         @foreach($warehouses as $warehouse)
                             <option value="{{$warehouse->id}}" >{{$warehouse->warehouse_name}}</option>
@@ -174,11 +177,11 @@
                 <label class="labelCustom">
                     <span>{{__('Model')}}<span class="required">*</span></span>
                       <div class="Model">
-                          <select  name="models" id="models" required>
+                          <select class="rounded   shadow-sm"  name="models" id="models" required>
                             
                               <option id="SelectYourModel" value="{{__('Select your Model')}}">{{__('Select your Model')}}</option>
                                 @foreach($models as $model)
-                                 <option value="{{$model->model_id}}" >{{$model->model_name}}</option>
+                                 <option value="{{$model->model_id}}" >{{$model->model_name}} - {{$model->color}}</option>
                                 @endforeach
                                 
                             </select>   
@@ -188,7 +191,7 @@
 
                 <label class="labelCustom">
                     <span>{{__('ShowRoom')}}<span class="required">*</span></span>
-                    <select  name="showrooms" id="showrooms" required>
+                    <select class="rounded shadow-sm" name="showrooms" id="showrooms" required>
                     </select>  
                     <span class="text-danger">@error('showrooms'){{$message}}@enderror</span>
                 </label>
@@ -216,9 +219,17 @@
                     </tr>
 
                     <tr>
-                        <td><a href="">Other Fees</a></td>
-                        <td class="ortherFees" name='ortherFees' id="ortherFees" style="color: red">0 VND</td>
+                        <td><a href="">{{__("Other Fees")}}</a></td>
+                        <td class="ortherFees" name='ortherFees' id="ortherFees" style="color: rgb(3,86,179)">0 VND</td>
                     </tr>
+
+                    @if(Auth::check())
+                        <tr>
+                            <td><a href="">{{__("Offers")}}</a></td>
+                            <td class="offers_span" name='offers_span' id="offers_span" style="color: rgb(3,86,179)">0 VND</td>
+                        </tr>
+                    @endif
+
 
                     <tr>
                         <td style="color: red">Total</td>

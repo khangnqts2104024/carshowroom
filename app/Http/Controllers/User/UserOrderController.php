@@ -18,7 +18,15 @@ class UserOrderController extends Controller
 {   
     //load Page for Customer
     public function CustomerOrder(Request $request){
-        $car_id_fromlayout = $request->id;
+        $model_id_cost_estimate = $request->models_cost_estimate;
+        $province_matp_cost_estimate = $request->provinces;
+        //carID from layout
+        if(isset($request->id)){
+            $car_id_fromlayout = $request->id;
+        }else{
+            //reusable variable
+            $car_id_fromlayout = $model_id_cost_estimate;
+        }
         $car_images = modelInfo::select('image')->where('model_id',$car_id_fromlayout)->get();
         $users_account_id = Auth::user()->customer_id;
         $user =Customer_Info::select("*")
@@ -27,7 +35,7 @@ class UserOrderController extends Controller
         $models = modelInfo::select("*")->get();
         $warehouses = warehouse::select("warehouse_name","id")->get(); 
         $provinces = Province::select('*')->get();
-        return view('dashboard.user/order')->with(['models'=>$models,'warehouses'=>$warehouses,'user'=>$user,'car_id_fromlayout'=>$car_id_fromlayout,'car_images'=>$car_images,'provinces'=>$provinces]);
+        return view('dashboard.user/order')->with(['province_matp_cost_estimate'=>$province_matp_cost_estimate,'models'=>$models,'warehouses'=>$warehouses,'user'=>$user,'car_id_fromlayout'=>$car_id_fromlayout,'car_images'=>$car_images,'provinces'=>$provinces]);
     }
     //load Page for Guest
     public function GuestOrder(Request $request){
@@ -83,7 +91,7 @@ class UserOrderController extends Controller
             'showrooms_address'=>$showrooms_address,
         ]);
     }
-    
+    //Customer Order
     public function CustomerSubmitOrder(Request $request){
         $request->validate([ 
             'email' => array('required','regex:/^[^\s@-]+@[^\s@-]+\.[^\s@]+$/'),
@@ -139,6 +147,7 @@ class UserOrderController extends Controller
         $order_details->order_id = $order_id;
         $order_details->model_id = $request->models;
         $order_details->order_price = $request->OrderPrice;
+        $order_details->matp = $request->provinces;
         $save_order_infos= $order_details->save();
 
         //UPDATE CUSTOMER INFO
@@ -162,9 +171,9 @@ class UserOrderController extends Controller
             }
         }
     }
-
+    //Guest Order
     public function GuestSubmitOrder(Request $request){
-       $validator = $request->validate([ 
+        $request->validate([ 
             'email' => array('required','regex:/^[^\s@-]+@[^\s@-]+\.[^\s@]+$/'),
             'fullname'=> array('required','regex:/^[A-Za-z\s]+$/'),
             'phone_number'=> array('required','regex:/^[0-9]{10,11}$/'),
@@ -173,8 +182,11 @@ class UserOrderController extends Controller
             'models'=> 'required',   
             'showrooms' => 'required',         
             'OrderPrice'=> 'required',            
-            'provinces'=> 'required',            
+            'provinces'=> 'required',
+
         ]);
+
+        
         
          //UPDATE CUSTOMER INFO
          $user_info = new Customer_Info();
@@ -216,6 +228,7 @@ class UserOrderController extends Controller
             $order_details->order_id = $order_id;
             $order_details->model_id = $request->models;
             $order_details->order_price = $request->OrderPrice;
+            $order_details->matp = $request->provinces;
             $save_order_infos= $order_details->save();
             // dd($save_info_user && $save_order && $save_order_infos);
 
@@ -243,6 +256,27 @@ class UserOrderController extends Controller
             }
         }
 
+    }
+    public function order_tracking(Request $request){
+
+        return view('dashboard.user/ordertracking');
+    }
+
+    public function getOrderCode(Request $request){
+        $order_code = $request->order_code_input;
+        //find order info
+        
+        $order_infos = orderDetail::join('orders', 'order_details.order_id', '=', 'orders.order_id',)
+              ->join('model_infos', 'model_infos.model_id', '=', 'order_details.model_id')
+              ->join('customer_infos','customer_infos.customer_id','=','orders.customer_id')
+              ->join('showrooms','showrooms.id','=','orders.showroom')
+              ->where('orders.order_code','=',$order_code)
+              ->get(['model_infos.model_name','model_infos.price','customer_infos.fullname','customer_infos.address','customer_infos.email','customer_infos.phone_number','order_details.order_status','orders.order_code','orders.order_date','showrooms.showroom_name','showrooms.address as showroom_address','showrooms.phone as showroom_phone','order_details.order_price']);
+        return response()->json([
+            'status'=>200,
+            'order_infos'=>$order_infos,
+        ]);
+       
     }
 
 }

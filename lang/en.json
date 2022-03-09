@@ -1,5 +1,11 @@
 {
     "Select":"Select",
+    "Offers":"Offers",
+    "Other Fees":"Other Fees",
+    "Order Tracking":"Order Tracking",
+    "Contact":"Contact",
+    "About us":"About us",
+    "Enter your order code":"Enter your order code",
     "The :attribute must contain at least one letter.": "The :attribute must contain at least one letter.",
     "The :attribute must contain at least one number.": "The :attribute must contain at least one number.",
     "The :attribute must contain at least one symbol.": "The :attribute must contain at least one symbol.",

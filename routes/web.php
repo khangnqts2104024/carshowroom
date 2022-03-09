@@ -207,8 +207,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('showroom/carmanageshowroom', [CarInfoController::class, 'showroomcarreceived']);
         Route::get('showroom/confirmorder/{id}', [OrderDetailController::class, 'confirmorder']); //xac nhan thông tin
         Route::get('showroom/confirmdeposited/{id}', [OrderDetailController::class, 'confirmdeposited']); //xac nhan thông tin
-
-
         Route::get('showroom/sold/{id}', [OrderDetailController::class, 'soldorder']); //nhan dơn
         Route::get('showroom/ordercanceled/{id}', [OrderDetailController::class, 'ordercanceled']); //huy don
         Route::post('showroom/checkinfo', [OrderDetailController::class, 'checkinfo']); //confirminfo

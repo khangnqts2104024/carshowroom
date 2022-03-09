@@ -171,7 +171,7 @@
                                                     </div>
                                                     <div class="employeeinfo ">
                                                         <h5>Tiền Lương</h5>
-                                                        <p> {{$p->salary}}</p>
+                                                        <p> {{$p->salary}} VND</p>
                                                     </div>
 
                                                 </div>

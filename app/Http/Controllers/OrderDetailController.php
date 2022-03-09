@@ -121,8 +121,11 @@ class OrderDetailController extends Controller
             $customer->save();
             $order_detail->order_price = $request->orderprice;
             $order_detail->order_status = "checkinfo";
-            $order_detail->matp = $request->matp;
+            $order_detail->matp = $request->provines;
             $order_detail->save();
+            $order=$order_detail->orders;
+            $order->note=$request->modelnote;
+            $order->save();
             $message = "Cập Nhật Đơn Hàng Thành Công!";
         } else {
             $message = "có gì đó sai sai!ko thể update thành công!Check Lại Đơn Hàng Hỏi Sếp nha";

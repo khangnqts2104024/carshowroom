@@ -164,11 +164,14 @@ Route::get('admin/showroom/orderdetail/{order_id}/{model_id}',[OrderDetailContro
 Route::get('admin/showroom/carmanage',[CarInfoController::class,'showroomcar']);
 Route::get('admin/showroom/carmanagepending',[CarInfoController::class,'showroomcarpending']);
 Route::get('admin/showroom/carmanageshowroom',[CarInfoController::class,'showroomcarreceived']);
-Route::get('admin/showroom/confirmorder/{id}',[OrderDetailController::class,'confirmorder']);//nhan dơn
+Route::get('admin/showroom/confirmorder/{id}',[OrderDetailController::class,'confirmorder']);//xac nhan thông tin
+Route::get('admin/showroom/confirmdeposited/{id}',[OrderDetailController::class,'confirmdeposited']);//xac nhan thông tin
+
+
 Route::get('admin/showroom/sold/{id}',[OrderDetailController::class,'soldorder']);//nhan dơn
 Route::get('admin/showroom/ordercanceled/{id}',[OrderDetailController::class,'ordercanceled']);//huy don
 Route::post('admin/showroom/checkinfo',[OrderDetailController::class,'checkinfo']);//confirminfo
-
+Route::get('admin/showroom/empcancel/{id}',[OrderDetailController::class,'empcancel']);//huy don khách ko thanh toán
 
 
 Route::get('admin/general/employee',[EmployeeInfoController::class,'show']);

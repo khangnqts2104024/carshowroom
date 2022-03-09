@@ -70,9 +70,14 @@
 
                                 <td class="flex-container-column ">
                                     <p class="status">{{$p->order_status}}</p>
-                                    @if($p->order_status=='deposited')
+                                    @if($p->order_status=='checked')
 
                                     <button class="btn btn-warning car-add" type="button" data-toggle="collapse" data-target="#contentId{{$x}}" aria-expanded="false" aria-controls="contentId">
+                                        Xác Nhận Thông Tin
+
+                                    </button>
+                                    @elseif($p->order_status=='deposited')
+                                    <button class="btn btn-success car-add" type="button" data-toggle="collapse" data-target="#contentId{{$x}}" aria-expanded="false" aria-controls="contentId">
                                         Xác Nhận Đơn
 
                                     </button>
@@ -86,12 +91,18 @@
                                         Thủ tục Hủy
 
                                     </button>
+
+                                    
                                     @endif
                                     <div class="collapse" id="contentId{{$x}}">
                                         <br>
-                                        @if($p->order_status=='deposited')
+                                        @if($p->order_status=='checked')
 
                                         <a href="{{url('admin/showroom/confirmorder/'.$p->id)}}" class='btn btn-success car-add'>Xác Nhận</a>
+                                        @elseif($p->order_status=='deposited')
+
+                                        <a href="{{url('admin/showroom/confirmdeposited/'.$p->id)}}" class='btn btn-success car-add'>Xác nhận</a>
+                                      
                                         @elseif($p->order_status=='released')
 
                                         <a href="{{url('admin/showroom/sold/'.$p->id)}}" class='btn btn-success car-add'>Xác nhận</a>

@@ -51,7 +51,7 @@ class ModelInfoController extends Controller
         $request->validate([
             'image' => 'mimes:jpg,png,jpeg:5048'
         ]);
-        $path = 'files/Image_Car';
+        $path = public_path() . 'storage/files/Image_Car';
         $file = $request->file('image');
         $modelName = preg_replace('/\s+/', '', $request->model_name);
         $extension_img = $request->image->guessClientExtension();
@@ -60,7 +60,7 @@ class ModelInfoController extends Controller
         $data['image'] = $newImageName;
 
         // gif
-        $path_gif = 'files/Image_Car/gif';
+        $path_gif = public_path() . 'storage/files/Image_Car/gif';
         $file_gif = $request->file('gif');
         $modelName = preg_replace('/\s+/', '', $request->model_name);
         $extension_gif = $request->gif->guessClientExtension();

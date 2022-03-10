@@ -17,11 +17,11 @@ class CarInfoFactory extends Factory
     public function definition()
     {
         return [
-            'car_model'=>rand(1,5),
+            'car_model'=>rand(1,15),
             'car_branch'=>rand(1,10),
-            'order_id'=>rand(1,100),
+            'order_id'=>rand(100,200),
             'manufactoring_date'=>$this->faker->dateTimeBetween('2021-01-02 00:00:00'),
-            'car_status' => Arr::random(['pending','sold','showroom','custcanceled']),
+            'car_status' => 'sold',
         ];
     }
 }

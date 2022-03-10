@@ -20,17 +20,17 @@ class DatabaseSeeder extends Seeder
     
      public function run()
     {
-        $this->call(CustomerInfoSeeder::class);
+        // $this->call(CustomerInfoSeeder::class);
       $this->call(warehouseSeeder::class);
       $this->call(showroomSeeder::class);
-      $this->call(OrderSeeder::class);
+      // $this->call(OrderSeeder::class);
       $this->call(EmployeeInfoSeeder::class);
       $this->call(EmployeeAccountSeeder::class);
       $this->call(ModelInfoSeeder::class);
-      $this->call(OrderDetailSeeder::class);
+      // $this->call(OrderDetailSeeder::class);
       $this->call(CarInfoSeeder::class);
    
-      $this->call(UserSeeder::class);
+      // $this->call(UserSeeder::class);
       
       $this->call(StockSeeder::class);
       

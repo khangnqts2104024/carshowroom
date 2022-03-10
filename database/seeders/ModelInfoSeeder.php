@@ -44,6 +44,7 @@ Kết hợp: 8,39',
     'rear_wheel_brake'=>'Đĩa tản nhiệt',
     'automatic_lights'=>'Có',
    
+   
 
 ],
 
@@ -71,7 +72,7 @@ Kết hợp: 7,39',
     'front_wheel_brake'=>'Đĩa tản nhiệt',
     'rear_wheel_brake'=>'Đĩa tản nhiệt',
     'automatic_lights'=>'Có',
-   
+
 
 ],
 
@@ -99,7 +100,7 @@ Kết hợp: 8,32',
     'front_wheel_brake'=>'Đĩa tản nhiệt',
     'rear_wheel_brake'=>'Đĩa tản nhiệt',
     'automatic_lights'=>'Có',
-   
+
 
 ],
 
@@ -127,7 +128,7 @@ Kết hợp: 7,39',
     'front_wheel_brake'=>'Đĩa Thông Gió',
     'rear_wheel_brake'=>'Đĩa Thông Gió',
     'automatic_lights'=>'Có',
-   
+
 
 ],
 
@@ -153,7 +154,8 @@ Kết hợp: 7,39',
     'air_conditioning'=>'Tự động, 2 vùng độc lập',
     'front_wheel_brake'=>'Đĩa Thông Gió',
     'rear_wheel_brake'=>'Đĩa Thông Gió',
-    'automatic_lights'=>'Có'
+    'automatic_lights'=>'Có',
+
 ],
 
 [      'model_name'=>'LUX A2.0',
@@ -178,7 +180,8 @@ Kết hợp: 8,32',
     'air_conditioning'=>'Tự động, 2 vùng độc lập',
     'front_wheel_brake'=>'Đĩa Thông Gió',
     'rear_wheel_brake'=>'Đĩa Thông Gió',
-    'automatic_lights'=>'Có'
+    'automatic_lights'=>'Có',
+  
 ],
 
 
@@ -204,7 +207,8 @@ Kết hợp: 5,85',
     'air_conditioning'=>'Chỉnh cơ',
     'front_wheel_brake'=>'Đĩa ',
     'rear_wheel_brake'=>'Tang Trống',
-    'automatic_lights'=>'Không'
+    'automatic_lights'=>'Không',
+
 ],
 
 [      'model_name'=>'FADIL',
@@ -228,7 +232,8 @@ Kết hợp: 5,85',
     'air_conditioning'=>'Chỉnh cơ',
     'front_wheel_brake'=>'Đĩa ',
     'rear_wheel_brake'=>'Tang Trống',
-    'automatic_lights'=>'Không'
+    'automatic_lights'=>'Không',
+   
 ],
 
 [     	 'model_name'=>'FADIL',
@@ -252,7 +257,8 @@ Kết hợp: 5,85',
     'air_conditioning'=>'Tự động có cảm ứng độ ẩm',
     'front_wheel_brake'=>'Đĩa ',
     'rear_wheel_brake'=>'Tang Trống',
-    'automatic_lights'=>'Có'
+    'automatic_lights'=>'Có',
+ 
 ],
 
 
@@ -278,7 +284,8 @@ Ngoài đô thị: 11,58 (lít/100km)',
     'air_conditioning'=>'Tự động , 2 vùng khí hậu',
     'front_wheel_brake'=>'Đĩa tản nhiệt ',
     'rear_wheel_brake'=>'Đĩa tản nhiệt',
-    'automatic_lights'=>'Có'
+    'automatic_lights'=>'Có',
+   
 ],
 [     	 'model_name'=>'PRESIDENT',
 'car_type'=>'fuel',
@@ -301,7 +308,8 @@ Ngoài đô thị: 11,58 (lít/100km)',
     'air_conditioning'=>'Tự động , 2 vùng khí hậu',
     'front_wheel_brake'=>'Đĩa tản nhiệt ',
     'rear_wheel_brake'=>'Đĩa tản nhiệt',
-    'automatic_lights'=>'Có'
+    'automatic_lights'=>'Có',
+  
 ],
 
 [     	 'model_name'=>'PRESIDENT',
@@ -325,7 +333,8 @@ Ngoài đô thị: 11,58 (lít/100km)',
     'air_conditioning'=>'Tự động , 2 vùng khí hậu',
     'front_wheel_brake'=>'Đĩa tản nhiệt ',
     'rear_wheel_brake'=>'Đĩa tản nhiệt',
-    'automatic_lights'=>'Có'
+    'automatic_lights'=>'Có',
+  
 ],
 
 
@@ -349,7 +358,8 @@ Ngoài đô thị: 11,58 (lít/100km)',
     'air_conditioning'=>'Tích hợp lọc không khí Pollen',
     'front_wheel_brake'=>'Đĩa ',
     'rear_wheel_brake'=>'Đĩa ',
-    'automatic_lights'=>'Có'
+    'automatic_lights'=>'Có',
+   
 ],
 [     	 'model_name'=>'VFe34',
 'car_type'=>'fuel',
@@ -370,7 +380,8 @@ Ngoài đô thị: 11,58 (lít/100km)',
     'air_conditioning'=>'Tích hợp lọc không khí Pollen',
     'front_wheel_brake'=>'Đĩa ',
     'rear_wheel_brake'=>'Đĩa ',
-    'automatic_lights'=>'Có'
+    'automatic_lights'=>'Có',
+
 ],
 [     	 'model_name'=>'VFe34',
 'car_type'=>'fuel',
@@ -391,7 +402,8 @@ Ngoài đô thị: 11,58 (lít/100km)',
     'air_conditioning'=>'Tích hợp lọc không khí Pollen',
     'front_wheel_brake'=>'Đĩa ',
     'rear_wheel_brake'=>'Đĩa ',
-    'automatic_lights'=>'Có'
+    'automatic_lights'=>'Có',
+
 ],
 
 

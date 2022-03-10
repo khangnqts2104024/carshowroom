@@ -247,10 +247,12 @@ Route::prefix('profile')->name('profile.')->group(function () {
         Route::post('warehouse/ordering/create', [CarInfoController::class, 'carcreate']);
         Route::get('warehouse/carpending/{id}', [CarInfoController::class, 'carpending']);
         Route::get('warehouse/released', [CarInfoController::class, 'released']);
+        // tao acc fake lười
+        // Route::get('warehouse/taoacc', [DashboardController::class, 'taoacc']);
+        //   Route::get('warehouse/taoxe', [DashboardController::class, 'taoxe']);
 
 
-
-
+  
 
 
 

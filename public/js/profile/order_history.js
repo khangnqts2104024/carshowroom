@@ -1,4 +1,22 @@
 $(function() {
+
+    var a = $('.order_price').text();
+    
+     $('.order_status');
+     $('.order_payment');
+     $('.order_cancel');
+
+    var order_cancel_title = $('.order_cancel_title');
+    var order_payment_title = $('.order_payment_title');
+
+    $(".item-info .order_status").each(function() {
+        var value = $(this).text();
+        console.log(value);
+      })
+//    console.log(order_status.text());
+    
+    
+    
     
 
     //switchLanguage

@@ -95,9 +95,9 @@ class UserOrderController extends Controller
     public function CustomerSubmitOrder(Request $request){
         $request->validate([ 
             'email' => array('required','regex:/^[^\s@-]+@[^\s@-]+\.[^\s@]+$/'),
-            'fullname'=> array('required','regex:/^[A-Za-z\s]+$/'),
+            'fullname'=> array('required','regex:/^([a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i'),
             'phone_number'=> array('required','regex:/^[0-9]{10,11}$/'),
-            'address'=> array('required','regex:/^[a-zA-Z0-9,\-\s]*$/'),   
+            'address'=> array('required','regex:/^([a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i'),   
             'warehouses'=> 'required',         
             'models'=> 'required',   
             'showrooms' => 'required',         
@@ -175,9 +175,9 @@ class UserOrderController extends Controller
     public function GuestSubmitOrder(Request $request){
         $request->validate([ 
             'email' => array('required','regex:/^[^\s@-]+@[^\s@-]+\.[^\s@]+$/'),
-            'fullname'=> array('required','regex:/^[A-Za-z\s]+$/'),
+            'fullname'=> array('required','regex:/^([a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i'),
             'phone_number'=> array('required','regex:/^[0-9]{10,11}$/'),
-            'address'=> array('required','regex:/^[a-zA-Z0-9,\-\s]*$/'),
+            'address'=> array('required','regex:/^([a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i'),
             'warehouses'=> 'required',         
             'models'=> 'required',   
             'showrooms' => 'required',         
@@ -257,11 +257,12 @@ class UserOrderController extends Controller
         }
 
     }
+    //order_tracking view
     public function order_tracking(Request $request){
 
         return view('dashboard.user/ordertracking');
     }
-
+    //order_tracking get order code
     public function getOrderCode(Request $request){
         $order_code = $request->order_code_input;
         //find order info

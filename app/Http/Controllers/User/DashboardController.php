@@ -28,7 +28,7 @@ class DashboardController extends Controller
     public function editfullname(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'fullname'=> array('required','regex:/^[A-Za-z\s]+$/'),
+            'fullname'=> array('required','regex:/^([a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i'),
         ]);
 
         if ($validator->fails()) {
@@ -66,7 +66,7 @@ class DashboardController extends Controller
     public function editaddress(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'address'=> array('required','regex:/^[a-zA-Z0-9,\-\s]*$/'),            
+            'address'=> array('required','regex:/^([a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i'),            
         ]);
 
         if ($validator->fails()) {
@@ -181,6 +181,8 @@ class DashboardController extends Controller
             ]);
         }
     }
+
+    
     // Edit Citizen ID
     public function editCitizenID(Request $request)
     {
@@ -234,13 +236,14 @@ class DashboardController extends Controller
             ]);
         } else {
             if ($request->hasFile('image_upload')) {
-                $path = 'files/Avatar_User';
+                //change this
+                $path = public_path().'/storage/files/Avatar_User';
                 $file = $request->file('image_upload');
                 $fullnameUser = preg_replace('/\s+/', '', $request->fullname);
                 $extension_img = $request->image_upload->guessClientExtension();
                 $file_name = time() . '_' . $fullnameUser . '.' . $extension_img;
-                $upload = $file->storeAs($path, $file_name, 'public');
-
+                //change this
+                 $upload = $file->move($path,$file_name);
                 $user_customer_id = Auth::user()->customer_id;
                 $user = Customer_Info::find($user_customer_id);
                 if ($upload) {

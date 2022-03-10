@@ -43,13 +43,13 @@ class MailController extends Controller
               $deposit_nonFormat = $order_price*(5/100);
               $deposit_format = number_format($deposit_nonFormat);
 
-              $model_price_format = number_format($order_price);
+              $order_price_format = number_format($order_price);
               
         $details = [
             'Title'=> ' Thank You For Your Order! ',
             'Sub_Content_Top' =>'We have received your order, the staff will receive and confirm the order. Please wait for a confirmation email from us.',
             'Model Name'=> $model_name ,
-            'Model Price'=>$model_price_format,
+            'Order Price'=>$order_price_format,
             'Deposit' =>$deposit_format,
             'Shipping' =>'Free Shipping',
             'Customer Name'=>$customer_fullname,
@@ -64,7 +64,9 @@ class MailController extends Controller
             'ShowRoom Phone'=>$showroom_phone,
         ];
 
+        
+
         Mail::to('leanhtrung97@gmail.com')->send(new OrderSuccess($details));
-        return 'Email Sent'; 
+       return redirect()->back();
     }
 }

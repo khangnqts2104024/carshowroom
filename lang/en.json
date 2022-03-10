@@ -84,7 +84,16 @@
     "Free Shipping":"Free Shipping",
     "Cash Directly":"Cash Directly",
     "Place Order":"Place Order",
-    "Order Car": "Order Car"
+    "Order Car": "Order Car",
+    "STT":"No.",
+    "Order Code": "Order Code",
+    "Order Date": "Order Date",
+    "Order Details": "Order Details",
+    "Order Status": "Order Status",
+    "Order Price": "Order Price",
+    "Payment": "Payment",
+    "Cancel Order": "Cancel Order",
+    "Customer Name":"Customer Name"
 
 
    

@@ -145,6 +145,11 @@
                         </li>
 
                         <li class="nav-item">
+                            <a href="{{route('user.CustomerOrder')}}" class="nav-link"><i
+                                    class="fas fa-paper-plane mr-3"></i>{{ __('UserProfilesettings.Order Car') }}</a>
+                        </li>
+
+                        <li class="nav-item">
                             <a href="{{route('user.profile.order_history')}}" class="nav-link"><i
                                     class="fas fa-shopping-cart mr-3"></i>{{ __('UserProfilesettings.Order History') }}</a>
                         </li>
@@ -156,11 +161,6 @@
                         <li class="nav-item">
                             <a href="/user/auth/CostEstimate" class="nav-link"><i
                                     class="fas fa-dollar-sign mr-3"></i>{{ __('UserProfilesettings.Cost Estimation') }}</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="{{route('user.CustomerOrder')}}" class="nav-link"><i
-                                    class="fas fa-paper-plane mr-3"></i>{{ __('UserProfilesettings.Order Car') }}</a>
                         </li>
 
                         <li class="nav-item">
@@ -215,6 +215,7 @@
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+   
     <script src="/js/profile/setting.js"></script>
     @stack('scriptOrder_HisTory')
 

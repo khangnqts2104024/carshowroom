@@ -25,45 +25,57 @@
 
                 <div class="success_messages"></div>
 
-                <table id="OrderHistoryList" class="table  table-bordered" style="width:100%">
-                    <thead>
+                <table id="OrderHistoryList" class="table table-hover table-bordered compact" style="width:100%">
+                    <thead class="thead-light">
                         <tr>
-                            <th>STT</th>
-                            <th>Order Code</th>
-                            <th>Order Date</th>
-                            <th >Order Price</th>
-                            <th class="order_status_title">Order Status</th>
-                            <th>Customer Name</th>
-                            <th>Order Details</th>
-                            <th class="order_payment_title">Payment</th>
-                            <th class="order_cancel_title">Cancel</th>
+                            <th>#</th>
+                            <th>{{__('Order Code')}}</th>
+                            <th>{{__('Order Date')}}</th>
+                            <th >{{__('Order Price')}}</th>
+                            <th class="order_status_title">{{__('Order Status')}}</th>
+                            <th>{{__('Customer Name')}}</th>
+                            <th>{{__('Order Details')}}</th>
+                            <th style="display: none;" class="order_payment_title">{{__('Payment')}}</th>
+                            <th style="display: none;" class="order_cancel_title">{{__('Cancel')}}</th>
                         </tr>
                     </thead>
 
-                    <tbody>
+                    <tbody class="table-hover">
                         @php $STT = 1 @endphp
                         @foreach ($order_infos as $order_info)
                             <tr class="item-info">
                                 <td>{{ $STT++ }}</td>
                                 <td>{{ $order_info->order_code }}</td>
                                 <td>{{ $order_info->order_date }}</td>
-                                <td class="text-center" class="order_price">{{ $order_info->order_price }}</td>
+                                <td class="text-center" class="order_price">
+                                    
+                                    @php
+                                       echo number_format($order_info->order_price ) 
+                                    @endphp
+                                    VNĐ
+                                </td>
                                 <td class="text-center" class="order_status">{{ $order_info->order_status }}</td>
                                 <td class="text-center">{{ $order_info->fullname }}</td>
                                 <td class="text-center" class="order_details"><button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
                                         data-target="#model{{ $STT }}">
                                         Show
-                                    </button></td>
-                                <td class="text-center" class="order_payment">
+                                    </button>
+                                </td>
+                                <td style="display: none;" class="text-center" class="order_payment">
                                     <form action="{{ route('user.profile.momo_payment') }}" method="post">
                                         @csrf
+                                        @php
+                                            $deposit= $order_info->order_price*(1/100);
+                                        @endphp
+                                        <input type="hidden" name="deposit" value="{{ $deposit }}">
+                                        <input type="hidden" name="order_id" value="{{ $order_info->order_id }}">
                                         <button type="submit" class="btn btn-info btn-sm" name="payUrl">Momo</button>
                                     </form>
                                 </td>
-                                <td class="text-center" class="order_cancel">
-                                    <form action="" method="post">
+                                <td style="display: none;" class="text-center" class="order_cancel">
+                                    <form action="" method="post" class="custcanceledForm">
                                         @csrf
-                                        <button type="submit" class="btn btn-danger btn-sm" name="payUrl">Cancel</button>
+                                        <button type="submit" class="btn btn-danger btn-sm custcanceledBtn" name="payUrl">Cancel</button>
                                     </form>
                                 </td>
                             </tr>

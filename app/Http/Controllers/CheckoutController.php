@@ -13,7 +13,7 @@ class CheckoutController extends Controller
     public function checkout(Request $request){
         $resultCode = $request->resultCode;
         $message = $request->message;
-        $orderId = $request->orderId;
+        $orderId = $request->orderId; //get order_code
         if($resultCode != 0){
             if(App::getLocale() == 'vi'){
                 $message = 'Thanh Toán Thất Bại. Vui lòng thử lại.';
@@ -24,9 +24,9 @@ class CheckoutController extends Controller
             }
 
         }else{
-            $order = orderDetail::find(1);
-            $order->order_status = "DEPOSITED";
-            $order->update();
+            $order_details = orderDetail::find($orderId);
+            $order_details->order_status="deposited";
+            $order_details->update();
             if(App::getLocale() == 'vi'){
                 $message = 'Thanh toán thành công. Đơn hàng của bạn đã được xác nhận.';
                 return view('dashboard.user.payment.checkout',compact('message','resultCode'));
@@ -36,11 +36,6 @@ class CheckoutController extends Controller
             }
 
         }
-       
-        
-        
-        $amount =$request->amount;
-
         return view('dashboard.user.payment.checkout',compact('message','resultCode'));
      
         
@@ -78,8 +73,9 @@ class CheckoutController extends Controller
         $accessKey = 'klm05TvNBzhg7h7j';
         $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
         $orderInfo = "Thanh toán qua MoMo";
-        $amount = "25000";
-        $orderId = time() . "";
+        $amount = $request->deposit;
+        $orderId = $request->order_id;
+        
         $redirectUrl = "http://127.0.0.1:8000/user/profile/checkout";
         $ipnUrl = "http://127.0.0.1:8000/user/profile/checkout";
         $extraData = "";
@@ -106,7 +102,7 @@ class CheckoutController extends Controller
             'signature' => $signature
         );
         $result = $this->execPostRequest($endpoint, json_encode($data));
- 
+        
         $jsonResult = json_decode($result, true);  // decode json
         
         //Just a example, please check more in there

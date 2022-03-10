@@ -17,8 +17,8 @@ class showroomSeeder extends Seeder
     {
         DB::table('showrooms')->insert([
             [
-                'showroom_name'=> 'warehouse',
-                'address'=>'headoffice',
+                'showroom_name'=> 'headoffice',
+                'address'=>'123 Từ Liêm Hà Nội',
                 'phone'=>'XXXXXXXXX',
                 'region'=>1,
             ],

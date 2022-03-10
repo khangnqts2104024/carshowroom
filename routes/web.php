@@ -21,7 +21,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ShowroomController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\SocialController;
-
+use App\Models\employeeInfo;
 use App\Models\showroom;
 use App\Models\modelInfo;
 
@@ -136,9 +136,7 @@ Route::get('/sendmail_ordersuccess/{order_code?}',[MailController::class,'sendma
 // Route::get('admin', function () {
 //     return view('admin_home');
 // });
-Route::get('admin/profile', function () {
-    return view('admin.adminprofile.adminprofile');
-});
+
 // group lai sau
 // Route::get('admin/showroom', function () {
 //     return view('admin.showroom.order');
@@ -218,8 +216,24 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::middleware(['auth:employee', 'PreventBackHistory'])->group(function () {
         Route::view('/home', 'admin_home')->name('home');
-        Route::view('/general', 'admin.general.general');
+      
+        // profile
 
+
+Route::prefix('profile')->name('profile.')->group(function () {
+
+    Route::get('myprofile', [EmployeeInfoController::class, 'fetchData']);
+    Route::post('myprofile/editfullname', [EmployeeInfoController::class, 'updatename']);
+    Route::post('myprofile/editaddress', [EmployeeInfoController::class, 'updateaddress']);
+    Route::post('myprofile/editphone', [EmployeeInfoController::class, 'updatephone']);
+    Route::post('myprofile/editpassword', [EmployeeInfoController::class, 'updatepassword']);
+    // Route::post('auth/editAvatar', [EmployeeInfoController::class, 'editAvatar']);
+});
+
+
+
+
+// //showroom
         Route::get('showroom', [OrderDetailController::class, 'show']);
         Route::get('showroom/check', [OrderDetailController::class, 'orderedstatus']);
         Route::get('showroom/myorder', [OrderDetailController::class, 'myorder']);
@@ -235,8 +249,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('showroom/ordercanceled/{id}', [OrderDetailController::class, 'ordercanceled']); //huy don
         Route::post('showroom/checkinfo', [OrderDetailController::class, 'checkinfo']); //confirminfo
         Route::get('showroom/empcancel/{id}', [OrderDetailController::class, 'empcancel']); //huy don khách ko thanh toán
-
-
+//general admin
+        Route::view('/general', 'admin.general.general');
         Route::get('general/employee', [EmployeeInfoController::class, 'show']);
         Route::post('general/employee/create', [EmployeeAccountController::class, 'create']);
         // Route::post('admin/general/employee/create', 'EmployeeAccountController@create');
@@ -247,7 +261,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('general/empchangepass/{id}', [EmployeeAccountController::class, 'empchangepass']);
         Route::post('general/employee/accountcreate', [EmployeeAccountController::class, 'accountcreate']);
 
-
+//warehouse
         Route::get('warehouse', [CarInfoController::class, 'show']);
         Route::get('warehouse/ordering', [OrderDetailController::class, 'confirmstatus']);
         Route::get('warehouse/delete', [CarInfoController::class, 'carcancel']);

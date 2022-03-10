@@ -56,7 +56,7 @@ class ModelInfoController extends Controller
         $modelName = preg_replace('/\s+/', '', $request->model_name);
         $extension_img = $request->image->guessClientExtension();
         $newImageName = $modelName . '.' . $extension_img;
-        $upload = $file->storeAs($path,$newImageName,'public');
+        $upload = $file->move($path, $newImageName);
         $data['image'] = $newImageName;
 
         // gif
@@ -65,7 +65,7 @@ class ModelInfoController extends Controller
         $modelName = preg_replace('/\s+/', '', $request->model_name);
         $extension_gif = $request->gif->guessClientExtension();
         $newGifName = $modelName . '-' . $request->color . '.' . $extension_gif;
-        $upload = $file_gif->storeAs($path_gif,$newGifName,'public');
+        $upload = $file_gif->move($path_gif, $newGifName);
         $data['gif'] = $newGifName;
 
 

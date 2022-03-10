@@ -21,7 +21,7 @@
 
         <!-- /.card-header -->
         <div class="flex-card">
-            <a href="{{url('admin/profile')}}">
+            <a href="{{url('admin/profile/myprofile')}}">
                 <div class="manage-option">
                     <i class="fa-solid fa-user"></i>
                     <p>Hồ Sơ</p>

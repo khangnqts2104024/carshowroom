@@ -23,7 +23,7 @@
         <h4 class="">Thông Tin Chi Tiết Khách Hàng</h4>
         </div>
 
-        <form role="form" enctype="multipart/form-data">
+       
             <div class="card-body">
                 <div class="form-group">
                     <label for="txt-id">Tên Khách Hàng</label>
@@ -53,7 +53,7 @@
             <div class="card-footer">
                 <a href="{{url ('admin/general/customer') }}"><button type="button" class="btn btn-primary">Quay Lại</button></a>
             </div>
-        </form>
+   
 
     </div>
 </section>

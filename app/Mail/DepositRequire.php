@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class OrderSuccess extends Mailable
+class DepositRequire extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -30,6 +30,6 @@ class OrderSuccess extends Mailable
      */
     public function build()
     {
-        return $this->subject('Order Success')->view('emails.OrderSuccess');
+        return $this->subject('Deposit Require')->view('emails.DepositRequire');
     }
 }

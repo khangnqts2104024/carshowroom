@@ -38,7 +38,8 @@
                             </th>
                             <th>Tên dòng xe</th>
                             <th>Mã dòng xe</th>
-                            <th>Ngày thêm</th>
+                            <th>Màu</th>
+                            <th>Kích hoạt</th>
 
                             <th style="width:50px;">Thông Tin chi tiết</th>
                             <th style="width:50px;">Xóa Dòng Xe</th>
@@ -51,7 +52,31 @@
                         <td>{{ $x++ }}</td>    
                             <td>{{$model -> model_name}}</td>
                             <td><span class="text-ellipsis">{{$model -> model_id}}</span></td>
-                            <td><span class="text-ellipsis">#</span></td>
+                            <td>
+                                <span class="text-ellipsis">
+                                    <?php
+                                        if ($model -> color == 'red') { 
+                                            echo 'Đỏ';
+                                        } else if ($model -> color == 'blue') {
+                                            echo 'Xanh';
+                                        } else {
+                                            echo 'Trắng';
+                                        }
+                                    ?>
+                                </span>
+                            </td>
+                            <td>
+                                <span class="text-ellipsis">
+                                    <?php
+                                        if ($model -> active == 'active') { 
+                                            echo 'Có';
+                                        }
+                                        else {
+                                            echo 'Không';
+                                        }
+                                    ?>
+                                </span>
+                            </td>
                             <td style="text-align: center;">
                                 <a href="{{URL::to('admin/general/editmodel/'.$model -> model_id)}}" class="active styling-edit" ui-toggle-class="">
                                     <i class="fa fa-pencil-square text-success text-active" style="font-size: 30px;"></i>

@@ -6,12 +6,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>USER DASHBOARD</title>
+    <title>User Dashboard</title>
 
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/profile/layout.css">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
@@ -135,7 +135,7 @@
                         data-accordion="false">
 
                         <li class="nav-item">
-                            <a href="{{ route('user.home_auth') }}" class="nav-link"><i
+                            <a href="{{ route('user.home_auth')}}" class="nav-link"><i
                                     class="fas fa-home-alt mr-3"></i>{{ __('UserProfilesettings.Home') }}</a>
                         </li>
 
@@ -145,18 +145,22 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="" class="nav-link"><i
+                            <a href="{{route('user.CustomerOrder')}}" class="nav-link"><i
+                                    class="fas fa-paper-plane mr-3"></i>{{ __('UserProfilesettings.Order Car') }}</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{route('user.profile.order_history')}}" class="nav-link"><i
                                     class="fas fa-shopping-cart mr-3"></i>{{ __('UserProfilesettings.Order History') }}</a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="" class="nav-link"><i
-                                    class="fas fa-dollar-sign mr-3"></i>{{ __('UserProfilesettings.Cost Estimation') }}</a>
+                            <a href="{{route('user.ordertracking')}}" class="nav-link"><i class="fas fa-search mr-3"></i>{{ __('Order Tracking') }}</a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{route('user.CustomerOrder')}}" class="nav-link"><i
-                                    class="fas fa-paper-plane mr-3"></i>{{ __('UserProfilesettings.Order Car') }}</a>
+                            <a href="/user/auth/CostEstimate" class="nav-link"><i
+                                    class="fas fa-dollar-sign mr-3"></i>{{ __('UserProfilesettings.Cost Estimation') }}</a>
                         </li>
 
                         <li class="nav-item">
@@ -208,8 +212,12 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+   
     <script src="/js/profile/setting.js"></script>
+    @stack('scriptOrder_HisTory')
 
 </body>
 

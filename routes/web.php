@@ -14,6 +14,7 @@ use App\Http\Controllers\ModelInfoController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\CarInfoController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\User\CostEstimateController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\ReportController;
@@ -51,61 +52,84 @@ Auth::routes();
 Route::get('/redirect/google', [SocialController::class, 'redirectGoogle']);
 Route::get('/callback/google', [SocialController::class, 'callbackGoogle']);
 
-Route::prefix('user')->name('user.')->group(function () {
+
+Route::prefix('user')->name('user.')->group(function(){
     // Guest - User UnAuthenticated
-    Route::middleware(['guest:web', 'PreventBackHistory', 'Localization'])->group(function () {
-        Route::get('/fetchInfo_Layout', [UserController::class, 'fetchInfo_Layout'])->name('fetchInfo_Layout');
-        Route::get('/home', [UserController::class, 'home'])->name('home'); //guest homepage
-        //Authenticate Page
-        Route::get('/login', [UserController::class, 'loadLayoutLogin'])->name('login');
-        Route::get('/register', [UserController::class, 'loadLayoutRegister'])->name('register');
-        Route::post('/create', [UserController::class, 'create'])->name('create');
-        Route::post('/authenticate', [UserController::class, 'authenticate'])->name('authenticate');
-        //Order Page
-        Route::get('/order/{id?}', [UserOrderController::class, 'GuestOrder'])->name('GuestOrder');
-        Route::post('/getModelInfo', [UserOrderController::class, 'getModelInfo'])->name('getModelInfo');
-        Route::post('/getShowRoom', [UserOrderController::class, 'getShowRoom'])->name('getShowRoom');
-        Route::post('/getShowRoomAddress', [UserOrderController::class, 'getShowRoomAddress'])->name('getShowRoomAddress');
-        Route::post('/SubmitOrder', [UserOrderController::class, 'GuestSubmitOrder'])->name('GuestSubmitOrder');
-        //Cost Estimation Page
-        Route::get('/CostEstimate', [CostEstimateController::class, 'index'])->name('CostEstimate');
-        Route::post('/CostEstimate/getModelInfo', [CostEstimateController::class, 'getModelInfo'])->name('getModelInfo');
-        Route::post('/CostEstimate/getFees', [CostEstimateController::class, 'getFees'])->name('getFees');
-    });
+    Route::middleware(['guest:web','PreventBackHistory','Localization'])->group(function(){        
+            Route::get('/fetchInfo_Layout',[UserController::class,'fetchInfo_Layout'])->name('fetchInfo_Layout');
+            Route::get('/home',[UserController::class,'home'])->name('home'); //guest homepage
+            //Authenticate Page
+            Route::get('/login',[UserController::class,'loadLayoutLogin'])->name('login'); 
+            Route::get('/register',[UserController::class,'loadLayoutRegister'])->name('register');
+            Route::post('/create',[UserController::class,'create'])->name('create');
+            Route::post('/authenticate',[UserController::class,'authenticate'])->name('authenticate');
+            //Cost Estimation Page
+            Route::get('/CostEstimate',[CostEstimateController::class,'index'])->name('CostEstimate');
+            Route::post('/CostEstimate/getModelInfo',[CostEstimateController::class,'getModelInfo'])->name('getModelInfo');
+            Route::post('/CostEstimate/getFees',[CostEstimateController::class,'getFees'])->name('getFees');
+            Route::get('/CostEstimate/OrderCar',[UserOrderController::class,'GuestOrder'])->name('GuestCostEstimateSubmit');
+            //Order Page
+            Route::get('/order/{id?}',[UserOrderController::class,'GuestOrder'])->name('GuestOrder');
+            Route::post('/getModelInfo',[UserOrderController::class,'getModelInfo'])->name('getModelInfo');
+            Route::post('/getShowRoom',[UserOrderController::class,'getShowRoom'])->name('getShowRoom');
+            Route::post('/getShowRoomAddress',[UserOrderController::class,'getShowRoomAddress'])->name('getShowRoomAddress');
+            Route::post('/SubmitOrder',[UserOrderController::class,'GuestSubmitOrder'])->name('GuestSubmitOrder');
+            //Order Tracking
+     });
+    
 
     // Customer - User Authenticated
     Route::middleware(['auth:web', 'PreventBackHistory', 'Localization'])->group(function () {
         //Customer Profile Page
 
-        Route::prefix('profile')->name('profile.')->group(function () {
-            Route::get('auth/settings', [DashboardController::class, 'show'])->name('settings');
-            Route::get('auth/fetch-data', [DashboardController::class, 'fetchData']);
-            Route::post('auth/editfullname', [DashboardController::class, 'editfullname']);
-            Route::post('auth/editaddress', [DashboardController::class, 'editaddress']);
-            Route::post('auth/editphone', [DashboardController::class, 'editphone']);
-            Route::post('auth/editEmail', [DashboardController::class, 'editEmail']);
-            Route::post('auth/editCitizenID', [DashboardController::class, 'editCitizenID']);
-            Route::post('auth/editAvatar', [DashboardController::class, 'editAvatar']);
+        
+        Route::prefix('profile')->name('profile.')->group(function(){
+            Route::get('auth/settings',[DashboardController::class,'show'])->name('settings');
+            Route::get('auth/order_history',[DashboardController::class,'show_order_history_page'])->name('order_history');
+           
+           //test momo
+            Route::post('/momo_payment',[CheckoutController::class,'momo_payment'])->name('momo_payment');
+            Route::get('/checkout',[CheckoutController::class,'checkout'])->name('checkout');
+
+            Route::get('auth/fetch-data',[DashboardController::class,'fetchData']);
+            Route::post('auth/editfullname',[DashboardController::class,'editfullname']); 
+            Route::post('auth/editaddress',[DashboardController::class,'editaddress']); 
+            Route::post('auth/editphone',[DashboardController::class,'editphone']); 
+            Route::post('auth/editEmail',[DashboardController::class,'editEmail']); 
+            Route::post('auth/editCitizenID',[DashboardController::class,'editCitizenID']); 
+            Route::post('auth/editAvatar',[DashboardController::class,'editAvatar']); 
         });
         //Function page for customer
-        Route::get('/auth/fetchInfo_Layout_auth', [UserController::class, 'fetchInfo_Layout_auth'])->name('fetchInfo_Layout_auth');
-        Route::get('auth/home', [UserController::class, 'home_auth'])->name('home_auth'); //customer homepage
-        //Customer Order Page 
-        Route::get('auth/order/{id?}', [UserOrderController::class, 'CustomerOrder'])->name('CustomerOrder');
-        Route::post('/auth/getModelInfo', [UserOrderController::class, 'getModelInfo'])->name('getModelInfo');
-        Route::post('/auth/getShowRoom', [UserOrderController::class, 'getShowRoom'])->name('getShowRoom');
-        Route::post('/auth/getShowRoomAddress', [UserOrderController::class, 'getShowRoomAddress'])->name('getShowRoomAddress');
-        Route::post('/CustomerSubmitOrder', [UserOrderController::class, 'CustomerSubmitOrder'])->name('CustomerSubmitOrder');
-        //Customer Cost Estimation
-        Route::get('auth/CostEstimate', [CostEstimateController::class, 'index'])->name('CostEstimate');
-        Route::post('auth/CostEstimate/getModelInfo', [CostEstimateController::class, 'getModelInfo'])->name('getModelInfo');
-        Route::post('auth/CostEstimate/getFees', [CostEstimateController::class, 'getFees'])->name('getFees');
-        //Logout 
-        Route::post('auth/logout', [UserController::class, 'logout'])->name('logout');
+            Route::get('/auth/fetchInfo_Layout_auth',[UserController::class,'fetchInfo_Layout_auth'])->name('fetchInfo_Layout_auth');
+            Route::get('auth/home',[UserController::class,'home_auth'])->name('home_auth'); //customer homepage
+            //Customer Order Page 
+            Route::get('auth/order/{id?}',[UserOrderController::class,'CustomerOrder'])->name('CustomerOrder');
+            Route::post('/auth/getModelInfo',[UserOrderController::class,'getModelInfo'])->name('getModelInfo');
+            Route::post('/auth/getShowRoom',[UserOrderController::class,'getShowRoom'])->name('getShowRoom');
+            Route::post('/auth/getShowRoomAddress',[UserOrderController::class,'getShowRoomAddress'])->name('getShowRoomAddress');
+            Route::post('auth/CustomerSubmitOrder',[UserOrderController::class,'CustomerSubmitOrder'])->name('CustomerSubmitOrder');
+            //Customer Cost Estimation
+            Route::get('auth/CostEstimate',[CostEstimateController::class,'index'])->name('CostEstimate');
+            Route::post('auth/CostEstimate/getModelInfo',[CostEstimateController::class,'getModelInfo'])->name('getModelInfo');
+            Route::post('auth/CostEstimate/getFees',[CostEstimateController::class,'getFees'])->name('getFees');
+            Route::get('auth/CostEstimate/OrderCar',[UserOrderController::class,'CustomerOrder'])->name('CustomerCostEstimateSubmit');
+           
+            //Logout 
+            Route::post('auth/logout',[UserController::class,'logout'])->name('logout');
     });
+     //Order Tracking
+     Route::post('/getOrderCode',[UserOrderController::class,'getOrderCode'])->middleware('Localization')->name('getOrderCode');
+     Route::get('/order_tracking',[UserOrderController::class,'order_tracking'])->middleware('Localization')->name('ordertracking');
+     
+
+    
+   
+    
+    
 });
-Route::get('/sendmail_ordersuccess/{order_code?}', [MailController::class, 'sendmail_ordersuccess']);
-Route::post('/CostEstimate/submit', [CostEstimateController::class, 'CostEstimateSubmit'])->name('CostEstimateSubmit');
+Route::get('/sendmail_ordersuccess/{order_code?}',[MailController::class,'sendmail_ordersuccess']);
+
+    
 
 
 // KHANG
@@ -304,39 +328,42 @@ Route::prefix('admin')->name('admin.')->group(function () {
 // KHANGEND
 
 
+
 // Route::get('admin/general/add-model', function () {
-//     return view('admin.general.add_model', [ModelInfoController::class, 'addModel']);
+//     return view('admin.general.add_model',[ModelInfoController::class,'addModel']);
 // });
 
 // Route::get('admin/general/edit-model/{model_id}', function () {
-//     return view('admin.general.edit_model', [ModelInfoController::class, 'editModel']);
+//     return view('admin.general.edit_model',[ModelInfoController::class,'editModel']);
 // });
 // Route::get('admin/general/deletemodel/{model_id}', function () {
-//     return view('admin.general.all_model', [ModelInfoController::class, 'deleteModel']);
+//     return view('admin.general.all_model',[ModelInfoController::class,'deleteModel']);
 // });
 // Route::get('admin/general/allmodel', function () {
 //     return view('admin.general.all_model');
 //     // ,[ModelInfoController::class,'allModel']);
 // });
 // Route::get('admin/general/save_model', function () {
-//     return view('admin.general.add_model', [ModelInfoController::class, 'saveModel']);
+//     return view('admin.general.add_model',[ModelInfoController::class,'saveModel']);
+// });Route::get('admin/general/update_model/{model_id}', function () {
+//     return view('admin.general.all_model',[ModelInfoController::class,'updateModel']);
 // });
-// Route::get('admin/general/update_model/{model_id}', function () {
-//     return view('admin.general.all_model', [ModelInfoController::class, 'updateModel']);
-// });
-// //model
+
+//model
 // Route::get('admin/general/addmodel', 'ModelInfoController@addModel');
 // Route::get('admin/general/editmodel/{model_id}', 'ModelInfoController@editModel');
 // Route::get('admin/general/deletemodel/{model_id}', 'ModelInfoController@deleteModel');
 // Route::get('admin/general/allmodel', 'ModelInfoController@allModel');
 
-// Route::get('user/modeldetails/{model_id?}', 'ModelInfoController@showModel');
+Route::get('user/modeldetails/{model_id?}', 'ModelInfoController@showModel');
 // Route::post('admin/general/savemodel', 'ModelInfoController@saveModel');
 // Route::post('admin/general/updatemodel/{model_id}', 'ModelInfoController@updateModel');
 
 
-Route::get('/compare', 'CompareController@index');
 
-Route::get('/user/compare', function () {
-    return view('compare');
-});
+Route::get('/compare','CompareController@index');
+Route::get('/home/compare','CompareController@index');
+Route::get('/user/compare','CompareController@index');
+Route::get('/user/home/compare','CompareController@index');
+
+

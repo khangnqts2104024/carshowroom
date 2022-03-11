@@ -31,7 +31,7 @@ class DashboardController extends Controller
     public function editfullname(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'fullname'=> array('required','regex:/^[A-Za-z\s]+$/'),
+            'fullname'=> array('required','regex:/^([a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i'),
         ]);
 
         if ($validator->fails()) {
@@ -69,7 +69,7 @@ class DashboardController extends Controller
     public function editaddress(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'address'=> array('required','regex:/^[a-zA-Z0-9,\-\s]*$/'),            
+            'address'=> array('required','regex:/^([a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i'),            
         ]);
 
         if ($validator->fails()) {
@@ -184,6 +184,8 @@ class DashboardController extends Controller
             ]);
         }
     }
+
+    
     // Edit Citizen ID
     public function editCitizenID(Request $request)
     {
@@ -237,13 +239,14 @@ class DashboardController extends Controller
             ]);
         } else {
             if ($request->hasFile('image_upload')) {
-                $path = 'files/Avatar_User';
+                //change this
+                $path = public_path().'/storage/files/Avatar_User';
                 $file = $request->file('image_upload');
                 $fullnameUser = preg_replace('/\s+/', '', $request->fullname);
                 $extension_img = $request->image_upload->guessClientExtension();
                 $file_name = time() . '_' . $fullnameUser . '.' . $extension_img;
-                $upload = $file->storeAs($path, $file_name, 'public');
-
+                //change this
+                 $upload = $file->move($path,$file_name);
                 $user_customer_id = Auth::user()->customer_id;
                 $user = Customer_Info::find($user_customer_id);
                 if ($upload) {
@@ -293,6 +296,19 @@ class DashboardController extends Controller
         return response()->json([
             'users' => $users,
         ]);
+    }
+
+
+    //Order HisTory User
+    public function show_order_history_page(){
+        $customer_id_auth = Auth::user()->customer_id;
+        $order_infos = orderDetail::join('orders', 'order_details.order_id', '=', 'orders.order_id',)
+              ->join('model_infos', 'model_infos.model_id', '=', 'order_details.model_id')
+              ->join('customer_infos','customer_infos.customer_id','=','orders.customer_id')
+              ->join('showrooms','showrooms.id','=','orders.showroom')
+              ->where('customer_infos.customer_id','=',$customer_id_auth)
+              ->get(['model_infos.model_name','model_infos.price','customer_infos.fullname','customer_infos.address','customer_infos.email','customer_infos.phone_number','order_details.order_status','orders.order_code','orders.order_id','orders.order_date','showrooms.showroom_name','showrooms.address as showroom_address','showrooms.phone as showroom_phone','order_details.order_price']);
+        return view('dashboard.user/profile/order_history')->with(['order_infos'=>$order_infos]);
     }
 
     // khang

@@ -51,13 +51,22 @@ class ModelInfoController extends Controller
         $request->validate([
             'image' => 'mimes:jpg,png,jpeg:5048'
         ]);
-        $path = 'files/Image_Car';
+        $path = public_path() . '/storage/files/Image_Car';
         $file = $request->file('image');
         $modelName = preg_replace('/\s+/', '', $request->model_name);
         $extension_img = $request->image->guessClientExtension();
         $newImageName = $modelName . '.' . $extension_img;
-        $upload = $file->storeAs($path,$newImageName,'public');
+        $upload = $file->move($path, $newImageName);
         $data['image'] = $newImageName;
+
+        // gif
+        $path_gif = public_path() . '/storage/files/Image_Car/gif';
+        $file_gif = $request->file('gif');
+        $modelName = preg_replace('/\s+/', '', $request->model_name);
+        $extension_gif = $request->gif->guessClientExtension();
+        $newGifName = $modelName . '-' . $request->color . '.' . $extension_gif;
+        $upload = $file_gif->move($path_gif, $newGifName);
+        $data['gif'] = $newGifName;
 
 
         // if($request->hasFile('image_upload')){

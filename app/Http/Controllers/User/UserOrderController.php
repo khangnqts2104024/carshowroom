@@ -31,12 +31,22 @@ class UserOrderController extends Controller
     }
     //load Page for Guest
     public function GuestOrder(Request $request){
-        $car_id_fromlayout = $request->id;
+        $model_id_cost_estimate = $request->models_cost_estimate;
+        $province_matp_cost_estimate = $request->provinces;
+        //carID from layout
+        if(isset($request->id)){
+            $car_id_fromlayout = $request->id;
+        }else{
+            //reusable variable
+            $car_id_fromlayout = $model_id_cost_estimate;
+        }
+       
         $car_images = modelInfo::select('image')->where('model_id',$car_id_fromlayout)->get();
         $models = modelInfo::select("*")->get();
         $warehouses = warehouse::select("warehouse_name","id")->get(); 
         $provinces = Province::select('*')->get();
-        return view('dashboard.user/order')->with(['models'=>$models,'warehouses'=>$warehouses,'car_id_fromlayout'=>$car_id_fromlayout,'car_images'=>$car_images,'provinces'=>$provinces]);
+     
+        return view('dashboard.user/order')->with(['province_matp_cost_estimate'=>$province_matp_cost_estimate,'models'=>$models,'warehouses'=>$warehouses,'car_id_fromlayout'=>$car_id_fromlayout,'car_images'=>$car_images,'provinces'=>$provinces]);
     }
     // getModelInfo AJAX
     public function getModelInfo(Request $request){
@@ -154,7 +164,7 @@ class UserOrderController extends Controller
     }
 
     public function GuestSubmitOrder(Request $request){
-        $request->validate([ 
+       $validator = $request->validate([ 
             'email' => array('required','regex:/^[^\s@-]+@[^\s@-]+\.[^\s@]+$/'),
             'fullname'=> array('required','regex:/^[A-Za-z\s]+$/'),
             'phone_number'=> array('required','regex:/^[0-9]{10,11}$/'),
@@ -165,7 +175,7 @@ class UserOrderController extends Controller
             'OrderPrice'=> 'required',            
             'provinces'=> 'required',            
         ]);
- 
+        
          //UPDATE CUSTOMER INFO
          $user_info = new Customer_Info();
          $user_info->email = $request->email;

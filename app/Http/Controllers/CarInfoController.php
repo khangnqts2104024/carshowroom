@@ -103,12 +103,12 @@ class CarInfoController extends Controller
             if (
                 $carsave && $ordersave && $stocksave
             ) {
-                $a = "có gì đó sai sai!,đề nghị kiểm tra lại!";
-            } else {
                 $a = "Xe Đã Xuất Kho!";
+            } else {
+                $a = "có gì đó sai sai!,đề nghị kiểm tra lại!";
             }
-        } else {$a="";
-            $a =  "Model " . $stock->model->model_name . " tai kho " . $stock->warehouse->warehouse_name . " đã hết, mời đặt thêm!";
+        } else {
+            $a =  "Model " . $stock->model->model_name . "-".$stock->model->color." tai kho " . $stock->warehouse->warehouse_name . " đã hết, mời đặt thêm!";
         }
         return redirect()->back()->with(['a' => $a]);
     }

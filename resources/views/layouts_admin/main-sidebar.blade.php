@@ -21,10 +21,10 @@
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{ asset('image/testava.png') }}" class="img-circle elevation-2" alt="admin Image">
+                <img src="{{ asset('image/employee.jpg') }}" class="img-circle elevation-2" alt="admin Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Admin</a>
+                <a href="{{url('admin/home')}}" class="d-block">{{Auth::guard('employee')->user()->email}}</a>
             </div>
         </div>
 
@@ -54,6 +54,8 @@
         </nav>
         <!-- /.sidebar-menu -->
         <!-- Sidebar Menu -->
+        @if (Auth::guard('employee')->user()->role=='admin')
+        
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
@@ -95,8 +97,10 @@
                 </li>
             </ul>
         </nav>
+        @endif
         <!-- /.sidebar-menu -->
         <!-- Sidebar Menu -->
+        @if (Auth::guard('employee')->user()->role=='admin'|| Auth::guard('employee')->user()->role=='dealer' )
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
@@ -127,8 +131,10 @@
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
-
+@endif
         <!-- Sidebar Menu -->
+        @if (Auth::guard('employee')->user()->role=='admin'|| Auth::guard('employee')->user()->role=='warehouse' )
+        
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
@@ -159,6 +165,7 @@
                 </li>
             </ul>
         </nav>
+        @endif
         <!-- /.sidebar-menu --><ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- logout admin Trung -->
         <li class="nav-item">

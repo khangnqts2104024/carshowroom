@@ -33,7 +33,7 @@
         <div class="employeeinfo">
             <h4>Tên Nhân Viên:</h4>
             <h5> {{$employee->fullname}}</h5>
-
+            <br>
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#name">
                 <i class="fa-solid fa-pen-to-square"></i>
@@ -72,8 +72,8 @@
         </div>
         <!-- ok -->
         <div class="employeeinfo">
-            <h5>Email</h5>
-            <p> {{$employee->email}}</p>
+            <h4>Email</h4>
+            <h5> {{$employee->email}}</h5>
         </div>
         <!-- sdt -->
         <div class="employeeinfo">
@@ -122,7 +122,7 @@
         <div class="employeeinfo">
             <h4>Địa Chỉ:</h4>
             <h5>{{$employee->address}}</h5>
-
+            <br>
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#address">
                 <i class="fa-solid fa-pen-to-square"></i>
@@ -164,7 +164,7 @@
         <div class="employeeinfo">
             <h4>Password:</h4>
             <h5>***********</h5>
-
+            <br>
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#password">
                 <i class="fa-solid fa-pen-to-square"></i>
@@ -212,14 +212,14 @@
         </div>
 
         <div class="employeeinfo">
-            <h5>Tiền Lương:</h5>
-            <p> {{$employee->salary}} VND</p>
-            <h5>Hoa Hồng</h5>
-            <p> VND</p>
+            <h4>Tiền Lương:</h4>
+            <h5> {{$employee->salary}} VND</h5>
+            <h4>Hoa Hồng:</h4>
+            <h5> VND</h5>
         </div>
         <div class="employeeinfo">
-            <h5>Chi Nhánh:</h5>
-            <p> {{$employee->employee_showroom->showroom_name}}</p>
+            <h4>Chi Nhánh:</h4>
+            <h5> {{$employee->employee_showroom->showroom_name}}</h5>
 
         </div>
 

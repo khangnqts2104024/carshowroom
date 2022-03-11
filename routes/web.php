@@ -217,64 +217,106 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::middleware(['auth:employee', 'PreventBackHistory'])->group(function () {
         Route::view('/home', 'admin_home')->name('home');
-      
+
         // profile
 
 
-Route::prefix('profile')->name('profile.')->group(function () {
+        Route::prefix('profile')->name('profile.')->group(function () {
 
-    Route::get('myprofile', [EmployeeInfoController::class, 'fetchData']);
-    Route::post('myprofile/editfullname', [EmployeeInfoController::class, 'updatename']);
-    Route::post('myprofile/editaddress', [EmployeeInfoController::class, 'updateaddress']);
-    Route::post('myprofile/editphone', [EmployeeInfoController::class, 'updatephone']);
-    Route::post('myprofile/editpassword', [EmployeeInfoController::class, 'updatepassword']);
-    // Route::post('auth/editAvatar', [EmployeeInfoController::class, 'editAvatar']);
-});
-
-
-
-
-// //showroom
-        Route::get('showroom', [OrderDetailController::class, 'show']);
-        Route::get('showroom/check', [OrderDetailController::class, 'orderedstatus']);
-        Route::get('showroom/myorder', [OrderDetailController::class, 'myorder']);
-        Route::get('showroom/ordercanceled', [OrderDetailController::class, 'custcanceledtatus']);
-        Route::get('showroom/takeorder/{id}', [OrderDetailController::class, 'takeorder']); //nhan dơn
-        Route::get('showroom/orderdetail/{order_id}/{model_id}', [OrderDetailController::class, 'orderdetail']);
-        Route::get('showroom/carmanage', [CarInfoController::class, 'showroomcar']);
-        Route::get('showroom/carmanagepending', [CarInfoController::class, 'showroomcarpending']);
-        Route::get('showroom/carmanageshowroom', [CarInfoController::class, 'showroomcarreceived']);
-        Route::get('showroom/confirmorder/{id}', [OrderDetailController::class, 'confirmorder']); //xac nhan thông tin
-        Route::get('showroom/confirmdeposited/{id}', [OrderDetailController::class, 'confirmdeposited']); //xac nhan thông tin
-        Route::get('showroom/sold/{id}', [OrderDetailController::class, 'soldorder']); //nhan dơn
-        Route::get('showroom/ordercanceled/{id}', [OrderDetailController::class, 'ordercanceled']); //huy don
-        Route::post('showroom/checkinfo', [OrderDetailController::class, 'checkinfo']); //confirminfo
-        Route::get('showroom/empcancel/{id}', [OrderDetailController::class, 'empcancel']); //huy don khách ko thanh toán
-//general admin
-        Route::view('/general', 'admin.general.general');
-        Route::get('general/employee', [EmployeeInfoController::class, 'show']);
-        Route::post('general/employee/create', [EmployeeAccountController::class, 'create']);
-        // Route::post('admin/general/employee/create', 'EmployeeAccountController@create');
-        Route::get('general/customer', [DashboardController::class, 'showcustlist']);
-        Route::get('general/customer/detail/{id}', [DashboardController::class, 'detail']);
-        Route::get('general/report', [ReportController::class, 'report']);
-        Route::get('general/empcreate', [ShowroomController::class, 'create']);
-        Route::post('general/empchangepass/{id}', [EmployeeAccountController::class, 'empchangepass']);
-        Route::post('general/employee/accountcreate', [EmployeeAccountController::class, 'accountcreate']);
-
-//warehouse
-        Route::get('warehouse', [CarInfoController::class, 'show']);
-        Route::get('warehouse/ordering', [OrderDetailController::class, 'confirmstatus']);
-        Route::get('warehouse/delete', [CarInfoController::class, 'carcancel']);
-        Route::get('warehouse/stock', [StockController::class, 'show']);
-        Route::get('warehouse/stockadd/{id}', [StockController::class, 'addstock']);
-        Route::get('warehouse/car/delete/{id}', [CarInfoController::class, 'cardelete']);
-        Route::post('warehouse/ordering/create', [CarInfoController::class, 'carcreate']);
-        Route::get('warehouse/carpending/{id}', [CarInfoController::class, 'carpending']);
-        Route::get('warehouse/released', [CarInfoController::class, 'released']);
+            Route::get('myprofile', [EmployeeInfoController::class, 'fetchData']);
+            Route::post('myprofile/editfullname', [EmployeeInfoController::class, 'updatename']);
+            Route::post('myprofile/editaddress', [EmployeeInfoController::class, 'updateaddress']);
+            Route::post('myprofile/editphone', [EmployeeInfoController::class, 'updatephone']);
+            Route::post('myprofile/editpassword', [EmployeeInfoController::class, 'updatepassword']);
+            // Route::post('auth/editAvatar', [EmployeeInfoController::class, 'editAvatar']);
+        });
 
 
 
+
+        // //showroom
+        Route::middleware(['auth:employee', 'PreventBackHistory', 'showroom'])->group(function () {
+
+            Route::get('showroom', [OrderDetailController::class, 'show']);
+            Route::get('showroom/check', [OrderDetailController::class, 'orderedstatus']);
+            Route::get('showroom/myorder', [OrderDetailController::class, 'myorder']);
+            Route::get('showroom/ordercanceled', [OrderDetailController::class, 'custcanceledtatus']);
+            Route::get('showroom/takeorder/{id}', [OrderDetailController::class, 'takeorder']); //nhan dơn
+            Route::get('showroom/orderdetail/{order_id}/{model_id}', [OrderDetailController::class, 'orderdetail']);
+            Route::get('showroom/carmanage', [CarInfoController::class, 'showroomcar']);
+            Route::get('showroom/carmanagepending', [CarInfoController::class, 'showroomcarpending']);
+            Route::get('showroom/carmanageshowroom', [CarInfoController::class, 'showroomcarreceived']);
+            Route::get('showroom/confirmorder/{id}', [OrderDetailController::class, 'confirmorder']); //xac nhan thông tin
+            Route::get('showroom/confirmdeposited/{id}', [OrderDetailController::class, 'confirmdeposited']); //xac nhan thông tin
+            Route::get('showroom/sold/{id}', [OrderDetailController::class, 'soldorder']); //nhan dơn
+            Route::get('showroom/ordercanceled/{id}', [OrderDetailController::class, 'ordercanceled']); //huy don
+            Route::post('showroom/checkinfo', [OrderDetailController::class, 'checkinfo']); //confirminfo
+            Route::get('showroom/empcancel/{id}', [OrderDetailController::class, 'empcancel']); //huy don khách ko thanh toán
+            //general admin
+
+        });
+        Route::middleware(['auth:employee', 'PreventBackHistory', 'general'])->group(function () {
+
+
+            Route::view('/general', 'admin.general.general')->name('general.');
+            Route::get('general/employee', [EmployeeInfoController::class, 'show']);
+            Route::post('general/employee/create', [EmployeeAccountController::class, 'create']);
+            // Route::post('admin/general/employee/create', 'EmployeeAccountController@create');
+            Route::get('general/customer', [DashboardController::class, 'showcustlist']);
+            Route::get('general/customer/detail/{id}', [DashboardController::class, 'detail']);
+            Route::get('general/report', [ReportController::class, 'report']);
+            Route::get('general/empcreate', [ShowroomController::class, 'create']);
+            Route::post('general/empchangepass/{id}', [EmployeeAccountController::class, 'empchangepass']);
+            Route::post('general/employee/accountcreate', [EmployeeAccountController::class, 'accountcreate']);
+
+            //    phat
+            Route::get('general/add-model', function () {
+                return view('admin.general.add_model', [ModelInfoController::class, 'addModel']);
+            });
+
+            Route::get('general/edit-model/{model_id}', function () {
+                return view('admin.general.edit_model', [ModelInfoController::class, 'editModel']);
+            });
+            Route::get('general/deletemodel/{model_id}', function () {
+                return view('admin.general.all_model', [ModelInfoController::class, 'deleteModel']);
+            });
+            Route::get('general/allmodel', function () {
+                return view('admin.general.all_model');
+                // ,[ModelInfoController::class,'allModel']);
+            });
+            Route::get('general/save_model', function () {
+                return view('admin.general.add_model', [ModelInfoController::class, 'saveModel']);
+            });
+            Route::get('general/update_model/{model_id}', function () {
+                return view('admin.general.all_model', [ModelInfoController::class, 'updateModel']);
+            });
+            //model
+            Route::get('general/addmodel', 'ModelInfoController@addModel');
+            Route::get('general/editmodel/{model_id}', 'ModelInfoController@editModel');
+            Route::get('general/deletemodel/{model_id}', 'ModelInfoController@deleteModel');
+            Route::get('general/allmodel', 'ModelInfoController@allModel');
+
+
+            Route::post('general/savemodel', 'ModelInfoController@saveModel');
+            Route::post('general/updatemodel/{model_id}', 'ModelInfoController@updateModel');
+        });
+        //warehouse
+
+        Route::middleware(['auth:employee', 'PreventBackHistory', 'warehouse'])->group(function () {
+            Route::get('warehouse', [CarInfoController::class, 'show']);
+            Route::get('warehouse/ordering', [OrderDetailController::class, 'confirmstatus']);
+            Route::get('warehouse/delete', [CarInfoController::class, 'carcancel']);
+            Route::get('warehouse/stock', [StockController::class, 'show']);
+            Route::get('warehouse/stockadd/{id}', [StockController::class, 'addstock']);
+            Route::get('warehouse/car/delete/{id}', [CarInfoController::class, 'cardelete']);
+            Route::post('warehouse/ordering/create', [CarInfoController::class, 'carcreate']);
+            Route::get('warehouse/carpending/{id}', [CarInfoController::class, 'carpending']);
+            Route::get('warehouse/released', [CarInfoController::class, 'released']);
+            // tao acc fake lười
+            // Route::get('warehouse/taoacc', [DashboardController::class, 'taoacc']);
+            //   Route::get('warehouse/taoxe', [DashboardController::class, 'taoxe']);
+
+        });
 
 
 
@@ -309,14 +351,14 @@ Route::prefix('profile')->name('profile.')->group(function () {
 // });
 
 //model
-Route::get('admin/general/addmodel', 'ModelInfoController@addModel');
-Route::get('admin/general/editmodel/{model_id}', 'ModelInfoController@editModel');
-Route::get('admin/general/deletemodel/{model_id}', 'ModelInfoController@deleteModel');
-Route::get('admin/general/allmodel', 'ModelInfoController@allModel');
+// Route::get('admin/general/addmodel', 'ModelInfoController@addModel');
+// Route::get('admin/general/editmodel/{model_id}', 'ModelInfoController@editModel');
+// Route::get('admin/general/deletemodel/{model_id}', 'ModelInfoController@deleteModel');
+// Route::get('admin/general/allmodel', 'ModelInfoController@allModel');
 
 Route::get('user/modeldetails/{model_id?}', 'ModelInfoController@showModel');
-Route::post('admin/general/savemodel', 'ModelInfoController@saveModel');
-Route::post('admin/general/updatemodel/{model_id}', 'ModelInfoController@updateModel');
+// Route::post('admin/general/savemodel', 'ModelInfoController@saveModel');
+// Route::post('admin/general/updatemodel/{model_id}', 'ModelInfoController@updateModel');
 
 
 

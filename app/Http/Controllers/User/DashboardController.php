@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\User;
 
+use Carbon\Carbon;
 use App\Http\Controllers\Controller;
+use App\Models\carInfo;
 use App\Models\Customer_Info;
 use App\Models\Customer_Account;
 use App\Models\employeeInfo;
 use App\Models\modelInfo;
 use App\Models\orderDetail;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -327,5 +330,36 @@ class DashboardController extends Controller
         return view('admin.general.customerdetail')->with(['p' => $p]);
         // return view('admin.general.customerdetail')->with(['custDetail'=>$custDetail]);
     }
+//khang tạo tk member
+// public function taoacc(){
+// $infos=Customer_Info::where('customer_role','member')->get();
+// // dd($infos);
+// foreach ($infos as $info ){
+//     if($info->customer_role="member"){
+//         $acc=new User();
+//         $acc->customer_id=$info->customer_id;
+//         $acc->email=$info->email;
+//         $acc->password='$2y$10$PK/rCp4hXGOzeYZfUwnu8uuyVqlyp779HowEQr0QxfG3OLUGESrtO';
+//     $acc->save();
+//     }
+// }
+// }
+//tao xe sold
+// public function taoxe(){
+//     $order=orderDetail::where('order_status','sold')->get();
+//     foreach($order as $o){
+//  $car=new carInfo();
+//  $car->order_id=$o->orders->order_id;
+//  $car->car_model=$o->model_id;
+//  $car->car_branch=$o->orders->showroom;
+//  $car->car_status='sold';
+//  $car->manufactoring_date=Carbon::now()->toDateTimeString();;
+//  $car->save();
+//     }
+   
+// }
+
+
+
 }
 //test

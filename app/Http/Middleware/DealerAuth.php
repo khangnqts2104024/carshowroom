@@ -5,8 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
-class EmployeeAuth
+class DealerAuth
 {
     /**
      * Handle an incoming request.
@@ -15,13 +14,15 @@ class EmployeeAuth
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
-        if (Auth::guard('employee')->user()->role!='admin') {
+        
+        if (Auth::guard('employee')->user()->role!='admin'&& Auth::guard('employee')->user()->role!='dealer' ) {
 
-            // abort(403, 'Unauthorized action.');
-            return redirect('admin/home');
-
+            // if($request->routeIs('admin.general.*')){
+              
+            
+            return abort(403, 'Unauthorized action.');
         }
 
         return $next($request);

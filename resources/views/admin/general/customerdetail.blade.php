@@ -46,7 +46,10 @@
                     <label for="txt-price">CCCD</label>
                     <input type="text" class="form-control" id="txt-price" name="price" placeholder="1" value="{{ $p->citizen_id }}" readonly>
                 </div>
-
+                <div class="form-group">
+                    <label for="txt-price">Phân Loại Khách Hàng</label>
+                    <input type="text" class="form-control" id="txt-price" name="price" placeholder="1" value="{{ $p->customer_role}}" readonly>
+                </div>
 
             </div>
             <!-- /.card-body -->

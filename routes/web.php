@@ -86,11 +86,9 @@ Route::prefix('user')->name('user.')->group(function(){
         Route::prefix('profile')->name('profile.')->group(function(){
             Route::get('auth/settings',[DashboardController::class,'show'])->name('settings');
             Route::get('auth/order_history',[DashboardController::class,'show_order_history_page'])->name('order_history');
+            Route::post('auth/cancel_contract',[UserOrderController::class,'cancelContract'])->name('cancelContract');
            
-           //test momo
-            Route::post('/momo_payment',[CheckoutController::class,'momo_payment'])->name('momo_payment');
-            Route::get('/checkout',[CheckoutController::class,'checkout'])->name('checkout');
-
+           
             Route::get('auth/fetch-data',[DashboardController::class,'fetchData']);
             Route::post('auth/editfullname',[DashboardController::class,'editfullname']); 
             Route::post('auth/editaddress',[DashboardController::class,'editaddress']); 
@@ -122,7 +120,10 @@ Route::prefix('user')->name('user.')->group(function(){
      Route::get('/order_tracking',[UserOrderController::class,'order_tracking'])->middleware('Localization')->name('ordertracking');
      
 
-    
+    //test momo
+    Route::post('/momo_payment',[CheckoutController::class,'momo_payment'])->name('momo_payment');
+    Route::get('/checkout',[CheckoutController::class,'checkout'])->name('checkout');
+
    
     
     

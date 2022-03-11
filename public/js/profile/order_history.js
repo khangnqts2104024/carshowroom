@@ -79,17 +79,12 @@ $(function() {
                 order_status = $(this).find("td:nth-child(5)").html("Đang Huỷ Đơn");
             }
 
-
+          
             
        }
     })
 
-    //event onclick CustCanceled Button 
-
-    $('.custcanceledBtn').on('click',function(e){
-        e.preventDefault();
-        alert(13);
-    })
+  
 
     //switchLanguage   
        if(activeLangText == 'VN'){
@@ -118,4 +113,18 @@ $(function() {
            window.location.href = $('#url').val() + "/lang/"+locale;
        }, 400);
    }
+
+
+   
+    $("input[name=text-confirm]")[0].oninvalid = function () {
+        if(activeLangText =='VN'){
+            this.setCustomValidity("Vui lòng nhập đúng định dạng được yêu cầu 'Cancel'");
+            
+           
+        }else{
+            this.setCustomValidity("Please enter the correct format required 'Cancel'");
+            his.setCustomValidity("");
+        }
+    };
+
 });

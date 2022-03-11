@@ -5,6 +5,7 @@
 
     {{-- get url --}}
     <input type="hidden" value="{{ url('') }}" id="url">
+    <input type="hidden" class="idToken" value="{{ csrf_token() }}">
     {{-- Center SideBar Content --}}
     <div class="content-wrapper">
         {{-- Header content --}}
@@ -54,7 +55,8 @@
                                     @endphp
                                     VNĐ
                                 </td>
-                                <td class="text-center" class="order_status">{{ $order_info->order_status }}</td>
+                                
+                                <td class="text-center" class="order_status" id="order_status_{{$order_info->order_id}}">{{ $order_info->order_status }}</td>
                                 <td class="text-center">{{ $order_info->fullname }}</td>
                                 <td class="text-center" class="order_details"><button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
                                         data-target="#model{{ $STT }}">
@@ -62,21 +64,53 @@
                                     </button>
                                 </td>
                                 <td style="display: none;" class="text-center" class="order_payment">
-                                    <form action="{{ route('user.profile.momo_payment') }}" method="post">
+                                    <form action="{{ route('user.momo_payment') }}" method="post">
                                         @csrf
                                         @php
                                             $deposit= $order_info->order_price*(1/100);
                                         @endphp
                                         <input type="hidden" name="deposit" value="{{ $deposit }}">
-                                        <input type="hidden" name="order_id" value="{{ $order_info->order_id }}">
+                                        <input type="text" name="momo_id" value="{{ $order_info->momo_id }}">
                                         <button type="submit" class="btn btn-info btn-sm" name="payUrl">Momo</button>
                                     </form>
                                 </td>
                                 <td style="display: none;" class="text-center" class="order_cancel">
-                                    <form action="" method="post" class="custcanceledForm">
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger btn-sm custcanceledBtn" name="payUrl">Cancel</button>
-                                    </form>
+
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modelId">
+                                      Cancel
+                                    </button>
+                                    
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                                        <div class="modal-dialog " role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">{{__('Do you really want to cancel your order?')}}</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                </div>
+                                                <div class="modal-body">
+
+                                                    <form action="{{route('user.profile.cancelContract')}}" method="post" id="cancelform">
+                                                        @csrf
+                                                        <p class="alert alert-warning">{{__("Unexpected bad things will happen if you don't read this!")}}</p>
+                                                        <input type="hidden" name="order_id_this_order" id="" value="{{$order_info->order_id}}">
+                                                        <p>{{__('This action cannot be undone. The deposit will not be refunded if you cancel the order.')}}</p>
+                                                        <p>{{__('Please type')}} <span style="font-weight: bolder;">Cancel</span> {{__('to confirm')}}</p>
+                                                        <input type="text" name="text-confirm" class="rounded shadow-sm" required pattern="Cancel" oninput="setCustomValidity('')">
+                                                        
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" form="cancelform" class="btn btn-danger btn-sm custcanceledBtn">{{__('Yes, I want to cancel')}}</button>
+                                                    <button type="button" class="btn btn-success btn-sm" data-dismiss="modal">{{__('No, I need to reconsider')}}</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                 </td>
                             </tr>
 

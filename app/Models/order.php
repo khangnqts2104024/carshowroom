@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class order extends Model
 {
     use HasFactory;
-
+protected $primaryKey="order_id";
     protected $fillable=[ 
         'order_id',
         'showroom',
@@ -29,6 +29,6 @@ class order extends Model
         return $this->belongsTo(showroom::class,'showroom','id');
     }
     public function cars(){
-        return $this->hasMany(carInfo::class,'order_id','order_id');
+        return $this->hasOne(carInfo::class,'order_id','order_id');
     }
 }

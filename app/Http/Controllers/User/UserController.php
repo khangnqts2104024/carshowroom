@@ -29,9 +29,15 @@ class UserController extends Controller
         $models_Layout_Page = modelInfo::select("model_name", "model_id", "price", "active", 'image', "gif")
             ->where("active", "active")
             ->get();
+        $user_id = Auth::user()->customer_id;
+        $user_name = Customer_Info::select("fullname")
+        ->where("customer_id",'=',$user_id)
+        ->get();
+
         return response()->json([
             'status' => 200,
-            'models_Layout_Page' => $models_Layout_Page
+            'models_Layout_Page' => $models_Layout_Page,
+            'user_name'=>$user_name
         ]);
     }
 
@@ -65,10 +71,10 @@ class UserController extends Controller
         //validate input
         $request->validate([
             'email' => array('required', 'regex:/^[^\s@-]+@[^\s@-]+\.[^\s@]+$/', 'unique:customer_accounts,email'),
-            'fullname' => array('required', 'regex:/^[A-Za-z\s]+$/'),
+            'fullname' => array('required', 'regex:/^([a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i'),
             'citizen_id' => array('required', 'regex:/^[0-9]*$/'),
             'phone_number' => array('required', 'regex:/^[0-9]{10,11}$/'),
-            'address' => array('required', 'regex:/^[a-zA-Z0-9,\-\s]*$/'),
+            'address' => array('required', 'regex:/^([a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i'),
             'password' => 'required|min:5|max:30',
             'ConfirmPassword' => 'required|min:5|max:30|same:password',
 
@@ -81,7 +87,7 @@ class UserController extends Controller
         $user_info->fullname = $request->fullname;
         $user_info->address = $request->address;
         $user_info->customer_role = 'member';
-        $user_info->avatar = 'AvatarDefault2.png';
+        $user_info->avatar = 'AvatarDefault.jpeg';
         $save_info = $user_info->save();
 
         $isUser = Customer_Info::where('email', $request->email)->first(); //getID to pass customer_id in customer_account

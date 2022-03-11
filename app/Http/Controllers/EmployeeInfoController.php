@@ -27,36 +27,88 @@ class EmployeeInfoController extends Controller
     }
 
 
- 
 
-
-
-
-    // public function postUpdate(Request $request, $id) {
-    //     $product = $request->all();
-    //     // xử lý upload hình vào thư mục
-    //     if($request->hasFile('image'))
-    //     {
-    //         $file=$request->file('image');
-    //         $extension = $file->getClientOriginalExtension();
-    //         if($extension != 'jpg' && $extension != 'png' && $extension !='jpeg')
-    //         {
-    //             return redirect('product/update')->with('loi','Bạn chỉ được chọn file có đuôi jpg,png,jpeg');
-    //         }
-    //         $imageName = $file->getClientOriginalName();
-    //         $file->move("public/images",$imageName);
-    //     } else { // không upload hình mới => giữ lại hình cũ
-    //         $p = Product::find($id);
-    //         $imageName = $p->image;
-    //     }
-    //     $p = new Product($product);
-    //     $p->image = $imageName;
-    //     $p->save();
-    //     return redirect()->action('ProductController@index');
-    // }
     public function delete($id) {
         $p = employeeInfo::find($id);
         $p->delete();
         return redirect()->action('ProductController@index');
     }
+
+//TEST PROFILE
+
+public function fetchData()
+{
+    $employee = Auth::guard('employee')->user()->employeeinfo;
+    // dd($employee);
+
+
+
+    return view('admin.adminprofile.adminprofile')->with('employee',$employee);
+   
+
+
+}
+
+//update name
+public function updatename(Request $request){
+    $request->validate([
+        'fullname' => 'required|min:5|regex:/^([a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i',
+       
+    ]);
+$employee=employeeInfo::find($request->id);
+$employee->fullname=$request->fullname;
+$employee->save();
+
+    return redirect('admin/profile/myprofile');
+}
+
+public function updatephone(Request $request){
+    $request->validate([
+        'phone' => 'required|regex:/^[0-9]{10,11}$/',
+    ]);
+$employee=employeeInfo::find($request->id);
+$employee->phone_number=$request->phone;
+$employee->save();
+
+    return redirect('admin/profile/myprofile');
+}
+
+public function updateaddress(Request $request){
+    $request->validate([
+        'address' => 'required',
+    ]);
+$employee=employeeInfo::find($request->id);
+$employee->address=$request->address;
+$employee->save();
+
+    return redirect('admin/profile/myprofile');
+}
+public function updatepassword(Request $request){
+    $request->validate([
+        'oldpassword' => 'required|min:5|max:30',
+        'password' => 'required|min:5|max:30',
+        'confirmpass'=>'required|min:5|max:30|same:password',
+    ]);
+
+
+$employee_account=employeeInfo::find($request->id)->employee_Account;
+// dd(Hash::check($request->oldpassword,$employee_account->password));
+
+if(Hash::check($request->oldpassword,$employee_account->password)){
+    $employee_account->password=Hash::make($request->password);
+    $employee_account->save();
+    $error="cập nhật mật khẩu thành công!";
+}else{$error="Bạn Phải Nhập Đúng Mật Khẩu Cũ!";}
+
+// $employee->address=$request->address;
+// $employee->save();
+
+    return redirect('admin/profile/myprofile')->with('error',$error);
+}
+
+
+
+
+
+
 }

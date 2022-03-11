@@ -778,7 +778,22 @@
     "Cash Directly":"Thanh Toán Trực Tiếp",
     "Place Order":"Đặt Xe",
     "Order Car": "Đặt Hàng",
-    "Select Your Province/City":"Chọn Tỉnh/Thành Phố"
+    "Select Your Province/City":"Chọn Tỉnh/Thành Phố",
+    "Offers":"Ưu Đãi",
+    "Other Fees":"Phí Khác",
+    "Order Tracking":"Theo dõi đơn hàng",
+    "Contact":"Liên hệ",
+    "About us":"Về chúng tôi",
+    "Enter your order code":"Nhập mã đơn hàng của bạn",
+    "STT":"Stt",
+    "Order Code": "Mã Đơn Hàng",
+    "Order Date": "Ngày Đặt",
+    "Order Status": "Trạng Thái",
+    "Order Details": "Chi Tiết",
+    "Order Price": "Trị Giá ",
+    "Payment": "Thanh Toán",
+    "Cancel Order": "Huỷ Đơn Hàng",
+    "Customer Name":"Khách Hàng"
 
     
 }

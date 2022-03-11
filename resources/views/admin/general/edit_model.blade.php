@@ -13,7 +13,7 @@
 </section>
 <section class="content">
     <header class="panel-heading">
-        Cập nhật dòng xe
+       <h4> Cập nhật dòng xe</h4>
         <link rel="stylesheet" href="/css/account.css">
     </header>
     <div class="panel-body ">
@@ -119,7 +119,11 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Màu</label>
-                    <input type="text" value="{{$edit_value->color}}" class="form-control" id="exampleInputPassword1" name="color">
+                    <select name="color" class="form-control input-sm m-bot15">
+                        <option value="white">Trắng</option>
+                        <option value="red">Đỏ</option>
+                        <option value="blue">Xanh</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Hình</label>

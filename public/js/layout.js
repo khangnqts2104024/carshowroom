@@ -82,6 +82,7 @@ $(function(){
                dataType: "json",
                success: function (response) {
                   $.each(response.models_Layout_Page,function(key,item){
+
                     var carprice_nonFormat = item.price;
                     var car_price = new Intl.NumberFormat().format(carprice_nonFormat);
                     if(activeLangText == 'VN'){
@@ -103,8 +104,19 @@ $(function(){
                        </div>\
                         ');
                     }
+
+                    
                     
                     })
+                    
+                    $.each(response.user_name,function(key,item){
+
+                        $('#username').html(item.fullname);
+                        
+                        
+                        })
+                    
+                    
       
                }
             });

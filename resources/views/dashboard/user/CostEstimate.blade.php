@@ -62,9 +62,9 @@
         <div class="col-md-4">
             <!-- Default form subscription -->
             @if(Auth::check())
-            <form action="{{route('user.auth/CostEstimateSubmit')}}" method="POST">
+            <form action="{{route('user.CustomerCostEstimateSubmit')}}" method="get">
             @else
-                <form action="{{route('user.CostEstimateSubmit')}}" method="POST">
+                <form action="{{route('user.GuestCostEstimateSubmit')}}" method="get">
             @endif
            
             
@@ -78,7 +78,7 @@
                         <option id="SelectYourModel" value="{{ __('Select your Model') }}">{{ __('Select your Model') }}
                         </option>
                         @foreach ($models as $model)
-                            <option value="{{ $model->model_id }}">{{ $model->model_name }}</option>
+                            <option value="{{ $model->model_id }}">{{ $model->model_name }} - {{$model->color}}</option>
                         @endforeach
                         <span class="text-danger">
                             @error('models')
@@ -111,10 +111,20 @@
                         <span id="carPrice" style="align-items: center">0&nbsp;₫</span>
                     </div>
 
+                    @if(Auth::check())
+                    <div>
+                        <span style="color: red">{{__('Offers')}}</span>
+                        <span class="offers" id="offers_span" style="color: red">0&nbsp;₫</span>
+                        
+                    </div>
+                @endif
+
                     <div class="registration-fee">
                         <span class="text-registration-fee">{{ __('CostEstimate.Registration fee (5%)') }}</span>
                         <span class="carRegistration-fee">0&nbsp;₫</span>
                     </div>
+
+                  
 
                     <div class="road-fee">
                         <span class="text-road-fee">{{ __('CostEstimate.Road usage fee (1 year)') }}</span>

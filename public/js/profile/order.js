@@ -1,11 +1,11 @@
 $(function(){
-     var order_code = $('#order_code').val();
+    
+   
+      order_code = $('#order_code').val();
     if($('.success-message').text() != ""){
+        window.location.href = $('#url').val() +"/sendmail_ordersuccess/"+ order_code;
         $('#EmailSent').modal('show');
-        window.setTimeout(function() {
-            window.location.href = $('#url').val() +"/sendmail_ordersuccess/"+ order_code;
-        }, 5000);
-        
+       
     }
     $('.XCloseBtn').on('click',function(){
         $('#EmailSent').modal('hide');
@@ -21,6 +21,7 @@ $(function(){
     var url_Get_Fees = $('.url_Get_Fees').val();
     
     $('#models').on('change',function(){
+        
         
         var model_id = $(this).val();       
         var data = {
@@ -44,12 +45,17 @@ $(function(){
                 $.each(response.model,function(key,item){
                     $('.carname').text(item.model_name);
                     carprice_nonFormat = item.price;
+                    offers_price_nonFormat = carprice_nonFormat * (10 / 100);
                     RegistrationFee_nonFormat = carprice_nonFormat * (5 / 100);
-                    var car_price = new Intl.NumberFormat().format(carprice_nonFormat);                
+                    //format number
+                    var offers_price = new Intl.NumberFormat().format(offers_price_nonFormat);
+                    var car_price = new Intl.NumberFormat().format(carprice_nonFormat);     
+                    //fill div           
                     $('.carprice').html(car_price + '  '+'VND');
+                    $('#offers_span').html('-'+offers_price+ ' ' + 'VND');
                     var pathAvatar = item.image;
                     $('#showImageCar').attr("src", '/storage/files/Image_Car/'+pathAvatar+'');
-
+                    
                 });   
                 //Call All Fees Ajax 
                 var province_matp = $('#provinces').val();
@@ -79,10 +85,12 @@ $(function(){
                             var carCivilfee_nonFormat = item.Civilliabilityinsurance;
                             var carLicensefee_nonFormat = item.Licenseplatefee;
                             var carInspectionfee_nonFormat = item.Inspectionfee;
+                            var offers_price_nonFormat = carprice_nonFormat * (10 / 100);
                             var allFees_nonFormat = RegistrationFee_nonFormat + carRoadfee_nonFormat + carCivilfee_nonFormat + carLicensefee_nonFormat + carInspectionfee_nonFormat;
-                            var EstimatedCost_nonFormat = carprice_nonFormat + allFees_nonFormat;
+                            var EstimatedCost_nonFormat = carprice_nonFormat + allFees_nonFormat -offers_price_nonFormat;
                             var deposit_nonFormat = EstimatedCost_nonFormat*(5/100);
                             //Format Number
+                            var offers_price = new Intl.NumberFormat().format(offers_price_nonFormat);
                              var allFees = new Intl.NumberFormat().format(allFees_nonFormat);
                              var deposit_price = new Intl.NumberFormat().format(deposit_nonFormat);
                             var EstimatedCost = new Intl.NumberFormat().format(EstimatedCost_nonFormat);
@@ -90,8 +98,10 @@ $(function(){
                             
                             $('#OrderPrice').val(EstimatedCost_nonFormat); //get value to send form
                             $('.deposit').html(deposit_price + '  '+'VND');
+                            $('#offers_span').html('-'+offers_price+ ' ' + 'VND');
                             $('#ortherFees').html(allFees + '  '+'VND');
                             $('#CostEstimatedPrice').html(EstimatedCost + '  '+'VND');
+                            
         
         
                         });
@@ -102,7 +112,6 @@ $(function(){
     });
 
     $('#provinces').on('change', function () {
-
         var province_matp = $(this).val();
 
         var data = {
@@ -132,15 +141,18 @@ $(function(){
                     var carCivilfee_nonFormat = item.Civilliabilityinsurance;
                     var carLicensefee_nonFormat = item.Licenseplatefee;
                     var carInspectionfee_nonFormat = item.Inspectionfee;
+                    var offers_price_nonFormat = carprice_nonFormat * (10 / 100);
                     var allFees_nonFormat = RegistrationFee_nonFormat + carRoadfee_nonFormat + carCivilfee_nonFormat + carLicensefee_nonFormat + carInspectionfee_nonFormat;
-                    var EstimatedCost_nonFormat = carprice_nonFormat + allFees_nonFormat;
+                    var EstimatedCost_nonFormat = carprice_nonFormat + allFees_nonFormat -offers_price_nonFormat;
                     deposit_nonFormat = EstimatedCost_nonFormat*(5/100);
                     //Format Number
+                    var offers_price = new Intl.NumberFormat().format(offers_price_nonFormat);
                     var allFees = new Intl.NumberFormat().format(allFees_nonFormat);
                     var deposit_price = new Intl.NumberFormat().format(deposit_nonFormat);
                     var EstimatedCost = new Intl.NumberFormat().format(EstimatedCost_nonFormat);
                     $('#OrderPrice').val(EstimatedCost_nonFormat); //get value to send form
                     $('.deposit').html(deposit_price + '  '+'VND');
+                    $('#offers_span').html('-'+offers_price+ ' ' + 'VND');
                     $('#ortherFees').html(allFees+ '  '+'VND');
                     $('#CostEstimatedPrice').html(EstimatedCost+ '  '+'VND');
 
@@ -242,7 +254,10 @@ $(function(){
                 $.each(response.model,function(key,item){
                     $('.carname').text(item.model_name);
                     carprice_nonFormat = item.price;
+                    var offers_price_nonFormat = carprice_nonFormat * (10 / 100);
                     RegistrationFee_nonFormat = carprice_nonFormat * (5 / 100);
+                    var offers_price_nonFormat = carprice_nonFormat * (10 / 100);
+                    var offers_price = new Intl.NumberFormat().format(offers_price_nonFormat);
                     var car_price = new Intl.NumberFormat().format(carprice_nonFormat);                
                     $('.carprice').html(car_price + '  '+'VND');
                 });   
@@ -275,15 +290,18 @@ $(function(){
                             var carCivilfee_nonFormat = item.Civilliabilityinsurance;
                             var carLicensefee_nonFormat = item.Licenseplatefee;
                             var carInspectionfee_nonFormat = item.Inspectionfee;
+                            var offers_price_nonFormat = carprice_nonFormat * (10 / 100);
                             var allFees_nonFormat = RegistrationFee_nonFormat + carRoadfee_nonFormat + carCivilfee_nonFormat + carLicensefee_nonFormat + carInspectionfee_nonFormat;
-                            var EstimatedCost_nonFormat = carprice_nonFormat + allFees_nonFormat;
+                            var EstimatedCost_nonFormat = carprice_nonFormat + allFees_nonFormat - offers_price_nonFormat;
                             deposit_nonFormat = EstimatedCost_nonFormat*(5/100);
                             //Format Number
+                            var offers_price = new Intl.NumberFormat().format(offers_price_nonFormat);
                             var allFees = new Intl.NumberFormat().format(allFees_nonFormat);
                             var deposit_price = new Intl.NumberFormat().format(deposit_nonFormat);
                             var EstimatedCost = new Intl.NumberFormat().format(EstimatedCost_nonFormat);
                             $('#OrderPrice').val(EstimatedCost_nonFormat); //get value to send form
                             $('.deposit').html(deposit_price + '  '+'VND');
+                            $('#offers_span').html('-'+offers_price+ ' ' + 'VND');
                             $('#ortherFees').html(allFees+ '  '+'VND');
                             $('#CostEstimatedPrice').html(EstimatedCost+ '  '+'VND');
         
@@ -320,8 +338,6 @@ $(function(){
         $('#showImageCar').attr("src", '/storage/files/Image_Car/logoVinfast.png');
     }
 
-    
-    
-    
+   
 
 })

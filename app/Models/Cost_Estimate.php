@@ -19,7 +19,7 @@ class Cost_Estimate extends Model
 
     public function province()
     {
-        return $this->belongsTo(Province::class,'foreign_key');
+        return $this->belongsTo(Province::class,'matp','matp');
     }
 }
 

@@ -14,9 +14,10 @@
 
 <section class="content">
     <header class="panel-heading">
-        Thêm dòng xe
+        <h4> Thêm dòng xe</h4>
         <!-- <link rel="stylesheet" href="/css/account.css"> -->
     </header>
+    <hr>
     <div class="panel-body flex-container">
         <?php
         $message = session('message');
@@ -25,7 +26,7 @@
             session(['message' => '']);
         }
         ?>
-        <div class="position-center">
+        <div class="position-center phat">
             <form role="form" action="{{URL::to('admin/general/savemodel')}}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group">
@@ -126,7 +127,11 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Màu</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" name="color">
+                    <select name="color" class="form-control input-sm m-bot15">
+                        <option value="white">Trắng</option>
+                        <option value="red">Đỏ</option>
+                        <option value="blue">Xanh</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputFile">Thêm ảnh</label>

@@ -50,7 +50,9 @@ class employeeAccount extends Authenticatable
     ];
 
   
-
+public function employeeinfo(){
+    return $this->belongsTo(employeeInfo::class,'email','email');
+}
 
    
 }

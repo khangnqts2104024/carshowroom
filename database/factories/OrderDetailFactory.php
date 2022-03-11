@@ -19,9 +19,9 @@ class OrderDetailFactory extends Factory
     {
         return [
         'model_id'=>rand(1,15),
-        'order_id'=>rand(1,100),
+        'order_id'=>rand(150,255),
         'order_price'=>Arr::random([500000000,600000000,830000000,1000000000,940000000]),
-        'order_status'=>Arr::random(['ordered','sold','canceled','custcanceled','confirm','checked','deposited']),
+        'order_status'=>Arr::random(['sold']),
         
         ];
     }

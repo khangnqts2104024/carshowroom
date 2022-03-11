@@ -23,7 +23,7 @@ class Customer_InfoFactory extends Factory
            'fullname'=>$this->faker->name,
            'address'=>$this->faker->address,
            'customer_role'=>Arr::random(['guest','member']),
-           'phone_number'=>$this->faker->unique()->numerify('09#-#######'),
+           'phone_number'=>$this->faker->unique()->numerify('09########'),
             'created_at' => now(),
             'updated_at' => now(),
            

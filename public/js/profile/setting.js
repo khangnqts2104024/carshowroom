@@ -371,14 +371,16 @@ $(function() {
                $('#emailEdit').val(item.email);
                $('#citizen_id').val(item.citizen_id);
 
-               if(item.avatar == "AvatarDefault2.png"){
+               
                   var fileExtension = getFileExtension(item.avatar);
                   if(fileExtension == "jpg" || fileExtension == "jpeg" || fileExtension == 'png'){
                      $('#showAvatarUser').attr("src", '/storage/files/Avatar_User/'+item.avatar+'');
+                  }else{
+                     $('#showAvatarUser').attr("src",item.avatar);
                   }
-               }else{
-                  $('#showAvatarUser').attr("src",item.avatar);
-               }
+               
+                  
+               
                
               if(!jQuery.isEmptyObject(response.users)){
                   $('.showcontent').show();  

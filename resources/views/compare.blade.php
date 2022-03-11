@@ -218,7 +218,7 @@
                   <a href="#" class="d-flex" id="{{$car->model_id}}" onclick="add_compare(this.id);" data-edition="">
                     <p>{{$car -> model_name}}</p>
                     <from>
-                      <img id="view_image{{$car->model_id}}" src="storage/app/public/files/image/image_car/{{$car->image}}">
+                      <img id="view_image{{$car->model_id}}" src="/storage/files/Image_Car/{{$car->image}}">
                       <input id="view_model_id" type="hidden" value="{{$car->model_id}}"></input>
                       <input id="view_model_type{{$car->model_id}}" type="hidden" value="{{$car->car_type}}"></input>
                       <input id="view_seats{{$car->model_id}}" type="hidden" value="{{$car->seat}}"></input>
@@ -264,7 +264,7 @@
                   <a href="#" class="d-flex" id="{{$car->model_id}}" onclick="add_compare2(this.id);" data-edition="">
                     <p>{{$car -> model_name}}</p>
                     <from>
-                      <img id="view_image{{$car->model_id}}" src="storage/app/public/files/image/image_car/{{$car->image}}">
+                      <img id="view_image{{$car->model_id}}" src="/storage/files/Image_Car/{{$car->image}}">
                       <input id="view_model_id" type="hidden" value="{{$car->model_id}}"></input>
                       <input id="view_model_type{{$car->model_id}}" type="hidden" value="{{$car->car_type}}"></input>
                       <input id="view_seats{{$car->model_id}}" type="hidden" value="{{$car->seat}}"></input>
@@ -310,7 +310,7 @@
                   <a href="#" class="d-flex" id="{{$car->model_id}}" onclick="add_compare3(this.id);" data-edition="">
                     <p>{{$car -> model_name}}</p>
                     <from>
-                      <img id="view_image{{$car->model_id}}" src="storage/app/public/files/image/image_car/{{$car->image}}">
+                      <img id="view_image{{$car->model_id}}" src="/storage/files/Image_Car//{{$car->image}}">
                       <input id="view_model_id" type="hidden" value="{{$car->model_id}}"></input>
                       <input id="view_model_type{{$car->model_id}}" type="hidden" value="{{$car->car_type}}"></input>
                       <input id="view_seats{{$car->model_id}}" type="hidden" value="{{$car->seat}}"></input>
@@ -437,7 +437,7 @@
       $('#safety').find('.front_wheel_brake01').append('<p class="info01">' + newCar1.front_wheel_brake + '</p>');
       $('#safety').find('.rear_wheel_brake01').append('<p class="info01">' + newCar1.rear_wheel_brake + '</p>');
       $('#btn-order').find("#btn01").append(
-        '<button class="btn btn-success info01" id ="' + id1 + '" style="text-align: center; font-weight: bolder;">Order</button>'
+        '<button class="btn btn-success style="text-align: center; font-weight: bolder;"><a href="/user/order/' + id1 + '" style="color:white; font-weight:bolder;">Order</a></button>'
       );
       $('#btn-order').find("#btn01").append(
         '<button class="btn btn-danger info01" onClick="delete_compare(' + id1 + ')"  style="text-align: center; font-weight: bolder;">Close</button>'
@@ -519,7 +519,8 @@
       $('#safety').find('.front_wheel_brake02').append('<p class="info02">' + newCar2.front_wheel_brake + '</p>');
       $('#safety').find('.rear_wheel_brake02').append('<p class="info02">' + newCar2.rear_wheel_brake + '</p>');
       $('#btn-order').find("#btn02").append(
-        '<button class="btn btn-success info02" id ="' + id2 + '" style="text-align: center; font-weight: bolder;">Order</button>'
+        '<button class="btn btn-success style="text-align: center; font-weight: bolder;"><a href="/user/order/' + id2 + '" style="color:white; font-weight:bolder;">Order</a></button>'
+
       );
       $('#btn-order').find("#btn02").append(
         '<button class="btn btn-danger info02"  onClick="delete_compare2(' + id2 + ')"  style="text-align: center; font-weight: bolder;">Remove</button>'
@@ -601,7 +602,8 @@
       $('#safety').find('.front_wheel_brake03').append('<p class="info03">' + newCar3.front_wheel_brake + '</p>');
       $('#safety').find('.rear_wheel_brake03').append('<p class="info03">' + newCar3.rear_wheel_brake + '</p>');
       $('#btn-order').find("#btn03").append(
-        '<button class="btn btn-success info03" id ="' + id3 + '" style="text-align: center; font-weight: bolder;">Order</button>'
+        '<button class="btn btn-success style="text-align: center; font-weight: bolder;"><a href="/user/order/' + id3 + '" style="color:white; font-weight:bolder;">Order</a></button>'
+
       );
       $('#btn-order').find("#btn03").append(
         '<button class="btn btn-danger info03" onClick="delete_compare3(' + id3 + ')" style="text-align: center; font-weight: bolder;">Close</button>'

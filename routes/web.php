@@ -368,3 +368,14 @@ Route::get('/user/compare','CompareController@index');
 Route::get('/user/home/compare','CompareController@index');
 
 
+Route::get('/AboutUs',function(){
+    return view('AboutUS')
+});
+Route::get('user/AboutUs',function(){
+    return view('AboutUS')
+});Route::get('home/AboutUs',function(){
+    return view('AboutUS');
+});
+Route::get('user/home/AboutUs',function(){
+    return view('AboutUS');
+});

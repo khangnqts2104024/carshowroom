@@ -17,8 +17,8 @@ class OrderFactory extends Factory
     public function definition()
     {
         return [
-            'showroom'=>rand(1,11),
-            'order_code'=>$this->faker->unique()->numerify('##########'),
+            'showroom'=>rand(1,20),
+            'order_code'=>$this->faker->unique()->numerify('ORDER-#########'),
             'customer_id'=>rand(1,500),
             'order_date'=>$this->faker->dateTimeBetween('2021-01-01 00:00:00'),	
         ];

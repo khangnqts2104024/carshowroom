@@ -39,6 +39,7 @@ return new class extends Migration
             $table->string("image")->nullable();
             $table->string("gif")->nullable();
             $table->string('active')->default('inactive'); // if value is active => available on website
+            $table->string('released')->default('inactive');
             $table->unique(['model_name','color']);
         });
     }

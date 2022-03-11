@@ -89,7 +89,7 @@ class OrderDetailController extends Controller
 
         $province = Province::all();
         $cost = Cost_Estimate::select('matp', 'Inspectionfee', 'Licenseplatefee', 'Roadusagefee', 'Civilliabilityinsurance')->get();
-        $models = modelInfo::select('model_id', 'model_name', 'color', 'price')->get();
+        $models = modelInfo::select('model_id', 'model_name', 'color', 'price')->where('released','active')->get();
         //    dd($cost);
         //    dd();
         return view('admin.showroom.confirmorder')->with(['p' => $orders])->with(['provines' => $province])->with(['models' => $models])->with('cost', $cost)->with('oldprovine', $old_provine->name);
@@ -101,10 +101,10 @@ class OrderDetailController extends Controller
     {
         $request->validate([
             'email' => array('required', 'regex:/^[^\s@-]+@[^\s@-]+\.[^\s@]+$/', 'unique:customer_accounts,email'),
-            'fullname' => array('required', 'regex:/^[A-Za-z\s\.]+$/'),
+            'fullname' => array('required', 'regex:/^([a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i'),
             'citizen_id' => array('required', 'regex:/^[0-9]*$/'),
             'phone_number' => array('required', 'regex:/^[0-9]{10,11}$/'),
-            'address' => array('required', 'regex:/^[a-zA-Z0-9,\-\s\.]*$/'),
+            'address' => array('required','regex:/^([a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i'),
             'orderprice' => 'required',
             'modelnote' => 'required',
         ]);

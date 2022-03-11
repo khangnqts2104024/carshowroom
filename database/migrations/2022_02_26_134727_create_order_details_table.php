@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('emp_received')->default('N/A');
             // $table->foreign('emp_received')->references('employee_id')->on('employee_infos');
             $table->string('order_status')->default('ordered');
-            $table->string('matp')->nullable();
+            $table->string('matp')->default(1);
             $table->unique(['model_id','order_id']);
             
             // thêm option

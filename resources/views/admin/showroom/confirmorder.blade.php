@@ -210,6 +210,7 @@
     provine.value=0;
     //báo nv  note model
     model.addEventListener('change', function price() {
+        provine.value=0;
         for (let i = 0; i < modellist.length; i++) {
             //lấy price model xe
             if (modellist[i].model_id == model.value) {
@@ -255,7 +256,7 @@
             parseInt(Licenseplatefee.innerHTML) + parseInt(Roadusagefee.innerHTML) + parseInt(Civilliabilityinsurance.innerHTML));
         totalprice.innerHTML = total;
         totalprice.value = total;
-        alert(totalprice.value);
+      
     })
 </script>
 @endsection

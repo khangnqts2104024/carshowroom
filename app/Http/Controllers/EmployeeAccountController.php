@@ -52,9 +52,6 @@ public function create(Request $request){
     $employee_info->fullname = $request->fullname;
     $employee_info->emp_branch = $request->emp_branch;
     $employee_info->phone_number = "updating";
-    if($request->role='dealer'){
-    $employee_info->salary = 10000000;}
-    else{$employee_info->salary = 15000000;}
     $save_info=$employee_info->save();
 
     $user = new employeeAccount();

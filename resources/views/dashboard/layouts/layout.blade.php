@@ -56,7 +56,7 @@
 			<li class="nav-item CostEstimation"><a class="nav-link"  href="/user/CostEstimate">{{__('home.Cost Estimation')}}</a></li>
 			<li class="nav-item ServiceButton"><a class="nav-link"  href="/user/order">{{__('Order Car')}}</a></li>
 		@endif
-        <li class="nav-item ToolButton"><a class="nav-link"  href="/home/compare">{{__('home.Tools')}}</a></li>
+        <li class="nav-item ToolButton"><a class="nav-link"  href="{{url('/compare')}}">{{__('home.Tools')}}</a></li>
 
 		<li class="nav-item d-flex" style="align-items: center;flex-direction:column;">
 			
@@ -85,8 +85,8 @@
           <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="fa fa-bars" style="font-size: 18px;" aria-hidden="true"></i></a>
           <div class="dropdown-menu mega-area2 dropdown-menu-right" aria-labelledby="dropdownId">
             <a class="dropdown-item" href="/user/order_tracking">{{__('Order Tracking')}}</a>
-            <a class="dropdown-item" href="#">{{__('About us')}}</a>
-            <a class="dropdown-item" href="#">{{__('Contact')}}</a>
+            <a class="dropdown-item" href="{{url('/AboutUs')}}">{{__('About us')}}</a>
+            
           </div>
         </li>
 
@@ -179,12 +179,11 @@
 					<ul class="footer-links">
 						<li><a href="#">Home</a>
 						</li>
-						<li><a href="#">About us</a>
+						<li><a href="{{url('/AboutUs')}}">About us</a>
 						</li>
 						<li><a href="#">Vinfast Partners</a>
 						</li>
-						<li><a href="#">Contact Us</a>
-						</li>
+						
 						<li><a href="#" target="_blank">Terms &amp; Conditions</a>
 						</li>
 						<li><a href="#" target="_blank">Privacy Policy</a>

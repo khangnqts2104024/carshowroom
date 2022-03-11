@@ -686,3 +686,11 @@
       margin-right: 0;
     }
   }
+
+  .text-thanks{
+    text-align: center;
+    font-size: 33px;
+    box-shadow: 29px 25px 16px 0 rgb(6 0 0 / 26%);
+    font-weight: 200;
+    border: solid 0.3px;
+  }

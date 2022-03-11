@@ -270,10 +270,6 @@ Route::post('admin/general/updatemodel/{model_id}', 'ModelInfoController@updateM
 
 
 Route::get('/compare','CompareController@index');
-Route::get('/home/compare','CompareController@index');
-Route::get('/user/compare','CompareController@index');
-Route::get('/user/home/compare','CompareController@index');
-
 Route::get('/AboutUs',function(){
     return(view('AboutUs'));
 });

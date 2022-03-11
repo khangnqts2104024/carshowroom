@@ -9,10 +9,9 @@
   <meta charset="utf-8">
   <meta name="description" content="">
   <meta name="page_type" content="np-template-header-footer-from-plugin">
-  <title>Home</title>
+  <title>About Us</title>
   <link rel="stylesheet" href="css/AboutUS_nicepage.css" media="screen">
   <link rel="stylesheet" href="css/Aboutus.css" media="screen">
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script class="u-script" type="text/javascript" src="\js\AboutUs.js" defer=""></script>
 
@@ -43,24 +42,7 @@
                 <h3 class="u-custom-font u-text u-text-font u-text-2"> If debugging is the process of eliminating bugs
                   in software, then the code is the cause of the error.&nbsp;</h3>
                 <div class="u-expanded-width u-form u-form-1">
-                  <form action="#" method="POST" class="u-clearfix u-form-horizontal u-form-spacing-0 u-inner-form"
-                    style="padding: 0px;" source="email" name="form">
-                    <div class="u-form-email u-form-group">
-                      <label for="email-cd2c" class="u-form-control-hidden u-label u-label-1">Email</label>
-                      <input type="email" placeholder="your email" id="email-cd2c" name="email"
-                        class="u-input u-input-rectangle u-palette-2-light-3 u-text-grey-50 u-input-1" required="">
-                    </div>
-                    <div class="u-align-left u-form-group u-form-submit">
-                      <a href="#"
-                        class="u-border-1 u-border-palette-2-base u-btn u-btn-submit u-button-style u-palette-2-base u-btn-1">contact
-                        us</a>
-                      <input type="submit" value="submit" class="u-form-control-hidden">
-                    </div>
-                    <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
-                    <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors
-                      then try again. </div>
-                    <input type="hidden" value="" name="recaptchaResponse">
-                  </form>
+                  <img src="/files/Image_Car/test.png">
                 </div>
               </div>
             </div>
@@ -194,45 +176,9 @@
               </div>
             </div>
             <div class="u-container-style u-grey-5 u-layout-cell u-right-cell u-size-23 u-layout-cell-3">
-              <div class="u-container-layout u-valign-middle u-container-layout-3">
-                <div class="u-expanded-width u-form u-form-1">
-                  <form action="#" method="POST" class="u-clearfix u-form-spacing-19 u-form-vertical u-inner-form"
-                    style="padding: 0;" source="email" name="form">
-                    <div class="u-form-group u-form-name u-form-group-1">
-                      <label for="name-daf4" class="u-form-control-hidden u-label">Name</label>
-                      <input type="text" placeholder="Enter your Name" id="name-daf4" name="name"
-                        class="u-border-2 u-border-white u-input u-input-rectangle u-radius-12 u-white" required="">
-                    </div>
-                    <div class="u-form-email u-form-group u-form-group-2">
-                      <label for="email-daf4" class="u-form-control-hidden u-label">Email</label>
-                      <input type="email" placeholder="Enter a valid email address" id="email-daf4" name="email"
-                        class="u-border-2 u-border-white u-input u-input-rectangle u-radius-12 u-white" required="">
-                    </div>
-                    <div class="u-form-group u-form-phone u-form-group-3">
-                      <label for="phone-42da" class="u-form-control-hidden u-label"></label>
-                      <input type="tel"
-                        pattern="\+?\d{0,3}[\s\(\-]?([0-9]{2,3})[\s\)\-]?([\s\-]?)([0-9]{3})[\s\-]?([0-9]{2})[\s\-]?([0-9]{2})"
-                        placeholder="Enter your phone (e.g. +14155552675)" id="phone-42da" name="phone"
-                        class="u-border-2 u-border-white u-input u-input-rectangle u-radius-12 u-white" required="">
-                    </div>
-                    <div class="u-form-group u-form-message u-form-group-4">
-                      <label for="message-daf4" class="u-form-control-hidden u-label">Message</label>
-                      <textarea placeholder="" rows="4" cols="50" id="message-daf4" name="message"
-                        class="u-border-2 u-border-white u-input u-input-rectangle u-radius-12 u-white"
-                        required=""></textarea>
-                    </div>
-                    <div class="u-align-right u-form-group u-form-submit u-form-group-5">
-                      <a href="#"
-                        class="u-active-grey-70 u-border-none u-btn u-btn-submit u-button-style u-hover-grey-70 u-palette-2-base u-btn-2">Submit</a>
-                      <input type="submit" value="submit" class="u-form-control-hidden">
-                    </div>
-                    <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
-                    <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors
-                      then try again. </div>
-                    <input type="hidden" value="" name="recaptchaResponse">
-                  </form>
-                </div>
-              </div>
+              
+              <p class="text-thanks">We are very grateful to Mr. Ngo Phuoc Nguyen for accompanying and guiding the project team. Wish you and everyone in the class more success in the future. THANK YOU</p>
+              
             </div>
           </div>
         </div>

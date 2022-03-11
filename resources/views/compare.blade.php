@@ -218,6 +218,7 @@
                   <a href="#" class="d-flex" id="{{$car->model_id}}" onclick="add_compare(this.id);" data-edition="">
                     <p>{{$car -> model_name}}</p>
                     <from>
+                      <img src="/storage/files/Image_Car/test.png">
                       <img id="view_image{{$car->model_id}}" src="/storage/files/Image_Car/{{$car->image}}">
                       <input id="view_model_id" type="hidden" value="{{$car->model_id}}"></input>
                       <input id="view_model_type{{$car->model_id}}" type="hidden" value="{{$car->car_type}}"></input>
@@ -264,7 +265,7 @@
                   <a href="#" class="d-flex" id="{{$car->model_id}}" onclick="add_compare2(this.id);" data-edition="">
                     <p>{{$car -> model_name}}</p>
                     <from>
-                      <img id="view_image{{$car->model_id}}" src="/storage/files/Image_Car/{{$car->image}}">
+                    <img id="view_image{{$car->model_id}}" src="/public/files/Image_Car/{{$car->image}}">
                       <input id="view_model_id" type="hidden" value="{{$car->model_id}}"></input>
                       <input id="view_model_type{{$car->model_id}}" type="hidden" value="{{$car->car_type}}"></input>
                       <input id="view_seats{{$car->model_id}}" type="hidden" value="{{$car->seat}}"></input>
@@ -310,7 +311,8 @@
                   <a href="#" class="d-flex" id="{{$car->model_id}}" onclick="add_compare3(this.id);" data-edition="">
                     <p>{{$car -> model_name}}</p>
                     <from>
-                      <img id="view_image{{$car->model_id}}" src="/storage/files/Image_Car//{{$car->image}}">
+                      
+                    <img id="view_image{{$car->model_id}}" src="/public/files/Image_Car/{{$car->image}}">
                       <input id="view_model_id" type="hidden" value="{{$car->model_id}}"></input>
                       <input id="view_model_type{{$car->model_id}}" type="hidden" value="{{$car->car_type}}"></input>
                       <input id="view_seats{{$car->model_id}}" type="hidden" value="{{$car->seat}}"></input>

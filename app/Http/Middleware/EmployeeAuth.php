@@ -19,8 +19,8 @@ class EmployeeAuth
     {
         if (Auth::guard('employee')->user()->role!='admin') {
 
-            abort(403, 'Unauthorized action.');
-            // return redirect('admin/home');
+            // abort(403, 'Unauthorized action.');
+            return redirect('admin/home');
 
         }
 

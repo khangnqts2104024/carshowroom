@@ -46,7 +46,7 @@
                     <input type="text" value="{{$edit_value->engine}}" class="form-control" id="exampleInputPassword1" name="engine">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Công suất tối đa</label>
+                    <label for="exampleInputPassword1">Công suất tối đa (Hp/rpm)</label>
                     <input type="text" value="{{$edit_value->wattage}}" class="form-control" id="exampleInputPassword1" name="wattage">
                 </div>
                 <div class="form-group">
@@ -61,7 +61,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Tiêu thụ nhiên liệu</label>
+                    <label for="exampleInputPassword1">Tiêu thụ nhiên liệu (lít/100km)</label>
                     <input type="text" value="{{$edit_value->fuel_consumption}}" class="form-control" id="exampleInputPassword1" name="fuel_consumption">
                 </div>
                 <div class="form-group">
@@ -111,8 +111,15 @@
                     <input type="text" value="{{$edit_value->price}}" class="form-control" id="exampleInputPassword1" name="price">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Kích hoạt</label>
+                    <label for="exampleInputPassword1">Kích hoạt giao diện</label>
                     <select name="active" class="form-control input-sm m-bot15">
+                        <option value="active">Có</option>
+                        <option value="inactive">Không</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Kích hoạt dòng xe</label>
+                    <select name="released" class="form-control input-sm m-bot15">
                         <option value="active">Có</option>
                         <option value="inactive">Không</option>
                     </select>
@@ -123,6 +130,7 @@
                         <option value="white">Trắng</option>
                         <option value="red">Đỏ</option>
                         <option value="blue">Xanh</option>
+                        <option value="black">Đen</option>
                     </select>
                 </div>
                 <div class="form-group">

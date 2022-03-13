@@ -234,6 +234,11 @@
                     </tr>
 
                     <tr>
+                        <td><a href="">{{__("Quantity")}}</a></td>
+                        <td class="Quantity" name='Quantity' id="Quantity" style="color: rgb(3,86,179)">1</td>
+                    </tr>
+
+                    <tr>
                         <td><a href="">{{__("Other Fees")}}</a></td>
                         <td class="ortherFees" name='ortherFees' id="ortherFees" style="color: rgb(3,86,179)">0 VND</td>
                     </tr>

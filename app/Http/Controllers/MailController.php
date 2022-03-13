@@ -26,6 +26,7 @@ class MailController extends Controller
             ->join('customer_infos', 'customer_infos.customer_id', '=', 'orders.customer_id')
             ->join('showrooms', 'showrooms.id', '=', 'orders.showroom')
             ->where('orders.order_code', '=', $order_code)
+            ->where('model_infos.released', '=','active')
             ->get(['model_infos.model_name', 'model_infos.price', 'customer_infos.fullname', 'customer_infos.address', 'customer_infos.email', 'customer_infos.phone_number', 'order_details.order_status', 'orders.order_code', 'orders.order_date', 'showrooms.showroom_name', 'showrooms.address as showroom_address', 'showrooms.phone as showroom_phone', 'order_details.order_price']);
         foreach ($order_infos as $order_info) {
             $model_name = $order_info->model_name;
@@ -102,6 +103,7 @@ class MailController extends Controller
             ->join('customer_infos', 'customer_infos.customer_id', '=', 'orders.customer_id')
             ->join('showrooms', 'showrooms.id', '=', 'orders.showroom')
             ->where('orders.order_code', '=', $order_code)
+            ->where('model_infos.released', '=','active')
             ->get(['model_infos.model_name', 'model_infos.price', 'customer_infos.fullname', 'customer_infos.address', 'customer_infos.email', 'customer_infos.phone_number', 'order_details.order_status', 'orders.order_id', 'orders.order_code', 'orders.order_date', 'showrooms.showroom_name', 'showrooms.address as showroom_address', 'showrooms.phone as showroom_phone', 'order_details.order_price']);
         foreach ($order_infos as $order_info) {
             $model_name = $order_info->model_name;
@@ -147,6 +149,7 @@ class MailController extends Controller
             ->join('customer_infos', 'customer_infos.customer_id', '=', 'orders.customer_id')
             ->join('showrooms', 'showrooms.id', '=', 'orders.showroom')
             ->where('orders.order_code', '=', $order_code)
+            ->where('model_infos.released', '=','active')
             ->get(['model_infos.model_name', 'model_infos.price', 'customer_infos.fullname', 'customer_infos.address', 'customer_infos.email', 'customer_infos.phone_number', 'order_details.order_status', 'orders.order_id', 'orders.order_code', 'orders.order_date', 'showrooms.showroom_name', 'showrooms.address as showroom_address', 'showrooms.phone as showroom_phone', 'order_details.order_price']);
         foreach ($order_infos as $order_info) {
             $model_name = $order_info->model_name;
@@ -187,6 +190,8 @@ class MailController extends Controller
         ];
 
         Mail::to('leanhtrung97@gmail.com')->send(new CancelCode($details));
-        return redirect()->back()->with('order_id', $order_id);
+        return redirect()->back()->with(['order_code'=>$order_code,'order_id'=>$order_id]);
     }
+
+    
 }

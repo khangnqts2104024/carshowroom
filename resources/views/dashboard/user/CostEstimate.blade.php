@@ -88,7 +88,7 @@
                 <div class="form-group">
                     <label for="">{{ __('CostEstimate.Model') }}</label>
                     <div class="Model">
-                        <select class="form-control formRound" name="models_cost_estimate" id="models">
+                        <select class="form-control formRound" name="models_cost_estimate" id="models" required>
                             <option id="SelectYourModel" value="">{{ __('Select your Model') }}</option>
                             @foreach ($models as $model)
                                 <option value="{{ $model->model_id }}">{{ $model->model_name }} - {{$model->color}}</option>
@@ -105,7 +105,7 @@
                 <div class="form-group">
                     <label for="">{{ __('CostEstimate.Province/City') }}</label>
                     <div class="Province">
-                        <select class="form-control formRound" name="provinces" id="provinces">
+                        <select class="form-control formRound" name="provinces" id="provinces" required>
                             <option id="SelectYourProVince" value="">
                                 {{ __('Select Your Province/City') }}</option>
                             @foreach ($provinces as $province)

@@ -1,4 +1,10 @@
 $(function() {
+    $(window).on('keydown',function(event){
+        if(event.key === 'Enter') {
+          event.preventDefault();
+          return false;
+        }
+      });
     
     var activeLangText =  $('#activeLang').text();
     var order_cancel_title = $('.order_cancel_title');
@@ -8,7 +14,6 @@ $(function() {
         if($('#send_cancel_code_success').val() != ""){
             
             var orderID = $('#send_cancel_code_success').val();
-            console
             $('#modal_'+orderID).modal('show');
         }
     
@@ -36,6 +41,12 @@ $(function() {
     });
   
     $('.submitCancelBtn').on('click',function(e){
+        $(window).on('keydown',function(event){
+            if(event.key === 'Enter') {
+              event.preventDefault();
+              return false;
+            }
+          });
         e.preventDefault();
 
         var order_id = $(this).data('order-id');
@@ -44,7 +55,7 @@ $(function() {
        var data = {
         _token: $(".idToken").val(),
         'order_id':order_id,
-        'text_confirm_value': text_confirm_value,
+        'input': text_confirm_value,
         };
     
     $.ajaxSetup({
@@ -60,15 +71,24 @@ $(function() {
         dataType: "json",
         success: function (response) {
            
-            $.each(response.errors,function(key,item){
-                $('.text-errors').html("");
-                $('.text-errors').removeClass('alert alert-warning');
-                $('.text-errors').addClass('alert alert-danger');
-                $('.text-errors').append('<li>'+item+'</li>');
-            });
-           
-            $('#modal_'+order_id).modal('hide');
-            window.location.href = $('#url').val() +"/user/profile/auth/order_history";
+               if(response.status == 400){
+                    $.each(response.errors,function(key,item){
+                        $('.text-errors').html("");
+                        $('.text-errors').removeClass('alert alert-warning');
+                        $('.text-errors').addClass('alert alert-danger');
+                        $('.text-errors').append('<li>'+item+'</li>');
+                    });
+                }else if(response.status == 404){
+                    $('.text-errors').html("");
+                    $('.text-errors').removeClass('alert alert-warning');
+                    $('.text-errors').addClass('alert alert-danger');
+                    $('.text-errors').append('<li>'+response.message+'</li>');
+                
+                }else{
+                    $('#modal_'+order_id).modal('hide');
+                    window.location.href = $('#url').val() +"/user/profile/auth/order_history";
+                
+               }
             
             
         }

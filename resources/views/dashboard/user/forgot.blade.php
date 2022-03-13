@@ -16,7 +16,7 @@
               @csrf
               <p class="alert alert-info">{{__('login.Enter your email address to receive a link to reset your password.')}}</p>
                 <div class="form-group">
-                  <label for="email-signIn">{{__('login.EmailAddress')}}</label>
+                  <label for="email-signIn">{{__('Email Address')}}</label>
                   <input type="email" name="email" class="form-control formRound" placeholder="{{__('Enter your Email')}}" value="{{old('email')}}">
                   {{-- show error message --}}
                   <span class="text-danger">@error('email'){{$message}}@enderror</span>

@@ -72,7 +72,7 @@
                                     @endphp
                                     <a
                                         href="http://127.0.0.1:8000/user/momo_payment/{{ $order_info->order_id }}/{{ $deposit }}"><button
-                                            class="btn btn-danger btn-sm">Momo</button></a>
+                                            class="btn btn-info btn-sm">Momo</button></a>
                                 </td>
                                 <td style="display: none;" class="text-center" class="order_cancel">
 
@@ -117,7 +117,7 @@
                                                         <input type="text"
                                                             name="text-confirm_{{ $order_info->order_id }}"
                                                             id="text-confirm_{{ $order_info->order_id }}"
-                                                            class="rounded shadow-sm">
+                                                            class="rounded shadow-sm" required>
                                                     </form>
                                                 </div>
                                                 <div class="modal-footer">
@@ -149,7 +149,7 @@
                                 <div class="modal-dialog modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Order Detail</h5>
+                                            <h5 class="modal-title">{{__('Order Details')}}</h5>
                                             <button type="button" class="close" data-dismiss="modal"
                                                 aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
@@ -160,13 +160,13 @@
                                                 <div class="row d-flex flex-row">
                                                     <div class="col-md-6">
                                                         <img width="100%" height="auto"
-                                                            src="/storage/files/Image_Car/Fadil.png" alt="">
+                                                            src="/storage/files/Image_Car/{{$order_info->image}}" alt="">
                                                     </div>
                                                     <div class="col-md-6 d-flex flex-column">
                                                         <ul class="d-flex flex-row justify-content-between">
                                                             <li>{{ __('Model Name') }}:</li>
                                                             <li style="list-style-type: none;">
-                                                                {{ $order_info->model_name }}</li>
+                                                                {{ $order_info->model_name }} - {{ $order_info->color}}</li>
                                                         </ul>
 
                                                         <ul class="d-flex flex-row justify-content-between">

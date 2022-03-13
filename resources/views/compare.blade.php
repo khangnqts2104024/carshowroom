@@ -14,7 +14,7 @@
 
   <!-- Comparison-->
   <p style="text-align: center; font-size: 2em; font-weight: bolder">
-    So Sánh Xe
+{{__('compare.Compare cars')}}
   </p>
 
   <div class="container comparison-page">
@@ -26,21 +26,21 @@
             <div class="compare_icon"></div>
             <a id="vehicle-picker-1" class="vehicle-picker " href="#" data-target="#modal_compare1" data="1">
               <i class="bi bi-zoom-in text-center"></i>
-              <p class="text-center">Lựa chọn xe</p>
+              <p class="text-center">{{ __('compare.Vehicle selection')}}</p>
             </a>
           </td>
           <td scope="col">
             <div class="compare_icon"></div>
             <a id="vehicle-picker-2" class="vehicle-picker" href="#" data-target="#modal_compare2" data="2">
               <i class="bi bi-zoom-in text-center"></i>
-              <p class="text-center">Lựa chọn xe</p>
+              <p class="text-center">{{ __('compare.Vehicle selection')}}</p>
             </a>
           </td>
           <td scope="col">
             <div class="compare_icon"></div>
             <a id="vehicle-picker-3" class="vehicle-picker" href="#" data-target="#modal_compare3" data="3">
               <i class="bi bi-zoom-in text-center"></i>
-              <p class="text-center">Lựa chọn xe</p>
+              <p class="text-center">{{ __('compare.Vehicle selection')}}</p>
             </a>
           </td>
         </tbody>
@@ -50,21 +50,21 @@
 
       <div id="dimension-infor">
         <button type="button" class="btn btn-block d-flex justify-content-between  ">
-          Kích thước & Khối lượng
+          {{ __('compare.Dimensions & Weight')}}
         </button>
 
         <div id="dimension" class="table-responsive ">
           <table class="table table-bordered table-striped ">
             <tbody class="break-line">
               <tr>
-                <th>Kích Thước (mm)</th>
+                <th>{{ __('compare.Dimensions')}}</th>
                 <td class=" text-center modal_size01"></td>
                 <td class=" text-center modal_size02"></td>
                 <td class=" text-center modal_size03"></td>
               </tr>
 
               <tr>
-                <th>Tự trọng/Tải trọng (Kg)</th>
+                <th>{{ __('compare.Weight')}}</th>
                 <td class=" text-center modal_weight01"></td>
                 <td class=" text-center modal_weight02"></td>
                 <td class=" text-center modal_weight03"></td>
@@ -77,41 +77,41 @@
       <hr>
       <div id="engine-infor">
         <button class="btn btn-block d-flex justify-content-between ">
-          Động Cơ
+          {{ __('compare.Engine')}}
         </button>
 
         <div id="engine" class="table-responsive ">
           <table class="table table-bordered table-striped">
             <tbody class="break-line">
               <tr>
-                <th>Loại Động Cơ</th>
+                <th>{{ __('compare.Engine type')}}</th>
                 <td class="engine01 text-center"></td>
                 <td class="engine02 text-center"></td>
                 <td class="engine03 text-center"></td>
               </tr>
 
               <tr>
-                <th>Công Xuất Tối Đa</th>
+                <th>{{ __('compare.Maximum capacity')}}</th>
                 <td class="text-center wattage01"></td>
                 <td class="text-center wattage02"></td>
                 <td class="text-center wattage03"></td>
               </tr>
               <tr>
-                <th>Chức Năng Tự Động Tắt Động Cơ</th>
+                <th>{{ __('compare.Engine shutdown function')}}</th>
                 <td class="text-center engine_shutdown_function01"></td>
                 <td class="text-center engine_shutdown_function02"></td>
                 <td class="text-center engine_shutdown_function03"></td>
               </tr>
 
               <tr>
-                <th>Hôp số</th>
+                <th>{{ __('compare.Gearbox')}}</th>
                 <td class="text-center car_gearbox01"></td>
                 <td class="text-center car_gearbox02"></td>
                 <td class="text-center car_gearbox03"></td>
               </tr>
 
               <tr>
-                <th>Mức tiêu thụ nhiên liệu</th>
+                <th>{{ __('compare.Fuel Consumption')}}</th>
                 <td class="text-center Fuel_Consumption01"></td>
                 <td class="text-center Fuel_Consumption02"></td>
                 <td class="text-center Fuel_Consumption03"></td>
@@ -125,45 +125,45 @@
       <hr>
       <div id="ex_interior-infor">
         <button class="btn btn-block d-flex justify-content-between ">
-          Nội Thất & Ngoại Thất
+         {{ __('compare.Interior & Exterior')}}
         </button>
 
         <div id="ex_interior" class="table-responsive ">
           <table class="table table-bordered table-striped">
             <tbody class="break-line">
               <tr>
-                <th>Số Chổ Ngồi</th>
+                <th>{{ __('compare.Number of seats')}}</th>
                 <td class="text-center seats01"></td>
                 <td class="text-center seats02"></td>
                 <td class="text-center seats03"></td>
               </tr>
               <tr>
-                <th>Đèn Chiếu</th>
+                <th>{{ __('compare.Lamp')}}</th>
                 <td class="text-center lamp01"></td>
                 <td class="text-center lamp02"></td>
                 <td class="text-center lamp03"></td>
               </tr>
 
               <tr>
-                <th>Chế Độ Đèn Tự Động</th>
+                <th>{{ __('compare.Auto Light Mode')}}</th>
                 <td class="text-center automatic_lights01"></td>
                 <td class="text-center automatic_lights02"></td>
                 <td class="text-center automatic_lights03"></td>
               </tr>
               <tr>
-                <th>Lazang Hợp Kim Nhôm</th>
+                <th>{{ __('compare.Aluminum alloy wheels')}}</th>
                 <td class="text-center aluminum_alloy_lazang01"></td>
                 <td class="text-center aluminum_alloy_lazang02"></td>
                 <td class="text-center aluminum_alloy_lazang03"></td>
               </tr>
               <tr>
-                <th>Hệ Thống Điều Hòa</th>
+                <th>{{ __('compare.Air conditioning system')}}</th>
                 <td class="text-center air_conditioning01"></td>
                 <td class="text-center air_conditioning02"></td>
                 <td class="text-center air_conditioning03"></td>
               </tr>
               <tr>
-                <th>Màn Hình Trung Tâm</th>
+                <th>{{ __('compare.Center Screen')}}</th>
                 <td class="text-center central_screen01"></td>
                 <td class="text-center central_screen02"></td>
                 <td class="text-center central_screen03"></td>
@@ -176,21 +176,21 @@
       <hr>
       <div id="safety-infor">
         <button class="btn btn-block d-flex justify-content-between ">
-          Safety
+         {{ __('compare.Safety')}}
         </button>
 
         <div id="safety" class="table-responsive ">
           <table class="table table-bordered table-striped">
             <tbody class="break-line">
               <tr>
-                <th>Phanh Trước</th>
+                <th>{{ __('compare.Front Brake')}}</th>
                 <td class="text-center front_wheel_brake01"></td>
                 <td class="text-center front_wheel_brake02"></td>
                 <td class="text-center front_wheel_brake03"></td>
               </tr>
 
               <tr>
-                <th>Phanh Sau</th>
+                <th>{{ __('compare.Rear Brake')}}</th>
                 <td class="text-center rear_wheel_brake01"></td>
                 <td class="text-center rear_wheel_brake02"></td>
                 <td class="text-center rear_wheel_brake03"></td>
@@ -218,7 +218,8 @@
                   <a href="#" class="d-flex" id="{{$car->model_id}}" onclick="add_compare(this.id);" data-edition="">
                     <p>{{$car -> model_name}}</p>
                     <from>
-                      <img id="view_image{{$car->model_id}}" src="storage/app/public/files/image/image_car/{{$car->image}}">
+                
+                      <img id="view_image{{$car->model_id}}" style="display: none;"src="/storage/files/Image_Car/{{$car->image}}">             
                       <input id="view_model_id" type="hidden" value="{{$car->model_id}}"></input>
                       <input id="view_model_type{{$car->model_id}}" type="hidden" value="{{$car->car_type}}"></input>
                       <input id="view_seats{{$car->model_id}}" type="hidden" value="{{$car->seat}}"></input>
@@ -264,7 +265,7 @@
                   <a href="#" class="d-flex" id="{{$car->model_id}}" onclick="add_compare2(this.id);" data-edition="">
                     <p>{{$car -> model_name}}</p>
                     <from>
-                      <img id="view_image{{$car->model_id}}" src="storage/app/public/files/image/image_car/{{$car->image}}">
+                      <img id="view_image{{$car->model_id}}" style="display: none;"src="/storage/files/Image_Car/{{$car->image}}">             
                       <input id="view_model_id" type="hidden" value="{{$car->model_id}}"></input>
                       <input id="view_model_type{{$car->model_id}}" type="hidden" value="{{$car->car_type}}"></input>
                       <input id="view_seats{{$car->model_id}}" type="hidden" value="{{$car->seat}}"></input>
@@ -310,7 +311,7 @@
                   <a href="#" class="d-flex" id="{{$car->model_id}}" onclick="add_compare3(this.id);" data-edition="">
                     <p>{{$car -> model_name}}</p>
                     <from>
-                      <img id="view_image{{$car->model_id}}" src="storage/app/public/files/image/image_car/{{$car->image}}">
+                      <img id="view_image{{$car->model_id}}" style="display: none;" src="/storage/files/Image_Car/{{$car->image}}">                 
                       <input id="view_model_id" type="hidden" value="{{$car->model_id}}"></input>
                       <input id="view_model_type{{$car->model_id}}" type="hidden" value="{{$car->car_type}}"></input>
                       <input id="view_seats{{$car->model_id}}" type="hidden" value="{{$car->seat}}"></input>
@@ -420,7 +421,8 @@
       var oldData1 = JSON.parse(localStorage.getItem('compare'));
 
       oldData1.push(newCar1);
-      $('#vehicle-picker-1').append('<img src="' + newCar1.image + '" class="info01" width: 84%></img>');
+      $('#vehicle-picker-1').append('<img src="' + newCar1.image + '" class="info01" width:auto></img>');
+      $('#vehicle-picker-1').find('.text-center').remove();
       $('#dimension').find('.modal_size01').append('<p class="info01">' + newCar1.size + '</p>');
       $('#dimension').find('.modal_weight01').append('<p class="info01">' + newCar1.weight + '</p>');
       $('#engine').find('.engine01').append('<p class="info01">' + newCar1.engine + '</p>');
@@ -437,10 +439,10 @@
       $('#safety').find('.front_wheel_brake01').append('<p class="info01">' + newCar1.front_wheel_brake + '</p>');
       $('#safety').find('.rear_wheel_brake01').append('<p class="info01">' + newCar1.rear_wheel_brake + '</p>');
       $('#btn-order').find("#btn01").append(
-        '<button class="btn btn-success info01" id ="' + id1 + '" style="text-align: center; font-weight: bolder;">Order</button>'
+        '<button class="btn btn-success info01" style="text-align: center; font-weight: bolder;"><a href="/user/order/' + id1 + '" style="color:white; font-weight:bolder;">Order</a></button>'
       );
       $('#btn-order').find("#btn01").append(
-        '<button class="btn btn-danger info01" onClick="delete_compare(' + id1 + ')"  style="text-align: center; font-weight: bolder;">Close</button>'
+        '<button class="btn btn-danger info01" onClick="delete_compare(' + id1 + ')"  style="text-align: center; font-weight: bolder;">Remove</button>'
       );
       localStorage.setItem("compare", JSON.stringify(oldData1));
       $('#modal_compare1').modal("hide");
@@ -502,7 +504,8 @@
       var oldData2 = JSON.parse(localStorage.getItem('compare2'));
 
       oldData2.push(newCar2);
-      $('#vehicle-picker-2').append('<img src="' + newCar2.image + '" class="info02" width: 84%></img>');
+      $('#vehicle-picker-2').append('<img src="' + newCar2.image + '" class="info02" width: auto></img>');
+      $('#vehicle-picker-2').find('.text-center').remove();
       $('#dimension').find('.modal_size02').append('<p class="info02">' + newCar2.size + '</p>');
       $('#dimension').find('.modal_weight02').append('<p class="info02">' + newCar2.weight + '</p>');
       $('#engine').find('.engine02').append('<p class="info02">' + newCar2.engine + '</p>');
@@ -519,7 +522,8 @@
       $('#safety').find('.front_wheel_brake02').append('<p class="info02">' + newCar2.front_wheel_brake + '</p>');
       $('#safety').find('.rear_wheel_brake02').append('<p class="info02">' + newCar2.rear_wheel_brake + '</p>');
       $('#btn-order').find("#btn02").append(
-        '<button class="btn btn-success info02" id ="' + id2 + '" style="text-align: center; font-weight: bolder;">Order</button>'
+        '<button class="btn btn-success info02" style="text-align: center; font-weight: bolder;"><a href="/user/order/' + id2 + '" style="color:white; font-weight:bolder;">Order</a></button>'
+
       );
       $('#btn-order').find("#btn02").append(
         '<button class="btn btn-danger info02"  onClick="delete_compare2(' + id2 + ')"  style="text-align: center; font-weight: bolder;">Remove</button>'
@@ -539,7 +543,7 @@
 
       var id3 = prouct_id3;
       var type3 = document.getElementById('view_model_type' + id3).value;
-      var image3 = document.getElementById('view_image' + id3).scr;
+      var image3 = document.getElementById('view_image' + id3).src;
       var seats3 = document.getElementById('view_seats' + id3).value;
       var size3 = document.getElementById('view_size' + id3).value;
       var weight3 = document.getElementById('view_weight' + id3).value;
@@ -584,7 +588,8 @@
       var oldData3 = JSON.parse(localStorage.getItem('compare3'));
 
       oldData3.push(newCar3);
-      $('#vehicle-picker-3').append('<img src="' + newCar3.image + '" class="info03" width: 84%></img>');
+      $('#vehicle-picker-3').append('<img src="' + newCar3.image + '" class="info03" width: auto></img>');
+      $('#vehicle-picker-3').find('.text-center').remove();
       $('#dimension').find('.modal_size03').append('<p class="info03">' + newCar3.size + '</p>');
       $('#dimension').find('.modal_weight03').append('<p class="info03">' + newCar3.weight + '</p>');
       $('#engine').find('.engine03').append('<p class="info03">' + newCar3.engine + '</p>');
@@ -601,10 +606,11 @@
       $('#safety').find('.front_wheel_brake03').append('<p class="info03">' + newCar3.front_wheel_brake + '</p>');
       $('#safety').find('.rear_wheel_brake03').append('<p class="info03">' + newCar3.rear_wheel_brake + '</p>');
       $('#btn-order').find("#btn03").append(
-        '<button class="btn btn-success info03" id ="' + id3 + '" style="text-align: center; font-weight: bolder;">Order</button>'
+        '<button class="btn btn-success info03" style="text-align: center; font-weight: bolder;"><a href="/user/order/' + id3 + '" style="color:white; font-weight:bolder;">Order</a></button>'
+
       );
       $('#btn-order').find("#btn03").append(
-        '<button class="btn btn-danger info03" onClick="delete_compare3(' + id3 + ')" style="text-align: center; font-weight: bolder;">Close</button>'
+        '<button class="btn btn-danger info03" onClick="delete_compare3(' + id3 + ')" style="text-align: center; font-weight: bolder;">Remove</button>'
       );
 
       localStorage.setItem("compare3", JSON.stringify(oldData3));
@@ -624,6 +630,7 @@
         data1.splice(index1, 1);
         localStorage.setItem('compare', JSON.stringify(data1));
         $('#vehicle-picker-1').find('.info01').remove();
+        $('#vehicle-picker-1').append(' <i class="bi bi-zoom-in text-center"></i><p class="text-center">Lựa chọn xe</p>')
         $('#dimension').find('.modal_size01').find('.info01').remove();
         $('#dimension').find('.modal_weight01').find('.info01').remove();
         $('#engine').find('.engine01').find('.info01').remove();
@@ -652,6 +659,7 @@
         data2.splice(index2, 1);
         localStorage.setItem('compare2', JSON.stringify(data2));
         $('#vehicle-picker-2').find('.info02').remove();
+        $('#vehicle-picker-2').append(' <i class="bi bi-zoom-in text-center"></i><p class="text-center">Lựa chọn xe</p>')
         $('#dimension').find('.modal_size02').find('.info02').remove();
         $('#dimension').find('.modal_weight02').find('.info02').remove();
         $('#engine').find('.engine02').find('.info02').remove();
@@ -680,6 +688,7 @@
         data3.splice(index3, 1);
         localStorage.setItem('compare3', JSON.stringify(data3));
         $('#vehicle-picker-3').find('.info03').remove();
+        $('#vehicle-picker-3').append('<i class="bi bi-zoom-in text-center"></i><p class="text-center">Lựa chọn xe</p>')
         $('#dimension').find('.modal_size03').find('.info03').remove();
         $('#dimension').find('.modal_weight03').find('.info03').remove();
         $('#engine').find('.engine03').find('.info03').remove();
@@ -736,6 +745,8 @@
       $("#safety").toggle(200);
     });
   </script>
+
+  <p>Test</p>
 </body>
 
 @endsection;

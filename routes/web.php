@@ -370,20 +370,6 @@ Route::get('user/modeldetails/{model_id?}', 'ModelInfoController@showModel');
 
 
 Route::get('/compare','CompareController@index');
-Route::get('/home/compare','CompareController@index');
-Route::get('/user/compare','CompareController@index');
-Route::get('/user/home/compare','CompareController@index');
-
-
 Route::get('/AboutUs',function(){
-    return view('AboutUS');
-});
-Route::get('user/AboutUs',function(){
-    return view('AboutUS');
-});
-Route::get('home/AboutUs',function(){
-    return view('AboutUS');
-});
-Route::get('user/home/AboutUs',function(){
-    return view('AboutUS');
+    return(view('AboutUs'));
 });

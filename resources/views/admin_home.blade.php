@@ -21,7 +21,7 @@
 
         <!-- /.card-header -->
         <div class="flex-card">
-            <a href="{{url('admin/profile')}}">
+            <a href="{{url('admin/profile/myprofile')}}">
                 <div class="manage-option">
                     <i class="fa-solid fa-user"></i>
                     <p>Hồ Sơ</p>
@@ -29,6 +29,8 @@
             </a>
         </div>
 
+        @if (Auth::guard('employee')->user()->role=='admin')
+     
         <div class="flex-card">
             <a href="{{url('admin/general')}}">
                 <div class="manage-option">
@@ -37,6 +39,9 @@
                 </div>
             </a>
         </div>
+        @endif
+        @if (Auth::guard('employee')->user()->role=='admin'|| Auth::guard('employee')->user()->role=='dealer' )
+     
         <div class="flex-card">
             <a href="{{('showroom')}}">
                 <div class="manage-option">
@@ -45,6 +50,9 @@
                 </div>
             </a>
         </div>
+        @endif
+        @if (Auth::guard('employee')->user()->role=='admin'|| Auth::guard('employee')->user()->role=='warehouse' )
+     
         <div class="flex-card">
             <a href="{{url('admin/warehouse')}}">
                 <div class="manage-option">
@@ -53,6 +61,7 @@
                 </div>
             </a>
         </div>
+        @endif
         <!-- /.card-body -->
 
         <!-- /.card -->

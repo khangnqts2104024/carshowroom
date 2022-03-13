@@ -56,7 +56,8 @@
 			<li class="nav-item CostEstimation"><a class="nav-link"  href="/user/CostEstimate">{{__('home.Cost Estimation')}}</a></li>
 			<li class="nav-item ServiceButton"><a class="nav-link"  href="/user/order">{{__('Order Car')}}</a></li>
 		@endif
-        <li class="nav-item ToolButton"><a class="nav-link"  href="#">{{__('home.Tools')}}</a></li>
+        <li class="nav-item ToolButton"><a class="nav-link"  href="/home/compare">{{__('home.Tools')}}</a></li>
+
 		<li class="nav-item d-flex" style="align-items: center;flex-direction:column;">
 			
 			<div class="switch mt-1">
@@ -83,9 +84,8 @@
         <li class="nav-item dropdown menu-area2">
           <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="fa fa-bars" style="font-size: 18px;" aria-hidden="true"></i></a>
           <div class="dropdown-menu mega-area2 dropdown-menu-right" aria-labelledby="dropdownId">
-            <a class="dropdown-item" href="/user/order_tracking">{{__('Order Tracking')}}</a>
-            <a class="dropdown-item" href="#">{{__('About us')}}</a>
-            <a class="dropdown-item" href="#">{{__('Contact')}}</a>
+            <a class="dropdown-item" href="/user/order_tracking"><i class="fa fa-search mr-5"  aria-hidden="true"></i>{{__('Order Tracking')}}</a>
+            <a class="dropdown-item" href="#"><i class="fa fa-users mr-5" aria-hidden="true"></i>{{__('About us')}}</a>
           </div>
         </li>
 
@@ -121,19 +121,18 @@
 <footer>
 	<div class="footer-wrap">
 	<div class="container first_class">
-			<div class="row">
+			<div class="row d-flex" style="justify-content: space-around">
 				<div class="col-md-4 col-sm-6">
-					<h3>BE THE FIRST TO KNOW</h3>
-					<p>Get all the latest information on  Vinfast Services, Events, Jobs
-						and Fairs. Sign up for our newsletter today.</p>
+					<h3>{{__('home.BE THE FIRST TO KNOW')}}</h3>
+					<p>{{__('home.Get all the latest information on Vinfast Services, Events, Jobs and Fairs. Sign up for our newsletter today.')}}</p>
 				</div>
-				<div class="col-md-4 col-sm-6">
+				{{-- <div class="col-md-4 col-sm-6">
 				<form class="newsletter">
 					 <input type="text" placeholder="Email Address"> 
                     <button class="newsletter_submit_btn" type="submit"><i class="fa fa-paper-plane"></i></button>	
 				</form>
 				
-				</div>
+				</div> --}}
 				<div class="col-md-4 col-sm-6">
 				<div class="col-md-12">
 					<div class="standard_social_links">
@@ -160,13 +159,13 @@
 			</div>	
 				</div>
 					<div class="clearfix"></div>
-				<div class="col-md-12"><h3 style="text-align: right;">Stay Connected</h3></div>
+				<div class="col-md-12"><h3 style="text-align: right;">{{__('home.STAY CONNECTED')}}</h3></div>
 				</div>
 			</div>
 	</div>
 		<div class="second_class">
 			<div class="container second_class_bdr">
-			<div class="row">
+			<div class="row d-flex" style="justify-content: space-around;">
 				<div class="col-md-4 col-sm-6">
                
 					<div class="footer-logo text-center"><img src="/image/logoVinfast.png" alt="Vinfast" >
@@ -174,50 +173,32 @@
 					
 				</div>
 				<div class="col-md-2 col-sm-6">
-					<h3>Quick  LInks</h3>
+					<h3>{{__('home.Quick Links')}}</h3>
 					<ul class="footer-links">
-						<li><a href="#">Home</a>
+						<li><a href="#">{{__('home.Home')}}</a>
 						</li>
-						<li><a href="#">About us</a>
+						<li><a href="#">{{__('About us')}}</a>
 						</li>
-						<li><a href="#">Vinfast Partners</a>
+						<li><a href="#">{{__('home.Contact us')}}</a>
 						</li>
-						<li><a href="#">Contact Us</a>
+						<li><a href="https://vinfastauto.us/privacy-policy" target="_blank">{{__('Privacy Policy')}}</a>
 						</li>
-						<li><a href="#" target="_blank">Terms &amp; Conditions</a>
-						</li>
-						<li><a href="#" target="_blank">Privacy Policy</a>
-						</li>
-						<li><a href="#">Sitemap</a>
-						</li>
+						
 					</ul>
 				</div>
 				<div class="col-md-3 col-sm-6">
-					<h3>OUR SERVICES</h3>
+					<h3>{{__('home.OUR EVENTS')}}</h3>
 					<ul class="footer-category">
-						<li><a href="#">Fresher Jobs</a>
+						<li><a href="https://vinfastauto.us/events/ces2022/mediacenter">{{__('home.Media Center')}}</a>
 						</li>
-						<li><a href="#">InternEdge - Internships &amp; Projects </a>
+						<li><a href="https://vinfastauto.us/events/CES2022">{{__('home.VinFast Global EV Day')}} </a>
 						</li>
-						<li><a href="#">Resume Edge - Resume Writing Services</a>
-						</li>
-						<li><a href="#">Readers Galleria - Curated Library</a>
-						</li>
-						<li><a href="#">Trideus - Campus Ambassadors</a>
+						<li><a href="https://vinfastauto.us/events/globalpremiere">{{__('home.Vinfast EV Global Premiere')}}</a>
 						</li>
 					</ul>
 					<div class="clearfix"></div>
 				</div>
-				<div class="col-md-3 col-sm-6">
-					<h3>Vinfast Events</h3>
-					<ul class="footer-links">
-						<li><a href="#">Triedge Events</a>
-						</li>
-
-						<li><a href="#">Jobs &AMP; Internship Fair 2019</a>
-						</li>
-					</ul>
-				</div>
+				
 			</div>
 			
 		</div>
@@ -225,7 +206,7 @@
 		
 		<div class="row">
 			<div class="container-fluid">
-			<div class="copyright"> Copyright 2022 | All Rights Reserved by VINFAST Ltd.</div>
+			<div class="copyright"> {{__('home.Copyright 2022 | All Rights Reserved by VINFAST Ltd.')}}</div>
 			</div>
 			
 		</div>

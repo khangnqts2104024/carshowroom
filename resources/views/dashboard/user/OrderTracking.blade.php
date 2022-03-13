@@ -57,7 +57,7 @@
                             </tr>
                         </thead>
 
-                        <tbody id="show_order_tracking">
+                        <tbody id="show_order_tracking" class="text-center">
                                 
                                 <!-- Modal -->
                                 {{-- <div class="modal fade" id="model{{$STT}}" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">

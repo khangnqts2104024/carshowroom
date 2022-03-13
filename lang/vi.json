@@ -784,7 +784,22 @@
     "Order Tracking":"Theo dõi đơn hàng",
     "Contact":"Liên hệ",
     "About us":"Về chúng tôi",
-    "Enter your order code":"Nhập mã đơn hàng của bạn"
-
+    "Enter your order code":"Nhập mã đơn hàng của bạn",
+    "STT":"Stt",
+    "Order Code": "Mã Đơn Hàng",
+    "Order Date": "Ngày Đặt",
+    "Order Status": "Trạng Thái",
+    "Order Details": "Chi Tiết",
+    "Order Price": "Trị Giá ",
+    "Payment": "Thanh Toán",
+    "Cancel Order": "Huỷ Đơn Hàng",
+    "Customer Name":"Khách Hàng",
+    "Do you really want to cancel your order?":"Bạn thực sự muốn huỷ đơn hàng?",
+    "Yes, I want to cancel":"Có, Tôi muốn huỷ",
+    "No, I need to reconsider":"Không, Tôi sẽ suy nghĩ lại",
+    "Unexpected bad things will happen if you don't read this!":"Những điều không ngờ sẽ xảy ra nếu bạn không đọc phần này!",
+   "This action cannot be undone. The deposit will not be refunded if you cancel the order.":"Hành động này không thể được hoàn tác. Tiền đặt cọc sẽ không được hoàn lại nếu bạn hủy đơn hàng.",
+    "Please type":"Vui lòng nhập",
+    "to confirm":"để xác nhận"
     
 }

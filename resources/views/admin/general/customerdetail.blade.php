@@ -23,7 +23,7 @@
         <h4 class="">Thông Tin Chi Tiết Khách Hàng</h4>
         </div>
 
-        <form role="form" enctype="multipart/form-data">
+       
             <div class="card-body">
                 <div class="form-group">
                     <label for="txt-id">Tên Khách Hàng</label>
@@ -46,14 +46,17 @@
                     <label for="txt-price">CCCD</label>
                     <input type="text" class="form-control" id="txt-price" name="price" placeholder="1" value="{{ $p->citizen_id }}" readonly>
                 </div>
-
+                <div class="form-group">
+                    <label for="txt-price">Phân Loại Khách Hàng</label>
+                    <input type="text" class="form-control" id="txt-price" name="price" placeholder="1" value="{{ $p->customer_role}}" readonly>
+                </div>
 
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
                 <a href="{{url ('admin/general/customer') }}"><button type="button" class="btn btn-primary">Quay Lại</button></a>
             </div>
-        </form>
+   
 
     </div>
 </section>

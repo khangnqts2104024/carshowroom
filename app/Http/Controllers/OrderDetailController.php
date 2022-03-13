@@ -172,17 +172,18 @@ class OrderDetailController extends Controller
     public function ordercanceled($id)
     {
         $orders = orderDetail::find($id);
-        $car = $orders->orders->cars->first();
+        $car = $orders->orders->cars;
+ 
         if ($car === null) {
             $orders->order_status = 'canceled';
             $message = 'Hủy đơn thành công!';
             $orders->save();
-        } else if ($car->car_status === 'showroom') {
+        } else if ($car->car_status === 'showroom'){
             $orders->order_status = 'canceled';
             $car->car_status = 'custcanceled';
             $car->save();
             $orders->save();
-            $message = 'Hủy Đơn Thành Công';
+            $message = 'Hủy Đơn Thành Công!Xe Được Trả Về Kho!';
         } else if ($car->car_status === 'pending') {
             $message = 'Hủy chưa thành công, xe vẫn đang trên đường đến showroom!Hãy đợi xe tới rồi mới hoàn lại!';
         } else {

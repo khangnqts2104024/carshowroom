@@ -745,6 +745,8 @@
       $("#safety").toggle(200);
     });
   </script>
+
+  <p>Test</p>
 </body>
 
 @endsection;

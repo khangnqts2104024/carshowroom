@@ -22,6 +22,7 @@ class UserOrderController extends Controller
     //load Page for Customer
     public function CustomerOrder(Request $request)
     {
+        
         $model_id_cost_estimate = $request->models_cost_estimate;
         $province_matp_cost_estimate = $request->provinces;
         //carID from layout
@@ -39,7 +40,7 @@ class UserOrderController extends Controller
         $models = modelInfo::select("*")->where('released', '=', 'active')->get();
         $warehouses = warehouse::select("warehouse_name", "id")->get();
         $provinces = Province::select('*')->get();
-        return view('dashboard.user/order')->with(['province_matp_cost_estimate' => $province_matp_cost_estimate, 'models' => $models, 'warehouses' => $warehouses, 'user' => $user, 'car_id_fromlayout' => $car_id_fromlayout, 'car_images' => $car_images, 'provinces' => $provinces]);
+        return view('dashboard.user.order')->with(['province_matp_cost_estimate' => $province_matp_cost_estimate, 'models' => $models, 'warehouses' => $warehouses, 'user' => $user, 'car_id_fromlayout' => $car_id_fromlayout, 'car_images' => $car_images, 'provinces' => $provinces]);
     }
     //load Page for Guest
     public function GuestOrder(Request $request)

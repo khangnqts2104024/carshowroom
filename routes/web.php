@@ -74,7 +74,7 @@ Route::prefix('user')->name('user.')->group(function(){
             Route::get('/CostEstimate/{id?}/{matp?}',[CostEstimateController::class,'index'])->name('CostEstimate');
             Route::post('/CostEstimate/getModelInfo',[CostEstimateController::class,'getModelInfo'])->name('getModelInfo');
             Route::post('/CostEstimate/getFees',[CostEstimateController::class,'getFees'])->name('getFees');
-            Route::get('/CostEstimate/OrderCar',[UserOrderController::class,'GuestOrder'])->name('GuestCostEstimateSubmit');
+            Route::post('/CostEstimate/OrderCar',[UserOrderController::class,'GuestOrder'])->name('GuestCostEstimateSubmit');
             //Order Page
             Route::get('/order/{id?}',[UserOrderController::class,'GuestOrder'])->name('GuestOrder');
             Route::post('/getModelInfo',[UserOrderController::class,'getModelInfo'])->name('getModelInfo');
@@ -104,18 +104,19 @@ Route::prefix('user')->name('user.')->group(function(){
         //Function page for customer
             Route::get('/auth/fetchInfo_Layout_auth',[UserController::class,'fetchInfo_Layout_auth'])->name('fetchInfo_Layout_auth');
             Route::get('auth/home',[UserController::class,'home_auth'])->name('home_auth'); //customer homepage
+            //Customer Cost Estimation
+            Route::get('auth/CostEstimate/{id?}/{matp?}',[CostEstimateController::class,'index'])->name('CostEstimate');
+            Route::post('auth/CostEstimate/getModelInfo',[CostEstimateController::class,'getModelInfo'])->name('getModelInfo');
+            Route::post('auth/CostEstimate/getFees',[CostEstimateController::class,'getFees'])->name('getFees');
+            Route::post('auth/CostEstimate/OrderCar',[UserOrderController::class,'CustomerOrder'])->name('CustomerCostEstimateSubmit');
+            Route::post('auth/cancel_contract',[UserOrderController::class,'cancelContract'])->name('cancelContract');
             //Customer Order Page 
             Route::get('auth/order/{id?}',[UserOrderController::class,'CustomerOrder'])->name('CustomerOrder');
             Route::post('/auth/getModelInfo',[UserOrderController::class,'getModelInfo'])->name('getModelInfo');
             Route::post('/auth/getShowRoom',[UserOrderController::class,'getShowRoom'])->name('getShowRoom');
             Route::post('/auth/getShowRoomAddress',[UserOrderController::class,'getShowRoomAddress'])->name('getShowRoomAddress');
             Route::post('auth/CustomerSubmitOrder',[UserOrderController::class,'CustomerSubmitOrder'])->name('CustomerSubmitOrder');
-            //Customer Cost Estimation
-            Route::get('auth/CostEstimate/{id?}/{matp?}',[CostEstimateController::class,'index'])->name('CostEstimate');
-            Route::post('auth/CostEstimate/getModelInfo',[CostEstimateController::class,'getModelInfo'])->name('getModelInfo');
-            Route::post('auth/CostEstimate/getFees',[CostEstimateController::class,'getFees'])->name('getFees');
-            Route::get('auth/CostEstimate/OrderCar',[UserOrderController::class,'CustomerOrder'])->name('CustomerCostEstimateSubmit');
-            Route::post('auth/cancel_contract',[UserOrderController::class,'cancelContract'])->name('cancelContract');
+            
             //Logout 
             Route::post('auth/logout',[UserController::class,'logout'])->name('logout');
     });
@@ -375,11 +376,12 @@ Route::get('/user/home/compare','CompareController@index');
 
 
 Route::get('/AboutUs',function(){
-    return view('AboutUS')
+    return view('AboutUS');
 });
 Route::get('user/AboutUs',function(){
-    return view('AboutUS')
-});Route::get('home/AboutUs',function(){
+    return view('AboutUS');
+});
+Route::get('home/AboutUs',function(){
     return view('AboutUS');
 });
 Route::get('user/home/AboutUs',function(){

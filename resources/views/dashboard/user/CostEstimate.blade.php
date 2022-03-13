@@ -4,21 +4,21 @@
     <link rel="stylesheet" href="/css/CostEstimate.css">
 
     @if(isset($model_id_from_url))
-        <input type="text" id="model_id_from_url" value="{{$model_id_from_url}}">
+        <input type="hidden" id="model_id_from_url" value="{{$model_id_from_url}}">
     @endif
 
     @if(isset($matp_from_url))
-        <input type="text" id="matp_from_url" value="{{$matp_from_url}}">
+        <input type="hidden" id="matp_from_url" value="{{$matp_from_url}}">
     @endif
 
     @if(isset($car_images))
         @foreach($car_images as $car_image)
-        <input type="text" id="CarImagePath" value="{{$car_image->image}}">
+        <input type="hidden" id="CarImagePath" value="{{$car_image->image}}">
         @endforeach
     @endif
 
 
-    
+    {{-- test --}}
 
     @if (Auth::check())
         <input type="hidden" class="url_Get_ModelInFo" value="/user/auth/CostEstimate/getModelInfo">
@@ -79,16 +79,12 @@
         <div class="col-md-4">
             <!-- Default form subscription -->
             @if(Auth::check())
-            <form action="{{route('user.CustomerCostEstimateSubmit')}}" method="get">
+                <form action="{{route('user.CustomerCostEstimateSubmit')}}" method="post">
             @else
-                <form action="{{route('user.GuestCostEstimateSubmit')}}" method="get">
+                <form action="{{route('user.GuestCostEstimateSubmit')}}" method="post">
             @endif
-           
-            
                 @csrf
-
                 <p class="h4 mb-4" style="white-space: nowrap;">{{ __('CostEstimate.Cost Estimation') }}</p>
-
                 <div class="form-group">
                     <label for="">{{ __('CostEstimate.Model') }}</label>
                     <div class="Model">

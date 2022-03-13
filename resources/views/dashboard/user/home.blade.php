@@ -142,7 +142,7 @@
             </div>
           </div>
 
-          <a href="#" class="view-detail">{{__("View Detail")}}</a>
+          <a href="/user/modeldetails/{{$model->model_id}}" class="view-detail">{{__("View Detail")}}</a>
 
         </div>
      

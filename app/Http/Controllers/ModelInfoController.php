@@ -119,32 +119,32 @@ class ModelInfoController extends Controller
         $data['front_wheel_brake'] = $request->front_wheel_brake;
         $data['rear_wheel_brake'] = $request->rear_wheel_brake;
         $data['active'] = $request->active;
-        $data['released'] = $request->released; //
+        // $data['released'] = $request->released; 
         $data['image'] = $request->image;
         $data['gif'] = $request->gif;
 
         DB::table('model_infos')->where('model_id', $model_id)->update($data);
 
         // khang
-        if ($request->release = 'active') {
+        // if ($request->release = 'active') {
             
-            $stock1 = new stock();
-            $stock1->model_id = $request->model_id;
-            $stock1->repo_id = 1;
-            $stock1->quantity = 0;
-            $stock1->save(); 
-            $stock2 = new stock();
-            $stock2->model_id = $request->model_id;
-            $stock2->repo_id = 2;
-            $stock2->quantity = 0;
-            $stock2->save(); 
-            $stock3 = new stock();
-            $stock3->model_id = $request->model_id;
-            $stock3->repo_id = 3;
-            $stock3->quantity = 0;
-            $stock3->save(); 
-        }
-        // khang
+        //     $stock1 = new stock();
+        //     $stock1->model_id = $request->model_id;
+        //     $stock1->repo_id = 1;
+        //     $stock1->quantity = 0;
+        //     $stock1->save(); 
+        //     $stock2 = new stock();
+        //     $stock2->model_id = $request->model_id;
+        //     $stock2->repo_id = 2;
+        //     $stock2->quantity = 0;
+        //     $stock2->save(); 
+        //     $stock3 = new stock();
+        //     $stock3->model_id = $request->model_id;
+        //     $stock3->repo_id = 3;
+        //     $stock3->quantity = 0;
+        //     $stock3->save(); 
+        // }
+        // end khang
         
         session()->put('message', 'Cập nhật thành công!');
         return Redirect('admin/general/allmodel');

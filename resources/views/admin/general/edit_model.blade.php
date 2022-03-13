@@ -117,13 +117,13 @@
                         <option value="inactive">Không</option>
                     </select>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="exampleInputPassword1">Kích hoạt dòng xe</label>
                     <select name="released" class="form-control input-sm m-bot15">
                         <option value="active">Có</option>
                         <option value="inactive">Không</option>
                     </select>
-                </div>
+                </div> -->
                 <div class="form-group">
                     <label for="exampleInputPassword1">Màu</label>
                     <select name="color" class="form-control input-sm m-bot15">

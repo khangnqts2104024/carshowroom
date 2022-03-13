@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\stock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -51,36 +53,36 @@ class ModelInfoController extends Controller
         $request->validate([
             'image' => 'mimes:jpg,png,jpeg:5048'
         ]);
+
+        if($request->hasFile('image')){
         $path = public_path() . '/storage/files/Image_Car';
         $file = $request->file('image');
         $modelName = preg_replace('/\s+/', '', $request->model_name);
         $extension_img = $request->image->guessClientExtension();
-        $newImageName = $modelName . '.' . $extension_img;
+        $newImageName = $modelName . '-' . $request->color . '.' . $extension_img;
         $upload = $file->move($path, $newImageName);
         $data['image'] = $newImageName;
+        }
 
-        // gif
-        $path_gif = public_path() . '/storage/files/Image_Car/gif';
-        $file_gif = $request->file('gif');
-        $modelName = preg_replace('/\s+/', '', $request->model_name);
-        $extension_gif = $request->gif->guessClientExtension();
-        $newGifName = $modelName . '-' . $request->color . '.' . $extension_gif;
-        $upload = $file_gif->move($path_gif, $newGifName);
-        $data['gif'] = $newGifName;
-
-
-        // if($request->hasFile('image_upload')){
-        //     $path = 'files/Avatar_User';
-        //     $file = $request->file('image_upload');
-        //     $fullnameUser = preg_replace('/\s+/', '', $request->fullname);
-        //     $extension_img = $request->image_upload->guessClientExtension();
-        //     $file_name = time().'_'.$fullnameUser.'.'.$extension_img;
-        //     $upload = $file->storeAs($path,$file_name,'public');
-        //     $user = Customer_Info::find($request->customer_id);
+        
+        
+        if($request->hasFile('gif')){
+            // gif
+            $path_gif = public_path() . '/storage/files/Image_Car/gif';
+            $file_gif = $request->file('gif');
+            $modelName = preg_replace('/\s+/', '', $request->model_name);
+            $extension_gif = $request->gif->guessClientExtension();
+            $newGifName = $modelName . '-' . $request->color . '.' . $extension_gif;
+            $upload = $file_gif->move($path_gif, $newGifName);
+            $data['gif'] = $newGifName;
+        
+        }
 
         
 
         DB::table('model_infos')->insert($data);
+        
+
         session()->put('message', 'Thêm thành công!');
         return Redirect('admin/general/addmodel');
     }
@@ -115,10 +117,33 @@ class ModelInfoController extends Controller
         $data['front_wheel_brake'] = $request->front_wheel_brake;
         $data['rear_wheel_brake'] = $request->rear_wheel_brake;
         $data['active'] = $request->active;
-        $data['image'] = $request->image;
-        $data['gif'] = $request->gif;
+        // $data['released'] = $request->released; 
+        // $data['image'] = $request->image;
+        // $data['gif'] = $request->gif;
 
         DB::table('model_infos')->where('model_id', $model_id)->update($data);
+
+        // khang
+        // if ($request->release = 'active') {
+            
+        //     $stock1 = new stock();
+        //     $stock1->model_id = $request->model_id;
+        //     $stock1->repo_id = 1;
+        //     $stock1->quantity = 0;
+        //     $stock1->save(); 
+        //     $stock2 = new stock();
+        //     $stock2->model_id = $request->model_id;
+        //     $stock2->repo_id = 2;
+        //     $stock2->quantity = 0;
+        //     $stock2->save(); 
+        //     $stock3 = new stock();
+        //     $stock3->model_id = $request->model_id;
+        //     $stock3->repo_id = 3;
+        //     $stock3->quantity = 0;
+        //     $stock3->save(); 
+        // }
+        // end khang
+        
         session()->put('message', 'Cập nhật thành công!');
         return Redirect('admin/general/allmodel');
     }

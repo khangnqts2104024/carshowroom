@@ -20,7 +20,7 @@ class showroomFactory extends Factory
           
             'showroom_name'=>$this->faker->name(),
             'address'=>$this->faker->address,
-            'phone'=>$this->faker->unique()->numerify('09#-#######'),
+            'phone'=>$this->faker->unique()->numerify('09########'),
             'region'=>rand(1,3),	
         ];
     }

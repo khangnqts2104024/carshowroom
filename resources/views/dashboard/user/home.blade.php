@@ -104,48 +104,51 @@
     </div>
 
     <div class="CarCarousel">
-        <div class="contentTop d-none d-md-block">
-            <h2 class="titleCarousel">
-                {{ __('VinFast Car') }}
-            </h2>
-            <h5 class="contentCarousel">
-                {{ __('More than creating a new car, VinFast was born to represent') }}<br>
-                {{ __('the spirit and pride of the nation.') }}
 
-            </h5>
-        </div>
-        <div class="carslide owl-carousel owl-theme row justify-content-around">
-            @foreach ($models as $model)
-                <div class="col item">
-                    <img class="carImg" src="/storage/files/Image_Car/{{ $model->image }}" alt="">
-                    <img class="carGif" src="/storage/files/Image_Car/gif/{{ $model->gif }}" alt="">
-                    <div class="info">
-                        <div class="slogan">
+      <div class="contentTop d-none d-md-block">
+        <h2 class="titleCarousel">
+          {{__("VinFast Car")}}
+        </h2>
+        <h5 class="contentCarousel">
+          {{__("More than creating a new car, VinFast was born to represent")}}<br>
+          {{__("the spirit and pride of the nation.")}}
+          
+        </h5>
+      </div>
+      <div class="carslide owl-carousel owl-theme row justify-content-around">
+        @foreach($models as $model)
+        <div class="col item">
+          <img class="carImg" src="/storage/files/Image_Car/{{$model->image}}" alt="">
+          <img class="carGif" src="/storage/files/Image_Car/gif/{{$model->gif}}" alt="">
+          <div class="info">
+            <div class="slogan">
+              {{-- <div>
+              {{__('Break the limits together')}}
+              </div> --}}
+            </div>
+            <div class="title">
+              <div>
+              {{$model->model_name}}
+              </div>
+            </div>
+            <div class="d-flex justify-content-between">
+              <div class="type">
+                <div>{{__("Vehicles")}}</div>
+                <div>{{$model->car_type}}</div>
 
-                        </div>
-                        <div class="title">
-                            <div>
-                                {{ $model->model_name }}
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <div class="type">
-                                <div>{{ __('Vehicles') }}</div>
-                                <div>{{ $model->car_type }}</div>
+              </div>
+              <div class="price">
+                <div>{{__("Listed price")}}</div>
+                @php
+								 $carprice_nonFormat = $model->price;   				 
+                 $car_price = number_format($carprice_nonFormat); 
+							 @endphp 
+                <div>{{__("from")}} {{$car_price}}VND</div>
+              </div>
+            </div>
+          </div>
 
-                            </div>
-                            <div class="price">
-                                <div>{{ __('Listed price') }}</div>
-                                @php
-                                    $carprice_nonFormat = $model->price;
-                                    $car_price = number_format($carprice_nonFormat);
-                                @endphp
-                                <div>{{ __('from') }} {{ $car_price }}VND</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="#" class="view-detail">{{ __('View Detail') }}</a>
+          <a href="/user/modeldetails/{{$model->model_id}}" class="view-detail">{{__("View Detail")}}</a>
 
                 </div>
             @endforeach

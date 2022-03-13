@@ -344,7 +344,7 @@ class DashboardController extends Controller
 //     }
 // }
 // }
-//tao xe sold
+// // tao xe sold
 // public function taoxe(){
 //     $order=orderDetail::where('order_status','sold')->get();
 //     foreach($order as $o){

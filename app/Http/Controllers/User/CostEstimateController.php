@@ -19,7 +19,7 @@ class CostEstimateController extends Controller
     public function index(Request $request){
         $car_id_fromlayout = $request->id;
         $car_images = modelInfo::select('image')->where('model_id',$car_id_fromlayout)->get();
-        $models = modelInfo::select("*")->get();
+        $models = modelInfo::select("*")->where('released','=','active')->get();
         $provinces = Province::select('*')->get();
         return view('dashboard.user/CostEstimate')->with(['models'=>$models,'car_id_fromlayout'=>$car_id_fromlayout,'car_images'=>$car_images,'provinces'=>$provinces]);;
     }

@@ -32,7 +32,7 @@ class UserOrderController extends Controller
         $user =Customer_Info::select("*")
         ->where("customer_id",$users_account_id)
         ->get();
-        $models = modelInfo::select("*")->get();
+        $models = modelInfo::select("*")->where('released','=','active')->get();
         $warehouses = warehouse::select("warehouse_name","id")->get(); 
         $provinces = Province::select('*')->get();
         return view('dashboard.user/order')->with(['province_matp_cost_estimate'=>$province_matp_cost_estimate,'models'=>$models,'warehouses'=>$warehouses,'user'=>$user,'car_id_fromlayout'=>$car_id_fromlayout,'car_images'=>$car_images,'provinces'=>$provinces]);
@@ -50,7 +50,7 @@ class UserOrderController extends Controller
         }
        
         $car_images = modelInfo::select('image')->where('model_id',$car_id_fromlayout)->get();
-        $models = modelInfo::select("*")->get();
+        $models = modelInfo::select("*")->where('released','=','active')->get();
         $warehouses = warehouse::select("warehouse_name","id")->get(); 
         $provinces = Province::select('*')->get();
      
@@ -95,9 +95,9 @@ class UserOrderController extends Controller
     public function CustomerSubmitOrder(Request $request){
         $request->validate([ 
             'email' => array('required','regex:/^[^\s@-]+@[^\s@-]+\.[^\s@]+$/'),
-            'fullname'=> array('required','regex:/^[A-Za-z\s]+$/'),
+            'fullname'=> array('required','regex:/^([a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i'),
             'phone_number'=> array('required','regex:/^[0-9]{10,11}$/'),
-            'address'=> array('required','regex:/^[a-zA-Z0-9,\-\s]*$/'),   
+            'address'=> array('required','regex:/^([a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i'),   
             'warehouses'=> 'required',         
             'models'=> 'required',   
             'showrooms' => 'required',         
@@ -131,7 +131,18 @@ class UserOrderController extends Controller
         do{
             $order->order_code = 'ORDERID'.'-'.rand(0,400).time(); // generate new one
         }while($orderCodeExist);
+
         $order_code = $order->order_code;
+
+         //check if momo_id exists.
+         $momoIDExist = order::where('momo_id', $order->momo_id)->exists();
+         //generate another Momo ID
+         do{
+             $order->momo_id = rand(0,400).time(); // generate new one
+         }while($momoIDExist);
+
+
+
         $order->customer_id = $user_auth_id;
         $save_order = $order->save();
         //get order ID to insert order details table
@@ -175,9 +186,9 @@ class UserOrderController extends Controller
     public function GuestSubmitOrder(Request $request){
         $request->validate([ 
             'email' => array('required','regex:/^[^\s@-]+@[^\s@-]+\.[^\s@]+$/'),
-            'fullname'=> array('required','regex:/^[A-Za-z\s]+$/'),
+            'fullname'=> array('required','regex:/^([a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i'),
             'phone_number'=> array('required','regex:/^[0-9]{10,11}$/'),
-            'address'=> array('required','regex:/^[a-zA-Z0-9,\-\s]*$/'),
+            'address'=> array('required','regex:/^([a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i'),
             'warehouses'=> 'required',         
             'models'=> 'required',   
             'showrooms' => 'required',         
@@ -210,8 +221,17 @@ class UserOrderController extends Controller
             do{
                 $order->order_code = 'ORDERID'.'-'.rand(0,400).time(); // generate new one
             }while($orderCodeExist);
-            
+
             $order_code = $order->order_code;
+             //check if momo_id exists.
+             $momoIDExist = order::where('momo_id', $order->momo_id)->exists();
+             //generate another Momo ID
+             do{
+                 $order->momo_id = rand(0,400).time(); // generate new one
+             }while($momoIDExist);
+             
+            
+            
 
             $order->customer_id = $isUser->customer_id;
             $save_order = $order->save();
@@ -257,11 +277,12 @@ class UserOrderController extends Controller
         }
 
     }
+    //order_tracking view
     public function order_tracking(Request $request){
 
         return view('dashboard.user/ordertracking');
     }
-
+    //order_tracking get order code
     public function getOrderCode(Request $request){
         $order_code = $request->order_code_input;
         //find order info
@@ -277,6 +298,20 @@ class UserOrderController extends Controller
             'order_infos'=>$order_infos,
         ]);
        
+    }
+
+    public function cancelContract(Request $request){
+
+      
+        $order_id = $request->order_id_this_order;
+        $order_detail = orderDetail::find($order_id); 
+        
+        $order_detail->update([
+            'order_status' => 'canceled'
+        ]);
+
+        return redirect()->back();
+        
     }
 
 }

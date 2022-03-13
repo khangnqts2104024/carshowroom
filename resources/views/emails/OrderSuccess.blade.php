@@ -121,7 +121,7 @@
                                                         style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 24px;">
                                                         <a href="#" target="_blank"
                                                             style="color: #ffffff; text-decoration: none;"><img
-                                                                src="https://reserve.vinfastauto.com/on/demandware.static/Sites-app_vinfast_vn-Site/-/default/dw3dec075c/images/vfast/header-logo.svg"
+                                                                src="https://vinfastauto.com/themes/porto/img/logo-header.svg"
                                                                 width="27" height="23"
                                                                 style="display: block; border: 0px;" /></a> </td>
                                                 </tr>
@@ -189,7 +189,7 @@
                                                 </td>
                                                 <td width="25%" align="left"
                                                     style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;">
-                                                    {{$details['Model Price']}} 
+                                                    {{$details['Order Price']}} 
                                                 </td>
                                             </tr>
 

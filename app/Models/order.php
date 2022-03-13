@@ -29,6 +29,6 @@ protected $primaryKey="order_id";
         return $this->belongsTo(showroom::class,'showroom','id');
     }
     public function cars(){
-        return $this->hasMany(carInfo::class,'order_id','order_id');
+        return $this->hasOne(carInfo::class,'order_id','order_id');
     }
 }

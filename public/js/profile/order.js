@@ -3,11 +3,9 @@ $(function(){
    
       order_code = $('#order_code').val();
     if($('.success-message').text() != ""){
+        window.location.href = $('#url').val() +"/sendmail_ordersuccess/"+ order_code;
         $('#EmailSent').modal('show');
-        window.setTimeout(function() {
-            window.location.href = $('#url').val() +"/sendmail_ordersuccess/"+ order_code;
-        }, 5000);
-        
+       
     }
     $('.XCloseBtn').on('click',function(){
         $('#EmailSent').modal('hide');
@@ -114,11 +112,6 @@ $(function(){
     });
 
     $('#provinces').on('change', function () {
-        var get_matp = $('#provinces :selected').val();
-   
-        alert(get_matp);
-    
-
         var province_matp = $(this).val();
 
         var data = {

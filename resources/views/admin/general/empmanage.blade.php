@@ -159,7 +159,7 @@
                                                     </div>
                                                     <div class="employeeinfo ">
                                                         <h5>Chi Nhánh</h5>
-                                                        <p>{{$p->emp_branch}}</p>
+                                                        <p>{{$p->employee_showroom->showroom_name}}</p>
                                                     </div>
                                                     <div class="employeeinfo ">
                                                         <h5>Địa Chỉ Nhà</h5>
@@ -171,7 +171,7 @@
                                                     </div>
                                                     <div class="employeeinfo ">
                                                         <h5>Tiền Lương</h5>
-                                                        <p> {{$p->salary}}</p>
+                                                        <p> {{$p->salary}} VND</p>
                                                     </div>
 
                                                 </div>

@@ -1,20 +1,32 @@
 @extends('dashboard.layouts.layout')
 @section('content')
+
+<div class="zalo-chat-widget" data-oaid="579745863508352884" data-welcome-message="Rất vui khi được hỗ trợ bạn!" data-autopopup="0" data-width="" data-height=""></div>
+
+<script src="https://sp.zalo.me/plugins/sdk.js"></script>
+
     <link rel="stylesheet" href="/css/order.css">
     <input type="hidden" class="idToken" value="{{ csrf_token() }}">
+    @if(session()->get('successEmailSent'))
+        123123
+    @endif
 
-    
+
+
     @if(isset($car_id_fromlayout))
         <input type="hidden" id="model_id" value="{{$car_id_fromlayout}}">
     @endif
-    @if(isset($province_matp_cost_estimate))
-    <input type="hidden"  id="province_matp_cost_estimate" value="{{$province_matp_cost_estimate}}">
-    @endif
-    <input type="hidden" id="order_code" value="{{session()->get('order_code')}}">
 
-    @foreach($car_images as $car_image)
-    <input type="hidden" id="CarImagePath" value="{{$car_image->image}}">
-    @endforeach
+    @if(isset($province_matp_cost_estimate))
+         <input type="hidden"  id="province_matp_cost_estimate" value="{{$province_matp_cost_estimate}}">
+    @endif
+         <input type="hidden" id="order_code" value="{{session()->get('order_code')}}">
+
+    @if(isset($car_images))
+        @foreach($car_images as $car_image)
+        <input type="hidden" id="CarImagePath" value="{{$car_image->image}}">
+        @endforeach
+    @endif
     @if(Auth::check())
         <input type="hidden" class="url_Get_ModelInFo" value="/user/auth/getModelInfo">
         <input type="hidden" class="url_Get_ShowRoom" value="/user/auth/getShowRoom">
@@ -55,27 +67,25 @@
                             <span class="alert alert-danger">{{Session::get('fail')}}</span>
                         @endif
                 @endif
-                
-                <!-- Modal -->
-                <div class="modal fade" id="EmailSent" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
+                <!-- Modal HTML -->
+                <div id="EmailSent" class="modal fade">
+                    <div class="modal-dialog modal-confirm">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Order Success</h5>
-                                    <button type="button" class="close XCloseBtn"  aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                                <div class="icon-box">
+                                    <i class="material-icons">&#10003;</i>
+                                </div>				
+                                <h4 class="modal-title w-100">Awesome!</h4>	
                             </div>
                             <div class="modal-body">
-                                An email sent!
+                                <p class="text-center">Your order is successful. Check your email for details.</p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary cancelBtn">Close</button>
-                                <button type="button" class="btn btn-primary">Save</button>
+                                <button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> 
                         
             </div>
 
@@ -111,9 +121,11 @@
                     <div class="Province">
                         <select class="rounded shadow-sm" name="provinces" id="provinces" required>
                             <option id="SelectYourProVince" value="">{{__('Select Your Province/City')}}</option>
+                          @if(isset($provinces))
                             @foreach($provinces as $province)
-                                <option  value="{{$province->matp}}" >{{$province->name}}</option>
-                           @endforeach
+                                 <option  value="{{$province->matp}}" >{{$province->name}}</option>
+                             @endforeach
+                          @endif
    
                            <span class="text-danger">@error('provinces'){{$message}}@enderror</span>
                         </select>
@@ -151,13 +163,19 @@
                 <label class="labelCustom">
                     <span>{{__('Email Address')}} <span class="required">*</span></span>
                     @if(isset($user))
-                        @foreach($user as $userinfo)
-                            <input class="input rounded   shadow-sm" type="email" name="email" placeholder="{{__('Enter your Email')}}" value="{{$userinfo->email}}" required>
-                        @endforeach   
+                        @if(Auth::check() && Auth::user()->google_id)
+                            @foreach($user as $userinfo)
+                                <input readonly class="input rounded   shadow-sm" type="email" name="email" placeholder="{{__('Enter your Email')}}" value="{{$userinfo->email}}" required>
+                            @endforeach   
+                        @else
+                            @foreach($user as $userinfo)
+                                <input class="input rounded   shadow-sm" type="email" name="email" placeholder="{{__('Enter your Email')}}" value="{{$userinfo->email}}" required>
+                            @endforeach   
+                        @endif
                         <span class="text-danger">@error('email'){{$message}}@enderror</span>
                     @else
-                    <input class="input rounded   shadow-sm" type="email" name="email" placeholder="{{__('Enter your Email')}}" value="" required>
-                    <span class="text-danger">@error('email'){{$message}}@enderror</span>
+                        <input class="input rounded   shadow-sm" type="email" name="email" placeholder="{{__('Enter your Email')}}" value="" required>
+                        <span class="text-danger">@error('email'){{$message}}@enderror</span>
                     @endif
                     
                     
@@ -166,10 +184,12 @@
                 <label class="labelCustom">
                     <span>{{__('Region')}}<span class="required">*</span></span>
                     <select class="rounded   shadow-sm"  name="warehouses" id="warehouses" required>
-                        <option value="select" >{{__('Select your Region')}}</option>
-                        @foreach($warehouses as $warehouse)
-                            <option value="{{$warehouse->id}}" >{{$warehouse->warehouse_name}}</option>
-                        @endforeach
+                        <option value="" >{{__('Select your Region')}}</option>
+                        @if(isset($warehouses))
+                            @foreach($warehouses as $warehouse)
+                                 <option value="{{$warehouse->id}}" >{{$warehouse->warehouse_name}}</option>
+                             @endforeach
+                        @endif
                     </select>  
                     <span class="text-danger">@error('warehouses'){{$message}}@enderror</span>
                 </label>
@@ -179,10 +199,12 @@
                       <div class="Model">
                           <select class="rounded   shadow-sm"  name="models" id="models" required>
                             
-                              <option id="SelectYourModel" value="{{__('Select your Model')}}">{{__('Select your Model')}}</option>
-                                @foreach($models as $model)
-                                 <option value="{{$model->model_id}}" >{{$model->model_name}} - {{$model->color}}</option>
-                                @endforeach
+                              <option id="SelectYourModel" value="">{{__('Select your Model')}}</option>
+                                @if(isset($models))
+                                    @foreach($models as $model)
+                                         <option value="{{$model->model_id}}" >{{$model->model_name}} - {{$model->color}}</option>
+                                    @endforeach
+                                @endif
                                 
                             </select>   
                             <span class="text-danger">@error('models'){{$message}}@enderror</span>

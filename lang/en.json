@@ -84,7 +84,23 @@
     "Free Shipping":"Free Shipping",
     "Cash Directly":"Cash Directly",
     "Place Order":"Place Order",
-    "Order Car": "Order Car"
+    "Order Car": "Order Car",
+    "STT":"No.",
+    "Order Code": "Order Code",
+    "Order Date": "Order Date",
+    "Order Details": "Order Details",
+    "Order Status": "Order Status",
+    "Order Price": "Order Price",
+    "Payment": "Payment",
+    "Cancel Order": "Cancel Order",
+    "Customer Name":"Customer Name",
+    "Do you really want to cancel your order?":"Do you really want to cancel your order?",
+    "Yes, I want to cancel":"Yes, I want to cancel",
+    "No, I need to reconsider":"No, I need to reconsider",
+    "Unexpected bad things will happen if you don’t read this!":"Unexpected bad things will happen if you don’t read this!",
+    "This action cannot be undone. The deposit will not be refunded if you cancel the order.":"This action cannot be undone. The deposit will not be refunded if you cancel the order.",
+    "Please type":"Please type",
+    "to confirm":"to confirm"
 
 
    

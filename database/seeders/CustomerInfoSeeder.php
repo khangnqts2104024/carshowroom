@@ -27,6 +27,6 @@ class CustomerInfoSeeder extends Seeder
             'updated_at' => now(),
         ],]);
 
-          Customer_Info::factory()->times(500)->create();
+          Customer_Info::factory()->times(300)->create();
     }
 }

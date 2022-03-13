@@ -4,6 +4,80 @@ $(function() {
     var order_cancel_title = $('.order_cancel_title');
     var order_payment_title = $('.order_payment_title');
     
+
+        if($('#send_cancel_code_success').val() != ""){
+            
+            var orderID = $('#send_cancel_code_success').val();
+            console
+            $('#modal_'+orderID).modal('show');
+        }
+    
+    
+    $('.cancelBtn').on('click',function(){
+        var getData = $(this).data('order-id-code');
+        myArray = getData.split(",");
+       
+             order_code = myArray[0];
+             order_id= myArray[1];
+
+        $('#modal_'+order_id).modal('show');
+        
+       
+    });
+    
+    $('.CloseBtn').on('click',function(){
+        var getData = $(this).data('order-id-code');
+        myArray = getData.split(",");
+       
+             order_code = myArray[0];
+             order_id= myArray[1];
+        $('#modal_'+order_id).modal('hide');
+        
+    });
+  
+    $('.submitCancelBtn').on('click',function(e){
+        e.preventDefault();
+
+        var order_id = $(this).data('order-id');
+       var text_confirm_value =  $('#text-confirm_'+order_id).val();
+       
+       var data = {
+        _token: $(".idToken").val(),
+        'order_id':order_id,
+        'text_confirm_value': text_confirm_value,
+        };
+    
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        }
+    })
+
+    $.ajax({
+        type: "post",
+        url: $('#url').val() + '/user/auth/cancel_contract' ,
+        data: data,
+        dataType: "json",
+        success: function (response) {
+           
+            $.each(response.errors,function(key,item){
+                $('.text-errors').html("");
+                $('.text-errors').removeClass('alert alert-warning');
+                $('.text-errors').addClass('alert alert-danger');
+                $('.text-errors').append('<li>'+item+'</li>');
+            });
+           
+            $('#modal_'+order_id).modal('hide');
+            window.location.href = $('#url').val() +"/user/profile/auth/order_history";
+            
+            
+        }
+
+    })
+    
+});
+    
+
     //CHECK ORDER STATUS
     $("#OrderHistoryList tbody tr").each(function() {
         var order_status = $(this).find("td:nth-child(5)").html(); //get text to check
@@ -84,6 +158,7 @@ $(function() {
        }
     })
 
+   
   
 
     //switchLanguage   
@@ -105,26 +180,13 @@ $(function() {
             }
         });
            
-       }
-    
-       //function change language
-   function changeLang(locale){
-       window.setTimeout(function() {
-           window.location.href = $('#url').val() + "/lang/"+locale;
-       }, 400);
-   }
-
-
-   
-    $("input[name=text-confirm]")[0].oninvalid = function () {
-        if(activeLangText =='VN'){
-            this.setCustomValidity("Vui lòng nhập đúng định dạng được yêu cầu 'Cancel'");
+       }else{
+            $('#OrderHistoryList').DataTable({
             
-           
-        }else{
-            this.setCustomValidity("Please enter the correct format required 'Cancel'");
-            his.setCustomValidity("");
-        }
-    };
+            });
+       }
+       
+       
+     
 
 });

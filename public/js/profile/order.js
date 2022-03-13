@@ -88,7 +88,7 @@ $(function(){
                             var offers_price_nonFormat = carprice_nonFormat * (10 / 100);
                             var allFees_nonFormat = RegistrationFee_nonFormat + carRoadfee_nonFormat + carCivilfee_nonFormat + carLicensefee_nonFormat + carInspectionfee_nonFormat;
                             var EstimatedCost_nonFormat = carprice_nonFormat + allFees_nonFormat -offers_price_nonFormat;
-                            var deposit_nonFormat = EstimatedCost_nonFormat*(5/100);
+                            var deposit_nonFormat = EstimatedCost_nonFormat*(1/100);
                             //Format Number
                             var offers_price = new Intl.NumberFormat().format(offers_price_nonFormat);
                              var allFees = new Intl.NumberFormat().format(allFees_nonFormat);
@@ -144,7 +144,7 @@ $(function(){
                     var offers_price_nonFormat = carprice_nonFormat * (10 / 100);
                     var allFees_nonFormat = RegistrationFee_nonFormat + carRoadfee_nonFormat + carCivilfee_nonFormat + carLicensefee_nonFormat + carInspectionfee_nonFormat;
                     var EstimatedCost_nonFormat = carprice_nonFormat + allFees_nonFormat -offers_price_nonFormat;
-                    deposit_nonFormat = EstimatedCost_nonFormat*(5/100);
+                    deposit_nonFormat = EstimatedCost_nonFormat*(1/100);
                     //Format Number
                     var offers_price = new Intl.NumberFormat().format(offers_price_nonFormat);
                     var allFees = new Intl.NumberFormat().format(allFees_nonFormat);
@@ -232,7 +232,7 @@ $(function(){
     var firstSelection_Province = $('#SelectYourProvince').text();    
     var model_id = $('#model_id').val(); 
     var province_matp_cost_estimate = $('#province_matp_cost_estimate').val();
-    if(model_id != "" || province_matp_cost_estimate != ""){
+    if(model_id != null || province_matp_cost_estimate != null){
               
         var data = {
             _token: $(".idToken").val(),
@@ -293,7 +293,7 @@ $(function(){
                             var offers_price_nonFormat = carprice_nonFormat * (10 / 100);
                             var allFees_nonFormat = RegistrationFee_nonFormat + carRoadfee_nonFormat + carCivilfee_nonFormat + carLicensefee_nonFormat + carInspectionfee_nonFormat;
                             var EstimatedCost_nonFormat = carprice_nonFormat + allFees_nonFormat - offers_price_nonFormat;
-                            deposit_nonFormat = EstimatedCost_nonFormat*(5/100);
+                            deposit_nonFormat = EstimatedCost_nonFormat*(1/100);
                             //Format Number
                             var offers_price = new Intl.NumberFormat().format(offers_price_nonFormat);
                             var allFees = new Intl.NumberFormat().format(allFees_nonFormat);

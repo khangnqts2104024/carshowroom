@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Deposit Require</title>
+    <title>Title</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -21,11 +21,7 @@
           <p>{{__('VINFAST has completed the step of checking the personal information of your order')}} &nbsp;({{$details['Order Code']}}).</p>
           <p>{{__('We hereby confirm that all information provided is complete and correct')}}.</p>
           <p>{{__('In the next step, please make a deposit at the Payment button for the order to be processed')}}.</p>
-          <p>{{__('Amount you need to pay:')}} &nbsp; {{$details['Deposit']}} VNĐ</p>
-          <br>
-           
-        <a href="http://127.0.0.1:8000/user/momo_payment/{{ $details['Order ID'] }}/{{ $details['Deposit Non Format'] }}">{{__('Payment')}}</a>
-          <br>
+          <p>{{__('Your cancel code:')}} &nbsp; {{$details['Cancel Code']}} </p>
            <p>{{__('During the payment process, if you have any problems that need assistance, please contact email')}}  support@vinfast.com.</p>
            <p>{{__('Thank you')}}.</p>
            <br>

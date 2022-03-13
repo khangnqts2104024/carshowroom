@@ -3,6 +3,23 @@
     <input type="hidden" class="idToken" value="{{ csrf_token() }}">
     <link rel="stylesheet" href="/css/CostEstimate.css">
 
+    @if(isset($model_id_from_url))
+        <input type="text" id="model_id_from_url" value="{{$model_id_from_url}}">
+    @endif
+
+    @if(isset($matp_from_url))
+        <input type="text" id="matp_from_url" value="{{$matp_from_url}}">
+    @endif
+
+    @if(isset($car_images))
+        @foreach($car_images as $car_image)
+        <input type="text" id="CarImagePath" value="{{$car_image->image}}">
+        @endforeach
+    @endif
+
+
+    
+
     @if (Auth::check())
         <input type="hidden" class="url_Get_ModelInFo" value="/user/auth/CostEstimate/getModelInfo">
         <input type="hidden" class="url_Get_Fees" value="/user/auth/CostEstimate/getFees">
@@ -16,7 +33,7 @@
         <div class="col-md-6 divLeft">
             <!-- <div class="showCar"></div> -->
             <div class="showCar d-flex mt-5 justify-content-around">
-                <img width="100%" class="align-self-center" src="/image/logoVinfast.png" id="showImageCar" alt="">
+                <img width="100%" class="align-self-center" src="/storage/files/Image_Car/logoVinfast.png" id="showImageCar" alt="">
             </div>
 
             <div class="row fee-area1">
@@ -74,35 +91,37 @@
 
                 <div class="form-group">
                     <label for="">{{ __('CostEstimate.Model') }}</label>
-                    <select class="form-control formRound" name="models_cost_estimate" id="models">
-                        <option id="SelectYourModel" value="{{ __('Select your Model') }}">{{ __('Select your Model') }}
-                        </option>
-                        @foreach ($models as $model)
-                            <option value="{{ $model->model_id }}">{{ $model->model_name }} - {{$model->color}}</option>
-                        @endforeach
-                        <span class="text-danger">
-                            @error('models')
-                                {{ $message }}
-                            @enderror
-                        </span>
-
-                    </select>
+                    <div class="Model">
+                        <select class="form-control formRound" name="models_cost_estimate" id="models">
+                            <option id="SelectYourModel" value="">{{ __('Select your Model') }}</option>
+                            @foreach ($models as $model)
+                                <option value="{{ $model->model_id }}">{{ $model->model_name }} - {{$model->color}}</option>
+                            @endforeach
+                            <span class="text-danger">
+                                @error('models')
+                                    {{ $message }}
+                                @enderror
+                            </span>
+                        </select>
+                    </div>
                 </div>
 
                 <div class="form-group">
                     <label for="">{{ __('CostEstimate.Province/City') }}</label>
-                    <select class="form-control formRound" name="provinces" id="provinces">
-                        <option id="SelectYourProVince" value="{{ __('Select Your Province/City') }}">
-                            {{ __('Select Your Province/City') }}</option>
-                        @foreach ($provinces as $province)
-                            <option value="{{ $province->matp }}">{{ $province->name }}</option>
-                        @endforeach
-                        <span class="text-danger">
-                            @error('provinces')
-                                {{ $message }}
-                            @enderror
-                        </span>
-                    </select>
+                    <div class="Province">
+                        <select class="form-control formRound" name="provinces" id="provinces">
+                            <option id="SelectYourProVince" value="">
+                                {{ __('Select Your Province/City') }}</option>
+                            @foreach ($provinces as $province)
+                                <option value="{{ $province->matp }}">{{ $province->name }}</option>
+                            @endforeach
+                            <span class="text-danger">
+                                @error('provinces')
+                                    {{ $message }}
+                                @enderror
+                            </span>
+                        </select>
+                    </div>
                 </div>
 
                 <div class="fee-area2">

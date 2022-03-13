@@ -13,10 +13,15 @@
                      {{ Session::get('fail')}}
                    </div>
               @endif
+              @if(Session::get('info'))
+              <div class="alert alert-info">
+                {{ Session::get('info')}}
+              </div>
+         @endif
               @csrf
                 <div class="form-group">
                   <label for="email-signIn">{{__('login.EmailAddress')}}</label>
-                  <input type="email" name="email" class="form-control formRound" value="{{old('email')}}">
+                  <input type="email" name="email" class="form-control formRound" value="{{$verifiedEmail ?? old('email')}}">
                   {{-- show error message --}}
                   <span class="text-danger">@error('email'){{$message}}@enderror</span>
                   
@@ -39,7 +44,7 @@
             </form>
 
             <div class="forgot text-center">
-              <a href="{{ url('/redirect/google') }}" class="btn btn-primary" style="color: white;background-color:rgb(61,105,225)"><i class="fa fa-google"></i> Google</a> <span>|</span> <a href="{{route('password.request')}}">{{__('login.ForgotPassword?')}}</a>
+              <a href="{{ url('/redirect/google') }}" class="btn btn-primary" style="color: white;background-color:rgb(61,105,225)"><i class="fa fa-google"></i> Google</a> <span>|</span> <a href="{{route('user.forgot.password.form')}}">{{__('login.ForgotPassword?')}}</a>
             </div>
 
             <div class="or-text">
@@ -48,7 +53,7 @@
               <hr class="line">
             </div>
             
-            <a href="{{route('user.register')}}"><button class="btn btn-block buttonCreateAccount">{{__('login.CreateAccount')}}</button></a>
+            <a href="{{route('user.register')}}"><button class="btn btn-block buttonCreateAccount">{{__('login.Create Account.')}}</button></a>
         </div>
 
         <hr>

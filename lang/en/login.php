@@ -1,10 +1,16 @@
 <?php 
     return [
         "Signin" => "Sign In",
-        "EmailAddress" => "Email Address",
-        "Password" => "Mật khẩu",
+        "Email Address" => "Email Address",
+        "Password" => "Password",
+        "Confirm Password" => "Confirm Password", 
         "ForgotPassword?" => "Forgot Password?",
-        "CreateAccount" => "Create Account",
-        "OR" => "OR"
+        "Reset Password"=>"Reset Password",
+        "Create Account" => "Create Account",
+        "Create Account." => "CREATE ACCOUNT",
+        "OR" => "OR",
+        "Forgot Password" =>"Forgot Password",
+        "Send Reset Password Link"=>"Send Reset Password Link",
+        "Enter your email address to receive a link to reset your password."=>"Enter your email address to receive a link to reset your password."
     ];
 ?>

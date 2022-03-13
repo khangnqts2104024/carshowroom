@@ -75,23 +75,23 @@
 </head>
 
 
-<body style="margin: 0 !important; padding: 0 !important; background-color: #eeeeee;" bgcolor="#eeeeee">
+<body style="margin: 0 !important; padding: 0 !important; background-color: #eeeeee;" >
     <h1></h1>
-      
-   
+
+
 
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
         <tr>
-            <td align="center" style="background-color: #eeeeee;" bgcolor="#eeeeee">
+            <td align="center" style="background-color: #eeeeee;" >
                 <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px;">
                     <tr>
-                        <td align="center" valign="top" style="font-size:0; padding: 35px;" bgcolor="#F44336">
+                        <td align="center" valign="top" style="font-size:0; padding: 35px; background-color: rgb(253,210,46)">
                             <div
                                 style="display:inline-block; max-width:50%; min-width:100px; vertical-align:top; width:100%;">
                                 <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%"
                                     style="max-width:300px;">
                                     <tr>
-                                        <td align="left" valign="top"
+                                        <td align="center" valign="top"
                                             style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 36px; font-weight: 800; line-height: 48px;"
                                             class="mobile-center">
                                             <h1 style="font-size: 36px; font-weight: 800; margin: 0; color: #ffffff;">
@@ -100,36 +100,7 @@
                                     </tr>
                                 </table>
                             </div>
-                            <div style="display:inline-block; max-width:50%; min-width:100px; vertical-align:top; width:100%;"
-                                class="mobile-hide">
-                                <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%"
-                                    style="max-width:300px;">
-                                    <tr>
-                                        <td align="right" valign="top"
-                                            style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; line-height: 48px;">
-                                            <table cellspacing="0" cellpadding="0" border="0" align="right">
-                                                <tr>
-                                                    <td
-                                                        style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400;">
-                                                        <p
-                                                            style="font-size: 18px; font-weight: 400; margin: 0; color: #ffffff;">
-                                                            <a href="#" target="_blank"
-                                                                style="color: #ffffff; text-decoration: none;">Car Show Room
-                                                                &nbsp;</a></p>
-                                                    </td>
-                                                    <td
-                                                        style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 24px;">
-                                                        <a href="#" target="_blank"
-                                                            style="color: #ffffff; text-decoration: none;"><img
-                                                                src="https://vinfastauto.com/themes/porto/img/logo-header.svg"
-                                                                width="27" height="23"
-                                                                style="display: block; border: 0px;" /></a> </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
+                            
                         </td>
                     </tr>
                     <tr>
@@ -139,12 +110,13 @@
                                 style="max-width:600px;">
                                 <tr>
                                     <td align="center"
-                                        style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 25px;">
-                                        <img src="https://img.icons8.com/carbon-copy/100/000000/checked-checkbox.png"
-                                            width="125" height="120" style="display: block; border: 0px;" /><br>
+                                        style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px;padding-bottom: 25px;">
+                                        <img src="https://i.ibb.co/zsLFfyR/check.png"
+                                            width="125" height="120" style="display: block; border: 0px;" />
+                                            
                                         <h2
                                             style="font-size: 30px; font-weight: 800; line-height: 36px; color: #333333; margin: 0;">
-                                            {{$details['Title']}}</h2>
+                                            {{ $details['Title'] }}</h2>
                                     </td>
                                 </tr>
                                 <tr>
@@ -152,7 +124,7 @@
                                         style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 10px;">
                                         <p
                                             style="font-size: 16px; font-weight: 400; line-height: 24px; color: #777777;">
-                                            {{$details['Sub_Content_Top']}} </p>
+                                            {{ $details['Sub_Content_Top'] }} </p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -161,65 +133,65 @@
                                             <tr>
                                                 <td width="75%" align="left" bgcolor="#eeeeee"
                                                     style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
-                                                    Order Code # </td>
+                                                    {{__('Order Code')}} # </td>
                                                 <td width="25%" align="left" bgcolor="#eeeeee"
                                                     style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
-                                                    {{$details['Order Code']}} </td>
+                                                    {{ $details['Order Code'] }} </td>
                                             </tr>
                                             <tr>
-                                              <td width="75%" align="left" bgcolor="#eeeeee"
-                                                  style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
-                                                  Order Status  </td>
-                                              <td width="25%" align="left" bgcolor="#eeeeee"
-                                                  style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
-                                                  {{$details['Order Status']}} </td>
+                                                <td width="75%" align="left" bgcolor="#eeeeee"
+                                                    style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
+                                                    {{__('Order Status')}} </td>
+                                                <td width="25%" align="left" bgcolor="#eeeeee"
+                                                    style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
+                                                    {{ $details['Order Status'] }} </td>
                                             </tr>
                                             <tr>
-                                              <td width="75%" align="left" bgcolor="#eeeeee"
-                                                  style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
-                                                  Order Date  </td>
-                                              <td width="25%" align="left" bgcolor="#eeeeee"
-                                                  style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
-                                                  {{$details['Order Date']}} </td>
+                                                <td width="75%" align="left" bgcolor="#eeeeee"
+                                                    style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
+                                                    {{__('Order Date')}} </td>
+                                                <td width="25%" align="left" bgcolor="#eeeeee"
+                                                    style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
+                                                    {{ $details['Order Date'] }} </td>
                                             </tr>
                                             <tr>
                                                 <td width="75%" align="left"
                                                     style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;">
-                                                    Purchased Item (1) 
+                                                    {{__('Purchased Item')}} (1)
                                                 </td>
                                                 <td width="25%" align="left"
                                                     style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;">
-                                                    {{$details['Order Price']}} 
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td width="75%" align="left"
-                                                    style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;">
-                                                    Model Name
-                                                </td>
-                                                <td width="25%" align="left"
-                                                    style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;">
-                                                    {{$details['Model Name']}} 
+                                                    {{ $details['Order Price'] }}
                                                 </td>
                                             </tr>
 
+                                            <tr>
+                                                <td width="75%" align="left"
+                                                    style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;">
+                                                    {{__('Model Name')}}
+                                                </td>
+                                                <td width="25%" align="left"
+                                                    style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;">
+                                                    {{ $details['Model Name'] }}
+                                                </td>
+                                            </tr>
+
 
                                             <tr>
                                                 <td width="75%" align="left"
                                                     style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;">
-                                                    Shipping</td>
+                                                    {{__('Shipping')}}</td>
                                                 <td width="25%" align="left"
                                                     style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;">
-                                                    {{$details['Shipping']}}</td>
+                                                    {{ $details['Shipping'] }}</td>
                                             </tr>
                                             <tr>
                                                 <td width="75%" align="left"
                                                     style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;">
-                                                    Deposit (5%) </td>
+                                                    {{__('Deposit')}} (1%) </td>
                                                 <td width="25%" align="left"
                                                     style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;">
-                                                    {{$details['Deposit']}}  </td>
+                                                    {{ $details['Deposit'] }} </td>
                                             </tr>
                                         </table>
                                     </td>
@@ -230,10 +202,10 @@
                                             <tr>
                                                 <td width="75%" align="left"
                                                     style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px; border-top: 3px solid #eeeeee; border-bottom: 3px solid #eeeeee;">
-                                                    TOTAL </td>
+                                                    {{__('TOTAL')}} </td>
                                                 <td width="25%" align="left"
                                                     style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px; border-top: 3px solid #eeeeee; border-bottom: 3px solid #eeeeee;">
-                                                    {{$details['Deposit']}}</td>
+                                                    {{ $details['Deposit'] }}</td>
                                             </tr>
                                         </table>
                                     </td>
@@ -255,21 +227,21 @@
                                                 <tr>
                                                     <td align="left" valign="top"
                                                         style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px;">
-                                                        <p style="font-weight: 800;">Delivery Address</p>
-                                                        <p>{{$details['Customer Address']}}</p>
+                                                        <p style="font-weight: 800;">{{__('Delivery Address')}}</p>
+                                                        <p>{{ $details['Customer Address'] }}</p>
                                                     </td>
                                                 </tr>
                                             </table>
                                         </div>
                                         <div
                                             style="display:inline-block; max-width:50%; min-width:240px; vertical-align:top; width:100%;">
-                                            <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%"
+                                            <table align="right" border="0" cellpadding="0" cellspacing="0" width="100%"
                                                 style="max-width:300px;">
                                                 <tr>
-                                                    <td align="left" valign="top"
+                                                    <td align="right" class="text-center" valign="top"
                                                         style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px;">
-                                                        <p style="font-weight: 800;">Customer Contact</p>
-                                                        <p>{{$details['Customer Phone']}}</p>
+                                                        <p style="font-weight: 800;">{{__('Customer Contact')}}</p>
+                                                        <p>{{ $details['Customer Phone'] }}</p>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -279,8 +251,9 @@
                             </table>
                         </td>
                     </tr>
+                    
                     <tr>
-                        <td align="center" style=" padding: 35px; background-color: #ff7361;" bgcolor="#1b9ba3">
+                        <td align="center" style=" padding: 35px; background-color: rgb(32,135,84)">
                             <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%"
                                 style="max-width:600px;">
                                 <tr>
@@ -288,17 +261,16 @@
                                         style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 25px;">
                                         <h2
                                             style="font-size: 24px; font-weight: 800; line-height: 30px; color: #ffffff; margin: 0;">
-                                           We Will Confirm Your Order Soon </h2>
+                                            {{__('We Will Confirm Your Order Soon')}} </h2>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td align="center" style="padding: 25px 0 15px 0;">
                                         <table border="0" cellspacing="0" cellpadding="0">
                                             <tr>
-                                                <td align="center" style="border-radius: 5px;" bgcolor="#66b3b7"> <a
+                                                <td align="center" style="border-radius: 5px; background-color:rgb(49, 49, 49)"> <a
                                                         href="#" target="_blank"
-                                                        style="font-size: 18px; font-family: Open Sans, Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; border-radius: 5px; background-color: #F44336; padding: 15px 30px; border: 1px solid #F44336; display: block;">Shop
-                                                        Again</a> </td>
+                                                        style="font-size: 18px; font-family: Open Sans, Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; border-radius: 5px; ; padding: 15px 30px; border: 1px solid ; display: block;">{{__('Back To Home Page')}}</a> </td>
                                             </tr>
                                         </table>
                                     </td>
@@ -310,25 +282,16 @@
                         <td align="center" style="padding: 35px; background-color: #ffffff;" bgcolor="#ffffff">
                             <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%"
                                 style="max-width:600px;">
-                              
+
                                 <tr>
                                     <td align="center"
                                         style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 24px; padding: 5px 0 10px 0;">
                                         <p
                                             style="font-size: 14px; font-weight: 800; line-height: 18px; color: #333333;">
-                                            {{$details['ShowRoom Address']}}</p>
+                                            {{ $details['ShowRoom Address'] }}</p>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td align="left"
-                                        style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 24px;">
-                                        <p
-                                            style="font-size: 14px; font-weight: 400; line-height: 20px; color: #777777;">
-                                            If you didn't create an account using this email address, please ignore this
-                                            email or <a href="#" target="_blank"
-                                                style="color: #777777;">unsusbscribe</a>. </p>
-                                    </td>
-                                </tr>
+                                
                             </table>
                         </td>
                     </tr>

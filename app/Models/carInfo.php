@@ -16,7 +16,7 @@ class carInfo extends Model
         'order_id',
         'manufactoring_date',
     ];
-
+ 
     public function showrooms()
     {
         return $this->belongsTo(showroom::class,'car_branch');

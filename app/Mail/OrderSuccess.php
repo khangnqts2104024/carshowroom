@@ -30,6 +30,6 @@ class OrderSuccess extends Mailable
      */
     public function build()
     {
-        return $this->subject('Test Mail from CarShowRoom')->view('emails.OrderSuccess');
+        return $this->subject('Order Success')->view('emails.OrderSuccess');
     }
 }

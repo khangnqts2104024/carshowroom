@@ -9,12 +9,12 @@
   <meta charset="utf-8">
   <meta name="description" content="">
   <meta name="page_type" content="np-template-header-footer-from-plugin">
+
   <title>About Us</title>
   <link rel="stylesheet" href="css/AboutUS_nicepage.css" media="screen">
   <link rel="stylesheet" href="css/Aboutus.css" media="screen">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script class="u-script" type="text/javascript" src="\js\AboutUs.js" defer=""></script>
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
   <script class="u-script" type="text/javascript" src="/AboutUs.js" defer=""></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" />

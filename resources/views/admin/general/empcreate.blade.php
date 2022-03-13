@@ -123,6 +123,7 @@
 
     <script>
         //show con mắt - tắt mắt khi out focus
+       
         window.addEventListener('click', function(e) {
 
             if (document.getElementById('passwordField').contains(e.target)) {
@@ -162,25 +163,31 @@
 
             }
         }
-
+      
         var role = document.getElementById("role");
         var showroom_id = document.getElementsByClassName("showroom_id");
         var showroom = document.getElementById("showroom");
         var srnone;
         var srdefault;
        for(let i=0;i<showroom_id.length;i++){
-           if(showroom_id[i].innerHTML==='warehouse'){srnone=showroom_id[i]}
-       }
+           //check xem id showroom nào là headoffice
+           if(showroom_id[i].innerHTML==='headoffice'){srnone=showroom_id[i]}
+       } 
     //    set default
-       if(showroom_id[0].innerHTML==='warehouse'){srdefault=showroom[1].value;}
-       else{srdefault=showroom_id[0].value}
-        showroom.style.display="none"
+    //neu61 showroom=headoffice set default= showroom khác
+       if(showroom_id[0].innerHTML==='headoffice'){srdefault=showroom[1].value;}
+       else{srdefault=showroom_id[0].value};
+     
+        showroom.style.display="none";
+     
+//tắt showroom "headoffice" 
         srnone.style.display = "none"; 
-        
-
-
+     
+   //hiện  showroom
         role.addEventListener('change', function() {
-            if (role.value === "dealer") {
+          
+            if (role.value == "dealer") {
+             
                 showroom.style.display = "block";
                 showroom.value = srdefault;
                 srnone.style.display = "none";

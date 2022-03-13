@@ -14,12 +14,7 @@
 </section>
 <section class="content">
 
-    <div class="">   
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                Danh mục xe
-
-    <div class="row">   
+  
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
@@ -43,7 +38,8 @@
                             </th>
                             <th>Tên dòng xe</th>
                             <th>Mã dòng xe</th>
-                            <th>Ngày thêm</th>
+                            <th>Màu</th>
+                            <th>Kích hoạt</th>
 
                             <th style="width:50px;">Thông Tin chi tiết</th>
                             <th style="width:50px;">Xóa Dòng Xe</th>
@@ -56,7 +52,33 @@
                         <td>{{ $x++ }}</td>    
                             <td>{{$model -> model_name}}</td>
                             <td><span class="text-ellipsis">{{$model -> model_id}}</span></td>
-                            <td><span class="text-ellipsis">#</span></td>
+                            <td>
+                                <span class="text-ellipsis">
+                                    <?php
+                                        if ($model -> color == 'red') { 
+                                            echo 'Đỏ';
+                                        } else if ($model -> color == 'blue') {
+                                            echo 'Xanh';
+                                        } else if ($model -> color == 'white'){
+                                            echo 'Trắng';
+                                        } else {
+                                            echo 'Đen';
+                                        }
+                                    ?>
+                                </span>
+                            </td>
+                            <td>
+                                <span class="text-ellipsis">
+                                    <?php
+                                        if ($model -> active == 'active') { 
+                                            echo 'Có';
+                                        }
+                                        else {
+                                            echo 'Không';
+                                        }
+                                    ?>
+                                </span>
+                            </td>
                             <td style="text-align: center;">
                                 <a href="{{URL::to('admin/general/editmodel/'.$model -> model_id)}}" class="active styling-edit" ui-toggle-class="">
                                     <i class="fa fa-pencil-square text-success text-active" style="font-size: 30px;"></i>
@@ -116,7 +138,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
 <script>
 	$('.mydatatable').DataTable();
 </script>

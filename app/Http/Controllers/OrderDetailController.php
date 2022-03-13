@@ -89,7 +89,7 @@ class OrderDetailController extends Controller
 
         $province = Province::all();
         $cost = Cost_Estimate::select('matp', 'Inspectionfee', 'Licenseplatefee', 'Roadusagefee', 'Civilliabilityinsurance')->get();
-        $models = modelInfo::select('model_id', 'model_name', 'color', 'price')->get();
+        $models = modelInfo::select('model_id', 'model_name', 'color', 'price')->where('released','active')->get();
         //    dd($cost);
         //    dd();
         return view('admin.showroom.confirmorder')->with(['p' => $orders])->with(['provines' => $province])->with(['models' => $models])->with('cost', $cost)->with('oldprovine', $old_provine->name);
@@ -100,11 +100,11 @@ class OrderDetailController extends Controller
     public function checkinfo(Request $request)
     {
         $request->validate([
-            'email' => array('required', 'regex:/^[^\s@-]+@[^\s@-]+\.[^\s@]+$/', 'unique:customer_accounts,email'),
-            'fullname' => array('required', 'regex:/^[A-Za-z\s\.]+$/'),
+            'email' => array('required', 'regex:/^[^\s@-]+@[^\s@-]+\.[^\s@]+$/'),
+            'fullname' => array('required', 'regex:/^([a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s\.\-\,]+)$/i'),
             'citizen_id' => array('required', 'regex:/^[0-9]*$/'),
             'phone_number' => array('required', 'regex:/^[0-9]{10,11}$/'),
-            'address' => array('required', 'regex:/^[a-zA-Z0-9,\-\s\.]*$/'),
+            'address' => array('required','regex:/^([a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s\-\,]+)$/i'),
             'orderprice' => 'required',
             'modelnote' => 'required',
         ]);
@@ -121,8 +121,11 @@ class OrderDetailController extends Controller
             $customer->save();
             $order_detail->order_price = $request->orderprice;
             $order_detail->order_status = "checkinfo";
-            $order_detail->matp = $request->matp;
+            $order_detail->matp = $request->provines;
             $order_detail->save();
+            $order=$order_detail->orders;
+            $order->note=$request->modelnote;
+            $order->save();
             $message = "Cập Nhật Đơn Hàng Thành Công!";
         } else {
             $message = "có gì đó sai sai!ko thể update thành công!Check Lại Đơn Hàng Hỏi Sếp nha";
@@ -169,17 +172,18 @@ class OrderDetailController extends Controller
     public function ordercanceled($id)
     {
         $orders = orderDetail::find($id);
-        $car = $orders->orders->cars->first();
+        $car = $orders->orders->cars;
+ 
         if ($car === null) {
             $orders->order_status = 'canceled';
             $message = 'Hủy đơn thành công!';
             $orders->save();
-        } else if ($car->car_status === 'showroom') {
+        } else if ($car->car_status === 'showroom'){
             $orders->order_status = 'canceled';
             $car->car_status = 'custcanceled';
             $car->save();
             $orders->save();
-            $message = 'Hủy Đơn Thành Công';
+            $message = 'Hủy Đơn Thành Công!Xe Được Trả Về Kho!';
         } else if ($car->car_status === 'pending') {
             $message = 'Hủy chưa thành công, xe vẫn đang trên đường đến showroom!Hãy đợi xe tới rồi mới hoàn lại!';
         } else {

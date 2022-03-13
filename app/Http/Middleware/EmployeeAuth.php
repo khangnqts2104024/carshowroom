@@ -17,8 +17,11 @@ class EmployeeAuth
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::guard('employee')->check()) {
-            return redirect('/admin.login');
+        if (Auth::guard('employee')->user()->role!='admin') {
+
+            // abort(403, 'Unauthorized action.');
+            return redirect('admin/home');
+
         }
 
         return $next($request);

@@ -122,19 +122,18 @@
 <footer>
 	<div class="footer-wrap">
 	<div class="container first_class">
-			<div class="row">
+			<div class="row d-flex" style="justify-content: space-around">
 				<div class="col-md-4 col-sm-6">
-					<h3>BE THE FIRST TO KNOW</h3>
-					<p>Get all the latest information on  Vinfast Services, Events, Jobs
-						and Fairs. Sign up for our newsletter today.</p>
+					<h3>{{__('home.BE THE FIRST TO KNOW')}}</h3>
+					<p>{{__('home.Get all the latest information on Vinfast Services, Events, Jobs and Fairs. Sign up for our newsletter today.')}}</p>
 				</div>
-				<div class="col-md-4 col-sm-6">
+				{{-- <div class="col-md-4 col-sm-6">
 				<form class="newsletter">
 					 <input type="text" placeholder="Email Address"> 
                     <button class="newsletter_submit_btn" type="submit"><i class="fa fa-paper-plane"></i></button>	
 				</form>
 				
-				</div>
+				</div> --}}
 				<div class="col-md-4 col-sm-6">
 				<div class="col-md-12">
 					<div class="standard_social_links">
@@ -161,13 +160,13 @@
 			</div>	
 				</div>
 					<div class="clearfix"></div>
-				<div class="col-md-12"><h3 style="text-align: right;">Stay Connected</h3></div>
+				<div class="col-md-12"><h3 style="text-align: right;">{{__('home.STAY CONNECTED')}}</h3></div>
 				</div>
 			</div>
 	</div>
 		<div class="second_class">
 			<div class="container second_class_bdr">
-			<div class="row">
+			<div class="row d-flex" style="justify-content: space-around;">
 				<div class="col-md-4 col-sm-6">
                
 					<div class="footer-logo text-center"><img src="/image/logoVinfast.png" alt="Vinfast" >
@@ -175,7 +174,7 @@
 					
 				</div>
 				<div class="col-md-2 col-sm-6">
-					<h3>Quick  LInks</h3>
+					<h3>{{__('home.Quick Links')}}</h3>
 					<ul class="footer-links">
 						<li><a href="#">Home</a>
 						</li>
@@ -186,38 +185,24 @@
 						
 						<li><a href="#" target="_blank">Terms &amp; Conditions</a>
 						</li>
-						<li><a href="#" target="_blank">Privacy Policy</a>
+						<li><a href="https://vinfastauto.us/privacy-policy" target="_blank">{{__('Privacy Policy')}}</a>
 						</li>
-						<li><a href="#">Sitemap</a>
-						</li>
+						
 					</ul>
 				</div>
 				<div class="col-md-3 col-sm-6">
-					<h3>OUR SERVICES</h3>
+					<h3>{{__('home.OUR EVENTS')}}</h3>
 					<ul class="footer-category">
-						<li><a href="#">Fresher Jobs</a>
+						<li><a href="https://vinfastauto.us/events/ces2022/mediacenter">{{__('home.Media Center')}}</a>
 						</li>
-						<li><a href="#">InternEdge - Internships &amp; Projects </a>
+						<li><a href="https://vinfastauto.us/events/CES2022">{{__('home.VinFast Global EV Day')}} </a>
 						</li>
-						<li><a href="#">Resume Edge - Resume Writing Services</a>
-						</li>
-						<li><a href="#">Readers Galleria - Curated Library</a>
-						</li>
-						<li><a href="#">Trideus - Campus Ambassadors</a>
+						<li><a href="https://vinfastauto.us/events/globalpremiere">{{__('home.Vinfast EV Global Premiere')}}</a>
 						</li>
 					</ul>
 					<div class="clearfix"></div>
 				</div>
-				<div class="col-md-3 col-sm-6">
-					<h3>Vinfast Events</h3>
-					<ul class="footer-links">
-						<li><a href="#">Triedge Events</a>
-						</li>
-
-						<li><a href="#">Jobs &AMP; Internship Fair 2019</a>
-						</li>
-					</ul>
-				</div>
+				
 			</div>
 			
 		</div>
@@ -225,7 +210,7 @@
 		
 		<div class="row">
 			<div class="container-fluid">
-			<div class="copyright"> Copyright 2022 | All Rights Reserved by VINFAST Ltd.</div>
+			<div class="copyright"> {{__('home.Copyright 2022 | All Rights Reserved by VINFAST Ltd.')}}</div>
 			</div>
 			
 		</div>

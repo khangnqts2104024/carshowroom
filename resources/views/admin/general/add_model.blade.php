@@ -41,11 +41,11 @@
                     <input type="text" class="form-control" id="exampleInputPassword1" name="car_type">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Kích thước</label>
+                    <label for="exampleInputPassword1">Dài x rộng x cao (mm)</label>
                     <input type="text" class="form-control" id="exampleInputPassword1" name="size">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Khối lượng</label>
+                    <label for="exampleInputPassword1">Tự trọng / tải trọng (kg)</label>
                     <input type="text" class="form-control" id="exampleInputPassword1" name="weight">
                 </div>
                 <div class="form-group">
@@ -53,7 +53,7 @@
                     <input type="text" class="form-control" id="exampleInputPassword1" name="engine">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Công suất tối đa</label>
+                    <label for="exampleInputPassword1">Công suất tối đa (Hp/rpm)</label>
                     <input type="text" class="form-control" id="exampleInputPassword1" name="wattage">
                 </div>
                 <div class="form-group">
@@ -68,7 +68,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Tiêu thụ nhiên liệu</label>
+                    <label for="exampleInputPassword1">Tiêu thụ nhiên liệu (lít/100km)</label>
                     <input type="text" class="form-control" id="exampleInputPassword1" name="fuel_consumption">
                 </div>
                 <div class="form-group">
@@ -119,15 +119,13 @@
                     <input type="text" class="form-control" id="exampleInputPassword1" name="price">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Kích hoạt</label>
-                    <select name="active" class="form-control input-sm m-bot15">
-                        <option value="active">Có</option>
-                        <option value="inactive">Không</option>
-                    </select>
-                </div>
-                <div class="form-group">
                     <label for="exampleInputPassword1">Màu</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" name="color">
+                    <select name="color" class="form-control input-sm m-bot15">
+                        <option value="white">Trắng</option>
+                        <option value="red">Đỏ</option>
+                        <option value="blue">Xanh</option>
+                        <option value="black">Đen</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputFile">Thêm ảnh</label>

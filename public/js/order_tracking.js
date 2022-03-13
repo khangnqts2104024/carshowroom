@@ -1,11 +1,9 @@
 $(function () {
    
-    $("#order_code_input").on("keyup", function (e) {
+    $("#searchOrderBtn").on("click", function (e) {
         $('#show_order_tracking').html("");
         e.preventDefault();
         var order_code_input = $('#order_code_input').val();
-       
-        console.log(order_code_input);
         var data = {
             _token: $(".idToken").val(),
             'order_code_input': order_code_input,
@@ -68,9 +66,5 @@ $(function () {
             },
         });
     }
-    function changeLang(locale) {
-        window.setTimeout(function () {
-            window.location.href = $("#url").val() + "/lang/" + locale;
-        }, 400);
-    }
+    
 });

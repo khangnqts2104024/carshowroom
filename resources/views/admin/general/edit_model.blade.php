@@ -133,14 +133,16 @@
                         <option value="black">Đen</option>
                     </select>
                 </div>
+                
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Hình</label>
-                    <img src="{{asset('image/'. $edit_value->image)}}" alt="">
+                    <label for="exampleInputFile">Thêm ảnh</label>
+                    <input type="file" id="exampleInputFile" name="image" value="{{$edit_value->image}}">
+                    <span><strong>Hình hiện tại: </strong>{{$edit_value->image}}</span>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputFile">File input</label>
-                    <input type="file" id="exampleInputFile">
-                    <p class="help-block">Example block-level help text here.</p>
+                    <label for="exampleInputFile">Thêm ảnh động</label>
+                    <input type="file" id="exampleInputFile" name="gif" value="{{$edit_value->gif}}">
+                    <span><strong>Hình hiện tại: </strong>{{$edit_value->gif}}</span>
                 </div>
                 <button type="submit" name="edit_model" class="btn btn-info">Cập nhật dòng xe</button>
             </form>

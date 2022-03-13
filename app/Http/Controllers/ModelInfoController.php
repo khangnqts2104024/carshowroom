@@ -53,6 +53,8 @@ class ModelInfoController extends Controller
         $request->validate([
             'image' => 'mimes:jpg,png,jpeg:5048'
         ]);
+
+        if($request->hasFile('image')){
         $path = public_path() . '/storage/files/Image_Car';
         $file = $request->file('image');
         $modelName = preg_replace('/\s+/', '', $request->model_name);
@@ -60,25 +62,21 @@ class ModelInfoController extends Controller
         $newImageName = $modelName . '-' . $request->color . '.' . $extension_img;
         $upload = $file->move($path, $newImageName);
         $data['image'] = $newImageName;
+        }
 
-        // gif
-        $path_gif = public_path() . '/storage/files/Image_Car/gif';
-        $file_gif = $request->file('gif');
-        $modelName = preg_replace('/\s+/', '', $request->model_name);
-        $extension_gif = $request->gif->guessClientExtension();
-        $newGifName = $modelName . '-' . $request->color . '.' . $extension_gif;
-        $upload = $file_gif->move($path_gif, $newGifName);
-        $data['gif'] = $newGifName;
-
-
-        // if($request->hasFile('image_upload')){
-        //     $path = 'files/Avatar_User';
-        //     $file = $request->file('image_upload');
-        //     $fullnameUser = preg_replace('/\s+/', '', $request->fullname);
-        //     $extension_img = $request->image_upload->guessClientExtension();
-        //     $file_name = time().'_'.$fullnameUser.'.'.$extension_img;
-        //     $upload = $file->storeAs($path,$file_name,'public');
-        //     $user = Customer_Info::find($request->customer_id);
+        
+        
+        if($request->hasFile('gif')){
+            // gif
+            $path_gif = public_path() . '/storage/files/Image_Car/gif';
+            $file_gif = $request->file('gif');
+            $modelName = preg_replace('/\s+/', '', $request->model_name);
+            $extension_gif = $request->gif->guessClientExtension();
+            $newGifName = $modelName . '-' . $request->color . '.' . $extension_gif;
+            $upload = $file_gif->move($path_gif, $newGifName);
+            $data['gif'] = $newGifName;
+        
+        }
 
         
 
@@ -120,8 +118,8 @@ class ModelInfoController extends Controller
         $data['rear_wheel_brake'] = $request->rear_wheel_brake;
         $data['active'] = $request->active;
         // $data['released'] = $request->released; 
-        $data['image'] = $request->image;
-        $data['gif'] = $request->gif;
+        // $data['image'] = $request->image;
+        // $data['gif'] = $request->gif;
 
         DB::table('model_infos')->where('model_id', $model_id)->update($data);
 

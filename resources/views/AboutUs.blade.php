@@ -42,7 +42,7 @@
                 <h3 class="u-custom-font u-text u-text-font u-text-2"> If debugging is the process of eliminating bugs
                   in software, then the code is the cause of the error.&nbsp;</h3>
                 <div class="u-expanded-width u-form u-form-1">
-                  <img src="/files/Image_Car/test.png">
+               
                 </div>
               </div>
             </div>

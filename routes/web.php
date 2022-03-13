@@ -273,3 +273,9 @@ Route::get('/compare','CompareController@index');
 Route::get('/AboutUs',function(){
     return(view('AboutUs'));
 });
+Route::get('/news/new1',function(){
+    return (view('/new/new1'));
+});
+Route::get('/news/topic1',function(){
+    return (view('topic1'));
+});

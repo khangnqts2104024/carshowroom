@@ -213,12 +213,16 @@
             </div>
             <div class="modal-body">
               <ul class="list-group">
-                @foreach($cars as $car)
+                @foreach($cars as $key => $carGroupByName)
+                @php
+                    $car = $carGroupByName[0];
+                @endphp
+              
                 <li class="list-group-item">
                   <a href="#" class="d-flex" id="{{$car->model_id}}" onclick="add_compare(this.id);" data-edition="">
                     <p>{{$car -> model_name}}</p>
                     <from>
-                
+                      
                       <img id="view_image{{$car->model_id}}" style="display: none;"src="/storage/files/Image_Car/{{$car->image}}">             
                       <input id="view_model_id" type="hidden" value="{{$car->model_id}}"></input>
                       <input id="view_model_type{{$car->model_id}}" type="hidden" value="{{$car->car_type}}"></input>
@@ -260,7 +264,12 @@
             </div>
             <div class="modal-body">
               <ul class="list-group">
-                @foreach($cars as $car)
+            
+                @foreach($cars as $key => $carGroupByName)
+                
+                @php
+                    $car = $carGroupByName[0];
+                @endphp
                 <li class="list-group-item">
                   <a href="#" class="d-flex" id="{{$car->model_id}}" onclick="add_compare2(this.id);" data-edition="">
                     <p>{{$car -> model_name}}</p>
@@ -306,7 +315,11 @@
             </div>
             <div class="modal-body">
               <ul class="list-group">
-                @foreach($cars as $car)
+                
+                @foreach($cars as $key => $carGroupByName)
+                @php
+                    $car = $carGroupByName[0];
+                @endphp
                 <li class="list-group-item">
                   <a href="#" class="d-flex" id="{{$car->model_id}}" onclick="add_compare3(this.id);" data-edition="">
                     <p>{{$car -> model_name}}</p>

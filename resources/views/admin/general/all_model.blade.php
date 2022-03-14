@@ -118,14 +118,10 @@
                 </div>
             </div>
         </div> -->
-            <?php
-            $message = session('message');
-            if ($message) {
-                echo $message;
-                session(['message' => '']);
-            }
-            ?>
-            
+ 
+        <input id="massage" type="text" hidden value="{{Session::get('message')}}">
+ 
+
 
         </div>
     </div>
@@ -141,6 +137,8 @@
 
 <script>
 	$('.mydatatable').DataTable();
+    var massage=document.getElementById('massage');
+    if(document.getElementById('massage').value!=''){alert(massage.value);}
 </script>
 
 <!--  -->

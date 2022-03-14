@@ -134,7 +134,7 @@ Route::prefix('user')->name('user.')->group(function(){
     
 });
 Route::get('/sendmail_ordersuccess/{order_code?}',[MailController::class,'sendmail_ordersuccess'])->middleware("Localization");
-Route::get('/deposit_require/{order_code?}',[MailController::class,'sendmail_deposit_require'])->middleware("Localization");
+// Route::get('/deposit_require/{order_code?}',[MailController::class,'sendmail_deposit_require'])->middleware("Localization");
 Route::get('/send_cancel_code/{order_code?}',[MailController::class,'send_cancel_code'])->middleware("Localization");
 
     

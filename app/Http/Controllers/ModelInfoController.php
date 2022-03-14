@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\modelInfo;
 use App\Models\stock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -149,9 +150,18 @@ class ModelInfoController extends Controller
     }
 
     public function deleteModel($model_id){
-        DB::table('model_infos')->where('model_id', $model_id)->delete();
-        session()->put('message', 'Xóa thành công!');
-        return Redirect('admin/general/allmodel');
+        // $model=DB::table('model_infos')->where('model_id', $model_id)->get();
+        $model=modelInfo::find($model_id);
+        // dd($model);
+        if($model->released==='active'){
+            $message='Bạn không được xóa dòng xe đã được kích hoạt!';
+        }
+        else{$model->delete();
+        $message='Xóa Thành Công!';
+       }
+        
+        
+        return Redirect('admin/general/allmodel')->with(['message'=>$message]);
     }
 
     public function showModel($model_id){

@@ -25,11 +25,13 @@
         <input type="hidden" class="url_Get_ShowRoom" value="/user/auth/getShowRoom">
         <input type="hidden" class="url_Get_ShowRoomAddress" value="/user/auth/getShowRoomAddress">
         <input type="hidden" class="url_Get_Fees" value="/user/auth/CostEstimate/getFees">
+        <input type="hidden" class="url_Submit_Order" value="/user/auth/CustomerSubmitOrder">
     @else
         <input type="hidden" class="url_Get_ModelInFo" value="/user/getModelInfo">
         <input type="hidden" class="url_Get_ShowRoom" value="/user/getShowRoom">
         <input type="hidden" class="url_Get_ShowRoomAddress" value="/user/getShowRoomAddress">
         <input type="hidden" class="url_Get_Fees" value="/user/CostEstimate/getFees">
+        <input type="hidden" class="url_Submit_Order" value="/user/SubmitOrder">
     @endif
     
     <div class="container">
@@ -99,12 +101,12 @@
                     <span class="fname">{{__('Full Name')}} <span class="required">*</span></span>
                     @if(isset($user))
                         @foreach($user as $userinfo)
-                             <input  class="input rounded   shadow-sm" type="text" name="fullname" placeholder="{{__('Enter your Fullname')}}" required value="{{$userinfo->fullname}}">
+                             <input  class="input rounded   shadow-sm" type="text" id="fullname" name="fullname" placeholder="{{__('Enter your Fullname')}}" required value="{{$userinfo->fullname}}">
                              <input class="input" type="hidden" name="customer_id"  value="{{$userinfo->customer_id}}">
                          @endforeach
                          <span class="text-danger">@error('fullname'){{$message}}@enderror</span>
                     @else
-                         <input class="input rounded   shadow-sm" type="text" name="fullname" placeholder="{{__('Enter your Fullname')}}" required value="{{old('fullname')}}">
+                         <input class="input rounded   shadow-sm" type="text" id="fullname" name="fullname" placeholder="{{__('Enter your Fullname')}}" required value="{{old('fullname')}}">
                          <span class="text-danger">@error('fullname'){{$message}}@enderror</span>
                     @endif
                   </label>
@@ -158,11 +160,11 @@
                     @if(isset($user))
                         @if(Auth::check() && Auth::user()->google_id)
                             @foreach($user as $userinfo)
-                                <input readonly class="input rounded   shadow-sm" type="email" name="email" placeholder="{{__('Enter your Email')}}" value="{{$userinfo->email}}" required>
+                                <input readonly class="input rounded   shadow-sm" type="email" id="email" name="email" placeholder="{{__('Enter your Email')}}" value="{{$userinfo->email}}" required>
                             @endforeach   
                         @else
                             @foreach($user as $userinfo)
-                                <input class="input rounded   shadow-sm" type="email" name="email" placeholder="{{__('Enter your Email')}}" value="{{$userinfo->email}}" required>
+                                <input class="input rounded   shadow-sm" type="email" id="email" name="email" placeholder="{{__('Enter your Email')}}" value="{{$userinfo->email}}" required>
                             @endforeach   
                         @endif
                         <span class="text-danger">@error('email'){{$message}}@enderror</span>
@@ -195,7 +197,7 @@
                               <option id="SelectYourModel" value="">{{__('Select your Model')}}</option>
                                 @if(isset($models))
                                     @foreach($models as $model)
-                                         <option value="{{$model->model_id}}" >{{$model->model_name}} - {{$model->color}}</option>
+                                         <option  value="{{$model->model_id}}" >{{$model->model_name}} - {{$model->color}}</option>
                                     @endforeach
                                 @endif
                                 
@@ -247,7 +249,9 @@
                         <tr>
                             <td><a href="">{{__("Offers")}}</a></td>
                             <td class="offers_span" name='offers_span' id="offers_span" style="color: rgb(3,86,179)">0 VND</td>
+                            <input type="hidden" id="offer_price" value="member">
                         </tr>
+                    
                     @endif
 
 
@@ -268,13 +272,13 @@
                         <td>{{__('Free Shipping')}}</td>
                     </tr>
                 </table>
-                <div>
+                {{-- <div>
                     <input type="radio" name="dbt" value="dbt" checked> {{__('Cash Directly')}}
                 </div>
                 <p class="textPayment">
                     Make your payment directly into our bank account. Please use your Order ID as the payment reference.
                     Your order will not be shipped until the funds have cleared in our account.
-                </p>
+                </p> --}}
               
                 
                 <button class="buttonCustom" id="buttonSubmit" type="submit" form="submitOrder">{{__('Place Order')}}</button>

@@ -227,11 +227,6 @@ class UserOrderController extends Controller
             } while ($orderCodeExist);
 
             $order_code = $order->order_code;
-
-
-
-
-
             $order->customer_id = $isUser->customer_id;
             $save_order = $order->save();
             //get order ID to insert order details table
@@ -283,6 +278,7 @@ class UserOrderController extends Controller
     //order_tracking get order code
     public function getOrderCode(Request $request)
     {
+        // dd($request->order_code_input);
         $order_code = $request->order_code_input;
         //find order info
 
@@ -293,6 +289,7 @@ class UserOrderController extends Controller
             ->where('orders.order_code', '=', $order_code)
             ->where('model_infos.released', '=','active')
             ->get("*");
+
         return response()->json([
             'status' => 200,
             'order_infos' => $order_infos,
@@ -303,6 +300,7 @@ class UserOrderController extends Controller
     {
         $order_id = $request->order_id;
         $cancel_code_confirm = $request->input;
+        // dd($order_id);
         $validator = Validator::make($request->all(), [
             'input' => 'required'
         ]);
@@ -315,11 +313,11 @@ class UserOrderController extends Controller
         } else {
             $order = order::where('order_id', $order_id)->first();
             $cancel_code = $order->cancel_code;
-            if ($cancel_code_confirm === $cancel_code) {
-                $order_detail = orderDetail::find($order_id);
-                $order_detail->update([
-                    'order_status' => 'custcanceled'
-                ]);
+            if ($cancel_code_confirm == $cancel_code) {
+                $order_detail = orderDetail::where('order_id',$order_id)->first();
+                // dd($order_detail);
+                $order_detail->order_status = 'custcanceled';
+                $order_detail->update();
                 if(App::getLocale() == 'vi'){
                     return response()->json([
                         'status' => 200,

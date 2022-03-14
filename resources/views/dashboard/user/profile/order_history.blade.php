@@ -98,33 +98,30 @@
                                                 </div>
                                                 <div class="modal-body">
 
-                                                    <form action="{{ route('user.cancelContract') }}" method="post"
-                                                        id="formcancel_{{ $order_info->order_id }}">
+                                                    <form action="{{ route('user.cancelContract') }}" data-order-id="{{ $order_info->order_id }}" method="post"
+                                                        id="formcancel_{{ $order_info->order_id }}" >
                                                         @csrf
                                                         <p class="alert alert-warning text-errors rounded">
-                                                            {{ __("Unexpected bad things will happen if you don't read this!") }}
+                                                            {{ __("This action cannot be undone.If a deposit has been made, the deposit will not be refunded if you cancel the order.") }}
                                                         </p>
                                                         <input type="hidden" name="order_id" class="order_id_this_order"
                                                             value="{{ $order_info->order_id }}">
-                                                        <p>{{ __('This action cannot be undone. The deposit will not be refunded if you cancel the order.') }}
-                                                        </p>
+                                                       
                                                         <input type="hidden" class="order_code" value="{{ $order_info->order_code }}">
-                                                        <p><button class="btn btn-info btn-sm rounded-pill" id="send_email">{{__('Get Cancel Confirm Code From Email')}}</button></p>
+                                                        <p><a  class="btn btn-info btn-sm rounded-pill" style="color: white" id="send_email_{{ $order_info->order_id }}">{{__('Get Cancel Confirm Code From Email')}}</a></p>
+                                                        
                                                         <p>{{ __('Please type') }} <span
                                                                 style="font-weight: bolder;">{{__('Code')}}</span>
                                                             {{ __('to confirm') }}</p>
                                                         <input type="text"
                                                             name="text-confirm_{{ $order_info->order_id }}"
-                                                            id="text-confirm_{{ $order_info->order_id }}"
-                                                            class="rounded-pill shadow-sm" >
+                                                            id="text-confirm_{{ $order_info->order_id }}" 
+                                                            class="rounded-pill shadow-sm" value="">
                                                     </form>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" form="formcancel_{{ $order_info->order_id }}"
-                                                        data-order-id="{{ $order_info->order_id }}"
-                                                        class="btn btn-danger btn-sm submitCancelBtn">{{ __('Yes, I want to cancel') }}</button>
-                                                    <button type="button" class="btn btn-success btn-sm CloseBtn"
-                                                        data-order-id-code="{{ $order_info->order_code }},{{ $order_info->order_id }}">{{ __('No, I need to reconsider') }}</button>
+                                                    <button type="submit" id="submitCancelBtn_{{ $order_info->order_id }}" form="formcancel_{{ $order_info->order_id }}" data-order-id="{{ $order_info->order_id }}" class="btn btn-danger btn-sm">{{ __('Yes, I want to cancel') }}</button>
+                                                    <button type="button" class="btn btn-success btn-sm CloseBtn" data-order-id-code="{{ $order_info->order_code }},{{ $order_info->order_id }}">{{ __('No, I need to reconsider') }}</button>
                                                 </div>
                                             </div>
                                         </div>

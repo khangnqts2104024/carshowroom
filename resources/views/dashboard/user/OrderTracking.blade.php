@@ -18,9 +18,9 @@
                     <div class="col-sm-6">
                         <h1 class="m-0 ml-5">{{__('Order Tracking')}}</h1>
                         @if (Session::get('order_code'))
-                            <input type="text" id="order_code_mail_success"
+                            <input type="hidden" id="order_code_mail_success"
                                 value="{{ Session::get('order_code') }}">
-                                <input type="text" id="order_id_mail_success"
+                                <input type="hidden" id="order_id_mail_success"
                                 value="{{ Session::get('order_id') }}">
                        @endif
                     </div>
@@ -96,10 +96,7 @@
                         <form class="text-center" action="" method="post" id="formCancel">
                             @csrf
                             <p class="alert alert-warning text-errors">
-                                {{ __("Unexpected bad things will happen if you don't read this!") }}
-                            </p>
-                            
-                            <p>{{ __('This action cannot be undone. The deposit will not be refunded if you cancel the order.') }}
+                                {{ __('This action cannot be undone.If a deposit has been made, the deposit will not be refunded if you cancel the order.') }}
                             </p>
                             
                             <p><button class="btn btn-info btn-sm rounded-pill" id="send_email" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing Order">{{__('Get Cancel Confirm Code From Email')}}</button></p>
@@ -111,7 +108,7 @@
                     </div>
                     <div class="modal-footer ajax-button"> 
                         
-                        <button type="button" form="formCancel" class="btn btn-danger btn-sm submitCancelBtn" >{{ __('Yes, I want to cancel') }}</button>
+                        <button type="submit" form="formCancel" class="btn btn-danger btn-sm submitCancelBtn" >{{ __('Yes, I want to cancel') }}</button>
                         <button type="button" class="btn btn-success btn-sm CloseBtn">{{ __('No, I need to reconsider') }}</button>
                     </div>
                 </div>

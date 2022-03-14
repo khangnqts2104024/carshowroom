@@ -798,7 +798,7 @@
     "Yes, I want to cancel":"Có, Tôi muốn huỷ",
     "No, I need to reconsider":"Không, Tôi sẽ suy nghĩ lại",
     "Unexpected bad things will happen if you don't read this!":"Những điều không ngờ sẽ xảy ra nếu bạn không đọc phần này!",
-   "This action cannot be undone. The deposit will not be refunded if you cancel the order.":"Hành động này không thể được hoàn tác. Tiền đặt cọc sẽ không được hoàn lại nếu bạn hủy đơn hàng.",
+   "This action cannot be undone.If a deposit has been made, the deposit will not be refunded if you cancel the order.":"Hành động này không thể được hoàn tác.Nếu đã đặt cọc, tiền đặt cọc sẽ không được hoàn lại nếu bạn hủy đơn hàng.",
     "Please type":"Vui lòng nhập",
     "to confirm":"để xác nhận",
     "Model Name":"Dòng xe",

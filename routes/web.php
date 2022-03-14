@@ -109,7 +109,7 @@ Route::prefix('user')->name('user.')->group(function(){
             Route::post('auth/CostEstimate/getModelInfo',[CostEstimateController::class,'getModelInfo'])->name('getModelInfo');
             Route::post('auth/CostEstimate/getFees',[CostEstimateController::class,'getFees'])->name('getFees');
             Route::post('auth/CostEstimate/OrderCar',[UserOrderController::class,'CustomerOrder'])->name('CustomerCostEstimateSubmit');
-            Route::post('auth/cancel_contract',[UserOrderController::class,'cancelContract'])->name('cancelContract');
+           
             //Customer Order Page 
             Route::get('auth/order/{id?}',[UserOrderController::class,'CustomerOrder'])->name('CustomerOrder');
             Route::post('/auth/getModelInfo',[UserOrderController::class,'getModelInfo'])->name('getModelInfo');
@@ -123,7 +123,7 @@ Route::prefix('user')->name('user.')->group(function(){
      //Order Tracking
      Route::post('/getOrderCode',[UserOrderController::class,'getOrderCode'])->middleware('Localization')->name('getOrderCode');
      Route::get('/order_tracking',[UserOrderController::class,'order_tracking'])->middleware('Localization')->name('ordertracking');
-     
+     Route::post('/cancel_contract',[UserOrderController::class,'cancelContract'])->name('cancelContract');
 
     //test momo
     Route::get('/momo_payment/{order_id?}/{deposit?}',[CheckoutController::class,'momo_payment'])->name('momo_payment');
@@ -134,9 +134,9 @@ Route::prefix('user')->name('user.')->group(function(){
     
 });
 
-Route::get('/sendmail_ordersuccess/{order_code?}',[MailController::class,'sendmail_ordersuccess'])->middleware("Localization");
+Route::post('/sendmail_ordersuccess/{order_code?}',[MailController::class,'sendmail_ordersuccess'])->middleware("Localization");
 // Route::get('/deposit_require/{order_code?}',[MailController::class,'sendmail_deposit_require'])->middleware("Localization");
-Route::get('/send_cancel_code/{order_code?}',[MailController::class,'send_cancel_code'])->middleware("Localization");
+Route::post('/send_cancel_code/{order_code?}',[MailController::class,'send_cancel_code'])->middleware("Localization");
 
 
 // KHANG

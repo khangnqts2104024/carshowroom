@@ -100,7 +100,7 @@
     "Yes, I want to cancel":"Yes, I want to cancel",
     "No, I need to reconsider":"No, I need to reconsider",
     "Unexpected bad things will happen if you don’t read this!":"Unexpected bad things will happen if you don’t read this!",
-    "This action cannot be undone. The deposit will not be refunded if you cancel the order.":"This action cannot be undone. The deposit will not be refunded if you cancel the order.",
+    "This action cannot be undone.If a deposit has been made, the deposit will not be refunded if you cancel the order.":"This action cannot be undone.If a deposit has been made, the deposit will not be refunded if you cancel the order.",
     "Please type":"Please type",
     "to confirm":"to confirm",
     "Model Name":"Model Name",

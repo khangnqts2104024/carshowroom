@@ -6,7 +6,7 @@
 
 <body>
   <link rel="stylesheet" href="/css/compare.css" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" /> --}}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
@@ -434,7 +434,7 @@
       var oldData1 = JSON.parse(localStorage.getItem('compare'));
 
       oldData1.push(newCar1);
-      $('.compare_icon1').append('<img src="' + newCar1.image + '" class="info01" width:auto></img>');
+      $('.compare_icon1').append('<img src="' + newCar1.image + '" class="info01 vehicle-picker" width:auto></img>');
       $('#vehicle-picker-1').addClass('d-none');
       $('#dimension').find('.modal_size01').append('<p class="info01">' + newCar1.size + '</p>');
       $('#dimension').find('.modal_weight01').append('<p class="info01">' + newCar1.weight + '</p>');
@@ -517,7 +517,7 @@
       var oldData2 = JSON.parse(localStorage.getItem('compare2'));
 
       oldData2.push(newCar2);
-      $('.compare_icon2').append('<img src="' + newCar2.image + '" class="info02" width: auto></img>');
+      $('.compare_icon2').append('<img src="' + newCar2.image + '" class="info02 vehicle-picker" width: auto></img>');
       $('#vehicle-picker-2').addClass('d-none')
       $('#dimension').find('.modal_size02').append('<p class="info02">' + newCar2.size + '</p>');
       $('#dimension').find('.modal_weight02').append('<p class="info02">' + newCar2.weight + '</p>');
@@ -601,7 +601,7 @@
       var oldData3 = JSON.parse(localStorage.getItem('compare3'));
 
       oldData3.push(newCar3);
-      $('.compare_icon3').append('<img src="' + newCar3.image + '" class="info03" width: auto></img>');
+      $('.compare_icon3').append('<img src="' + newCar3.image + '" class="info03 vehicle-picker" width: auto></img>');
       $('#vehicle-picker-3').addClass('d-none');
       $('#dimension').find('.modal_size03').append('<p class="info03">' + newCar3.size + '</p>');
       $('#dimension').find('.modal_weight03').append('<p class="info03">' + newCar3.weight + '</p>');
@@ -762,4 +762,4 @@
   
 </body>
 
-@endsection;
+@endsection

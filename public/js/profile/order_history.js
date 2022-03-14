@@ -8,21 +8,11 @@ $(function() {
           return false;
         }
       });
+      
+      
 
-      $('#send_email').on('click',function(e){
-          e.preventDefault();
-          var order_code_sendmail = $('.order_code').val();
-          window.location.href = $('#url').val() + "/send_cancel_code/" + order_code_sendmail;
-        var $this = $(this);
-        var loadingText = '<i class="fa fa-circle-o-notch fa-spin"></i> sending...';
-        if ($(this).html() !== loadingText) {
-            $this.data('original-text', $(this).html());
-            $this.html(loadingText);
-        }
-        setTimeout(function () {
-            $this.html($this.data('original-text'));
-        }, 9000);
-    })
+
+      
     
     var activeLangText =  $('#activeLang').text();
     var order_cancel_title = $('.order_cancel_title');
@@ -34,19 +24,110 @@ $(function() {
             var orderID = $('#send_cancel_code_success').val();
             $('#modal_'+orderID).modal('show');
         }
-    
-    
+
+        
+
+      
     $('.cancelBtn').on('click',function(){
+        
         var getData = $(this).data('order-id-code');
         myArray = getData.split(",");
        
-             order_code = myArray[0];
-             order_id= myArray[1];
+         var order_code = myArray[0];
+         var order_id= myArray[1];
 
         $('#modal_'+order_id).modal('show');
+        $('#send_email_'+order_id).on('click',function(e){
+            
+            var order_code_sendmail = $('.order_code').val();
+           
+            var $this = $(this);
+            var loadingText = '<i class="fa fa-circle-o-notch fa-spin"></i> sending...';
+    
+          if ($(this).html() !== loadingText) {
+              $this.data('original-text', $(this).html());
+              $this.html(loadingText);
+          }
+          setTimeout(function(){
+              $this.html($this.data('original-text'));
+          }, 9000);
+
+          var data = {
+            _token: $(".idToken").val(),
+            'order_code':order_code_sendmail,
+            };
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                }
+            })
+            $.ajax({
+                type: "post",
+                url: $('#url').val() + '/send_cancel_code/'+order_code_sendmail ,
+                data: data,
+                dataType: "json",
+                success: function (response) {
+                   console.log(response);
+                }
+        
+            })
+        });
+
+
+        $('#formcancel_'+order_id).on('submit',function(e){
+            e.preventDefault();
+            console.log(order_id);
+           var text_confirm_value =  $('#text-confirm_'+order_id).val();
+           console.log(text_confirm_value);
+           var data = {
+            _token: $(".idToken").val(),
+            'order_id':order_id,
+            'input': text_confirm_value,
+            };
+        
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            }
+        })
+    
+        $.ajax({
+            type: "post",
+            url: $('#url').val() + '/user/cancel_contract' ,
+            data: data,
+            dataType: "json",
+            success: function (response) {
+                   if(response.status == 400){
+                        $.each(response.errors,function(key,item){
+                            $('.text-errors').html("");
+                            $('.text-errors').removeClass('alert alert-warning');
+                            $('.text-errors').addClass('alert alert-danger');
+                            $('.text-errors').append('<li>'+item+'</li>');
+                        });
+                    }else if(response.status == 404){
+                        $('.text-errors').html("");
+                        $('.text-errors').removeClass('alert alert-warning');
+                        $('.text-errors').addClass('alert alert-danger');
+                        $('.text-errors').append('<li>'+response.message+'</li>');
+                    
+                    }else{
+                        $('#modal_'+order_id).modal('hide');
+                        $('.text-errors').html("");
+                        window.location.href = $('#url').val() +"/user/profile/auth/order_history";
+                    
+                   }
+                
+                
+            }
+    
+        })
+        
+        });
         
        
     });
+
     
     $('.CloseBtn').on('click',function(){
         var getData = $(this).data('order-id-code');
@@ -56,79 +137,22 @@ $(function() {
              order_id= myArray[1];
         $('#modal_'+order_id).modal('hide');
         
-    });
-  
-    $('.submitCancelBtn').on('click',function(e){
-        $(window).on('keydown',function(event){
-            if(event.key === 'Enter') {
-              event.preventDefault();
-              return false;
-            }
-          });
-        e.preventDefault();
-
-        var order_id = $(this).data('order-id');
-       var text_confirm_value =  $('#text-confirm_'+order_id).val();
-       
-       var data = {
-        _token: $(".idToken").val(),
-        'order_id':order_id,
-        'input': text_confirm_value,
-        };
-    
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-        }
-    })
-
-    $.ajax({
-        type: "post",
-        url: $('#url').val() + '/user/auth/cancel_contract' ,
-        data: data,
-        dataType: "json",
-        success: function (response) {
-           
-               if(response.status == 400){
-                    $.each(response.errors,function(key,item){
-                        $('.text-errors').html("");
-                        $('.text-errors').removeClass('alert alert-warning');
-                        $('.text-errors').addClass('alert alert-danger');
-                        $('.text-errors').append('<li>'+item+'</li>');
-                    });
-                }else if(response.status == 404){
-                    $('.text-errors').html("");
-                    $('.text-errors').removeClass('alert alert-warning');
-                    $('.text-errors').addClass('alert alert-danger');
-                    $('.text-errors').append('<li>'+response.message+'</li>');
-                
-                }else{
-                    $('#modal_'+order_id).modal('hide');
-                    window.location.href = $('#url').val() +"/user/profile/auth/order_history";
-                
-               }
-            
-            
-        }
-
-    })
-    
-});
-    
+    });  
 
     //CHECK ORDER STATUS
     $("#OrderHistoryList tbody tr").each(function() {
         var order_status = $(this).find("td:nth-child(4)").html(); //get text to check
         var order_payment =  $(this).find("td:nth-child(7)"); //get element
         var order_cancel = $(this).find("td:nth-child(8)"); // get element
-        console.log(order_cancel);
+      
        
 
-    if(activeLangText === 'EN'){
+    if(activeLangText == 'EN'){
             
         if(order_status == 'ordered'){
             //show payment
             order_payment.html('Waiting for information check');  
+            order_cancel.html('None');
         }else if(order_status == 'checked'){
             order_payment.html('Waiting for information check');     
         }else if(order_status == 'checkinfo'){      
@@ -152,6 +176,7 @@ $(function() {
             //show payment
             order_status = $(this).find("td:nth-child(4)").html("Đã Đặt Hàng");
             order_payment.html('Chờ Kiểm Tra Thông Tin');
+            order_cancel.html('Không');
             // order_cancel.html('Không');
         }else if(order_status == 'checked'){
             order_status = $(this).find("td:nth-child(4)").html("Đã Nhận Đơn");

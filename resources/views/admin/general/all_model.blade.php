@@ -59,8 +59,10 @@
                                             echo 'Đỏ';
                                         } else if ($model -> color == 'blue') {
                                             echo 'Xanh';
-                                        } else {
+                                        } else if ($model -> color == 'white'){
                                             echo 'Trắng';
+                                        } else {
+                                            echo 'Đen';
                                         }
                                     ?>
                                 </span>

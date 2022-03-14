@@ -44,6 +44,8 @@ Route::get('/', function () {
     return redirect()->route('user.home');
 });
 
+// Route::get('/404')
+
 
 
 Route::get('/lang/{locale?}', [ChangeLanguageController::class, 'switch']);
@@ -63,11 +65,16 @@ Route::prefix('user')->name('user.')->group(function(){
             Route::get('/register',[UserController::class,'loadLayoutRegister'])->name('register');
             Route::post('/create',[UserController::class,'create'])->name('create');
             Route::post('/authenticate',[UserController::class,'authenticate'])->name('authenticate');
+            //Forgot Password
+            Route::get('/password/forgot',[UserController::class,'showForgotForm'])->name('forgot.password.form'); 
+            Route::post('/password/forgot',[UserController::class,'sendResetLink'])->name('forgot.password.link'); 
+            Route::get('/password/reset/{token}',[UserController::class, 'showResetForm'])->name('reset.password.form');
+            Route::post('/password/reset',[UserController::class,'resetPassword'])->name('reset.password');
             //Cost Estimation Page
-            Route::get('/CostEstimate',[CostEstimateController::class,'index'])->name('CostEstimate');
+            Route::get('/CostEstimate/{id?}/{matp?}',[CostEstimateController::class,'index'])->name('CostEstimate');
             Route::post('/CostEstimate/getModelInfo',[CostEstimateController::class,'getModelInfo'])->name('getModelInfo');
             Route::post('/CostEstimate/getFees',[CostEstimateController::class,'getFees'])->name('getFees');
-            Route::get('/CostEstimate/OrderCar',[UserOrderController::class,'GuestOrder'])->name('GuestCostEstimateSubmit');
+            Route::post('/CostEstimate/OrderCar',[UserOrderController::class,'GuestOrder'])->name('GuestCostEstimateSubmit');
             //Order Page
             Route::get('/order/{id?}',[UserOrderController::class,'GuestOrder'])->name('GuestOrder');
             Route::post('/getModelInfo',[UserOrderController::class,'getModelInfo'])->name('getModelInfo');
@@ -86,11 +93,6 @@ Route::prefix('user')->name('user.')->group(function(){
         Route::prefix('profile')->name('profile.')->group(function(){
             Route::get('auth/settings',[DashboardController::class,'show'])->name('settings');
             Route::get('auth/order_history',[DashboardController::class,'show_order_history_page'])->name('order_history');
-           
-           //test momo
-            Route::post('/momo_payment',[CheckoutController::class,'momo_payment'])->name('momo_payment');
-            Route::get('/checkout',[CheckoutController::class,'checkout'])->name('checkout');
-
             Route::get('auth/fetch-data',[DashboardController::class,'fetchData']);
             Route::post('auth/editfullname',[DashboardController::class,'editfullname']); 
             Route::post('auth/editaddress',[DashboardController::class,'editaddress']); 
@@ -102,18 +104,19 @@ Route::prefix('user')->name('user.')->group(function(){
         //Function page for customer
             Route::get('/auth/fetchInfo_Layout_auth',[UserController::class,'fetchInfo_Layout_auth'])->name('fetchInfo_Layout_auth');
             Route::get('auth/home',[UserController::class,'home_auth'])->name('home_auth'); //customer homepage
+            //Customer Cost Estimation
+            Route::get('auth/CostEstimate/{id?}/{matp?}',[CostEstimateController::class,'index'])->name('CostEstimate');
+            Route::post('auth/CostEstimate/getModelInfo',[CostEstimateController::class,'getModelInfo'])->name('getModelInfo');
+            Route::post('auth/CostEstimate/getFees',[CostEstimateController::class,'getFees'])->name('getFees');
+            Route::post('auth/CostEstimate/OrderCar',[UserOrderController::class,'CustomerOrder'])->name('CustomerCostEstimateSubmit');
+            Route::post('auth/cancel_contract',[UserOrderController::class,'cancelContract'])->name('cancelContract');
             //Customer Order Page 
             Route::get('auth/order/{id?}',[UserOrderController::class,'CustomerOrder'])->name('CustomerOrder');
             Route::post('/auth/getModelInfo',[UserOrderController::class,'getModelInfo'])->name('getModelInfo');
             Route::post('/auth/getShowRoom',[UserOrderController::class,'getShowRoom'])->name('getShowRoom');
             Route::post('/auth/getShowRoomAddress',[UserOrderController::class,'getShowRoomAddress'])->name('getShowRoomAddress');
             Route::post('auth/CustomerSubmitOrder',[UserOrderController::class,'CustomerSubmitOrder'])->name('CustomerSubmitOrder');
-            //Customer Cost Estimation
-            Route::get('auth/CostEstimate',[CostEstimateController::class,'index'])->name('CostEstimate');
-            Route::post('auth/CostEstimate/getModelInfo',[CostEstimateController::class,'getModelInfo'])->name('getModelInfo');
-            Route::post('auth/CostEstimate/getFees',[CostEstimateController::class,'getFees'])->name('getFees');
-            Route::get('auth/CostEstimate/OrderCar',[UserOrderController::class,'CustomerOrder'])->name('CustomerCostEstimateSubmit');
-           
+            
             //Logout 
             Route::post('auth/logout',[UserController::class,'logout'])->name('logout');
     });
@@ -122,12 +125,17 @@ Route::prefix('user')->name('user.')->group(function(){
      Route::get('/order_tracking',[UserOrderController::class,'order_tracking'])->middleware('Localization')->name('ordertracking');
      
 
-    
+    //test momo
+    Route::get('/momo_payment/{order_id?}/{deposit?}',[CheckoutController::class,'momo_payment'])->name('momo_payment');
+    Route::get('/checkout',[CheckoutController::class,'checkout'])->name('checkout');
+    Route::get('/transaction_expired',[CheckoutController::class,'transaction_expired'])->name('transaction_expired');
    
     
     
 });
-Route::get('/sendmail_ordersuccess/{order_code?}',[MailController::class,'sendmail_ordersuccess']);
+Route::get('/sendmail_ordersuccess/{order_code?}',[MailController::class,'sendmail_ordersuccess'])->middleware("Localization");
+Route::get('/deposit_require/{order_code?}',[MailController::class,'sendmail_deposit_require'])->middleware("Localization");
+Route::get('/send_cancel_code/{order_code?}',[MailController::class,'send_cancel_code'])->middleware("Localization");
 
     
 
@@ -362,8 +370,6 @@ Route::get('user/modeldetails/{model_id?}', 'ModelInfoController@showModel');
 
 
 Route::get('/compare','CompareController@index');
-Route::get('/home/compare','CompareController@index');
-Route::get('/user/compare','CompareController@index');
-Route::get('/user/home/compare','CompareController@index');
-
-
+Route::get('/AboutUs',function(){
+    return(view('AboutUs'));
+});

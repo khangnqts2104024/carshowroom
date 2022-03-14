@@ -1,20 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\ModelInfo;
-
+use App\Models\modelInfo;
 class CompareController extends Controller
 {
-    public function showProduct(){
-        $product = ModelInfo::all();
-
-         }
-   
-         
-    
+     
     // public function findProduct(Request $request){
     //     $pro = ModelInfo::find($request);
     //     $pro -> showProduct($request);
@@ -22,8 +14,11 @@ class CompareController extends Controller
 
     public function index()
     {
-        $cars = ModelInfo::all();
+        
+        $cars = ModelInfo::get()->groupBy('model_name');
+    
         return view('compare', compact('cars'));
+
     }
 
 }

@@ -793,7 +793,29 @@
     "Order Price": "Trị Giá ",
     "Payment": "Thanh Toán",
     "Cancel Order": "Huỷ Đơn Hàng",
-    "Customer Name":"Khách Hàng"
-
+    "Customer Name":"Khách Hàng",
+    "Do you really want to cancel your order?":"Bạn thực sự muốn huỷ đơn hàng?",
+    "Yes, I want to cancel":"Có, Tôi muốn huỷ",
+    "No, I need to reconsider":"Không, Tôi sẽ suy nghĩ lại",
+    "Unexpected bad things will happen if you don't read this!":"Những điều không ngờ sẽ xảy ra nếu bạn không đọc phần này!",
+   "This action cannot be undone. The deposit will not be refunded if you cancel the order.":"Hành động này không thể được hoàn tác. Tiền đặt cọc sẽ không được hoàn lại nếu bạn hủy đơn hàng.",
+    "Please type":"Vui lòng nhập",
+    "to confirm":"để xác nhận",
+    "Model Name":"Dòng xe",
+    "Listed Price":"Giá niêm yết",
+    "Your cancel code:":"Mã huỷ của bạn:",
+    "Purchased Item":"Giá Trị Đơn Hàng",
+    "Dear mr/ms":"Chào anh/chị ",
+    "VINFAST has completed the step of checking the personal information of your order":"VINFAST đã hoàn tất bước kiểm tra thông tin cá nhân của đơn hàng của anh/chị, ",
+    "We hereby confirm that all information provided is complete and correct":"Chúng tôi xin xác nhận mọi thông tin được cung cấp đã đủ và chính xác",
+    "In the next step, please make a deposit at the Payment button for the order to be processed":"Ở bước tiếp theo, xin mời anh/ chị vui lòng tiến hành đặt cọc ở nút Thanh Toán để đơn hàng được xử lý.",
+    "Amount you need to pay:":"Số tiền bạn cần phải thanh toán:",
+    "During the payment process, if you have any problems that need assistance, please contact email":"Trong quá trình thanh toán, nếu có vấn đề cần hỗ trợ, quý khách vui lòng liên hệ qua email",
+    "Thank you":"Cảm ơn",
+    "TOTAL":"TỔNG CỘNG",
+    "Back To Home Page":"Trở Về Trang Chủ",
+    "We Will Confirm Your Order Soon":"Chúng Tôi Sẽ Sớm Xác Nhận Đơn Hàng Của Bạn ",
+    "Delivery Address":"Địa Chỉ Giao Hàng",
+    "Customer Contact":"Liên Hệ Với Khách"
     
 }

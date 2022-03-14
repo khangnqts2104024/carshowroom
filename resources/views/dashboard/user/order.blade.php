@@ -1,17 +1,10 @@
 @extends('dashboard.layouts.layout')
 @section('content')
 
-<div class="zalo-chat-widget" data-oaid="579745863508352884" data-welcome-message="Rất vui khi được hỗ trợ bạn!" data-autopopup="0" data-width="" data-height=""></div>
-
-<script src="https://sp.zalo.me/plugins/sdk.js"></script>
 
     <link rel="stylesheet" href="/css/order.css">
     <input type="hidden" class="idToken" value="{{ csrf_token() }}">
-    @if(session()->get('successEmailSent'))
-        123123
-    @endif
-
-
+   
 
     @if(isset($car_id_fromlayout))
         <input type="hidden" id="model_id" value="{{$car_id_fromlayout}}">
@@ -260,7 +253,7 @@
                       </tr>
 
                     <tr>
-                      <td style="color: red">{{__('Deposit')}} (5%)</td>
+                      <td style="color: red">{{__('Deposit')}} (1%)</td>
                       <td class="deposit" style="color: red">0 VND</td>
                     </tr>
 

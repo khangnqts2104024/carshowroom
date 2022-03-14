@@ -23,21 +23,21 @@
         <tbody>
           <th scope="col"></th>
           <td scope="col">
-            <div class="compare_icon"></div>
+            <div class="compare_icon1"></div>
             <a id="vehicle-picker-1" class="vehicle-picker " href="#" data-target="#modal_compare1" data="1">
               <i class="bi bi-zoom-in text-center"></i>
               <p class="text-center">{{ __('compare.Vehicle selection')}}</p>
             </a>
           </td>
           <td scope="col">
-            <div class="compare_icon"></div>
+            <div class="compare_icon2"></div>
             <a id="vehicle-picker-2" class="vehicle-picker" href="#" data-target="#modal_compare2" data="2">
               <i class="bi bi-zoom-in text-center"></i>
               <p class="text-center">{{ __('compare.Vehicle selection')}}</p>
             </a>
           </td>
           <td scope="col">
-            <div class="compare_icon"></div>
+            <div class="compare_icon3"></div>
             <a id="vehicle-picker-3" class="vehicle-picker" href="#" data-target="#modal_compare3" data="3">
               <i class="bi bi-zoom-in text-center"></i>
               <p class="text-center">{{ __('compare.Vehicle selection')}}</p>
@@ -434,8 +434,8 @@
       var oldData1 = JSON.parse(localStorage.getItem('compare'));
 
       oldData1.push(newCar1);
-      $('#vehicle-picker-1').append('<img src="' + newCar1.image + '" class="info01" width:auto></img>');
-      $('#vehicle-picker-1').find('.text-center').remove();
+      $('.compare_icon1').append('<img src="' + newCar1.image + '" class="info01" width:auto></img>');
+      $('#vehicle-picker-1').addClass('d-none');
       $('#dimension').find('.modal_size01').append('<p class="info01">' + newCar1.size + '</p>');
       $('#dimension').find('.modal_weight01').append('<p class="info01">' + newCar1.weight + '</p>');
       $('#engine').find('.engine01').append('<p class="info01">' + newCar1.engine + '</p>');
@@ -517,8 +517,8 @@
       var oldData2 = JSON.parse(localStorage.getItem('compare2'));
 
       oldData2.push(newCar2);
-      $('#vehicle-picker-2').append('<img src="' + newCar2.image + '" class="info02" width: auto></img>');
-      $('#vehicle-picker-2').find('.text-center').remove();
+      $('.compare_icon2').append('<img src="' + newCar2.image + '" class="info02" width: auto></img>');
+      $('#vehicle-picker-2').addClass('d-none')
       $('#dimension').find('.modal_size02').append('<p class="info02">' + newCar2.size + '</p>');
       $('#dimension').find('.modal_weight02').append('<p class="info02">' + newCar2.weight + '</p>');
       $('#engine').find('.engine02').append('<p class="info02">' + newCar2.engine + '</p>');
@@ -601,8 +601,8 @@
       var oldData3 = JSON.parse(localStorage.getItem('compare3'));
 
       oldData3.push(newCar3);
-      $('#vehicle-picker-3').append('<img src="' + newCar3.image + '" class="info03" width: auto></img>');
-      $('#vehicle-picker-3').find('.text-center').remove();
+      $('.compare_icon3').append('<img src="' + newCar3.image + '" class="info03" width: auto></img>');
+      $('#vehicle-picker-3').addClass('d-none');
       $('#dimension').find('.modal_size03').append('<p class="info03">' + newCar3.size + '</p>');
       $('#dimension').find('.modal_weight03').append('<p class="info03">' + newCar3.weight + '</p>');
       $('#engine').find('.engine03').append('<p class="info03">' + newCar3.engine + '</p>');
@@ -642,8 +642,8 @@
         var index1 = data1.findIndex(item => item.id1 === id1);
         data1.splice(index1, 1);
         localStorage.setItem('compare', JSON.stringify(data1));
-        $('#vehicle-picker-1').find('.info01').remove();
-        $('#vehicle-picker-1').append(' <i class="bi bi-zoom-in text-center"></i><p class="text-center">Lựa chọn xe</p>')
+        $('.compare_icon1').find('.info01').remove();
+        $('#vehicle-picker-1').removeClass('d-none');
         $('#dimension').find('.modal_size01').find('.info01').remove();
         $('#dimension').find('.modal_weight01').find('.info01').remove();
         $('#engine').find('.engine01').find('.info01').remove();
@@ -671,8 +671,8 @@
         var index2 = data2.findIndex(item => item.id2 === id2);
         data2.splice(index2, 1);
         localStorage.setItem('compare2', JSON.stringify(data2));
-        $('#vehicle-picker-2').find('.info02').remove();
-        $('#vehicle-picker-2').append(' <i class="bi bi-zoom-in text-center"></i><p class="text-center">Lựa chọn xe</p>')
+        $('.compare_icon2').find('.info02').remove();
+        $('#vehicle-picker-2').removeClass('d-none');
         $('#dimension').find('.modal_size02').find('.info02').remove();
         $('#dimension').find('.modal_weight02').find('.info02').remove();
         $('#engine').find('.engine02').find('.info02').remove();
@@ -700,8 +700,8 @@
         var index3 = data3.findIndex(item => item.id3 === id3);
         data3.splice(index3, 1);
         localStorage.setItem('compare3', JSON.stringify(data3));
-        $('#vehicle-picker-3').find('.info03').remove();
-        $('#vehicle-picker-3').append('<i class="bi bi-zoom-in text-center"></i><p class="text-center">Lựa chọn xe</p>')
+        $('.compare_icon3').find('.info03').remove();
+        $('#vehicle-picker-3').removeClass('d-none');
         $('#dimension').find('.modal_size03').find('.info03').remove();
         $('#dimension').find('.modal_weight03').find('.info03').remove();
         $('#engine').find('.engine03').find('.info03').remove();
@@ -759,7 +759,7 @@
     });
   </script>
 
-  <p>Test</p>
+  
 </body>
 
 @endsection;

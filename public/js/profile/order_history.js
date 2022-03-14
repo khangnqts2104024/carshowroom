@@ -1,10 +1,28 @@
 $(function() {
+
+  
+
     $(window).on('keydown',function(event){
         if(event.key === 'Enter') {
           event.preventDefault();
           return false;
         }
       });
+
+      $('#send_email').on('click',function(e){
+          e.preventDefault();
+          var order_code_sendmail = $('.order_code').val();
+          window.location.href = $('#url').val() + "/send_cancel_code/" + order_code_sendmail;
+        var $this = $(this);
+        var loadingText = '<i class="fa fa-circle-o-notch fa-spin"></i> sending...';
+        if ($(this).html() !== loadingText) {
+            $this.data('original-text', $(this).html());
+            $this.html(loadingText);
+        }
+        setTimeout(function () {
+            $this.html($this.data('original-text'));
+        }, 9000);
+    })
     
     var activeLangText =  $('#activeLang').text();
     var order_cancel_title = $('.order_cancel_title');
@@ -100,82 +118,78 @@ $(function() {
 
     //CHECK ORDER STATUS
     $("#OrderHistoryList tbody tr").each(function() {
-        var order_status = $(this).find("td:nth-child(5)").html(); //get text to check
-        var order_payment =  $(this).find("td:nth-child(8)"); //get element
-        var order_cancel = $(this).find("td:last-child"); // get element
+        var order_status = $(this).find("td:nth-child(4)").html(); //get text to check
+        var order_payment =  $(this).find("td:nth-child(7)"); //get element
+        var order_cancel = $(this).find("td:nth-child(8)"); // get element
+        console.log(order_cancel);
+       
 
-       if(activeLangText == 'EN'){
-            if(order_status == 'checkinfo'){
-                //show payment
-                order_payment_title.show();
-                order_payment.show();
-            }else if(order_status == 'deposited'){
-                //if deposited => hide payment
-                order_payment_title.hide();
-                order_payment.hide();
-                order_cancel_title.show();
-                order_cancel.show();
-            }else if(order_status == 'confirm' || order_status == 'released'){
-                //if status is confirm or released => hide payment, show cancel button
-                order_payment_title.hide();
-                order_payment.hide();
-                order_cancel_title.show();
-                order_cancel.show();
-            }
-       }else{
-           
-            order_status = $(this).find("td:nth-child(5)").html(); //get text of order_status
-            order_payment =  $(this).find("td:nth-child(8)"); //get element
-            order_cancel = $(this).find("td:last-child"); // get element
-
-            if(order_status == "ordered"){
-                order_status = $(this).find("td:nth-child(5)").html("Đã Đặt Hàng");
-            }
-            if(order_status == "checkinfo"){
-                order_status = $(this).find("td:nth-child(5)").html("Đã Kiểm Tra Thông Tin");
-                 //show payment
-                 order_payment_title.show();
-                 order_payment.show();
-            }
-            if(order_status == "deposited"){
-                order_status = $(this).find("td:nth-child(5)").html("Đã Đặt Cọc");
-                //if deposited => hide payment
-                order_payment_title.hide();
-                order_payment.hide();
-                order_cancel_title.show();
-                order_cancel.show();
-            }
-            if(order_status == "confirm"){
-                order_status = $(this).find("td:nth-child(5)").html("Đã Xác Nhận");
-                //if status is confirm or released => hide payment, show cancel button
-                order_payment_title.hide();
-                order_payment.hide();
-                order_cancel_title.show();
-                order_cancel.show();
-            }
-            if(order_status == "released"){
-                order_status = $(this).find("td:nth-child(5)").html("Đã Xuất Kho");
-                order_payment_title.hide();
-                order_payment.hide();
-                order_cancel_title.show();
-                order_cancel.show();
-            }
-            if(order_status == "checked"){
-                order_status = $(this).find("td:nth-child(5)").html("Đã Nhận Đơn");
-            }
-            if(order_status == "sold"){
-                order_status = $(this).find("td:nth-child(5)").html("Đã Giao Xe");
-            }
-            if(order_status == "canceled"){
-                order_status = $(this).find("td:nth-child(5)").html("Đơn Đã Huỷ");
-            }
-            if(order_status == "custcanceled"){
-                order_status = $(this).find("td:nth-child(5)").html("Đang Huỷ Đơn");
-            }
-
-          
+    if(activeLangText === 'EN'){
             
-       }
+        if(order_status == 'ordered'){
+            //show payment
+            order_payment.html('Waiting for information check');  
+        }else if(order_status == 'checked'){
+            order_payment.html('Waiting for information check');     
+        }else if(order_status == 'checkinfo'){      
+        }else if(order_status == 'deposited'){
+            order_payment.html('Canceled');
+            order_payment.html('Deposited');
+        }else if(order_status == 'canceled'){
+            order_payment.html('Canceled');
+            order_cancel.html('Canceled');
+        }else if(order_status == 'custcanceled'){
+            order_payment.html('Canceled');
+            order_cancel.html('Canceled');
+        }else if(order_status == 'confirm' || order_status == 'released'){
+            order_payment.html('Deposited');
+        }else if(order_status == 'sold'){
+            order_payment.html('Paid');
+            order_cancel.html('None');
+        }
+    }else{
+        if(order_status == 'ordered'){
+            //show payment
+            order_status = $(this).find("td:nth-child(4)").html("Đã Đặt Hàng");
+            order_payment.html('Chờ Kiểm Tra Thông Tin');
+            // order_cancel.html('Không');
+        }else if(order_status == 'checked'){
+            order_status = $(this).find("td:nth-child(4)").html("Đã Nhận Đơn");
+            order_payment.html('Chờ Kiểm Tra Thông Tin');
+           
+        }else if(order_status == 'checkinfo'){
+            order_status = $(this).find("td:nth-child(4)").html("Đã Kiểm Tra Thông Tin");
+            // order_cancel.html('None');
+        }else if(order_status == 'deposited'){
+            order_status = $(this).find("td:nth-child(4)").html("Đã Đặt Cọc");
+            order_payment.html('Đã Đặt Cọc');
+            
+        }else if(order_status == 'canceled'){
+            order_status = $(this).find("td:nth-child(4)").html("Đã Huỷ Đơn");
+            order_payment.html('Đã Huỷ');
+            order_cancel.html('Đã Huỷ');
+
+        }else if(order_status == 'custcanceled'){
+            order_status = $(this).find("td:nth-child(4)").html("Đã Huỷ Đơn");
+            order_payment.html('Đã Huỷ');
+            order_cancel.html('Đã Huỷ');
+
+        }else if(order_status == 'confirm' ){
+            order_status = $(this).find("td:nth-child(4)").html("Xác Nhận Lấy Xe ");
+            order_payment.html('Đã Đặt Cọc');
+            
+
+        }else if(order_status == 'released'){
+            order_status = $(this).find("td:nth-child(4)").html("Xe Đã Rời Kho");
+            order_payment.html('Đã Đặt Cọc');
+
+        }else if(order_status == 'sold'){
+            order_status = $(this).find("td:nth-child(4)").html("Đã Giao Xe");
+            order_payment.html('Đã Thanh Toán');
+            order_cancel.html('Không');
+        }
+
+    }
     })
 
    

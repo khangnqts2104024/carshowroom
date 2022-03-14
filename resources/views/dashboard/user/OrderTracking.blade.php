@@ -2,6 +2,7 @@
 @section('content')
 <input type="hidden" class="idToken" value="{{ csrf_token() }}">
     <link rel="stylesheet" href="/css/order_tracking.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
     
     {{-- get url --}}
@@ -51,16 +52,16 @@
                     <table id="OrderHistoryList" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
-
-                                <th>STT</th>
-                                <th>Order Code</th>
-                                <th>Order Date</th>
-                                <th>Order Price</th>
-                                <th>Order Status</th>
-                                <th>Customer Name</th>
-                                <th>Order Details</th>
-                                <th>Payment</th>
-                                <th>Cancel</th>
+                                <th>#</th>
+                                <th>{{ __('Order Code') }}</th>
+                                <th>{{ __('Order Date') }}</th>
+                                <th>{{ __('Order Price') }}</th>
+                                <th class="order_status_title">{{ __('Order Status') }}</th>
+                                <th>{{ __('Customer Name') }}</th>
+                                <th>{{ __('Model Name') }}</th>
+                                <th>{{ __('Order Details') }}</th>
+                                <th class="order_payment_title">{{ __('Payment') }}</th>
+                                <th class="order_cancel_title">{{ __('Cancel Order') }}</th>
                             </tr>
                         </thead>
                         
@@ -101,23 +102,25 @@
                             <p>{{ __('This action cannot be undone. The deposit will not be refunded if you cancel the order.') }}
                             </p>
                             
-                            <p>Click <a id="send_email" href="">here</a>
-                                to get Cancellation confirmation code from email</p>
+                            <p><button class="btn btn-info btn-sm rounded-pill" id="send_email" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing Order">{{__('Get Cancel Confirm Code From Email')}}</button></p>
                             <p>{{ __('Please type') }} <span
-                                    style="font-weight: bolder;">Code</span>
+                                    style="font-weight: bolder;">{{__('Code')}}</span>
                                 {{ __('to confirm') }}</p>
-                            <input type="text" name="input" id="text-confirm" class="rounded shadow-sm">
+                            <input type="text" name="input" id="text-confirm" class="rounded-pill shadow-sm">
                         </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" form="formCancel" class="btn btn-danger btn-sm submitCancelBtn">{{ __('Yes, I want to cancel') }}</button>
+                    <div class="modal-footer ajax-button"> 
+                        
+                        <button type="button" form="formCancel" class="btn btn-danger btn-sm submitCancelBtn" >{{ __('Yes, I want to cancel') }}</button>
                         <button type="button" class="btn btn-success btn-sm CloseBtn">{{ __('No, I need to reconsider') }}</button>
                     </div>
                 </div>
             </div>
         </div>
 
-    
+        
+
+ 
 
  @push('scriptOrderTracking')
     <script src="/js/order_tracking.js"></script>

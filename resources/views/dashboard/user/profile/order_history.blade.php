@@ -1,7 +1,7 @@
 @extends('dashboard.user.profile.layouts.layout')
 @section('content')
     <link rel="stylesheet" href="/css/profile/order_history_user.css">
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"> --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     {{-- get url --}}
     <input type="hidden" value="{{ url('') }}" id="url">
@@ -27,18 +27,18 @@
 
                 <div class="success_messages"></div>
 
-                <table id="OrderHistoryList" class="table table-hover table-bordered compact" style="width:100%">
+                <table id="OrderHistoryList" class="table table-bordered compact" style="width:100%">
                     <thead class="thead-light">
                         <tr>
                             <th>#</th>
                             <th>{{ __('Order Code') }}</th>
-                            <th>{{ __('Order Date') }}</th>
+                            {{-- <th>{{ __('Order Date') }}</th> --}}
                             <th>{{ __('Order Price') }}</th>
                             <th class="order_status_title">{{ __('Order Status') }}</th>
-                            <th>{{ __('Customer Name') }}</th>
+                            <th>{{ __('Model Name') }}</th>
                             <th>{{ __('Order Details') }}</th>
-                            <th style="display: none;" class="order_payment_title">{{ __('Payment') }}</th>
-                            <th style="display: none;" class="order_cancel_title">{{ __('Cancel') }}</th>
+                            <th class="order_payment_title">{{ __('Payment') }}</th>
+                            <th class="order_cancel_title">{{ __('Cancel Order') }}</th>
                         </tr>
                     </thead>
 
@@ -48,7 +48,7 @@
                             <tr class="item-info">
                                 <td>{{ $STT++ }}</td>
                                 <td>{{ $order_info->order_code }}</td>
-                                <td>{{ $order_info->order_date }}</td>
+                                
                                 <td class="text-center" class="order_price">
 
                                     @php
@@ -59,14 +59,14 @@
 
                                 <td class="text-center" class="order_status"
                                     id="order_status_{{ $order_info->order_id }}">{{ $order_info->order_status }}</td>
-                                <td class="text-center">{{ $order_info->fullname }}</td>
+                                <td class="text-center">{{ $order_info->model_name }}</td>
                                 <td class="text-center" class="order_details"><button type="button"
                                         class="btn btn-primary btn-sm" data-toggle="modal"
                                         data-target="#model{{ $STT }}">
-                                        Show
+                                        {{__('Show')}}
                                     </button>
                                 </td>
-                                <td style="display: none;" class="text-center" class="order_payment">
+                                <td class="text-center" class="order_payment">
                                     @php
                                         $deposit = round($order_info->order_price * (1 / 100));
                                     @endphp
@@ -74,12 +74,12 @@
                                         href="http://127.0.0.1:8000/user/momo_payment/{{ $order_info->order_id }}/{{ $deposit }}"><button
                                             class="btn btn-info btn-sm">Momo</button></a>
                                 </td>
-                                <td style="display: none;" class="text-center" class="order_cancel">
+                                <td  class="text-center" class="order_cancel">
 
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-danger btn-sm cancelBtn"
                                         data-order-id-code="{{ $order_info->order_code }},{{ $order_info->order_id }}">
-                                        Cancel
+                                        {{__('Cancel')}}
                                     </button>
 
                                     <!-- Modal -->
@@ -101,23 +101,22 @@
                                                     <form action="{{ route('user.cancelContract') }}" method="post"
                                                         id="formcancel_{{ $order_info->order_id }}">
                                                         @csrf
-                                                        <p class="alert alert-warning text-errors">
+                                                        <p class="alert alert-warning text-errors rounded">
                                                             {{ __("Unexpected bad things will happen if you don't read this!") }}
                                                         </p>
                                                         <input type="hidden" name="order_id" class="order_id_this_order"
                                                             value="{{ $order_info->order_id }}">
                                                         <p>{{ __('This action cannot be undone. The deposit will not be refunded if you cancel the order.') }}
                                                         </p>
-                                                        <p>Click <a id="send_email"
-                                                                href="/send_cancel_code/{{ $order_info->order_code }}">here</a>
-                                                            to get Cancellation confirmation code from email</p>
+                                                        <input type="hidden" class="order_code" value="{{ $order_info->order_code }}">
+                                                        <p><button class="btn btn-info btn-sm rounded-pill" id="send_email">{{__('Get Cancel Confirm Code From Email')}}</button></p>
                                                         <p>{{ __('Please type') }} <span
-                                                                style="font-weight: bolder;">Code</span>
+                                                                style="font-weight: bolder;">{{__('Code')}}</span>
                                                             {{ __('to confirm') }}</p>
                                                         <input type="text"
                                                             name="text-confirm_{{ $order_info->order_id }}"
                                                             id="text-confirm_{{ $order_info->order_id }}"
-                                                            class="rounded shadow-sm" required>
+                                                            class="rounded-pill shadow-sm" >
                                                     </form>
                                                 </div>
                                                 <div class="modal-footer">

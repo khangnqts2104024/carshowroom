@@ -318,7 +318,7 @@ class UserOrderController extends Controller
             if ($cancel_code_confirm === $cancel_code) {
                 $order_detail = orderDetail::find($order_id);
                 $order_detail->update([
-                    'order_status' => 'canceled'
+                    'order_status' => 'custcanceled'
                 ]);
                 if(App::getLocale() == 'vi'){
                     return response()->json([

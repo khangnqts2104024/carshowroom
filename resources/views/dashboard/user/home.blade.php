@@ -1,5 +1,8 @@
 @extends('dashboard.layouts.layout')
 @section('content')
+@section('page_title')
+    {{ "Home" }}
+@endsection
     <link rel="stylesheet" href="/css/homepage.css">
     <link id="import_link_font_icon" rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Mulish:300,400,600,700&amp;display=swap&amp;subset=vietnamese">
@@ -148,7 +151,11 @@
             </div>
           </div>
 
+          @if(Auth::check())
+          <a href="/user/auth/modeldetails/{{$model->model_id}}" class="view-detail">{{__("View Detail")}}</a>
+          @else
           <a href="/user/modeldetails/{{$model->model_id}}" class="view-detail">{{__("View Detail")}}</a>
+          @endif
 
                 </div>
             @endforeach

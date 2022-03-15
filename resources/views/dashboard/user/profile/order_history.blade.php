@@ -1,5 +1,8 @@
 @extends('dashboard.user.profile.layouts.layout')
 @section('content')
+@section('page_title')
+    {{ "Order History" }}
+@endsection
     <link rel="stylesheet" href="/css/profile/order_history_user.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
@@ -83,7 +86,7 @@
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade" id="modal_{{ $order_info->order_id }}" tabindex="-1"
+                                    <div class="modal fade" id="modal_{{ $order_info->order_id }}" class="modal_cancel" tabindex="-1"
                                         role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                                         <div class="modal-dialog " role="document">
                                             <div class="modal-content">
@@ -99,7 +102,7 @@
                                                 <div class="modal-body">
 
                                                     <form action="{{ route('user.cancelContract') }}" data-order-id="{{ $order_info->order_id }}" method="post"
-                                                        id="formcancel_{{ $order_info->order_id }}" >
+                                                        id="formcancel_{{ $order_info->order_id }}">
                                                         @csrf
                                                         <p class="alert alert-warning text-errors rounded">
                                                             {{ __("This action cannot be undone.If a deposit has been made, the deposit will not be refunded if you cancel the order.") }}
@@ -133,6 +136,7 @@
                                     @endif
 
                                 </td>
+                                
                             </tr>
 
 

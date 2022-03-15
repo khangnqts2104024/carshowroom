@@ -214,8 +214,8 @@
         <div class="employeeinfo">
             <h4>Tiền Lương:</h4>
             <h5> {{$employee->salary}} VND</h5>
-            <h4>Hoa Hồng:</h4>
-            <h5> VND</h5>
+            {{-- <h4>Hoa Hồng:</h4>
+            <h5> VND</h5> --}}
         </div>
         <div class="employeeinfo">
             <h4>Chi Nhánh:</h4>

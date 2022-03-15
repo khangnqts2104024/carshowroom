@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>User Dashboard</title>
+    <title>@yield('page_title')</title>
 
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -36,7 +36,7 @@
                             class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link" style="color: white">{{ __('UserProfilesettings.Home') }}</a>
+                    <a href="{{route('user.home_auth')}}" class="nav-link" style="color: white">{{ __('UserProfilesettings.Home') }}</a>
                 </li>
 
             </ul>
@@ -59,12 +59,6 @@
                 <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                         <i class="fas fa-expand-arrows-alt"></i>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                        <i class="fas fa-th-large"></i>
                     </a>
                 </li>
             </ul>
@@ -182,14 +176,7 @@
         <div>
             @yield('content')
         </div>
-        {{-- Right SideBar Content --}}
-        <aside class="control-sidebar control-sidebar-dark">
-
-            <div class="p-3">
-                <h5>Title</h5>
-                <p>Sidebar content</p>
-            </div>
-        </aside>
+      
 
 
         <footer class="main-footer">

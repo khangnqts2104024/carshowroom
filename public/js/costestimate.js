@@ -4,6 +4,7 @@ $(function () {
 
     $("#models").on("change", function () {
         var model_id = $(this).val();
+        $('#link-view-details').attr('href','/user/modeldetails/'+model_id);
         var data = {
             _token: $(".idToken").val(),
             'model_id': model_id,
@@ -120,6 +121,7 @@ $(function () {
                             );
                             $("#allFees").val(allFees);
                             $("#costEstimated").val(EstimatedCost_nonFormat);
+                            
                         });
                     },
                 });

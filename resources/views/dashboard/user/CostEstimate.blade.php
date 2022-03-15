@@ -1,5 +1,8 @@
 @extends('dashboard.layouts.layout')
 @section('content')
+@section('page_title')
+    {{ "Cost Estimate" }}
+@endsection
     <input type="hidden" class="idToken" value="{{ csrf_token() }}">
     <link rel="stylesheet" href="/css/CostEstimate.css">
 
@@ -79,9 +82,9 @@
         <div class="col-md-4">
             <!-- Default form subscription -->
             @if(Auth::check())
-                <form action="{{route('user.CustomerCostEstimateSubmit')}}" method="post">
+                <form action="{{route('user.CustomerOrder')}}" method="get">
             @else
-                <form action="{{route('user.GuestCostEstimateSubmit')}}" method="post">
+                <form action="{{route('user.GuestOrder')}}" method="get">
             @endif
                 @csrf
                 <p class="h4 mb-4" style="white-space: nowrap;">{{ __('CostEstimate.Cost Estimation') }}</p>
@@ -179,7 +182,7 @@
                     <button type="submit" class="btn btn-block buttonDeposit mt-5">{{ __('Order Car') }}</button>
             </form>
 
-            <a href="#"><button class="btn btn-block buttonViewDetail">{{ __('View Detail.') }}</button></a>
+            <a id="link-view-details" href="" class="btn btn-block buttonViewDetail">{{ __('View Detail.') }}</a>
 
 
 

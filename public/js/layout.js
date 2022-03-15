@@ -1,6 +1,10 @@
 $(function(){
     fetchInfo_Layout();
-    fetchInfo_Layout_auth();
+    var checkAuth = $('#authLogin').val();
+    if(checkAuth == "authLogin"){
+        fetchInfo_Layout_auth();
+    }
+   
     
     var activeLangText =  $('#activeLang').text();
 

@@ -1,5 +1,8 @@
 @extends('dashboard.layouts.layout')
 @section('content')
+@section('page_title')
+    {{ "Login" }}
+@endsection
 <link rel="stylesheet" href="/css/account.css">
 
 

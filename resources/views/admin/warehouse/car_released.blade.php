@@ -47,6 +47,7 @@
                             <tr>
                                 <th>STT</th>
                                 <th>Model</th>
+                                <th>Màu Xe</th>
                                 <th>Showroom</th>
                                 <th>Mã Đơn Hàng</th>
                                 <th>Ngày xuất</th>
@@ -64,6 +65,7 @@
                                 <tr>
                                     <td>{{ $x++ }}</td>                                  
                                     <td> {{$p->models->model_name}}</td>
+                                    <td> {{$p->models->color}}</td>
                                     <td>{{ $p->showrooms->showroom_name}}</td>
                                     <td>{{ $p->orders->order_code}} </td>
                                     <td>{{ $p->manufactoring_date}}</td>
@@ -79,8 +81,7 @@
                                 <a href="{{url('admin/warehouse/carpending/'.$p->car_id)}}" class="btn btn-success car-add " >Xác Nhận</a>
                               
                                 </div>
-                               </td>
-                                    </td>
+                           
                                    
                                 </tr>
                                     <!-- test -->
@@ -94,6 +95,7 @@
                             <tr>
                                 <th>Car ID</th>
                                 <th>Model</th>
+                                <th>Màu xe</th>
                                 <th>Showroom</th>
                                 <th>Mã Đơn Hàng</th>
                                 <th>Ngày xuất</th>

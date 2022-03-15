@@ -28,13 +28,20 @@ class OrderDetailController extends Controller
 
     public function orderedstatus()
     {
+         $employee = Auth::guard('employee')->user()->employeeinfo;
+ $order_id=order::select('order_id')->where('showroom',$employee->emp_branch)->get();
+// dd(($order_id->toArray()));
+if(Auth::guard('employee')->user()->role=='admin'){
         $orders = orderDetail::where('order_status', 'ordered')->get();
-
-        // $useremail = Auth::guard('employee')->user()->role;
-        // dd($useremail);
-
+}else{
+    $orders = orderDetail::where('order_status', 'ordered')->whereIn('order_id',$order_id)->get();
+}
+    //    dd($orders);
         return view('admin.showroom.ordercheck')->with(['orders' => $orders]);
     }
+
+
+
     public function takeorder($id)
     {
         $order = orderDetail::find($id);
@@ -208,7 +215,8 @@ class OrderDetailController extends Controller
     public function soldorder($id)
     {
         $orders = orderDetail::find($id);
-        $car = carInfo::find($orders->orders->cars->first()->car_id);
+        $car = $orders->orders->cars;
+        // dd($car);
 
 
         if ($orders->order_status === "released" && $car->car_status === 'showroom') {
@@ -218,7 +226,7 @@ class OrderDetailController extends Controller
             $car->save();
             $message = 'Bạn đã xác nhận giao xe thành công!';
         } else {
-            $message = 'Bạn xác nhậ không thành công!Kiểm tra lại xe đã tới showroom chưa!';
+            $message = 'Bạn xác nhận không thành công!Kiểm tra lại xe đã tới showroom chưa!';
         }
         return redirect()->back()->with(['message' => $message]);
     }

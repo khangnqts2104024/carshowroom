@@ -56,12 +56,11 @@
                         </thead>
                         <tbody>
 
-
                             @php $x=1 @endphp
                             @foreach ($cars as $p)
                             <tr>
                                 <td>{{ $x++ }}</td>
-                                <td> {{$p->models->model_name}}</td>
+                                <td> {{$p->models->model_name}}-{{$p->models->color}}</td>
                                 <td>{{ $p->showrooms->showroom_name}}</td>
                                 <td>{{ $p->orders->order_code}} </td>
                                 <td>{{ $p->orders->customer->fullname}} </td>

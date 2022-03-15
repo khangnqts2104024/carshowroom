@@ -48,6 +48,7 @@
                             <tr> 
                                 <th>STT</th>
                                 <th>Model</th>
+                                <th>Màu Xe</th>
                                 <th>Showroom</th>
                                 <th>Mã Đơn Hàng</th>
                                 <th>Ngày xuất</th>
@@ -62,6 +63,7 @@
                         <tr>
                             <td>{{ $x++ }}</td>  
                             <td> {{$p->models->model_name}}</td>
+                            <td> {{$p->models->color}}</td>
                             <td>{{ $p->showrooms->showroom_name}}</td>
                             <td>{{ $p->orders->order_code}} </td>
                             <td>{{ $p->manufactoring_date}}</td>
@@ -75,7 +77,9 @@
                             <tr> 
                                 <th>STT</th>
                                 <th>Model</th>
+                                <th>Màu Xe</th>
                                 <th>Showroom</th>
+                             
                                 <th>Mã Đơn Hàng</th>
                                 <th>Ngày xuất</th>
                                 <th>Tình Trạng</th>

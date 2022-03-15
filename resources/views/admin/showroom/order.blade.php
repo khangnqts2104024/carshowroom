@@ -65,7 +65,7 @@
                                 <td>{{$p->orders->customer->fullname}}</td>
                                 <td>{{$p->orders->customer->email}} </td>
                                 <td>{{$p->orders->customer->phone_number}} </td>
-                                <td>{{$p->modelInfos->model_name}} </td>
+                                <td>{{$p->modelInfos->model_name}}-{{$p->modelInfos->color}}</td>
                                 <td>{{$p->order_status}}</td>
                                 <td class="flex-container-column"> <a  href="{{ url('admin/showroom/orderdetail/'.$p->order_id.'/'.$p->model_id)}}" class='btn btn-primary'> <i class='fa-solid fa-circle-info'></i></a>  </td>
                               

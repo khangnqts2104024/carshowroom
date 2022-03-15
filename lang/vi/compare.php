@@ -2,6 +2,7 @@
     return[
         "Compare cars"=>"So sánh xe",
         "Vehicle selection"=>"Lựa chọn xe",
+        "Choose more cars to compare"=>"Chọn Thêm Xe Để So Sánh",
         "Dimensions & Weight"=>"Kích Thước & Khối Lượng",
         "Dimensions"=>"Kích Thước",
         "Weight"=>"Tự Trọng/Tải Trọng",

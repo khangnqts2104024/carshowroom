@@ -346,7 +346,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 
 
-
 Route::get('/AboutUs',function(){
     return(view('AboutUs'));
 });

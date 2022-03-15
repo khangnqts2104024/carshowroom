@@ -1,5 +1,5 @@
 @extends('layouts_admin.layoutadmin')
-@section('title', 'product index')
+@section('title', 'Customer Detail Page')
 @section('content')
 
 <section class="content-header">

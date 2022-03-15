@@ -1,7 +1,7 @@
 <!--  -->
 <!-- Lưu tại resources/views/product/index.blade.php -->
 @extends('layouts_admin.layoutadmin')
-@section('title', 'product index')
+@section('title', 'Car Receive')
 @section('content')
 <!-- Content Header (Page header) -->
 <section class="content-header">

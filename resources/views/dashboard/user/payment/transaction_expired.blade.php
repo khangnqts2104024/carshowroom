@@ -1,5 +1,8 @@
 @extends('dashboard.layouts.layout')
 @section('content')
+@section('page_title')
+    {{ "Transaction Expired" }}
+@endsection
     <div class="container" style="padding-top: 30px;padding-bottom: 0px;">
         <h1></h1>
         <div class="jumbotron text-center" style="margin-top:50px;">

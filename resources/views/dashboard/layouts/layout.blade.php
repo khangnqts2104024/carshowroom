@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Title</title>
+  {{-- <title>Vinfast Showroom</title> --}}
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
   <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-
+  <title>@yield('page_title')</title>
  
   
 </head>
@@ -31,7 +31,11 @@
     <!-- nav PC -->
 
   <nav class="navbar navbar-custom navbar-expand-lg navbar-light bg-light nav-pc sticky-top">
-    <a href="{{route('user.home')}}"  class="logoVinFast"><img src="https://vinfastauto.com/themes/porto/img/logo-header.svg" alt="Vinfast" /></a>
+    @if(Auth::check())
+		<a href="{{route('user.home_auth')}}"  class="logoVinFast"><img src="https://vinfastauto.com/themes/porto/img/logo-header.svg" alt="Vinfast" /></a>
+	@else
+	<a href="{{route('user.home')}}"  class="logoVinFast"><img src="https://vinfastauto.com/themes/porto/img/logo-header.svg" alt="Vinfast" /></a>
+	@endif
     <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
         aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -56,7 +60,12 @@
 			<li class="nav-item CostEstimation"><a class="nav-link"  href="/user/CostEstimate">{{__('home.Cost Estimation')}}</a></li>
 			<li class="nav-item ServiceButton"><a class="nav-link"  href="/user/order">{{__('Order Car')}}</a></li>
 		@endif
-        <li class="nav-item ToolButton"><a class="nav-link"  href="{{url('/user/auth/compare')}}">{{__('home.Tools')}}</a></li>
+		@if(Auth::check())
+		<li class="nav-item ToolButton"><a class="nav-link"  href="{{url('/user/auth/compare')}}">{{__('home.Compare Car')}}</a></li>
+		@else
+		<li class="nav-item ToolButton"><a class="nav-link"  href="{{url('/user/compare')}}">{{__('home.Compare Car')}}</a></li>
+		@endif
+        
 
 		<li class="nav-item d-flex" style="align-items: center;flex-direction:column;">
 			
@@ -176,9 +185,15 @@
 				<div class="col-md-2 col-sm-6">
 					<h3>{{__('home.Quick Links')}}</h3>
 					<ul class="footer-links">
-						<li><a href="/">Home</a>
+						@if(Auth::check())
+							<li><a href="{{route('user.home_auth')}}">{{__('home.Home')}}</a>
+						@else
+							<li><a href="{{route('user.home')}}">{{__('home.Home')}}</a>
+						@endif
+
+						
 						</li>
-						<li><a href="{{url('/AboutUs')}}">About us</a>
+						<li><a href="{{url('/AboutUs')}}">{{__('About us')}}</a>
 						</li>
 						<li><a href="https://vinfastauto.us/privacy-policy" target="_blank">{{__('Privacy Policy')}}</a>
 						</li>

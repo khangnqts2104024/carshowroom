@@ -1,5 +1,8 @@
 @extends('dashboard.layouts.layout')
 @section('content')
+@section('page_title')
+    {{ "Cost Estimate" }}
+@endsection
     <input type="hidden" class="idToken" value="{{ csrf_token() }}">
     <link rel="stylesheet" href="/css/CostEstimate.css">
 

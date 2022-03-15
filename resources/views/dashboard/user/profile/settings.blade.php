@@ -1,5 +1,8 @@
     @extends('dashboard.user.profile.layouts.layout')
     @section('content')
+    @section('page_title')
+    {{ "Profile Settings" }}
+    @endsection
         <link rel="stylesheet" href="/css/profile/settings.css">
         {{-- get url --}}
         <input type="hidden" value="{{ url('') }}" id="url">

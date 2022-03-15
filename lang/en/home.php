@@ -20,6 +20,7 @@
         "Vinfast EV Global Premiere"=>"Vinfast EV Global Premiere",
         "BE THE FIRST TO KNOW"=>"BE THE FIRST TO KNOW",
         "Get all the latest information on Vinfast Services, Events, Jobs and Fairs. Sign up for our newsletter today."=>"Get all the latest information on Vinfast Services, Events, Jobs and Fairs. Sign up for our newsletter today.",
-        "Copyright 2022 | All Rights Reserved by VINFAST Ltd."=>"Copyright 2022 | All Rights Reserved by VINFAST Ltd."
+        "Copyright 2022 | All Rights Reserved by VINFAST Ltd."=>"Copyright 2022 | All Rights Reserved by VINFAST Ltd.",
+        "Compare Car"=>"Compare Car"
     ];
 ?>

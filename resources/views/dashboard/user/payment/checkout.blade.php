@@ -1,9 +1,11 @@
 @extends('dashboard.layouts.layout')
 @section('content')
-
+@section('page_title')
+    {{ "Payment Status" }}
+@endsection
    
 
-    <link rel="stylesheet" href="checkout.css">
+  <link rel="stylesheet" href="checkout.css">
 
   @if(isset($resultCode))
     @if($resultCode == 0)

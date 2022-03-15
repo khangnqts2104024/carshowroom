@@ -1,9 +1,12 @@
 @extends('dashboard.layouts.layout')
 @section('content')
+@section('page_title')
+    {{ "Order Tracking" }}
+@endsection
 <input type="hidden" class="idToken" value="{{ csrf_token() }}">
     <link rel="stylesheet" href="/css/order_tracking.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
+    {{-- <title>Order Tracking</title> --}}
     
     {{-- get url --}}
     <input type="hidden" value="{{ url('') }}" id="url">

@@ -1,5 +1,8 @@
 @extends('dashboard.layouts.layout')
 @section('content')
+@section('page_title')
+    {{ "Model Details" }}
+@endsection
     <link rel="stylesheet" href="/css/order.css">
 
     <div class="container">
@@ -44,9 +47,16 @@
                         </tr>
                     </table>
 
-                    <a href="/user/order/{{ $model_detail->model_id }}" style="color: white;"><button
-                            class="buttonCustom" id="buttonSubmit">Đặt xe</button></a>
+                    @if(Auth::check())
+                    <a href="/user/auth/order/{{ $model_detail->model_id }}" style="color: white;"><button
+                        class="buttonCustom" id="buttonSubmit">Đặt xe</button></a>
 
+                    @else
+                    <a href="/user/order/{{ $model_detail->model_id }}" style="color: white;"><button
+                        class="buttonCustom" id="buttonSubmit">Đặt xe</button></a>
+
+                    @endif
+                    
                     <!-- <img src="{{ asset('storage/files/Image_Car/' . $model_detail->image) }}" alt=""> -->
                 </div>
             @endforeach

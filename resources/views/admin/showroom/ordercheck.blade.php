@@ -1,6 +1,6 @@
 <!-- Lưu tại resources/views/product/index.blade.php -->
 @extends('layouts_admin.layoutadmin')
-@section('title', 'product index')
+@section('title', 'Take Order Page')
 @section('content')
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -64,7 +64,7 @@
                                 <td>{{$p->orders->customer->fullname}}</td>
                                 <td>{{$p->orders->customer->email}} </td>
                                 <td>{{$p->orders->customer->phone_number}} </td>
-                                <td>{{$p->modelInfos->model_name}} </td>
+                                <td>{{$p->modelInfos->model_name}}-{{$p->modelInfos->color}}  </td>
                                 <td id="" class="flex-container-column status_container">
                                     <p class="status">{{$p->order_status}}</p>
                                     @if($p->order_status=='ordered')

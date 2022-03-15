@@ -798,7 +798,7 @@
     "Yes, I want to cancel":"Có, Tôi muốn huỷ",
     "No, I need to reconsider":"Không, Tôi sẽ suy nghĩ lại",
     "Unexpected bad things will happen if you don't read this!":"Những điều không ngờ sẽ xảy ra nếu bạn không đọc phần này!",
-   "This action cannot be undone. The deposit will not be refunded if you cancel the order.":"Hành động này không thể được hoàn tác. Tiền đặt cọc sẽ không được hoàn lại nếu bạn hủy đơn hàng.",
+   "This action cannot be undone.If a deposit has been made, the deposit will not be refunded if you cancel the order.":"Hành động này không thể được hoàn tác.Nếu đã đặt cọc, tiền đặt cọc sẽ không được hoàn lại nếu bạn hủy đơn hàng.",
     "Please type":"Vui lòng nhập",
     "to confirm":"để xác nhận",
     "Model Name":"Dòng xe",
@@ -816,6 +816,25 @@
     "Back To Home Page":"Trở Về Trang Chủ",
     "We Will Confirm Your Order Soon":"Chúng Tôi Sẽ Sớm Xác Nhận Đơn Hàng Của Bạn ",
     "Delivery Address":"Địa Chỉ Giao Hàng",
-    "Customer Contact":"Liên Hệ Với Khách"
+    "Customer Contact":"Liên Hệ Với Khách",
+    "Get Cancel Confirm Code From Email":"Nhận Mã Xác Nhận Từ Email",
+    "Show":"Xem",
+    "Your Payment Was Successful":"Thanh toán Thành Công",
+    "Thank you for your payment. You can track your order":"Cảm ơn bạn đã thanh toán. Bạn có thể theo dõi đơn hàng của mình",
+    "here":"tại đây",
+    "Having trouble?":"Gặp rắc rối?",
+    "Send Email For Us":"Gửi email cho chúng tôi",
+    "Continue to homepage":"Tiếp tục đến trang chủ",
+    "Payment Failed":"Thanh Toán Thất Bại",
+    "Your payment was not successfully processed. Please contact":"Thanh toán của bạn không được xử lý thành công. Xin vui lòng liên hệ",
+    "our customer support":"hỗ trợ khách hàng",
+    "or try":"hoặc thử",
+    "payment again":"thanh toán lại",
+    "Back to homepage":"Trở lại trang chủ",
+    "Your Transaction Has Expired":"Giao Dịch Đã Hết Hạn",
+    "Awesome!":"Tuyệt Vời!",
+    "Your order is successful. Check your email for details.":"Đơn hàng của bạn đã thành công. Kiểm tra email của bạn để biết chi tiết."
+   
+  
     
 }

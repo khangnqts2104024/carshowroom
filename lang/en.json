@@ -100,7 +100,7 @@
     "Yes, I want to cancel":"Yes, I want to cancel",
     "No, I need to reconsider":"No, I need to reconsider",
     "Unexpected bad things will happen if you don’t read this!":"Unexpected bad things will happen if you don’t read this!",
-    "This action cannot be undone. The deposit will not be refunded if you cancel the order.":"This action cannot be undone. The deposit will not be refunded if you cancel the order.",
+    "This action cannot be undone.If a deposit has been made, the deposit will not be refunded if you cancel the order.":"This action cannot be undone.If a deposit has been made, the deposit will not be refunded if you cancel the order.",
     "Please type":"Please type",
     "to confirm":"to confirm",
     "Model Name":"Model Name",
@@ -116,7 +116,26 @@
     "Thank you":"Thank you",
     "We Will Confirm Your Order Soon":"We Will Confirm Your Order Soon",
     "Delivery Address":"Delivery Address",
-    "Customer Contact":"Customer Contact"
+    "Customer Contact":"Customer Contact",
+    "Get Cancel Confirm Code From Email":"Get Cancel Confirm Code From Email",
+    "Code":"Code",
+    "Cancel":"Cancel",
+    "Show":"Show",
+    "Your Payment Was Successful":"Your Payment Was Successful",
+    "Thank you for your payment. You can track your order":"Thank you for your payment. You can track your order",
+    "here":"here",
+    "Having trouble?":"Having trouble?",
+    "Send Email For Us":"Send Email For Us",
+    "Continue to homepage":"Continue to homepage",
+    "Payment Failed":"Payment Failed",
+    "Your payment was not successfully processed. Please contact":"Your payment was not successfully processed. Please contact",
+    "our customer support":"our customer support",
+    "or try":"or try",
+    "payment again":"payment again",
+    "Back to homepage":"Back to homepage",
+    "Your Transaction Has Expired":"Your Transaction Has Expired",
+    "Awesome!":"Awesome!",
+    "Your order is successful. Check your email for details.":"Your order is successful. Check your email for details."
     
 
 

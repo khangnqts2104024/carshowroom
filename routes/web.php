@@ -44,10 +44,6 @@ Route::get('/', function () {
     return redirect()->route('user.home');
 });
 
-// Route::get('/404')
-
-
-
 Route::get('/lang/{locale?}', [ChangeLanguageController::class, 'switch']);
 
 Auth::routes();
@@ -74,14 +70,17 @@ Route::prefix('user')->name('user.')->group(function(){
             Route::get('/CostEstimate/{id?}/{matp?}',[CostEstimateController::class,'index'])->name('CostEstimate');
             Route::post('/CostEstimate/getModelInfo',[CostEstimateController::class,'getModelInfo'])->name('getModelInfo');
             Route::post('/CostEstimate/getFees',[CostEstimateController::class,'getFees'])->name('getFees');
-            Route::post('/CostEstimate/OrderCar',[UserOrderController::class,'GuestOrder'])->name('GuestCostEstimateSubmit');
+            // Route::get('/CostEstimate/OrderCar',[UserOrderController::class,'GuestOrder'])->name('GuestCostEstimateSubmit');
             //Order Page
-            Route::get('/order/{id?}',[UserOrderController::class,'GuestOrder'])->name('GuestOrder');
+            Route::get('/order/{id?}/{provinces?}',[UserOrderController::class,'GuestOrder'])->name('GuestOrder');
             Route::post('/getModelInfo',[UserOrderController::class,'getModelInfo'])->name('getModelInfo');
             Route::post('/getShowRoom',[UserOrderController::class,'getShowRoom'])->name('getShowRoom');
             Route::post('/getShowRoomAddress',[UserOrderController::class,'getShowRoomAddress'])->name('getShowRoomAddress');
             Route::post('/SubmitOrder',[UserOrderController::class,'GuestSubmitOrder'])->name('GuestSubmitOrder');
-            //Order Tracking
+            //car compare
+            Route::get('/compare','CompareController@index');
+            //car detail
+            Route::get('/modeldetails/{model_id?}', 'ModelInfoController@showModel');
      });
     
 
@@ -98,6 +97,7 @@ Route::prefix('user')->name('user.')->group(function(){
             Route::post('auth/editaddress',[DashboardController::class,'editaddress']); 
             Route::post('auth/editphone',[DashboardController::class,'editphone']); 
             Route::post('auth/editEmail',[DashboardController::class,'editEmail']); 
+            Route::post('auth/change_password',[DashboardController::class,'change_password']); 
             Route::post('auth/editCitizenID',[DashboardController::class,'editCitizenID']); 
             Route::post('auth/editAvatar',[DashboardController::class,'editAvatar']); 
         });
@@ -108,36 +108,36 @@ Route::prefix('user')->name('user.')->group(function(){
             Route::get('auth/CostEstimate/{id?}/{matp?}',[CostEstimateController::class,'index'])->name('CostEstimate');
             Route::post('auth/CostEstimate/getModelInfo',[CostEstimateController::class,'getModelInfo'])->name('getModelInfo');
             Route::post('auth/CostEstimate/getFees',[CostEstimateController::class,'getFees'])->name('getFees');
-            Route::post('auth/CostEstimate/OrderCar',[UserOrderController::class,'CustomerOrder'])->name('CustomerCostEstimateSubmit');
-            Route::post('auth/cancel_contract',[UserOrderController::class,'cancelContract'])->name('cancelContract');
+           
+           
             //Customer Order Page 
-            Route::get('auth/order/{id?}',[UserOrderController::class,'CustomerOrder'])->name('CustomerOrder');
+            Route::get('auth/order/{id?}/{provinces?}',[UserOrderController::class,'CustomerOrder'])->name('CustomerOrder');
             Route::post('/auth/getModelInfo',[UserOrderController::class,'getModelInfo'])->name('getModelInfo');
             Route::post('/auth/getShowRoom',[UserOrderController::class,'getShowRoom'])->name('getShowRoom');
             Route::post('/auth/getShowRoomAddress',[UserOrderController::class,'getShowRoomAddress'])->name('getShowRoomAddress');
             Route::post('auth/CustomerSubmitOrder',[UserOrderController::class,'CustomerSubmitOrder'])->name('CustomerSubmitOrder');
-            
+             //car compare
+            Route::get('auth/compare','CompareController@index');
+            //car detail
+            Route::get('auth/modeldetails/{model_id?}', 'ModelInfoController@showModel');
             //Logout 
             Route::post('auth/logout',[UserController::class,'logout'])->name('logout');
     });
      //Order Tracking
-     Route::post('/getOrderCode',[UserOrderController::class,'getOrderCode'])->middleware('Localization')->name('getOrderCode');
-     Route::get('/order_tracking',[UserOrderController::class,'order_tracking'])->middleware('Localization')->name('ordertracking');
-     
+     Route::post('/getOrderCode',[UserOrderController::class,'getOrderCode'])->name('getOrderCode')->middleware('Localization');
+     Route::get('/order_tracking',[UserOrderController::class,'order_tracking'])->name('ordertracking')->middleware('Localization');
+     Route::post('/cancel_contract',[UserOrderController::class,'cancelContract'])->name('cancelContract')->middleware('Localization');
 
-    //test momo
-    Route::get('/momo_payment/{order_id?}/{deposit?}',[CheckoutController::class,'momo_payment'])->name('momo_payment');
-    Route::get('/checkout',[CheckoutController::class,'checkout'])->name('checkout');
-    Route::get('/transaction_expired',[CheckoutController::class,'transaction_expired'])->name('transaction_expired');
+    //momo
+    Route::get('/momo_payment/{order_id}/{deposit}',[CheckoutController::class,'momo_payment'])->name('momo_payment')->middleware('Localization');
+    Route::get('/checkout',[CheckoutController::class,'checkout'])->name('checkout')->middleware('Localization');
+    Route::get('/transaction_expired',[CheckoutController::class,'transaction_expired'])->name('transaction_expired')->middleware('Localization');;
    
-    
-    
 });
-Route::get('/sendmail_ordersuccess/{order_code?}',[MailController::class,'sendmail_ordersuccess'])->middleware("Localization");
-Route::get('/deposit_require/{order_code?}',[MailController::class,'sendmail_deposit_require'])->middleware("Localization");
-Route::get('/send_cancel_code/{order_code?}',[MailController::class,'send_cancel_code'])->middleware("Localization");
 
-    
+Route::post('/sendmail_ordersuccess/{order_code?}',[MailController::class,'sendmail_ordersuccess'])->middleware("Localization");
+// Route::get('/deposit_require/{order_code?}',[MailController::class,'sendmail_deposit_require'])->middleware("Localization");
+Route::post('/send_cancel_code/{order_code?}',[MailController::class,'send_cancel_code'])->middleware("Localization");
 
 
 // KHANG
@@ -149,20 +149,6 @@ Route::get('/send_cancel_code/{order_code?}',[MailController::class,'send_cancel
 // Route::get('admin/showroom', function () {
 //     return view('admin.showroom.order');
 // });
-
-
-
-Route::get('/test', [ModelInfoController::class, 'compare']);
-
-
-
-// 
-
-
-
-
-
-
 
 // Route::get('admin/showroom',[OrderDetailController::class,'show']);
 // Route::get('admin/showroom/check',[OrderDetailController::class,'orderedstatus']);
@@ -195,9 +181,6 @@ Route::get('/test', [ModelInfoController::class, 'compare']);
 
 //test
 
-
-
-
 // Route::get('admin/warehouse',[CarInfoController::class,'show']);
 // Route::get('admin/warehouse/ordering',[OrderDetailController::class,'confirmstatus']);
 // Route::get('admin/warehouse/delete', [CarInfoController::class,'carcancel']);
@@ -207,12 +190,6 @@ Route::get('/test', [ModelInfoController::class, 'compare']);
 // Route::post('admin/warehouse/ordering/create', [CarInfoController::class,'carcreate']);
 // Route::get('admin/warehouse/carpending/{id}',[CarInfoController::class,'carpending']);
 // Route::get('admin/warehouse/released',[CarInfoController::class,'released']);
-
-
-
-
-
-
 
 // ok
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -363,13 +340,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
 // Route::get('admin/general/deletemodel/{model_id}', 'ModelInfoController@deleteModel');
 // Route::get('admin/general/allmodel', 'ModelInfoController@allModel');
 
-Route::get('user/modeldetails/{model_id?}', 'ModelInfoController@showModel');
+
 // Route::post('admin/general/savemodel', 'ModelInfoController@saveModel');
 // Route::post('admin/general/updatemodel/{model_id}', 'ModelInfoController@updateModel');
 
 
 
-Route::get('/compare','CompareController@index')->middleware('Localization');
 Route::get('/AboutUs',function(){
     return(view('AboutUs'));
 });

@@ -10,6 +10,9 @@ use App\Models\orderDetail;
 use App\Models\Province;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\App;
+use App\Mail\DepositRequire;
 
 class OrderDetailController extends Controller
 {
@@ -25,13 +28,20 @@ class OrderDetailController extends Controller
 
     public function orderedstatus()
     {
+         $employee = Auth::guard('employee')->user()->employeeinfo;
+ $order_id=order::select('order_id')->where('showroom',$employee->emp_branch)->get();
+// dd(($order_id->toArray()));
+if(Auth::guard('employee')->user()->role=='admin'){
         $orders = orderDetail::where('order_status', 'ordered')->get();
-
-        // $useremail = Auth::guard('employee')->user()->role;
-        // dd($useremail);
-
+}else{
+    $orders = orderDetail::where('order_status', 'ordered')->whereIn('order_id',$order_id)->get();
+}
+    //    dd($orders);
         return view('admin.showroom.ordercheck')->with(['orders' => $orders]);
     }
+
+
+
     public function takeorder($id)
     {
         $order = orderDetail::find($id);
@@ -127,12 +137,65 @@ class OrderDetailController extends Controller
             $order->note=$request->modelnote;
             $order->save();
             $message = "Cập Nhật Đơn Hàng Thành Công!";
+
+           //test
+                $order_infos = orderDetail::join('orders', 'order_details.order_id', '=', 'orders.order_id',)
+                    ->join('model_infos', 'model_infos.model_id', '=', 'order_details.model_id')
+                    ->join('customer_infos', 'customer_infos.customer_id', '=', 'orders.customer_id')
+                    ->join('showrooms', 'showrooms.id', '=', 'orders.showroom')
+                    ->where('orders.order_code', '=', $order_detail->orders->order_code)
+                    ->where('model_infos.released', '=','active')
+                    ->get(['model_infos.model_name', 'model_infos.price', 'customer_infos.fullname', 'customer_infos.address', 'customer_infos.email', 'customer_infos.phone_number', 'order_details.order_status', 'orders.order_id', 'orders.order_code', 'orders.order_date', 'showrooms.showroom_name', 'showrooms.address as showroom_address', 'showrooms.phone as showroom_phone', 'order_details.order_price']);
+                foreach ($order_infos as $order_info) {
+                    $model_name = $order_info->model_name;
+                    $customer_fullname = $order_info->fullname;
+                    $customer_address = $order_info->address;
+                    $customer_email = $order_info->email;
+                    $order_id = $order_info->order_id;
+                    $order_code = $order_info->order_code;
+                    $order_price = $order_info->order_price;
+                    $showroom_name = $order_info->showroom_name;
+                    $showroom_address = $order_info->showroom_address;
+                    $showroom_phone = $order_info->showroom_phone;
+                }
+        
+        
+                $deposit_nonFormat = round($order_price * (1 / 100)); //lam tron so
+                $deposit_format = number_format($deposit_nonFormat);
+        
+                $details = [
+                    'Model Name' => $model_name,
+                    'Deposit Non Format' => $deposit_nonFormat,
+                    'Deposit' => $deposit_format,
+                    'Customer Name' => $customer_fullname,
+                    'Customer Address' => $customer_address,
+                    'Customer Email' => $customer_email,
+                    'Order ID' => $order_id,
+                    'Order Code' => $order_code,
+                    'ShowRoom Name' => $showroom_name,
+                    'ShowRoom Address' => $showroom_address,
+                    'ShowRoom Phone' => $showroom_phone,
+                ];
+        
+        
+        //dưa về mail customer
+                Mail::to('leanhtrung97@gmail.com')->send(new DepositRequire($details));
+       
+            
+
+//test
+
+
+
         } else {
             $message = "có gì đó sai sai!ko thể update thành công!Check Lại Đơn Hàng Hỏi Sếp nha";
         };
 
         return redirect('admin/showroom/myorder')->with(['message' => $message]);
     }
+
+
+
 
     public function confirmdeposited($id)
     {
@@ -152,7 +215,8 @@ class OrderDetailController extends Controller
     public function soldorder($id)
     {
         $orders = orderDetail::find($id);
-        $car = carInfo::find($orders->orders->cars->first()->car_id);
+        $car = $orders->orders->cars;
+        // dd($car);
 
 
         if ($orders->order_status === "released" && $car->car_status === 'showroom') {
@@ -162,7 +226,7 @@ class OrderDetailController extends Controller
             $car->save();
             $message = 'Bạn đã xác nhận giao xe thành công!';
         } else {
-            $message = 'Bạn xác nhậ không thành công!Kiểm tra lại xe đã tới showroom chưa!';
+            $message = 'Bạn xác nhận không thành công!Kiểm tra lại xe đã tới showroom chưa!';
         }
         return redirect()->back()->with(['message' => $message]);
     }

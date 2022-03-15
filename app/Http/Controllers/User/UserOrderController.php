@@ -143,9 +143,6 @@ class UserOrderController extends Controller
         } while ($orderCodeExist);
 
         $order_code = $order->order_code;
-
-
-
         $order->customer_id = $user_auth_id;
         $save_order = $order->save();
         //get order ID to insert order details table
@@ -227,11 +224,6 @@ class UserOrderController extends Controller
             } while ($orderCodeExist);
 
             $order_code = $order->order_code;
-
-
-
-
-
             $order->customer_id = $isUser->customer_id;
             $save_order = $order->save();
             //get order ID to insert order details table
@@ -283,6 +275,7 @@ class UserOrderController extends Controller
     //order_tracking get order code
     public function getOrderCode(Request $request)
     {
+        // dd($request->order_code_input);
         $order_code = $request->order_code_input;
         //find order info
 
@@ -291,7 +284,9 @@ class UserOrderController extends Controller
             ->join('customer_infos', 'customer_infos.customer_id', '=', 'orders.customer_id')
             ->join('showrooms', 'showrooms.id', '=', 'orders.showroom')
             ->where('orders.order_code', '=', $order_code)
-            ->get(['model_infos.model_name', 'model_infos.price', 'customer_infos.fullname', 'customer_infos.address', 'customer_infos.email', 'customer_infos.phone_number', 'order_details.order_status', 'orders.order_code', 'orders.order_date', 'showrooms.showroom_name', 'showrooms.address as showroom_address', 'showrooms.phone as showroom_phone', 'order_details.order_price']);
+            ->where('model_infos.released', '=','active')
+            ->get("*");
+
         return response()->json([
             'status' => 200,
             'order_infos' => $order_infos,
@@ -301,9 +296,10 @@ class UserOrderController extends Controller
     public function cancelContract(Request $request)
     {
         $order_id = $request->order_id;
-        $cancel_code_confirm = $request->text_confirm_value;
+        $cancel_code_confirm = $request->input;
+        // dd($order_id);
         $validator = Validator::make($request->all(), [
-            'text_confirm_value' => 'required'
+            'input' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -315,15 +311,36 @@ class UserOrderController extends Controller
             $order = order::where('order_id', $order_id)->first();
             $cancel_code = $order->cancel_code;
             if ($cancel_code_confirm == $cancel_code) {
-                $order_detail = orderDetail::find($order_id);
-                $order_detail->update([
-                    'order_status' => 'canceled'
+                $order_detail = orderDetail::where('order_id',$order_id)->first();
+                // dd($order_detail);
+                $order_detail->order_status = 'custcanceled';
+                $order_detail->update();
+                if(App::getLocale() == 'vi'){
+                    return response()->json([
+                        'status' => 200,
+                        'message' => 'Trùng Khớp',
+                    ]);
+                }else{
+                    return response()->json([
+                        'status' => 200,
+                        'message' => 'Matched',
+                    ]);
+                }
+                
+            }else{
+               if(App::getLocale() == 'en'){
+                return response()->json([
+                    'status' => 404,
+                    'message' => 'Cancel Code Does Not Match',
                 ]);
+               }else{
+                return response()->json([
+                    'status' => 404,
+                    'message' => 'Mã Xác Nhận Không Trùng Khớp',
+                ]);
+               }
             }
-            return response()->json([
-                'status' => 200,
-                'message' => 'ok',
-            ]);
+           
         }
     }
 }

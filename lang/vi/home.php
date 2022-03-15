@@ -6,7 +6,7 @@
         "Tools" => "Công Cụ",
         "Account" => "Tài Khoản",
         "Cost Estimation"=>"Chi Phí Lăn Bánh",
-        "Home"=>"Home",
+        "Home"=>"Trang Chủ",
         "Contact us"=>"Liên hệ",
         "Compare Car"=>"So sánh xe",
         "Car Details"=>"Chi tiết xe",
@@ -20,6 +20,7 @@
         "Vinfast EV Global Premiere"=>"Ngày Vinfast EV Ra Mắt Toàn Cầu",
         "BE THE FIRST TO KNOW"=>"HÃY LÀ NGƯỜI ĐẦU TIÊN BIẾT",
         "Get all the latest information on Vinfast Services, Events, Jobs and Fairs. Sign up for our newsletter today."=>"Nhận tất cả thông tin mới nhất về Dịch vụ, Sự kiện, Việc làm và Hội chợ của Vinfast. Đăng ký nhận bản tin của chúng tôi ngày hôm nay.",
-        "Copyright 2022 | All Rights Reserved by VINFAST Ltd."=>"Bản quyền 2022 | Tất cả các quyền được bảo lưu bởi VINFAST Ltd."
+        "Copyright 2022 | All Rights Reserved by VINFAST Ltd."=>"Bản quyền 2022 | Tất cả các quyền được bảo lưu bởi VINFAST Ltd.",
+        "Compare Car"=>"So Sánh Xe"
     ];
 ?>

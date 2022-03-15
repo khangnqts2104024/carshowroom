@@ -369,7 +369,7 @@ Route::get('user/modeldetails/{model_id?}', 'ModelInfoController@showModel');
 
 
 
-Route::get('/compare','CompareController@index');
+Route::get('/compare','CompareController@index')->middleware('Localization');
 Route::get('/AboutUs',function(){
     return(view('AboutUs'));
 });

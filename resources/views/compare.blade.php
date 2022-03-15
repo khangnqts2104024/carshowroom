@@ -7,7 +7,7 @@
 <body>
   <link rel="stylesheet" href="/css/compare.css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" />
+  {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" /> --}}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 
@@ -21,6 +21,9 @@
     <div class="comparison-header table-responsive">
       <table class="table table-compare">
         <tbody>
+          <div style>
+
+          </div>
           <th scope="col"></th>
           <td scope="col">
             <div class="compare_icon1"></div>
@@ -434,7 +437,7 @@
       var oldData1 = JSON.parse(localStorage.getItem('compare'));
 
       oldData1.push(newCar1);
-      $('.compare_icon1').append('<img src="' + newCar1.image + '" class="info01" width:auto></img>');
+      $('.compare_icon1').append('<img src="' + newCar1.image + '" class="info01 vehicle-picker" width:auto></img>');
       $('#vehicle-picker-1').addClass('d-none');
       $('#dimension').find('.modal_size01').append('<p class="info01">' + newCar1.size + '</p>');
       $('#dimension').find('.modal_weight01').append('<p class="info01">' + newCar1.weight + '</p>');
@@ -452,7 +455,7 @@
       $('#safety').find('.front_wheel_brake01').append('<p class="info01">' + newCar1.front_wheel_brake + '</p>');
       $('#safety').find('.rear_wheel_brake01').append('<p class="info01">' + newCar1.rear_wheel_brake + '</p>');
       $('#btn-order').find("#btn01").append(
-        '<button class="btn btn-success info01" style="text-align: center; font-weight: bolder;"><a href="/user/order/' + id1 + '" style="color:white; font-weight:bolder;">Order</a></button>'
+        '<a  class="btn btn-success info01" href="/user/order/' + id1 + '" style="color:white; font-weight:bolder;">Order</a>'
       );
       $('#btn-order').find("#btn01").append(
         '<button class="btn btn-danger info01" onClick="delete_compare(' + id1 + ')"  style="text-align: center; font-weight: bolder;">Remove</button>'
@@ -517,7 +520,7 @@
       var oldData2 = JSON.parse(localStorage.getItem('compare2'));
 
       oldData2.push(newCar2);
-      $('.compare_icon2').append('<img src="' + newCar2.image + '" class="info02" width: auto></img>');
+      $('.compare_icon2').append('<img src="' + newCar2.image + '" class="info02 vehicle-picker" width: auto></img>');
       $('#vehicle-picker-2').addClass('d-none')
       $('#dimension').find('.modal_size02').append('<p class="info02">' + newCar2.size + '</p>');
       $('#dimension').find('.modal_weight02').append('<p class="info02">' + newCar2.weight + '</p>');
@@ -535,7 +538,7 @@
       $('#safety').find('.front_wheel_brake02').append('<p class="info02">' + newCar2.front_wheel_brake + '</p>');
       $('#safety').find('.rear_wheel_brake02').append('<p class="info02">' + newCar2.rear_wheel_brake + '</p>');
       $('#btn-order').find("#btn02").append(
-        '<button class="btn btn-success info02" style="text-align: center; font-weight: bolder;"><a href="/user/order/' + id2 + '" style="color:white; font-weight:bolder;">Order</a></button>'
+        '<a  class="btn btn-success info01" href="/user/order/' + id2 + '" style="color:white; font-weight:bolder;">Order</a>'
 
       );
       $('#btn-order').find("#btn02").append(
@@ -601,7 +604,7 @@
       var oldData3 = JSON.parse(localStorage.getItem('compare3'));
 
       oldData3.push(newCar3);
-      $('.compare_icon3').append('<img src="' + newCar3.image + '" class="info03" width: auto></img>');
+      $('.compare_icon3').append('<img src="' + newCar3.image + '" class="info03 vehicle-picker" width: auto></img>');
       $('#vehicle-picker-3').addClass('d-none');
       $('#dimension').find('.modal_size03').append('<p class="info03">' + newCar3.size + '</p>');
       $('#dimension').find('.modal_weight03').append('<p class="info03">' + newCar3.weight + '</p>');
@@ -619,7 +622,7 @@
       $('#safety').find('.front_wheel_brake03').append('<p class="info03">' + newCar3.front_wheel_brake + '</p>');
       $('#safety').find('.rear_wheel_brake03').append('<p class="info03">' + newCar3.rear_wheel_brake + '</p>');
       $('#btn-order').find("#btn03").append(
-        '<button class="btn btn-success info03" style="text-align: center; font-weight: bolder;"><a href="/user/order/' + id3 + '" style="color:white; font-weight:bolder;">Order</a></button>'
+        '<a  class="btn btn-success info01" href="/user/order/' + id3 + '" style="color:white; font-weight:bolder;">Order</a>'
 
       );
       $('#btn-order').find("#btn03").append(
@@ -762,4 +765,4 @@
   
 </body>
 
-@endsection;
+@endsection

@@ -100,7 +100,7 @@ class ModelInfoController extends Controller
         $data['model_name'] = $request->model_name;
         $data['car_type'] = $request->car_type;
         $data['price'] = $request->price;
-        $data['color'] = $request->color;
+        // $data['color'] = $request->color;
         $data['size'] = $request->size;
         $data['engine_shutdown_function'] = $request->engine_shutdown_function; //
         $data['weight'] = $request->weight;
@@ -118,9 +118,9 @@ class ModelInfoController extends Controller
         $data['front_wheel_brake'] = $request->front_wheel_brake;
         $data['rear_wheel_brake'] = $request->rear_wheel_brake;
         $data['active'] = $request->active;
-        // $data['released'] = $request->released; 
-        // $data['image'] = $request->image;
-        // $data['gif'] = $request->gif;
+        $data['released'] = $request->released; 
+        $data['image'] = $request->image;
+        $data['gif'] = $request->gif;
 
         DB::table('model_infos')->where('model_id', $model_id)->update($data);
 

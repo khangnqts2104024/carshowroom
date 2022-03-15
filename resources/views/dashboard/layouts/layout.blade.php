@@ -45,9 +45,7 @@
                        
                     </div>
                     <div class="desc">{{__("Sales policy may be updated subject to VinFast Policy from time to time.")}}</div>
-                    <div class="view_all">
-                      <a href="#">{{__("View All Cars")}}</a>
-                    </div>
+                    
           </div>
         </li>
         
@@ -58,7 +56,7 @@
 			<li class="nav-item CostEstimation"><a class="nav-link"  href="/user/CostEstimate">{{__('home.Cost Estimation')}}</a></li>
 			<li class="nav-item ServiceButton"><a class="nav-link"  href="/user/order">{{__('Order Car')}}</a></li>
 		@endif
-        <li class="nav-item ToolButton"><a class="nav-link"  href="{{url('/compare')}}">{{__('home.Tools')}}</a></li>
+        <li class="nav-item ToolButton"><a class="nav-link"  href="{{url('/user/auth/compare')}}">{{__('home.Tools')}}</a></li>
 
 		<li class="nav-item d-flex" style="align-items: center;flex-direction:column;">
 			
@@ -78,7 +76,7 @@
 			  
 		</li>
 		@if(Auth::check())
-		<li class="nav-item AccountButton"><a class="nav-link" id="username" href="{{ route('user.login') }}"></a></li>
+			<li class="nav-item AccountButton"><a class="nav-link" id="username" href="{{ route('user.login') }}"></a></li>
 		@else
 			<li class="nav-item AccountButton"><a class="nav-link"  href="{{ route('user.login') }}">{{__('home.Account')}}</a></li>
 		@endif
@@ -178,14 +176,9 @@
 				<div class="col-md-2 col-sm-6">
 					<h3>{{__('home.Quick Links')}}</h3>
 					<ul class="footer-links">
-						<li><a href="#">Home</a>
+						<li><a href="/">Home</a>
 						</li>
 						<li><a href="{{url('/AboutUs')}}">About us</a>
-						</li>
-						<li><a href="#">Vinfast Partners</a>
-						</li>
-						
-						<li><a href="#" target="_blank">Terms &amp; Conditions</a>
 						</li>
 						<li><a href="https://vinfastauto.us/privacy-policy" target="_blank">{{__('Privacy Policy')}}</a>
 						</li>

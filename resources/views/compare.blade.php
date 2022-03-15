@@ -10,7 +10,11 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
-
+  @if(Auth::check())
+    <input type="hidden" class="url_move_order_page" value="/user/auth/order/">
+  @else
+    <input type="hidden" class="url_move_order_page" value="/user/order/">
+  @endif
 
   <!-- Comparison-->
   <p style="text-align: center; font-size: 2em; font-weight: bolder">
@@ -386,7 +390,11 @@
 
   <!-- Script add_compare -->
   <script>
+    //check url for guest or member
+    var url_move_order_page = $('.url_move_order_page').val();
+
     function add_compare(product_id) {
+      
       var id1 = product_id;
       var type1 = document.getElementById('view_model_type' + id1).value;
       var image1 = document.getElementById('view_image' + id1).src;
@@ -452,10 +460,10 @@
       $('#safety').find('.front_wheel_brake01').append('<p class="info01">' + newCar1.front_wheel_brake + '</p>');
       $('#safety').find('.rear_wheel_brake01').append('<p class="info01">' + newCar1.rear_wheel_brake + '</p>');
       $('#btn-order').find("#btn01").append(
-        '<button class="btn btn-success info01" style="text-align: center; font-weight: bolder;"><a href="/user/order/' + id1 + '" style="color:white; font-weight:bolder;">Order</a></button>'
+        '<a  class="btn btn-success info01" href="'+url_move_order_page + id1 + '" style="color:white; font-weight:bolder;">Order</a>' 
       );
       $('#btn-order').find("#btn01").append(
-        '<button class="btn btn-danger info01" onClick="delete_compare(' + id1 + ')"  style="text-align: center; font-weight: bolder;">Remove</button>'
+        '<a class="btn btn-danger info01" onClick="delete_compare(' + id1 + ')"  style="text-align: center; font-weight: bolder;">Remove</a>'
       );
       localStorage.setItem("compare", JSON.stringify(oldData1));
       $('#modal_compare1').modal("hide");
@@ -535,11 +543,11 @@
       $('#safety').find('.front_wheel_brake02').append('<p class="info02">' + newCar2.front_wheel_brake + '</p>');
       $('#safety').find('.rear_wheel_brake02').append('<p class="info02">' + newCar2.rear_wheel_brake + '</p>');
       $('#btn-order').find("#btn02").append(
-        '<button class="btn btn-success info02" style="text-align: center; font-weight: bolder;"><a href="/user/order/' + id2 + '" style="color:white; font-weight:bolder;">Order</a></button>'
+        '<a  class="btn btn-success info02" href="'+url_move_order_page + id2 + '" style="color:white; font-weight:bolder;">Order</a>'
 
       );
       $('#btn-order').find("#btn02").append(
-        '<button class="btn btn-danger info02"  onClick="delete_compare2(' + id2 + ')"  style="text-align: center; font-weight: bolder;">Remove</button>'
+        '<a class="btn btn-danger info02"  onClick="delete_compare2(' + id2 + ')"  style="text-align: center; font-weight: bolder;">Remove</a>'
       );
       localStorage.setItem("compare2", JSON.stringify(oldData2));
       $('#modal_compare2').modal("hide");
@@ -619,11 +627,11 @@
       $('#safety').find('.front_wheel_brake03').append('<p class="info03">' + newCar3.front_wheel_brake + '</p>');
       $('#safety').find('.rear_wheel_brake03').append('<p class="info03">' + newCar3.rear_wheel_brake + '</p>');
       $('#btn-order').find("#btn03").append(
-        '<button class="btn btn-success info03" style="text-align: center; font-weight: bolder;"><a href="/user/order/' + id3 + '" style="color:white; font-weight:bolder;">Order</a></button>'
+        '<a  class="btn btn-success info03" href="'+url_move_order_page + id3 + '" style="color:white; font-weight:bolder;">Order</a>'
 
       );
       $('#btn-order').find("#btn03").append(
-        '<button class="btn btn-danger info03" onClick="delete_compare3(' + id3 + ')" style="text-align: center; font-weight: bolder;">Remove</button>'
+        '<a class="btn btn-danger info03" onClick="delete_compare3(' + id3 + ')" style="text-align: center; font-weight: bolder;">Remove</a>'
       );
 
       localStorage.setItem("compare3", JSON.stringify(oldData3));

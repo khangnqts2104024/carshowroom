@@ -221,18 +221,21 @@ class DashboardController extends Controller
             ]);
         }
         
-        if(App::getLocale()== 'vi'){
+        if(App::getLocale() == 'vi'){
             $passwordInFieldCurrentPass = $request->mật_khẩu_hiện_tại;
             $passwordInFieldNewPass = $request->mật_khẩu_mới;
             
         }else{
             $passwordInFieldCurrentPass = $request->currentpassword;
             $passwordInFieldNewPass = $request->newpassword;
-        }
-       
-        $matchCurrentPass = Hash::check($passwordInFieldCurrentPass, $hashCurrentPassWord);
-        $matchCurentPass_newPass = Hash::check($passwordInFieldNewPass, $hashCurrentPassWord);
+            
 
+        }
+        
+        $matchCurrentPass = Hash::check($passwordInFieldCurrentPass, $hashCurrentPassWord);
+        
+        $matchCurentPass_newPass = Hash::check($passwordInFieldNewPass, $hashCurrentPassWord);
+        
         if ($validator->fails()) {
             return response()->json([
                 'status' => 400,
@@ -260,8 +263,10 @@ class DashboardController extends Controller
                 'errors' => $message,
             ]);
         }else{
-            $user->password = Hash::make($request->newpassword);
-            $user->update();
+            
+            User::where('customer_id',$user_customer_id)->update([
+                'password'=>Hash::make($passwordInFieldNewPass),
+            ]);
             if(App::getLocale()=='en'){
                 $message = "Password Change Successfully";
             }else{
@@ -397,6 +402,7 @@ class DashboardController extends Controller
               ->join('customer_infos','customer_infos.customer_id','=','orders.customer_id')
               ->join('showrooms','showrooms.id','=','orders.showroom')
               ->where('customer_infos.customer_id','=',$customer_id_auth)
+              ->where('orders.customer_id','=',$customer_id_auth)
               ->where('model_infos.released', '=','active')
               ->get(['model_infos.color','model_infos.image','orders.cancel_code','order_details.matp','model_infos.model_id','orders.momo_id','model_infos.model_name','model_infos.price','customer_infos.fullname','customer_infos.address','customer_infos.email','customer_infos.phone_number','order_details.order_status','orders.order_code','orders.order_id','orders.order_date','showrooms.showroom_name','showrooms.address as showroom_address','showrooms.phone as showroom_phone','order_details.order_price']);
         return view('dashboard.user/profile/order_history')->with(['order_infos'=>$order_infos]);

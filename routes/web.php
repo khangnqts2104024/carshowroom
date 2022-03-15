@@ -70,14 +70,15 @@ Route::prefix('user')->name('user.')->group(function(){
             Route::get('/CostEstimate/{id?}/{matp?}',[CostEstimateController::class,'index'])->name('CostEstimate');
             Route::post('/CostEstimate/getModelInfo',[CostEstimateController::class,'getModelInfo'])->name('getModelInfo');
             Route::post('/CostEstimate/getFees',[CostEstimateController::class,'getFees'])->name('getFees');
-            Route::post('/CostEstimate/OrderCar',[UserOrderController::class,'GuestOrder'])->name('GuestCostEstimateSubmit');
+            // Route::get('/CostEstimate/OrderCar',[UserOrderController::class,'GuestOrder'])->name('GuestCostEstimateSubmit');
             //Order Page
-            Route::get('/order/{id?}',[UserOrderController::class,'GuestOrder'])->name('GuestOrder');
+            Route::get('/order/{id?}/{provinces?}',[UserOrderController::class,'GuestOrder'])->name('GuestOrder');
             Route::post('/getModelInfo',[UserOrderController::class,'getModelInfo'])->name('getModelInfo');
             Route::post('/getShowRoom',[UserOrderController::class,'getShowRoom'])->name('getShowRoom');
             Route::post('/getShowRoomAddress',[UserOrderController::class,'getShowRoomAddress'])->name('getShowRoomAddress');
             Route::post('/SubmitOrder',[UserOrderController::class,'GuestSubmitOrder'])->name('GuestSubmitOrder');
             //Order Tracking
+            Route::get('/compare','CompareController@index');
      });
     
 
@@ -105,15 +106,16 @@ Route::prefix('user')->name('user.')->group(function(){
             Route::get('auth/CostEstimate/{id?}/{matp?}',[CostEstimateController::class,'index'])->name('CostEstimate');
             Route::post('auth/CostEstimate/getModelInfo',[CostEstimateController::class,'getModelInfo'])->name('getModelInfo');
             Route::post('auth/CostEstimate/getFees',[CostEstimateController::class,'getFees'])->name('getFees');
-            Route::post('auth/CostEstimate/OrderCar',[UserOrderController::class,'CustomerOrder'])->name('CustomerCostEstimateSubmit');
+            // Route::post('auth/CostEstimate/OrderCar',[UserOrderController::class,'CustomerOrder'])->name('CustomerCostEstimateSubmit');
            
             //Customer Order Page 
-            Route::get('auth/order/{id?}',[UserOrderController::class,'CustomerOrder'])->name('CustomerOrder');
+            Route::get('auth/order/{id?}/{provinces?}',[UserOrderController::class,'CustomerOrder'])->name('CustomerOrder');
             Route::post('/auth/getModelInfo',[UserOrderController::class,'getModelInfo'])->name('getModelInfo');
             Route::post('/auth/getShowRoom',[UserOrderController::class,'getShowRoom'])->name('getShowRoom');
             Route::post('/auth/getShowRoomAddress',[UserOrderController::class,'getShowRoomAddress'])->name('getShowRoomAddress');
             Route::post('auth/CustomerSubmitOrder',[UserOrderController::class,'CustomerSubmitOrder'])->name('CustomerSubmitOrder');
-            
+             //car compare
+            Route::get('auth/compare','CompareController@index');
             //Logout 
             Route::post('auth/logout',[UserController::class,'logout'])->name('logout');
     });
@@ -122,11 +124,13 @@ Route::prefix('user')->name('user.')->group(function(){
      Route::get('/order_tracking',[UserOrderController::class,'order_tracking'])->name('ordertracking')->middleware('Localization');
      Route::post('/cancel_contract',[UserOrderController::class,'cancelContract'])->name('cancelContract')->middleware('Localization');
 
-    //test momo
+    //momo
     Route::get('/momo_payment/{order_id}/{deposit}',[CheckoutController::class,'momo_payment'])->name('momo_payment')->middleware('Localization');
     Route::get('/checkout',[CheckoutController::class,'checkout'])->name('checkout')->middleware('Localization');
     Route::get('/transaction_expired',[CheckoutController::class,'transaction_expired'])->name('transaction_expired')->middleware('Localization');;
-   
+//    //car compare
+//    Route::get('/compare','CompareController@index');
+
     
     
 });
@@ -148,7 +152,6 @@ Route::post('/send_cancel_code/{order_code?}',[MailController::class,'send_cance
 
 
 
-Route::get('/test', [ModelInfoController::class, 'compare']);
 
 
 
@@ -365,7 +368,7 @@ Route::get('user/modeldetails/{model_id?}', 'ModelInfoController@showModel');
 
 
 
-Route::get('/compare','CompareController@index');
+
 Route::get('/AboutUs',function(){
     return(view('AboutUs'));
 });

@@ -120,7 +120,7 @@ $(function () {
                                                             <li>'+listedPrice_title+'</li>\
                                                             <li style="list-style-type: none;">\
                                                             ' +
-                            item.price +
+                                     new Intl.NumberFormat().format(item.price)      +
                             '\
                                                                 VNĐ\
                                                             </li>\
@@ -129,11 +129,11 @@ $(function () {
                                                             <li><a\
                                                                     href="/user/auth/CostEstimate/' + item.model_id +"/" +item.matp +'">'+otherFees_title+':</a>\
                                                             </li>\
-                                                            <li style="list-style-type: none;">'+(item.order_price -item.price + offer_price) +' VND</li>\
+                                                            <li style="list-style-type: none;">'+new Intl.NumberFormat().format((item.order_price -item.price + offer_price))  +' VND</li>\
                                                         </ul>\
                                                         <ul class="d-flex flex-row justify-content-between">\
                                                             <li>'+offer_title+':</li>\
-                                                            <li style="list-style-type: none;">' +offer_price +'VNĐ\
+                                                            <li style="list-style-type: none;">' +new Intl.NumberFormat().format(offer_price) +'VNĐ\
                                                             </li>\
                                                         </ul>\
                                                         <ul class="d-flex flex-row justify-content-between">\

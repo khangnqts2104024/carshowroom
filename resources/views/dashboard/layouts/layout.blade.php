@@ -21,7 +21,9 @@
 <body>
 	<input type="hidden" value="{{ url('') }}" id="url">
 	<input type="hidden" class="idToken" value="{{ csrf_token() }}">
-
+	@if(Auth::check())
+		<input type="hidden" id="authLogin" value="authLogin">
+	@endif
   <div class="container-fluid">
       <!-- Start navbar -->
 

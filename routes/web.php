@@ -44,10 +44,6 @@ Route::get('/', function () {
     return redirect()->route('user.home');
 });
 
-// Route::get('/404')
-
-
-
 Route::get('/lang/{locale?}', [ChangeLanguageController::class, 'switch']);
 
 Auth::routes();
@@ -98,6 +94,7 @@ Route::prefix('user')->name('user.')->group(function(){
             Route::post('auth/editaddress',[DashboardController::class,'editaddress']); 
             Route::post('auth/editphone',[DashboardController::class,'editphone']); 
             Route::post('auth/editEmail',[DashboardController::class,'editEmail']); 
+            Route::post('auth/change_password',[DashboardController::class,'change_password']); 
             Route::post('auth/editCitizenID',[DashboardController::class,'editCitizenID']); 
             Route::post('auth/editAvatar',[DashboardController::class,'editAvatar']); 
         });
@@ -121,14 +118,14 @@ Route::prefix('user')->name('user.')->group(function(){
             Route::post('auth/logout',[UserController::class,'logout'])->name('logout');
     });
      //Order Tracking
-     Route::post('/getOrderCode',[UserOrderController::class,'getOrderCode'])->middleware('Localization')->name('getOrderCode');
-     Route::get('/order_tracking',[UserOrderController::class,'order_tracking'])->middleware('Localization')->name('ordertracking');
-     Route::post('/cancel_contract',[UserOrderController::class,'cancelContract'])->name('cancelContract');
+     Route::post('/getOrderCode',[UserOrderController::class,'getOrderCode'])->name('getOrderCode')->middleware('Localization');
+     Route::get('/order_tracking',[UserOrderController::class,'order_tracking'])->name('ordertracking')->middleware('Localization');
+     Route::post('/cancel_contract',[UserOrderController::class,'cancelContract'])->name('cancelContract')->middleware('Localization');
 
     //test momo
-    Route::get('/momo_payment/{order_id?}/{deposit?}',[CheckoutController::class,'momo_payment'])->name('momo_payment');
-    Route::get('/checkout',[CheckoutController::class,'checkout'])->name('checkout');
-    Route::get('/transaction_expired',[CheckoutController::class,'transaction_expired'])->name('transaction_expired');
+    Route::get('/momo_payment/{order_id}/{deposit}',[CheckoutController::class,'momo_payment'])->name('momo_payment')->middleware('Localization');
+    Route::get('/checkout',[CheckoutController::class,'checkout'])->name('checkout')->middleware('Localization');
+    Route::get('/transaction_expired',[CheckoutController::class,'transaction_expired'])->name('transaction_expired')->middleware('Localization');;
    
     
     

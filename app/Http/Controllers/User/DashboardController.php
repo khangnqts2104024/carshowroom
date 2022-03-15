@@ -185,6 +185,96 @@ class DashboardController extends Controller
         }
     }
 
+    //Change Password
+    public function change_password(Request $request){
+        
+        if(App::getLocale() == 'vi'){
+            $validator = Validator::make($request->all(), [
+                'mật_khẩu_hiện_tại' => 'required|min:5|max:30',
+                'mật_khẩu_mới' => 'required|min:5|max:30',
+                'xác_nhận_mật_khẩu' => 'required|min:5|max:30|same:mật_khẩu_mới',
+            ]);
+        }else{
+            $validator = Validator::make($request->all(), [
+                'currentpassword' => 'required|min:5|max:30',
+                'newpassword' => 'required|min:5|max:30',
+                'confirm_newpassword' => 'required|min:5|max:30|same:newpassword',
+            ]);
+        }
+        
+
+        $user_customer_id = Auth::user()->customer_id;
+        $users = DB::table('customer_accounts')
+            ->where('customer_id', '=', $user_customer_id)
+            ->get();
+       
+        foreach ($users as $user) {
+            $hashCurrentPassWord = $user->password;
+        }
+
+        $user = User::where('customer_id',$user_customer_id)->first();
+        
+        if(!$user){
+            return response()->json([
+                'status' => 404,
+                'messages' => 'User not found',
+            ]);
+        }
+        
+        if(App::getLocale()== 'vi'){
+            $passwordInFieldCurrentPass = $request->mật_khẩu_hiện_tại;
+            $passwordInFieldNewPass = $request->mật_khẩu_mới;
+            
+        }else{
+            $passwordInFieldCurrentPass = $request->currentpassword;
+            $passwordInFieldNewPass = $request->newpassword;
+        }
+       
+        $matchCurrentPass = Hash::check($passwordInFieldCurrentPass, $hashCurrentPassWord);
+        $matchCurentPass_newPass = Hash::check($passwordInFieldNewPass, $hashCurrentPassWord);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 400,
+                'errors' => $validator->errors(),
+            ]);
+        }elseif(!$matchCurrentPass){
+            if(App::getLocale()=='en'){
+                $message = ["Current Password Not Correct"];
+            }else{
+                $message = ["Mật khẩu Hiện Tại Không Đúng"];
+            }
+            return response()->json([
+                'status' => 400,
+                'errors' => $message,
+            ]);
+
+        }elseif($matchCurentPass_newPass){
+            if(App::getLocale()=='en'){
+                $message = ["Old Password and New Password must be different"];
+            }else{
+                $message = ["Mật khẩu Cũ và Mật khẩu Mới phải khác nhau"];
+            }
+            return response()->json([
+                'status' => 400,
+                'errors' => $message,
+            ]);
+        }else{
+            $user->password = Hash::make($request->newpassword);
+            $user->update();
+            if(App::getLocale()=='en'){
+                $message = "Password Change Successfully";
+            }else{
+                $message = "Đổi Mật Khẩu Thành Công";
+            }
+            return response()->json([
+                'status' => 200,
+                'messages' => $message,
+            ]);
+        }
+
+    }
+
     
     // Edit Citizen ID
     public function editCitizenID(Request $request)

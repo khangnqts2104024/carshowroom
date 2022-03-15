@@ -143,9 +143,6 @@ class UserOrderController extends Controller
         } while ($orderCodeExist);
 
         $order_code = $order->order_code;
-
-
-
         $order->customer_id = $user_auth_id;
         $save_order = $order->save();
         //get order ID to insert order details table

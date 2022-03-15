@@ -377,7 +377,7 @@ $(function(){
    
     }else{
         firstSelection_Model = $('#SelectYourModel').text();
-        $("div.Model select").val(firstSelection);
+        $("div.Model select").val(firstSelection_Model);
         $("div.Province select").val(firstSelection_Province);
         $('#showImageCar').attr("src", '/storage/files/Image_Car/logoVinfast.png');
     }

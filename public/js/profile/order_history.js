@@ -18,13 +18,12 @@ $(function() {
     var order_cancel_title = $('.order_cancel_title');
     var order_payment_title = $('.order_payment_title');
     
+    
 
-        if($('#send_cancel_code_success').val() != ""){
-            
-            var orderID = $('#send_cancel_code_success').val();
-            $('#modal_'+orderID).modal('show');
-        }
-
+        $('.modal_cancel').on('hidden.bs.modal', function (e) {
+        
+                
+        })
         
 
       
@@ -103,20 +102,25 @@ $(function() {
                             $('.text-errors').html("");
                             $('.text-errors').removeClass('alert alert-warning');
                             $('.text-errors').addClass('alert alert-danger');
-                            $('.text-errors').append('<li>'+item+'</li>');
+                            $('.text-errors').text(item);
+                           
                         });
                     }else if(response.status == 404){
                         $('.text-errors').html("");
                         $('.text-errors').removeClass('alert alert-warning');
                         $('.text-errors').addClass('alert alert-danger');
-                        $('.text-errors').append('<li>'+response.message+'</li>');
+                        $('.text-errors').text(response.message);
+                        
                     
                     }else{
+                        
                         $('#modal_'+order_id).modal('hide');
                         $('.text-errors').html("");
                         window.location.href = $('#url').val() +"/user/profile/auth/order_history";
                     
                    }
+
+                  
                 
                 
             }
@@ -135,9 +139,20 @@ $(function() {
        
              order_code = myArray[0];
              order_id= myArray[1];
+            //  $(this).find('#formcancel_'+order_id)[0].reset();
         $('#modal_'+order_id).modal('hide');
         
+        $('#modal_'+order_id).on('hidden.bs.modal', function () {
+            alert(123);
+        
+        });
+        
+        
+        // formcancel_{{ $order_info->order_id }}
     });  
+
+   
+  
 
     //CHECK ORDER STATUS
     $("#OrderHistoryList tbody tr").each(function() {

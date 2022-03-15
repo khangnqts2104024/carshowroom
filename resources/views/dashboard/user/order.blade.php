@@ -196,7 +196,7 @@
                       <div class="Model">
                           <select class="rounded   shadow-sm"  name="models" id="models" required>
                             
-                              <option id="SelectYourModel" value="">{{__('Select your Model')}}</option>
+                              <option id="SelectYourModel" value="{{__('Select your Model')}}">{{__('Select your Model')}}</option>
                                 @if(isset($models))
                                     @foreach($models as $model)
                                          <option  value="{{$model->model_id}}" >{{$model->model_name}} - {{$model->color}}</option>

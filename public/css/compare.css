@@ -64,7 +64,7 @@
     transition: all 0.35s ease;
     min-width: 110px;
   }
-  .btn-block {
+  .btn-block{
     display: block;
     width: 100%;
   }
@@ -89,12 +89,15 @@
     background-color: #fff;
     border: 1px solid rgba(0, 0, 0, 0.125);
   }
-
-  .active:after {
-    content: "\002B";
-    font-size: 25px;
- 
+  .btnIcon:after{
+    content: "\2191";
+    font-size: 27px;
   }
+  .active:after {
+    content: "\2193";
+    font-size: 27px;
+  }
+
   #btnScrollTop {
   
     position: fixed; 

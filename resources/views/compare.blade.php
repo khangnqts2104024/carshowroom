@@ -3,7 +3,6 @@
 
 <!-- Bootstrap CSS -->
 
-
 <body>
   <link rel="stylesheet" href="/css/compare.css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
@@ -52,8 +51,11 @@
       <!--Buton infor-->
 
       <div id="dimension-infor">
-        <button type="button" class="btn btn-block d-flex justify-content-between  ">
-          {{ __('compare.Dimensions & Weight')}}
+        <button type="button" id="btnDimension" class="btn btn-block d-flex justify-content-between btnIcon ">
+          <h4 class="d-flex align-items-center justify-content-between pb-4">
+            {{ __('compare.Dimensions & Weight')}}
+            </h4>
+      
         </button>
 
         <div id="dimension" class="table-responsive ">
@@ -79,8 +81,11 @@
       </div>
       <hr>
       <div id="engine-infor">
-        <button class="btn btn-block d-flex justify-content-between ">
-          {{ __('compare.Engine')}}
+        <button id="btnEngine-infor"class="btn btn-block d-flex justify-content-between btnIcon">
+          <h4 class="d-flex align-items-center justify-content-between pb-4">
+            {{ __('compare.Engine')}}
+            </h4>
+         
         </button>
 
         <div id="engine" class="table-responsive ">
@@ -127,8 +132,11 @@
       </div>
       <hr>
       <div id="ex_interior-infor">
-        <button class="btn btn-block d-flex justify-content-between ">
-         {{ __('compare.Interior & Exterior')}}
+        <button id="btnEx_interior" class="btn btn-block d-flex justify-content-between btnIcon">
+          <h4 class="d-flex align-items-center justify-content-between pb-4">
+            {{ __('compare.Interior & Exterior')}}
+            </h4>
+  
         </button>
 
         <div id="ex_interior" class="table-responsive ">
@@ -178,8 +186,11 @@
       </div>
       <hr>
       <div id="safety-infor">
-        <button class="btn btn-block d-flex justify-content-between ">
-         {{ __('compare.Safety')}}
+        <button id="btnSafety"class="btn btn-block d-flex justify-content-between btnIcon">
+          <h4 class="d-flex align-items-center justify-content-between pb-4"  >
+            {{ __('compare.Safety')}}
+            </h4>
+
         </button>
 
         <div id="safety" class="table-responsive ">
@@ -209,7 +220,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Chọn xe thêm vào so sánh</h5>
+              <h5 class="modal-title">{{ __('compare.Choose more cars to compare')}}</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -260,7 +271,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Chọn xe thêm vào so sánh</h5>
+              <h5 class="modal-title">{{ __('compare.Choose more cars to compare')}}</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -311,7 +322,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Chọn xe thêm vào so sánh</h5>
+              <h5 class="modal-title">{{ __('compare.Choose more cars to compare')}}</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -538,7 +549,7 @@
       $('#safety').find('.front_wheel_brake02').append('<p class="info02">' + newCar2.front_wheel_brake + '</p>');
       $('#safety').find('.rear_wheel_brake02').append('<p class="info02">' + newCar2.rear_wheel_brake + '</p>');
       $('#btn-order').find("#btn02").append(
-        '<a  class="btn btn-success info01" href="/user/order/' + id2 + '" style="color:white; font-weight:bolder;">Order</a>'
+        '<a  class="btn btn-success info02" href="/user/order/' + id2 + '" style="color:white; font-weight:bolder;">Order</a>'
 
       );
       $('#btn-order').find("#btn02").append(
@@ -622,7 +633,7 @@
       $('#safety').find('.front_wheel_brake03').append('<p class="info03">' + newCar3.front_wheel_brake + '</p>');
       $('#safety').find('.rear_wheel_brake03').append('<p class="info03">' + newCar3.rear_wheel_brake + '</p>');
       $('#btn-order').find("#btn03").append(
-        '<a  class="btn btn-success info01" href="/user/order/' + id3 + '" style="color:white; font-weight:bolder;">Order</a>'
+        '<a  class="btn btn-success info03" href="/user/order/' + id3 + '" style="color:white; font-weight:bolder;">Order</a>'
 
       );
       $('#btn-order').find("#btn03").append(
@@ -750,19 +761,23 @@
   <script>
     $("#dimension-infor").on('click', function() {
       $("#dimension").toggle(200);
+      $("#btnDimension").toggleClass('active');
     });
     $("#engine-infor").on('click', function() {
       $("#engine").toggle(200);
+      $("#btnEngine-infor").toggleClass('active');
     });
     $("#ex_interior-infor").on('click', function() {
       $("#ex_interior").toggle(200);
+      $("#btnEx_interior").toggleClass('active');
     });
     $("#safety-infor").on('click', function() {
       $("#safety").toggle(200);
+      $("#btnSafety").toggleClass('active');
     });
   </script>
 
-  
+
 </body>
 
 @endsection

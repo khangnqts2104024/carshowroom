@@ -10,7 +10,7 @@
             <div class="headerSignin">
               <p>{{__('login.Signin')}}</p>
             </div>
-            <form action="{{route('user.authenticate') }}" method="post">
+            <form action="{{route('user.authenticate') }}" method="post" autocomplete="chrome-off">
               @if(Session::get('fail'))
                    <div class="alert alert-danger">
                      {{ Session::get('fail')}}

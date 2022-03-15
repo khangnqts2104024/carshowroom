@@ -196,7 +196,7 @@
                       <div class="Model">
                           <select class="rounded   shadow-sm"  name="models" id="models" required>
                             
-                              <option id="SelectYourModel" value="">{{__('Select your Model')}}</option>
+                              <option id="SelectYourModel" value="{{__('Select your Model')}}">{{__('Select your Model')}}</option>
                                 @if(isset($models))
                                     @foreach($models as $model)
                                          <option  value="{{$model->model_id}}" >{{$model->model_name}} - {{$model->color}}</option>
@@ -274,13 +274,10 @@
                         <td>{{__('Free Shipping')}}</td>
                     </tr>
                 </table>
-                {{-- <div>
-                    <input type="radio" name="dbt" value="dbt" checked> {{__('Cash Directly')}}
-                </div>
+                
                 <p class="textPayment">
-                    Make your payment directly into our bank account. Please use your Order ID as the payment reference.
-                    Your order will not be shipped until the funds have cleared in our account.
-                </p> --}}
+                    {{__('If you want to pay directly, please go to the showroom where you have ordered. Online payment will be done through Momo e-wallet')}}
+                </p>
               
                 
                 <button class="buttonCustom" id="buttonSubmit" type="submit" form="submitOrder">{{__('Place Order')}}</button>

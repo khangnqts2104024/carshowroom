@@ -80,6 +80,7 @@ class UserOrderController extends Controller
         $region_id = $request->region_id;
         $showrooms = showroom::select("*")
             ->where("region", $region_id)
+            ->where('showroom_name','!=','headoffice')
             ->orderBy("showroom_name", "asc")
             ->get();
         return response()->json([

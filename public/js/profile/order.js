@@ -266,8 +266,8 @@ $(function(){
     });
 
 
-    var firstSelection_Model = $('#SelectYourModel').text();    
-    var firstSelection_Province = $('#SelectYourProvince').text();    
+    // var firstSelection_Model = $('#SelectYourModel').text();    
+    // var firstSelection_Province = $('#SelectYourProvince').text();    
     var model_id = $('#model_id').val(); 
     var province_matp_cost_estimate = $('#province_matp_cost_estimate').val();
     if(model_id != null || province_matp_cost_estimate != null){

@@ -6,7 +6,6 @@
 <body>
   <link rel="stylesheet" href="/css/compare.css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-  {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" /> --}}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
   @if(Auth::check())
@@ -477,7 +476,7 @@
         '<a  class="btn btn-success info01" href="'+url_move_order_page + id1 + '" style="color:white; font-weight:bolder;">Order</a>' 
       );
       $('#btn-order').find("#btn01").append(
-        '<a class="btn btn-danger info01" onClick="delete_compare(' + id1 + ')"  style="text-align: center; font-weight: bolder;">Remove</a>'
+        '<a class="btn btn-danger info01" onClick="delete_compare(' + id1 + ')"  style="text-align: center; font-weight: bolder;color:white; ">Remove</a>'
       );
       localStorage.setItem("compare", JSON.stringify(oldData1));
       $('#modal_compare1').modal("hide");
@@ -560,7 +559,7 @@
         '<a  class="btn btn-success info02" href="'+url_move_order_page + id2 + '" style="color:white; font-weight:bolder;">Order</a>'
       );
       $('#btn-order').find("#btn02").append(
-        '<a class="btn btn-danger info02"  onClick="delete_compare2(' + id2 + ')"  style="text-align: center; font-weight: bolder;">Remove</a>'
+        '<a class="btn btn-danger info02"  onClick="delete_compare2(' + id2 + ')"  style="text-align: center; font-weight: bolder;color:white; ">Remove</a>'
       );
       localStorage.setItem("compare2", JSON.stringify(oldData2));
       $('#modal_compare2').modal("hide");
@@ -643,7 +642,7 @@
         '<a  class="btn btn-success info03" href="'+url_move_order_page + id3 + '" style="color:white; font-weight:bolder;">Order</a>'
       );
       $('#btn-order').find("#btn03").append(
-        '<a class="btn btn-danger info03" onClick="delete_compare3(' + id3 + ')" style="text-align: center; font-weight: bolder;">Remove</a>'
+        '<a class="btn btn-danger info03" onClick="delete_compare3(' + id3 + ')" style="text-align: center; font-weight: bolder; color:white; ">Remove</a>'
       );
 
       localStorage.setItem("compare3", JSON.stringify(oldData3));

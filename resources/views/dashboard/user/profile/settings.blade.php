@@ -262,7 +262,7 @@
 
                                                 <div class="form-group">
                                                     <label>{{ __('UserProfilesettings.Current Password') }}</label>
-                                                    <input type="password" name="password" id="change_currentPassWord"
+                                                    <input type="password" name="password" id="currentPassWord"
                                                         class="form-control formRound" value=""
                                                         placeholder="Enter your password here">
 

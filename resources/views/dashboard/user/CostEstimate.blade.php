@@ -132,8 +132,8 @@
                     @if(Auth::check())
                     <div>
                         <span style="color: red">{{__('Offers')}}</span>
-                        <span class="offers" id="offers_span" style="color: red">0&nbsp;₫</span>
-                        
+                        <span class="offers" id="offers_span" style="color: red" >0&nbsp;₫</span>
+                        <input type="hidden" id="offer_price" value="member">
                     </div>
                 @endif
 

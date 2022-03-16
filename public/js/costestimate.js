@@ -1,6 +1,7 @@
 $(function () {
     var url_Get_ModelInFo = $(".url_Get_ModelInFo").val();
     var url_Get_Fees = $(".url_Get_Fees").val();
+    var offer_price_check_role = $('#offer_price').val();
 
     $("#models").on("change", function () {
         var model_id = $(this).val();
@@ -27,7 +28,12 @@ $(function () {
                     //get number non format
                     carprice_nonFormat = item.price;
                     RegistrationFee_nonFormat = carprice_nonFormat * (5 / 100);
-                    offers_price_nonFormat = carprice_nonFormat * (10 / 100);
+                    if(offer_price_check_role == "member"){
+                        offers_price_nonFormat = carprice_nonFormat * (10 / 100);
+                    }else
+                    {
+                        offers_price_nonFormat = 0;
+                    }
                     //Format Number
                     car_price = new Intl.NumberFormat().format(
                         carprice_nonFormat
@@ -221,7 +227,12 @@ $(function () {
                     //get number non format
                     carprice_nonFormat = item.price;
                     RegistrationFee_nonFormat = carprice_nonFormat * (5 / 100);
-                    offers_price_nonFormat = carprice_nonFormat * (10 / 100);
+                    if(offer_price_check_role == "member"){
+                        offers_price_nonFormat = carprice_nonFormat * (10 / 100);
+                    }else
+                    {
+                        offers_price_nonFormat = 0;
+                    }
                     //Format Number
                     car_price = new Intl.NumberFormat().format(
                         carprice_nonFormat

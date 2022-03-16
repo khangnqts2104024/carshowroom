@@ -145,7 +145,7 @@ class ModelInfoController extends Controller
         // }
         // end khang
         
-        session()->put('message', 'Cập nhật thành công!');
+        session()->put('message1', 'Cập nhật thành công!');
         return Redirect('admin/general/allmodel');
     }
 

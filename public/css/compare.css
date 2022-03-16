@@ -5,6 +5,7 @@
     text-decoration: none;
     background-color: transparent;
   }
+
   .comparison-header{
       position: relative;
       margin: auto;
@@ -68,6 +69,7 @@
     display: block;
     width: 100%;
   }
+ 
   .transform{
       transform: rotate(180deg);
   }
@@ -91,6 +93,9 @@
   }
   .btnIcon:after{
     content: "\25B3";
+  }
+  .btnIcon > h4{
+    margin: unset;
   }
   .active:after {
     content: "\25BD";

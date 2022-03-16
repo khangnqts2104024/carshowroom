@@ -91,7 +91,7 @@ class UserController extends Controller
         $user_info->fullname = $request->fullname;
         $user_info->address = $request->address;
         $user_info->customer_role = 'member';
-        $user_info->avatar = 'AvatarDefault.jpeg';
+        $user_info->avatar = 'AvatarDefault.png';
         $save_info = $user_info->save();
 
         $isUser = Customer_Info::where('email', $request->email)->first(); //getID to pass customer_id in customer_account

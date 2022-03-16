@@ -22,27 +22,27 @@
                             <th colspan="2">{{ $model_detail->model_name }}</th>
                         </tr>
                         <tr>
-                            <td>Kích thước</td>
+                            <td>{{__('Size')}}</td>
                             <td>{{ $model_detail->size }}</td>
                         </tr>
                         <tr>
-                            <td>Tự trọng/Tải trọng</td>
+                            <td>{{__('Weight')}}</td>
                             <td>{{ $model_detail->weight }}</td>
                         </tr>
                         <tr>
-                            <td>Loại động cơ</td>
+                            <td>{{__('Engine')}}</td>
                             <td>{{ $model_detail->engine }}</td>
                         </tr>
                         <tr>
-                            <td>Công suất tối đa</td>
+                            <td>{{__('Wattage')}}</td>
                             <td>{{ $model_detail->wattage }}</td>
                         </tr>
                         <tr>
-                            <td>Phanh trước</td>
+                            <td>{{__('Front wheel brake')}}</td>
                             <td>{{ $model_detail->front_wheel_brake }}</td>
                         </tr>
                         <tr>
-                            <td>Phanh sau</td>
+                            <td>{{__('Rear wheel brake')}}</td>
                             <td>{{ $model_detail->rear_wheel_brake }}</td>
                         </tr>
                     </table>
@@ -53,7 +53,7 @@
 
                     @else
                     <a href="/user/order/{{ $model_detail->model_id }}" style="color: white;"><button
-                        class="buttonCustom" id="buttonSubmit">Đặt xe</button></a>
+                        class="buttonCustom" id="buttonSubmit">{{__('Order Car')}}</button></a>
 
                     @endif
                     

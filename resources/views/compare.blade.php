@@ -456,7 +456,9 @@
       var oldData1 = JSON.parse(localStorage.getItem('compare'));
 
       oldData1.push(newCar1);
+
       $('.compare_icon1').append('<img src="' + newCar1.image + '" class="info01 vehicle-picker" width:auto></img>');
+
       $('#vehicle-picker-1').addClass('d-none');
       $('#dimension').find('.modal_size01').append('<p class="info01">' + newCar1.size + '</p>');
       $('#dimension').find('.modal_weight01').append('<p class="info01">' + newCar1.weight + '</p>');
@@ -539,6 +541,7 @@
       var oldData2 = JSON.parse(localStorage.getItem('compare2'));
 
       oldData2.push(newCar2);
+
       $('.compare_icon2').append('<img src="' + newCar2.image + '" class="info02 vehicle-picker" width: auto></img>');
       $('#vehicle-picker-2').addClass('d-none')
       $('#dimension').find('.modal_size02').append('<p class="info02">' + newCar2.size + '</p>');
@@ -622,6 +625,7 @@
       var oldData3 = JSON.parse(localStorage.getItem('compare3'));
 
       oldData3.push(newCar3);
+
       $('.compare_icon3').append('<img src="' + newCar3.image + '" class="info03 vehicle-picker" width: auto></img>');
       $('#vehicle-picker-3').addClass('d-none');
       $('#dimension').find('.modal_size03').append('<p class="info03">' + newCar3.size + '</p>');
@@ -782,6 +786,7 @@
       $("#btnSafety").toggleClass('active');
     });
   </script>
+
 </body>
 
 @endsection

@@ -238,18 +238,18 @@
                     </tr>
 
                     <tr>
-                        <td><a href="">{{__("Quantity")}}</a></td>
+                        <td>{{__("Quantity")}}</td>
                         <td class="Quantity" name='Quantity' id="Quantity" style="color: rgb(3,86,179)">1</td>
                     </tr>
 
                     <tr>
-                        <td><a href="">{{__("Other Fees")}}</a></td>
+                        <td>{{__("Other Fees")}}</td>
                         <td class="ortherFees" name='ortherFees' id="ortherFees" style="color: rgb(3,86,179)">0 VND</td>
                     </tr>
 
                     @if(Auth::check())
                         <tr>
-                            <td><a href="">{{__("Offers")}}</a></td>
+                            <td>{{__("Offers")}}</td>
                             <td class="offers_span" name='offers_span' id="offers_span" style="color: rgb(3,86,179)">0 VND</td>
                             <input type="hidden" id="offer_price" value="member">
                         </tr>

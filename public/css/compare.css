@@ -90,12 +90,10 @@
     border: 1px solid rgba(0, 0, 0, 0.125);
   }
   .btnIcon:after{
-    content: "\2191";
-    font-size: 27px;
+    content: "\25B3";
   }
   .active:after {
-    content: "\2193";
-    font-size: 27px;
+    content: "\25BD";
   }
 
   #btnScrollTop {

@@ -5,6 +5,7 @@
     text-decoration: none;
     background-color: transparent;
   }
+
   .comparison-header{
       position: relative;
       margin: auto;
@@ -64,10 +65,11 @@
     transition: all 0.35s ease;
     min-width: 110px;
   }
-  .btn-block {
+  .btn-block{
     display: block;
     width: 100%;
   }
+ 
   .transform{
       transform: rotate(180deg);
   }
@@ -89,12 +91,16 @@
     background-color: #fff;
     border: 1px solid rgba(0, 0, 0, 0.125);
   }
-
-  .active:after {
-    content: "\002B";
-    font-size: 25px;
- 
+  .btnIcon:after{
+    content: "\25B3";
   }
+  .btnIcon > h4{
+    margin: unset;
+  }
+  .active:after {
+    content: "\25BD";
+  }
+
   #btnScrollTop {
   
     position: fixed; 

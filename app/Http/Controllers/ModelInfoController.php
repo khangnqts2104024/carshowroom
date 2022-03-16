@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\modelInfo;
 use App\Models\stock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -48,8 +49,8 @@ class ModelInfoController extends Controller
         $data['air_conditioning'] = $request->air_conditioning;
         $data['front_wheel_brake'] = $request->front_wheel_brake;
         $data['rear_wheel_brake'] = $request->rear_wheel_brake;
-        // $data['image'] = $request->image;
-        // $data['gif'] = $request->gif;
+        $data['image'] = $request->image;
+        $data['gif'] = $request->gif;
         $request->validate([
             'image' => 'mimes:jpg,png,jpeg:5048'
         ]);
@@ -83,7 +84,7 @@ class ModelInfoController extends Controller
         DB::table('model_infos')->insert($data);
         
 
-        session()->put('message', 'Thêm thành công!');
+        session()->put('message1', 'Thêm thành công!');
         return Redirect('admin/general/addmodel');
     }
 
@@ -99,7 +100,7 @@ class ModelInfoController extends Controller
         $data['model_name'] = $request->model_name;
         $data['car_type'] = $request->car_type;
         $data['price'] = $request->price;
-        $data['color'] = $request->color;
+        // $data['color'] = $request->color;
         $data['size'] = $request->size;
         $data['engine_shutdown_function'] = $request->engine_shutdown_function; //
         $data['weight'] = $request->weight;
@@ -117,9 +118,9 @@ class ModelInfoController extends Controller
         $data['front_wheel_brake'] = $request->front_wheel_brake;
         $data['rear_wheel_brake'] = $request->rear_wheel_brake;
         $data['active'] = $request->active;
-        // $data['released'] = $request->released; 
-        // $data['image'] = $request->image;
-        // $data['gif'] = $request->gif;
+        $data['released'] = $request->released; 
+        $data['image'] = $request->image;
+        $data['gif'] = $request->gif;
 
         DB::table('model_infos')->where('model_id', $model_id)->update($data);
 
@@ -149,9 +150,18 @@ class ModelInfoController extends Controller
     }
 
     public function deleteModel($model_id){
-        DB::table('model_infos')->where('model_id', $model_id)->delete();
-        session()->put('message', 'Xóa thành công!');
-        return Redirect('admin/general/allmodel');
+        // $model=DB::table('model_infos')->where('model_id', $model_id)->get();
+        $model=modelInfo::find($model_id);
+        // dd($model);
+        if($model->released==='active'){
+            $message='Bạn không được xóa dòng xe đã được kích hoạt!';
+        }
+        else{$model->delete();
+        $message='Xóa Thành Công!';
+       }
+        
+        
+        return Redirect('admin/general/allmodel')->with(['message'=>$message]);
     }
 
     public function showModel($model_id){

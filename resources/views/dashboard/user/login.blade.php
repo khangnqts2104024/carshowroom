@@ -1,5 +1,8 @@
 @extends('dashboard.layouts.layout')
 @section('content')
+@section('page_title')
+    {{ "Login" }}
+@endsection
 <link rel="stylesheet" href="/css/account.css">
 
 
@@ -7,7 +10,7 @@
             <div class="headerSignin">
               <p>{{__('login.Signin')}}</p>
             </div>
-            <form action="{{route('user.authenticate') }}" method="post">
+            <form action="{{route('user.authenticate') }}" method="post" autocomplete="chrome-off">
               @if(Session::get('fail'))
                    <div class="alert alert-danger">
                      {{ Session::get('fail')}}
@@ -20,7 +23,7 @@
          @endif
               @csrf
                 <div class="form-group">
-                  <label for="email-signIn">{{__('login.EmailAddress')}}</label>
+                  <label for="email-signIn">{{__('Email Address')}}</label>
                   <input type="email" name="email" class="form-control formRound" value="{{$verifiedEmail ?? old('email')}}">
                   {{-- show error message --}}
                   <span class="text-danger">@error('email'){{$message}}@enderror</span>

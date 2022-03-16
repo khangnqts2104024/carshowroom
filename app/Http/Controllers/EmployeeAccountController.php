@@ -100,6 +100,7 @@ public function empchangepass(Request $request, $id){
     }
         return redirect('admin/general/employee/')->with(['message'=>'Cập Nhật Mật Khẩu Thành Công']); 
     }
+
     
     public function accountcreate(Request $request){
       
@@ -112,6 +113,11 @@ public function empchangepass(Request $request, $id){
             
         
             $account->save();
+            $emp_info=$account->employeeinfo;
+    //    dd($account);
+            if($account->role=='warehouse'){$emp_info->emp_branch=1;}
+            // dd($emp_info);
+            $emp_info->save();
         
             return redirect('/admin/general/employee')->with(['message'=>'Tạo Tài Khoản Thành Công']);
         }

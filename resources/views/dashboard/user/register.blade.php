@@ -53,10 +53,7 @@
                   <div  id="form-password">
                     <input type="password" name="password" class="form-control formRound" id="passwordField" onclick="showIcon()" autocomplete="off" value="">
                     <span class="text-danger">@error('password'){{$message}} @enderror</span>
-                  <span class="eye" id="eye" onclick="showPass()">
-                      <i class="fa fa-eye" aria-hidden="true" id="show"></i>
-                      <i class="fa fa-eye-slash" aria-hidden="true" id="hide"></i> 
-                  </span>
+                  
                   </div>
                   
                  
@@ -92,44 +89,5 @@
   </div>
 
 
-  <script>
-      //show con mắt - tắt mắt khi out focus
-      window.addEventListener('click', function(e) {
-       
-       if (document.getElementById('passwordField').contains(e.target)) {
-         //focus 
-           showIcon();
-        }else if(document.getElementById('passwordField').value != ''){
-         document.getElementById('eye').style.display = 'block';//them dong này
-         
-        }else{document.getElementById('eye').style.display = 'none';}
-        
-       });
 
-       
-
-     function showIcon(){
-      var eyeIcon = document.getElementById('eye');
-      eyeIcon.style.display = 'block';
-     }
-
-//show mật khẩu 
-      function showPass(){
-        var inputfield = document.getElementById('passwordField');
-        var show = document.getElementById('show');
-        var hide = document.getElementById('hide');
-        
-        if(inputfield.type === 'password'){
-          inputfield.type = 'text';
-          show.style.display = 'none';
-          hide.style.display = 'block';
-          
-        }else{
-          inputfield.type = 'password';
-          show.style.display = 'block';
-          hide.style.display = 'none';
-          
-        }
-      }
-    </script>
   @endsection

@@ -1,5 +1,5 @@
 @extends('layouts_admin.layoutadmin')
-@section('title', 'product index')
+@section('title', 'add model')
 @section('content')
 <section class="content-header">
     <div class="container-fluid">
@@ -20,10 +20,10 @@
     <hr>
     <div class="panel-body flex-container">
         <?php
-        $message = session('message');
+        $message = session('message1');
         if ($message) {
             echo $message;
-            session(['message' => '']);
+            session(['message1' => '']);
         }
         ?>
         <div class="position-center phat">

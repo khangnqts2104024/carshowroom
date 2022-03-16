@@ -1,5 +1,5 @@
 @extends('layouts_admin.layoutadmin')
-@section('title', 'product index')
+@section('title', 'Customer Detail Page')
 @section('content')
 
 <section class="content-header">
@@ -27,7 +27,7 @@
             <div class="card-body">
                 <div class="form-group">
                     <label for="txt-id">Tên Khách Hàng</label>
-                    <input type="text" class="form-control" id="txt-id" name="id" placeholder="1" value="{{ $p->customer_id }}" readonly>
+                    <input type="text" class="form-control" id="txt-id" name="id" placeholder="1" value="{{ $p->fullname }}" readonly>
                 </div>
                 <div class="form-group">
                     <label for="txt-id">Số Điện Thoại</label>

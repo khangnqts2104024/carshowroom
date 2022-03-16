@@ -12,7 +12,7 @@
   }
   
 
-form{
+.formCustom{
       width: 40% !important;
       float:right !important;
   }
@@ -22,3 +22,6 @@ form{
     color: #aaa;
     font-style: italic;
   }
+
+
+ 

@@ -33,6 +33,7 @@ class modelInfo extends Model
         'gif',
         ];	
         public $timestamps = false;
+        protected $primaryKey='model_id';
          public function model_stock()
         {
             return $this->hasMany(stock::class,'id','model_id');

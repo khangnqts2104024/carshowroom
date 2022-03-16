@@ -1,7 +1,7 @@
 <!--  -->
 <!-- Lưu tại resources/views/product/index.blade.php -->
 @extends('layouts_admin.layoutadmin')
-@section('title', 'product index')
+@section('title', 'Car Receive')
 @section('content')
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -56,12 +56,11 @@
                         </thead>
                         <tbody>
 
-
                             @php $x=1 @endphp
                             @foreach ($cars as $p)
                             <tr>
                                 <td>{{ $x++ }}</td>
-                                <td> {{$p->models->model_name}}</td>
+                                <td> {{$p->models->model_name}}-{{$p->models->color}}</td>
                                 <td>{{ $p->showrooms->showroom_name}}</td>
                                 <td>{{ $p->orders->order_code}} </td>
                                 <td>{{ $p->orders->customer->fullname}} </td>

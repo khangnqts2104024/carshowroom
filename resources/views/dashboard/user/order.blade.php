@@ -1,6 +1,8 @@
 @extends('dashboard.layouts.layout')
 @section('content')
-
+@section('page_title')
+    {{ "Order Car" }}
+@endsection
 
     <link rel="stylesheet" href="/css/order.css">
     <input type="hidden" class="idToken" value="{{ csrf_token() }}">
@@ -25,11 +27,13 @@
         <input type="hidden" class="url_Get_ShowRoom" value="/user/auth/getShowRoom">
         <input type="hidden" class="url_Get_ShowRoomAddress" value="/user/auth/getShowRoomAddress">
         <input type="hidden" class="url_Get_Fees" value="/user/auth/CostEstimate/getFees">
+        <input type="hidden" class="url_Submit_Order" value="/user/auth/CustomerSubmitOrder">
     @else
         <input type="hidden" class="url_Get_ModelInFo" value="/user/getModelInfo">
         <input type="hidden" class="url_Get_ShowRoom" value="/user/getShowRoom">
         <input type="hidden" class="url_Get_ShowRoomAddress" value="/user/getShowRoomAddress">
         <input type="hidden" class="url_Get_Fees" value="/user/CostEstimate/getFees">
+        <input type="hidden" class="url_Submit_Order" value="/user/SubmitOrder">
     @endif
     
     <div class="container">
@@ -42,15 +46,15 @@
                 @if(Session::get('success'))
                    @if(Auth::check())
                         @if(App::getLocale()=='en')
-                            <span class="success-message alert alert-success">{{Session::get('success')}}<a href="">Go To Mange Orders Page</a></span>
+                            <span class="success-message alert alert-success">{{Session::get('success')}}<a href="http://127.0.0.1:8000/user/profile/auth/order_history">&nbsp; Go To Mange Orders Page</a></span>
                         @else
-                            <span class="success-message alert alert-success">{{Session::get('success')}}<a href="">Đến Trang Quản Lý Đơn Hàng</a></span>
+                            <span class="success-message alert alert-success">{{Session::get('success')}}<a href="http://127.0.0.1:8000/user/profile/auth/order_history">&nbsp; Đến Trang Quản Lý Đơn Hàng</a></span>
                         @endif
                    @else
                         @if(App::getLocale()=='en')
-                            <span class="success-message alert alert-success">{{Session::get('success')}}<a href="">Go To Search Order Status Page</a></span>
+                            <span class="success-message alert alert-success">{{Session::get('success')}}<a href="http://127.0.0.1:8000/user/order_tracking">&nbsp; Go To Search Order Status Page</a></span>
                         @else
-                            <span class="success-message alert alert-success">{{Session::get('success')}}<a href="">Đến Trang Tra Cứu Đơn Hàng</a></span>
+                            <span class="success-message alert alert-success">{{Session::get('success')}}<a href="http://127.0.0.1:8000/user/order_tracking">&nbsp; Đến Trang Tra Cứu Đơn Hàng</a></span>
                         @endif
                    @endif
                 @elseif(Session::has('fail'))
@@ -68,10 +72,10 @@
                                 <div class="icon-box">
                                     <i class="material-icons">&#10003;</i>
                                 </div>				
-                                <h4 class="modal-title w-100">Awesome!</h4>	
+                                <h4 class="modal-title w-100">{{__('Awesome!')}}</h4>	
                             </div>
                             <div class="modal-body">
-                                <p class="text-center">Your order is successful. Check your email for details.</p>
+                                <p class="text-center">{{__('Your order is successful. Check your email for details.')}}</p>
                             </div>
                             <div class="modal-footer">
                                 <button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
@@ -99,12 +103,12 @@
                     <span class="fname">{{__('Full Name')}} <span class="required">*</span></span>
                     @if(isset($user))
                         @foreach($user as $userinfo)
-                             <input  class="input rounded   shadow-sm" type="text" name="fullname" placeholder="{{__('Enter your Fullname')}}" required value="{{$userinfo->fullname}}">
+                             <input  class="input rounded   shadow-sm" type="text" id="fullname" name="fullname" placeholder="{{__('Enter your Fullname')}}" required value="{{$userinfo->fullname}}">
                              <input class="input" type="hidden" name="customer_id"  value="{{$userinfo->customer_id}}">
                          @endforeach
                          <span class="text-danger">@error('fullname'){{$message}}@enderror</span>
                     @else
-                         <input class="input rounded   shadow-sm" type="text" name="fullname" placeholder="{{__('Enter your Fullname')}}" required value="{{old('fullname')}}">
+                         <input class="input rounded   shadow-sm" type="text" id="fullname" name="fullname" placeholder="{{__('Enter your Fullname')}}" required value="{{old('fullname')}}">
                          <span class="text-danger">@error('fullname'){{$message}}@enderror</span>
                     @endif
                   </label>
@@ -156,13 +160,13 @@
                 <label class="labelCustom">
                     <span>{{__('Email Address')}} <span class="required">*</span></span>
                     @if(isset($user))
-                        @if(Auth::check() && Auth::user()->google_id)
+                        @if(Auth::check())
                             @foreach($user as $userinfo)
-                                <input readonly class="input rounded   shadow-sm" type="email" name="email" placeholder="{{__('Enter your Email')}}" value="{{$userinfo->email}}" required>
+                                <input readonly class="input rounded   shadow-sm" type="email" id="email" name="email" placeholder="{{__('Enter your Email')}}" value="{{$userinfo->email}}" required>
                             @endforeach   
                         @else
                             @foreach($user as $userinfo)
-                                <input class="input rounded   shadow-sm" type="email" name="email" placeholder="{{__('Enter your Email')}}" value="{{$userinfo->email}}" required>
+                                <input class="input rounded   shadow-sm" type="email" id="email" name="email" placeholder="{{__('Enter your Email')}}" value="{{$userinfo->email}}" required>
                             @endforeach   
                         @endif
                         <span class="text-danger">@error('email'){{$message}}@enderror</span>
@@ -192,10 +196,10 @@
                       <div class="Model">
                           <select class="rounded   shadow-sm"  name="models" id="models" required>
                             
-                              <option id="SelectYourModel" value="">{{__('Select your Model')}}</option>
+                              <option id="SelectYourModel" value="{{__('Select your Model')}}">{{__('Select your Model')}}</option>
                                 @if(isset($models))
                                     @foreach($models as $model)
-                                         <option value="{{$model->model_id}}" >{{$model->model_name}} - {{$model->color}}</option>
+                                         <option  value="{{$model->model_id}}" >{{$model->model_name}} - {{$model->color}}</option>
                                     @endforeach
                                 @endif
                                 
@@ -234,20 +238,27 @@
                     </tr>
 
                     <tr>
-                        <td><a href="">{{__("Other Fees")}}</a></td>
+                        <td>{{__("Quantity")}}</td>
+                        <td class="Quantity" name='Quantity' id="Quantity" style="color: rgb(3,86,179)">1</td>
+                    </tr>
+
+                    <tr>
+                        <td>{{__("Other Fees")}}</td>
                         <td class="ortherFees" name='ortherFees' id="ortherFees" style="color: rgb(3,86,179)">0 VND</td>
                     </tr>
 
                     @if(Auth::check())
                         <tr>
-                            <td><a href="">{{__("Offers")}}</a></td>
+                            <td>{{__("Offers")}}</td>
                             <td class="offers_span" name='offers_span' id="offers_span" style="color: rgb(3,86,179)">0 VND</td>
+                            <input type="hidden" id="offer_price" value="member">
                         </tr>
+                    
                     @endif
 
 
                     <tr>
-                        <td style="color: red">Total</td>
+                        <td style="color: red">{{__('Total')}}</td>
                         <td class="deposit" id="CostEstimatedPrice" style="color: red">0 VND</td>
                         
                       </tr>
@@ -263,12 +274,9 @@
                         <td>{{__('Free Shipping')}}</td>
                     </tr>
                 </table>
-                <div>
-                    <input type="radio" name="dbt" value="dbt" checked> {{__('Cash Directly')}}
-                </div>
+                
                 <p class="textPayment">
-                    Make your payment directly into our bank account. Please use your Order ID as the payment reference.
-                    Your order will not be shipped until the funds have cleared in our account.
+                    {{__('If you want to pay directly, please go to the showroom where you have ordered. Online payment will be done through Momo e-wallet')}}
                 </p>
               
                 

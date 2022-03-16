@@ -17,6 +17,9 @@ $(function() {
    $('.showEmailModalButton').on('click',function(){
       $('#editEmail').modal("show");
    })
+   $('.showPasswordModalBtn').on('click',function(){
+      $('#changePassword').modal("show");
+   })
    $('.showCitizenModalButton').on('click',function(){
       $('#editCitizenID').modal("show");
    })
@@ -244,6 +247,68 @@ $(function() {
           
        });
 
+        // AJAX CHANGE PASSWORD
+
+      $('#changePasswordBtn').on('click', function(e){
+     
+         e.preventDefault();
+         var customer_id = $('.customer_id').val(); //in settings view
+       
+          if(activeLangText == 'VN'){
+            var data = {
+               _token: $(".idToken").val(),
+               'customer_id': customer_id,
+               'mật_khẩu_hiện_tại': $('#currentpassword').val(),
+               'mật_khẩu_mới':$('#newpassword').val(),
+               'xác_nhận_mật_khẩu':$('#confirm_newpassword').val(),
+            };
+          }else{
+            var data = {
+               _token: $(".idToken").val(),
+               'customer_id': customer_id,
+               'currentpassword': $('#currentpassword').val(),
+               'newpassword':$('#newpassword').val(),
+               'confirm_newpassword':$('#confirm_newpassword').val(),
+            };
+          }
+         
+          $.ajaxSetup({
+             headers: {
+                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+             }
+         })
+        
+          $.ajax({
+             type: "post",
+             url: $('#url').val() + "/user/profile/auth/change_password" ,
+             data: data,
+             dataType: "json",
+             success: function (response) {
+               if(response.status == 400){
+                  $.each(response.errors,function(key,err_values){
+                     $('#saveForm_errList_password').html();
+                     $('#saveForm_errList_password').addClass('alert alert-danger');
+                     $('#saveForm_errList_password').html('<li>'+err_values+'</li>')
+                  });
+               }else{
+                  $('#saveForm_errList_password').html("");
+                  $('.success_messages').html(""); 
+                  $('.success_messages').addClass('alert alert-success'); 
+                  $('.success_messages').text(response.messages); 
+                  $('#changePassword').modal("hide");
+                  //reset field
+                  $('#changePassword').find('input').val("");
+                  $('.success_messages').fadeIn();
+                  $('.success_messages').delay(700).fadeOut(800);
+                  fetchInfo();
+               }
+
+                
+             }
+          })
+          
+       });
+
       // AJAX EDIT Citizen ID
 
       $('#updateCitizenIDBtn').on('click', function(e){
@@ -317,7 +382,6 @@ $(function() {
    
                    success: function (response) {
                      if(response.status == 400){
-                        
                         $.each(response.errors,function(key,err_values){
                            $('#editAvatar').modal("show");
                            $('#saveForm_errList_avatar').html();
@@ -333,7 +397,7 @@ $(function() {
                         $('#saveForm_errList_avatar').hide();
                         $('#editAvatar').modal("hide");
                         $('.success_messages').fadeIn();
-                  $('.success_messages').delay(700).fadeOut(800);
+                        $('.success_messages').delay(700).fadeOut(800);
                           fetchInfo();
                      }  
                    }

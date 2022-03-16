@@ -15,13 +15,16 @@ class CheckoutController extends Controller
         $resultCode = $request->resultCode;
         $message = $request->message;
         $momo_id = $request->orderId; //get order_code
+        $deposit = $request->amount;
+        $order_by_momo_id = order::where('momo_id', $momo_id)->first();
+        $order_id = $order_by_momo_id->order_id;
         if ($resultCode != 0) {
             if (App::getLocale() == 'vi') {
                 $message = 'Thanh Toán Thất Bại. Vui lòng thử lại.';
-                return view('dashboard.user.payment.checkout', compact('message', 'resultCode'));
+                return view('dashboard.user.payment.checkout', compact('message', 'resultCode','momo_id','deposit','order_id'));
             } else {
                 $message = 'Payment failed. Please try again.';
-                return view('dashboard.user.payment.checkout', compact('message', 'resultCode'));
+                return view('dashboard.user.payment.checkout', compact('message', 'resultCode','momo_id','deposit','order_id'));
             }
         } else {
             $order_by_momo_id = order::where('momo_id', $momo_id)->first();
@@ -35,23 +38,23 @@ class CheckoutController extends Controller
             if ($update_status_order_detail) {
                 if (App::getLocale() == 'vi') {
                     $message = 'Thanh toán thành công. Đơn hàng của bạn đã được xác nhận.';
-                    return view('dashboard.user.payment.checkout', compact('message', 'resultCode'));
+                    return view('dashboard.user.payment.checkout', compact('message', 'resultCode','momo_id','deposit','order_id'));
                 } else {
                     $message = 'Payment success. Your order has been confirmed.';
-                    return view('dashboard.user.payment.checkout', compact('message', 'resultCode'));
+                    return view('dashboard.user.payment.checkout', compact('message', 'resultCode','momo_id','deposit','order_id'));
                 }
             } else {
                 if (App::getLocale() == 'vi') {
                     $message = 'Thanh Toán Thất Bại. Vui lòng thử lại.';
-                    return view('dashboard.user.payment.checkout', compact('message', 'resultCode'));
+                    return view('dashboard.user.payment.checkout', compact('message', 'resultCode','momo_id','deposit','order_id'));
                 } else {
                     $message = 'Payment failed. Please try again.';
-                    return view('dashboard.user.payment.checkout', compact('message', 'resultCode'));
+                    return view('dashboard.user.payment.checkout', compact('message', 'resultCode','momo_id','deposit','order_id'));
                 }
             }
         }
 
-        return view('dashboard.user.payment.checkout', compact('message', 'resultCode'));
+      
     }
 
 
@@ -80,6 +83,7 @@ class CheckoutController extends Controller
     }
     public function momo_payment(Request $request)
     {
+        
         $order_dt = orderDetail::where('order_id',$request->order_id)->first();
         $order_status = $order_dt->order_status;
         if($order_status == 'checkinfo'){

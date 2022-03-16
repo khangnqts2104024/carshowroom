@@ -1,10 +1,30 @@
 $(function(){
     
-   
+    var offer_price_check_role = $('#offer_price').val();
+
       order_code = $('#order_code').val();
     if($('.success-message').text() != ""){
-        window.location.href = $('#url').val() +"/sendmail_ordersuccess/"+ order_code;
-        $('#EmailSent').modal('show');
+        var data = {
+            _token: $(".idToken").val(),
+            'order_code':order_code,
+            };
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                }
+            })
+            $.ajax({
+                type: "post",
+                url: $('#url').val() + '/sendmail_ordersuccess/'+order_code ,
+                data: data,
+                dataType: "json",
+                success: function (response) {
+                    
+                }
+            })
+            $('#EmailSent').modal('show');
+       
        
     }
     $('.XCloseBtn').on('click',function(){
@@ -45,7 +65,13 @@ $(function(){
                 $.each(response.model,function(key,item){
                     $('.carname').text(item.model_name);
                     carprice_nonFormat = item.price;
-                    offers_price_nonFormat = carprice_nonFormat * (10 / 100);
+                    if(offer_price_check_role == "member"){
+                        offers_price_nonFormat = carprice_nonFormat * (10 / 100);
+                    }else
+                    {
+                        offers_price_nonFormat = 0;
+                    }
+                   
                     RegistrationFee_nonFormat = carprice_nonFormat * (5 / 100);
                     //format number
                     var offers_price = new Intl.NumberFormat().format(offers_price_nonFormat);
@@ -85,7 +111,13 @@ $(function(){
                             var carCivilfee_nonFormat = item.Civilliabilityinsurance;
                             var carLicensefee_nonFormat = item.Licenseplatefee;
                             var carInspectionfee_nonFormat = item.Inspectionfee;
-                            var offers_price_nonFormat = carprice_nonFormat * (10 / 100);
+                            if(offer_price_check_role == "member"){
+                                offers_price_nonFormat = carprice_nonFormat * (10 / 100);
+                            }else
+                            {
+                                offers_price_nonFormat = 0;
+                            }
+                            
                             var allFees_nonFormat = RegistrationFee_nonFormat + carRoadfee_nonFormat + carCivilfee_nonFormat + carLicensefee_nonFormat + carInspectionfee_nonFormat;
                             var EstimatedCost_nonFormat = carprice_nonFormat + allFees_nonFormat -offers_price_nonFormat;
                             var deposit_nonFormat = EstimatedCost_nonFormat*(1/100);
@@ -141,7 +173,13 @@ $(function(){
                     var carCivilfee_nonFormat = item.Civilliabilityinsurance;
                     var carLicensefee_nonFormat = item.Licenseplatefee;
                     var carInspectionfee_nonFormat = item.Inspectionfee;
-                    var offers_price_nonFormat = carprice_nonFormat * (10 / 100);
+                    if(offer_price_check_role == "member"){
+                        offers_price_nonFormat = carprice_nonFormat * (10 / 100);
+                    }else
+                    {
+                        offers_price_nonFormat = 0;
+                    }
+
                     var allFees_nonFormat = RegistrationFee_nonFormat + carRoadfee_nonFormat + carCivilfee_nonFormat + carLicensefee_nonFormat + carInspectionfee_nonFormat;
                     var EstimatedCost_nonFormat = carprice_nonFormat + allFees_nonFormat -offers_price_nonFormat;
                     deposit_nonFormat = EstimatedCost_nonFormat*(1/100);
@@ -228,8 +266,8 @@ $(function(){
     });
 
 
-    var firstSelection_Model = $('#SelectYourModel').text();    
-    var firstSelection_Province = $('#SelectYourProvince').text();    
+    // var firstSelection_Model = $('#SelectYourModel').text();    
+    // var firstSelection_Province = $('#SelectYourProvince').text();    
     var model_id = $('#model_id').val(); 
     var province_matp_cost_estimate = $('#province_matp_cost_estimate').val();
     if(model_id != null || province_matp_cost_estimate != null){
@@ -254,10 +292,15 @@ $(function(){
                 $.each(response.model,function(key,item){
                     $('.carname').text(item.model_name);
                     carprice_nonFormat = item.price;
-                    var offers_price_nonFormat = carprice_nonFormat * (10 / 100);
+                    if(offer_price_check_role == "member"){
+                        offers_price_nonFormat = carprice_nonFormat * (10 / 100);
+                    }else
+                    {
+                        offers_price_nonFormat = 0;
+                    }
                     RegistrationFee_nonFormat = carprice_nonFormat * (5 / 100);
                     var offers_price_nonFormat = carprice_nonFormat * (10 / 100);
-                    var offers_price = new Intl.NumberFormat().format(offers_price_nonFormat);
+                    // var offers_price = new Intl.NumberFormat().format(offers_price_nonFormat);
                     var car_price = new Intl.NumberFormat().format(carprice_nonFormat);                
                     $('.carprice').html(car_price + '  '+'VND');
                 });   
@@ -290,7 +333,12 @@ $(function(){
                             var carCivilfee_nonFormat = item.Civilliabilityinsurance;
                             var carLicensefee_nonFormat = item.Licenseplatefee;
                             var carInspectionfee_nonFormat = item.Inspectionfee;
-                            var offers_price_nonFormat = carprice_nonFormat * (10 / 100);
+                            if(offer_price_check_role == "member"){
+                                offers_price_nonFormat = carprice_nonFormat * (10 / 100);
+                            }else
+                            {
+                                offers_price_nonFormat = 0;
+                            }
                             var allFees_nonFormat = RegistrationFee_nonFormat + carRoadfee_nonFormat + carCivilfee_nonFormat + carLicensefee_nonFormat + carInspectionfee_nonFormat;
                             var EstimatedCost_nonFormat = carprice_nonFormat + allFees_nonFormat - offers_price_nonFormat;
                             deposit_nonFormat = EstimatedCost_nonFormat*(1/100);
@@ -312,10 +360,6 @@ $(function(){
         
             }
         });   
-
-
-
-
         //get image path
         var CarImagePath = $('#CarImagePath').val();
         //default selection
@@ -333,7 +377,7 @@ $(function(){
    
     }else{
         firstSelection_Model = $('#SelectYourModel').text();
-        $("div.Model select").val(firstSelection);
+        $("div.Model select").val(firstSelection_Model);
         $("div.Province select").val(firstSelection_Province);
         $('#showImageCar').attr("src", '/storage/files/Image_Car/logoVinfast.png');
     }

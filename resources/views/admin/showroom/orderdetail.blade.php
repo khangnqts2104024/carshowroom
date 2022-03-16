@@ -1,5 +1,5 @@
 @extends('layouts_admin.layoutadmin')
-@section('title', 'product index')
+@section('title', 'Order Detail')
 @section('content')
 
 <section class="content-header">
@@ -48,7 +48,7 @@
                 </div>
                 <div class="form-group">
                     <label for="txt-price">Dòng Xe</label>
-                    <input type="text" class="form-control" id="txt-price" name="price" placeholder="1" value="{{$p->modelInfos->model_name}}" readonly>
+                    <input type="text" class="form-control" id="txt-price" name="price" placeholder="1" value="{{$p->modelInfos->model_name}}-{{$p->modelInfos->color}} " readonly>
                 </div>
                 <div class="form-group">
                     <label for="txt-price">Trị Giá Đơn Hàng</label>

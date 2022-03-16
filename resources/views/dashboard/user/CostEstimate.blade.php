@@ -1,5 +1,8 @@
 @extends('dashboard.layouts.layout')
 @section('content')
+@section('page_title')
+    {{ "Cost Estimate" }}
+@endsection
     <input type="hidden" class="idToken" value="{{ csrf_token() }}">
     <link rel="stylesheet" href="/css/CostEstimate.css">
 
@@ -79,16 +82,16 @@
         <div class="col-md-4">
             <!-- Default form subscription -->
             @if(Auth::check())
-                <form action="{{route('user.CustomerCostEstimateSubmit')}}" method="post">
+                <form action="{{route('user.CustomerOrder')}}" method="get">
             @else
-                <form action="{{route('user.GuestCostEstimateSubmit')}}" method="post">
+                <form action="{{route('user.GuestOrder')}}" method="get">
             @endif
                 @csrf
                 <p class="h4 mb-4" style="white-space: nowrap;">{{ __('CostEstimate.Cost Estimation') }}</p>
                 <div class="form-group">
                     <label for="">{{ __('CostEstimate.Model') }}</label>
                     <div class="Model">
-                        <select class="form-control formRound" name="models_cost_estimate" id="models">
+                        <select class="form-control formRound" name="models_cost_estimate" id="models" required>
                             <option id="SelectYourModel" value="">{{ __('Select your Model') }}</option>
                             @foreach ($models as $model)
                                 <option value="{{ $model->model_id }}">{{ $model->model_name }} - {{$model->color}}</option>
@@ -105,7 +108,7 @@
                 <div class="form-group">
                     <label for="">{{ __('CostEstimate.Province/City') }}</label>
                     <div class="Province">
-                        <select class="form-control formRound" name="provinces" id="provinces">
+                        <select class="form-control formRound" name="provinces" id="provinces" required>
                             <option id="SelectYourProVince" value="">
                                 {{ __('Select Your Province/City') }}</option>
                             @foreach ($provinces as $province)
@@ -179,7 +182,7 @@
                     <button type="submit" class="btn btn-block buttonDeposit mt-5">{{ __('Order Car') }}</button>
             </form>
 
-            <a href="#"><button class="btn btn-block buttonViewDetail">{{ __('View Detail.') }}</button></a>
+            <a id="link-view-details" href="" class="btn btn-block buttonViewDetail">{{ __('View Detail.') }}</a>
 
 
 

@@ -3,14 +3,17 @@
 
 <!-- Bootstrap CSS -->
 
-
 <body>
   <link rel="stylesheet" href="/css/compare.css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
-
+  <link rel="stylesheet" href="/css/layout.css" />
+  @if(Auth::check())
+    <input type="hidden" class="url_move_order_page" value="/user/auth/order/">
+  @else
+    <input type="hidden" class="url_move_order_page" value="/user/order/">
+  @endif
 
   <!-- Comparison-->
   <p style="text-align: center; font-size: 2em; font-weight: bolder">
@@ -21,6 +24,9 @@
     <div class="comparison-header table-responsive">
       <table class="table table-compare">
         <tbody>
+          <div style>
+
+          </div>
           <th scope="col"></th>
           <td scope="col">
             <div class="compare_icon1"></div>
@@ -49,8 +55,11 @@
       <!--Buton infor-->
 
       <div id="dimension-infor">
-        <button type="button" class="btn btn-block d-flex justify-content-between  ">
-          {{ __('compare.Dimensions & Weight')}}
+        <button type="button" id="btnDimension" class="btn btn-block d-flex justify-content-between btnIcon ">
+          <h4 class="d-flex align-items-center justify-content-between pb-4">
+            {{ __('compare.Dimensions & Weight')}}
+            </h4>
+      
         </button>
 
         <div id="dimension" class="table-responsive ">
@@ -76,8 +85,11 @@
       </div>
       <hr>
       <div id="engine-infor">
-        <button class="btn btn-block d-flex justify-content-between ">
-          {{ __('compare.Engine')}}
+        <button id="btnEngine-infor"class="btn btn-block d-flex justify-content-between btnIcon">
+          <h4 class="d-flex align-items-center justify-content-between pb-4">
+            {{ __('compare.Engine')}}
+            </h4>
+         
         </button>
 
         <div id="engine" class="table-responsive ">
@@ -124,8 +136,11 @@
       </div>
       <hr>
       <div id="ex_interior-infor">
-        <button class="btn btn-block d-flex justify-content-between ">
-         {{ __('compare.Interior & Exterior')}}
+        <button id="btnEx_interior" class="btn btn-block d-flex justify-content-between btnIcon">
+          <h4 class="d-flex align-items-center justify-content-between pb-4">
+            {{ __('compare.Interior & Exterior')}}
+            </h4>
+  
         </button>
 
         <div id="ex_interior" class="table-responsive ">
@@ -175,8 +190,11 @@
       </div>
       <hr>
       <div id="safety-infor">
-        <button class="btn btn-block d-flex justify-content-between ">
-         {{ __('compare.Safety')}}
+        <button id="btnSafety"class="btn btn-block d-flex justify-content-between btnIcon">
+          <h4 class="d-flex align-items-center justify-content-between pb-4"  >
+            {{ __('compare.Safety')}}
+            </h4>
+
         </button>
 
         <div id="safety" class="table-responsive ">
@@ -206,7 +224,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Chọn xe thêm vào so sánh</h5>
+              <h5 class="modal-title">{{ __('compare.Choose more cars to compare')}}</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -257,7 +275,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Chọn xe thêm vào so sánh</h5>
+              <h5 class="modal-title">{{ __('compare.Choose more cars to compare')}}</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -308,7 +326,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Chọn xe thêm vào so sánh</h5>
+              <h5 class="modal-title">{{ __('compare.Choose more cars to compare')}}</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -386,7 +404,11 @@
 
   <!-- Script add_compare -->
   <script>
+    //check url for guest or member
+    var url_move_order_page = $('.url_move_order_page').val();
+
     function add_compare(product_id) {
+      
       var id1 = product_id;
       var type1 = document.getElementById('view_model_type' + id1).value;
       var image1 = document.getElementById('view_image' + id1).src;
@@ -434,7 +456,9 @@
       var oldData1 = JSON.parse(localStorage.getItem('compare'));
 
       oldData1.push(newCar1);
-      $('.compare_icon1').append('<img src="' + newCar1.image + '" class="info01" width:auto></img>');
+
+      $('.compare_icon1').append('<img src="' + newCar1.image + '" class="info01 vehicle-picker" width:auto></img>');
+
       $('#vehicle-picker-1').addClass('d-none');
       $('#dimension').find('.modal_size01').append('<p class="info01">' + newCar1.size + '</p>');
       $('#dimension').find('.modal_weight01').append('<p class="info01">' + newCar1.weight + '</p>');
@@ -452,10 +476,10 @@
       $('#safety').find('.front_wheel_brake01').append('<p class="info01">' + newCar1.front_wheel_brake + '</p>');
       $('#safety').find('.rear_wheel_brake01').append('<p class="info01">' + newCar1.rear_wheel_brake + '</p>');
       $('#btn-order').find("#btn01").append(
-        '<button class="btn btn-success info01" style="text-align: center; font-weight: bolder;"><a href="/user/order/' + id1 + '" style="color:white; font-weight:bolder;">Order</a></button>'
+        '<a  class="btn btn-success info01" href="'+url_move_order_page + id1 + '" style="color:white; font-weight:bolder;">Order</a>' 
       );
       $('#btn-order').find("#btn01").append(
-        '<button class="btn btn-danger info01" onClick="delete_compare(' + id1 + ')"  style="text-align: center; font-weight: bolder;">Remove</button>'
+        '<a class="btn btn-danger info01" onClick="delete_compare(' + id1 + ')"  style="text-align: center; font-weight: bolder;color:white; ">Remove</a>'
       );
       localStorage.setItem("compare", JSON.stringify(oldData1));
       $('#modal_compare1').modal("hide");
@@ -517,7 +541,8 @@
       var oldData2 = JSON.parse(localStorage.getItem('compare2'));
 
       oldData2.push(newCar2);
-      $('.compare_icon2').append('<img src="' + newCar2.image + '" class="info02" width: auto></img>');
+
+      $('.compare_icon2').append('<img src="' + newCar2.image + '" class="info02 vehicle-picker" width: auto></img>');
       $('#vehicle-picker-2').addClass('d-none')
       $('#dimension').find('.modal_size02').append('<p class="info02">' + newCar2.size + '</p>');
       $('#dimension').find('.modal_weight02').append('<p class="info02">' + newCar2.weight + '</p>');
@@ -535,11 +560,10 @@
       $('#safety').find('.front_wheel_brake02').append('<p class="info02">' + newCar2.front_wheel_brake + '</p>');
       $('#safety').find('.rear_wheel_brake02').append('<p class="info02">' + newCar2.rear_wheel_brake + '</p>');
       $('#btn-order').find("#btn02").append(
-        '<button class="btn btn-success info02" style="text-align: center; font-weight: bolder;"><a href="/user/order/' + id2 + '" style="color:white; font-weight:bolder;">Order</a></button>'
-
+        '<a  class="btn btn-success info02" href="'+url_move_order_page + id2 + '" style="color:white; font-weight:bolder;">Order</a>'
       );
       $('#btn-order').find("#btn02").append(
-        '<button class="btn btn-danger info02"  onClick="delete_compare2(' + id2 + ')"  style="text-align: center; font-weight: bolder;">Remove</button>'
+        '<a class="btn btn-danger info02"  onClick="delete_compare2(' + id2 + ')"  style="text-align: center; font-weight: bolder;color:white; ">Remove</a>'
       );
       localStorage.setItem("compare2", JSON.stringify(oldData2));
       $('#modal_compare2').modal("hide");
@@ -601,7 +625,8 @@
       var oldData3 = JSON.parse(localStorage.getItem('compare3'));
 
       oldData3.push(newCar3);
-      $('.compare_icon3').append('<img src="' + newCar3.image + '" class="info03" width: auto></img>');
+
+      $('.compare_icon3').append('<img src="' + newCar3.image + '" class="info03 vehicle-picker" width: auto></img>');
       $('#vehicle-picker-3').addClass('d-none');
       $('#dimension').find('.modal_size03').append('<p class="info03">' + newCar3.size + '</p>');
       $('#dimension').find('.modal_weight03').append('<p class="info03">' + newCar3.weight + '</p>');
@@ -619,11 +644,10 @@
       $('#safety').find('.front_wheel_brake03').append('<p class="info03">' + newCar3.front_wheel_brake + '</p>');
       $('#safety').find('.rear_wheel_brake03').append('<p class="info03">' + newCar3.rear_wheel_brake + '</p>');
       $('#btn-order').find("#btn03").append(
-        '<button class="btn btn-success info03" style="text-align: center; font-weight: bolder;"><a href="/user/order/' + id3 + '" style="color:white; font-weight:bolder;">Order</a></button>'
-
+        '<a  class="btn btn-success info03" href="'+url_move_order_page + id3 + '" style="color:white; font-weight:bolder;">Order</a>'
       );
       $('#btn-order').find("#btn03").append(
-        '<button class="btn btn-danger info03" onClick="delete_compare3(' + id3 + ')" style="text-align: center; font-weight: bolder;">Remove</button>'
+        '<a class="btn btn-danger info03" onClick="delete_compare3(' + id3 + ')" style="text-align: center; font-weight: bolder; color:white; ">Remove</a>'
       );
 
       localStorage.setItem("compare3", JSON.stringify(oldData3));
@@ -747,19 +771,22 @@
   <script>
     $("#dimension-infor").on('click', function() {
       $("#dimension").toggle(200);
+      $("#btnDimension").toggleClass('active');
     });
     $("#engine-infor").on('click', function() {
       $("#engine").toggle(200);
+      $("#btnEngine-infor").toggleClass('active');
     });
     $("#ex_interior-infor").on('click', function() {
       $("#ex_interior").toggle(200);
+      $("#btnEx_interior").toggleClass('active');
     });
     $("#safety-infor").on('click', function() {
       $("#safety").toggle(200);
+      $("#btnSafety").toggleClass('active');
     });
   </script>
 
-  
 </body>
 
-@endsection;
+@endsection

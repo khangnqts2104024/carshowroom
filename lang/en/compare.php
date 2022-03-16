@@ -2,6 +2,7 @@
     return[
         "Compare cars"=>"Compare cars",
         "Vehicle selection"=>"Vehicle selection",
+        "Choose more cars to compare"=>"Choose more cars to compare",
         "Dimensions & Weight"=>"Dimensions & Weight",
         "Dimensions"=>"Dimensions",
         "Weight"=>"Weight",

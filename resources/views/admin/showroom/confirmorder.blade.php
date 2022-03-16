@@ -1,6 +1,6 @@
 <!-- Lưu tại resources/views/product/index.blade.php -->
 @extends('layouts_admin.layoutadmin')
-@section('title', 'product index')
+@section('title', 'Confirm Order')
 @section('content')
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -120,13 +120,13 @@
                             <span type="text" id="carprice">{{$p->modelInfos->price}}</span><span> VND</span>
                             <p>Giảm giá:</p>
                             <span id="discount"></span><span> VND</span>
-                            <p>Phí Kiểm Ngiệm:</p>
+                            <p>Phí Đăng Kiểm:</p>
                             <span id="Inspectionfee"></span><span> VND</span>
                             <p>Phí Trước Bạ:</p>
                             <span id="Licenseplatefee"></span><span> VND</span>
                             <p>Phí Đường Bộ:</p>
                             <span id="Roadusagefee"></span><span> VND</span>
-                            <p>Bão Hiểm Xe:</p>
+                            <p>Bảo Hiểm Xe:</p>
                             <span id="insurance"></span><span> VND</span>
 
                         </div>

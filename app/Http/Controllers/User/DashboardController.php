@@ -185,6 +185,101 @@ class DashboardController extends Controller
         }
     }
 
+    //Change Password
+    public function change_password(Request $request){
+        
+        if(App::getLocale() == 'vi'){
+            $validator = Validator::make($request->all(), [
+                'mật_khẩu_hiện_tại' => 'required|min:5|max:30',
+                'mật_khẩu_mới' => 'required|min:5|max:30',
+                'xác_nhận_mật_khẩu' => 'required|min:5|max:30|same:mật_khẩu_mới',
+            ]);
+        }else{
+            $validator = Validator::make($request->all(), [
+                'currentpassword' => 'required|min:5|max:30',
+                'newpassword' => 'required|min:5|max:30',
+                'confirm_newpassword' => 'required|min:5|max:30|same:newpassword',
+            ]);
+        }
+        
+
+        $user_customer_id = Auth::user()->customer_id;
+        $users = DB::table('customer_accounts')
+            ->where('customer_id', '=', $user_customer_id)
+            ->get();
+       
+        foreach ($users as $user) {
+            $hashCurrentPassWord = $user->password;
+        }
+
+        $user = User::where('customer_id',$user_customer_id)->first();
+        
+        if(!$user){
+            return response()->json([
+                'status' => 404,
+                'messages' => 'User not found',
+            ]);
+        }
+        
+        if(App::getLocale() == 'vi'){
+            $passwordInFieldCurrentPass = $request->mật_khẩu_hiện_tại;
+            $passwordInFieldNewPass = $request->mật_khẩu_mới;
+            
+        }else{
+            $passwordInFieldCurrentPass = $request->currentpassword;
+            $passwordInFieldNewPass = $request->newpassword;
+            
+
+        }
+        
+        $matchCurrentPass = Hash::check($passwordInFieldCurrentPass, $hashCurrentPassWord);
+        
+        $matchCurentPass_newPass = Hash::check($passwordInFieldNewPass, $hashCurrentPassWord);
+        
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 400,
+                'errors' => $validator->errors(),
+            ]);
+        }elseif(!$matchCurrentPass){
+            if(App::getLocale()=='en'){
+                $message = ["Current Password Not Correct"];
+            }else{
+                $message = ["Mật khẩu Hiện Tại Không Đúng"];
+            }
+            return response()->json([
+                'status' => 400,
+                'errors' => $message,
+            ]);
+
+        }elseif($matchCurentPass_newPass){
+            if(App::getLocale()=='en'){
+                $message = ["Old Password and New Password must be different"];
+            }else{
+                $message = ["Mật khẩu Cũ và Mật khẩu Mới phải khác nhau"];
+            }
+            return response()->json([
+                'status' => 400,
+                'errors' => $message,
+            ]);
+        }else{
+            
+            User::where('customer_id',$user_customer_id)->update([
+                'password'=>Hash::make($passwordInFieldNewPass),
+            ]);
+            if(App::getLocale()=='en'){
+                $message = "Password Change Successfully";
+            }else{
+                $message = "Đổi Mật Khẩu Thành Công";
+            }
+            return response()->json([
+                'status' => 200,
+                'messages' => $message,
+            ]);
+        }
+
+    }
+
     
     // Edit Citizen ID
     public function editCitizenID(Request $request)
@@ -307,7 +402,9 @@ class DashboardController extends Controller
               ->join('customer_infos','customer_infos.customer_id','=','orders.customer_id')
               ->join('showrooms','showrooms.id','=','orders.showroom')
               ->where('customer_infos.customer_id','=',$customer_id_auth)
-              ->get(['orders.cancel_code','order_details.matp','model_infos.model_id','orders.momo_id','model_infos.model_name','model_infos.price','customer_infos.fullname','customer_infos.address','customer_infos.email','customer_infos.phone_number','order_details.order_status','orders.order_code','orders.order_id','orders.order_date','showrooms.showroom_name','showrooms.address as showroom_address','showrooms.phone as showroom_phone','order_details.order_price']);
+              ->where('orders.customer_id','=',$customer_id_auth)
+              ->where('model_infos.released', '=','active')
+              ->get(['model_infos.color','model_infos.image','orders.cancel_code','order_details.matp','model_infos.model_id','orders.momo_id','model_infos.model_name','model_infos.price','customer_infos.fullname','customer_infos.address','customer_infos.email','customer_infos.phone_number','order_details.order_status','orders.order_code','orders.order_id','orders.order_date','showrooms.showroom_name','showrooms.address as showroom_address','showrooms.phone as showroom_phone','order_details.order_price']);
         return view('dashboard.user/profile/order_history')->with(['order_infos'=>$order_infos]);
     }
 

@@ -49,8 +49,8 @@ class ModelInfoController extends Controller
         $data['air_conditioning'] = $request->air_conditioning;
         $data['front_wheel_brake'] = $request->front_wheel_brake;
         $data['rear_wheel_brake'] = $request->rear_wheel_brake;
-        // $data['image'] = $request->image;
-        // $data['gif'] = $request->gif;
+        $data['image'] = $request->image;
+        $data['gif'] = $request->gif;
         $request->validate([
             'image' => 'mimes:jpg,png,jpeg:5048'
         ]);
@@ -84,7 +84,7 @@ class ModelInfoController extends Controller
         DB::table('model_infos')->insert($data);
         
 
-        session()->put('message', 'Thêm thành công!');
+        session()->put('message1', 'Thêm thành công!');
         return Redirect('admin/general/addmodel');
     }
 

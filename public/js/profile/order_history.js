@@ -143,7 +143,7 @@ $(function() {
         $('#modal_'+order_id).modal('hide');
         
         $('#modal_'+order_id).on('hidden.bs.modal', function () {
-            alert(123);
+           
         
         });
         

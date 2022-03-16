@@ -119,7 +119,7 @@
             </div>
         </div> -->
  
-        <input id="massage1" type="text" hidden value="{{Session::get('message1')}}">
+        <input id="massage" type="text" hidden value="{{Session::get('message')}}">
  
 
 

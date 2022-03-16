@@ -382,7 +382,6 @@ $(function() {
    
                    success: function (response) {
                      if(response.status == 400){
-                        
                         $.each(response.errors,function(key,err_values){
                            $('#editAvatar').modal("show");
                            $('#saveForm_errList_avatar').html();
@@ -398,7 +397,7 @@ $(function() {
                         $('#saveForm_errList_avatar').hide();
                         $('#editAvatar').modal("hide");
                         $('.success_messages').fadeIn();
-                  $('.success_messages').delay(700).fadeOut(800);
+                        $('.success_messages').delay(700).fadeOut(800);
                           fetchInfo();
                      }  
                    }

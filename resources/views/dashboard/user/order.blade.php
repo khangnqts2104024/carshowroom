@@ -258,7 +258,7 @@
 
 
                     <tr>
-                        <td style="color: red">Total</td>
+                        <td style="color: red">{{__('Total')}}</td>
                         <td class="deposit" id="CostEstimatedPrice" style="color: red">0 VND</td>
                         
                       </tr>

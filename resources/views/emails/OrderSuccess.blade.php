@@ -288,7 +288,7 @@
                                         style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 24px; padding: 5px 0 10px 0;">
                                         <p
                                             style="font-size: 14px; font-weight: 800; line-height: 18px; color: #333333;">
-                                            {{ $details['ShowRoom Address'] }}</p>
+                                            {{ $details['ShowRoom Address'] }} - {{ $details['ShowRoom Phone'] }}</p>
                                     </td>
                                 </tr>
                                 
